@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "audio.h"
 
 class TouchMatrix {
 
@@ -35,15 +36,16 @@ public:
 		
 	
 	TouchMatrixSonifier *sonifier;
-	TouchMatrixDisplay *display;
+	//TouchMatrixDisplay *display;
 	bool squares[16][16];
 	float time_elapsed;
 	int current_column;
 };
 
-
+/*
 @interface TouchMatrix : NSObject {
 
 }
 
 @end
+*/

@@ -8,6 +8,7 @@
 
 #import "audio.h"
 #import "mo_audio.h"
+#import "awesomesauceAppDelegate.h"
 
 #define SRATE 44100
 #define FRAMESIZE 512
@@ -17,10 +18,18 @@
  * TouchMatrixSonifier methods
  */
 
-void TouchMatrixSonifier::sonify( Float32 * buffer, UInt32 numFrames, void * userData ) {
+TouchMatrixSonifier::TouchMatrixSonifier(TouchMatrix *parentMatrix) {
+	parent = parentMatrix;
+	
+	wave = new SineWave();
+	wave->setFrequency(440.);
+	wave->setRate(SRATE);
+}
 
-	
-	
+void TouchMatrixSonifier::sonify(Float32 * buffer, UInt32 numFrames, void *userData) {
+	for (UInt32 i = 0; i < numFrames; ++i) {
+		buffer[i] = wave->tick();
+	}
 }
 
 /*
@@ -35,6 +44,7 @@ void TouchMatrixSonifier::sonify( Float32 * buffer, UInt32 numFrames, void * use
 
 void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] sonifyMatricesInfoBuffer:buffer withNumFrames:numFrames withUserData:userData];
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] timePassed:(numFrames/(float)SRATE)];
 }
 
 void audioInit() {
@@ -61,6 +71,8 @@ void audioInit() {
 }
 
 
+/*
 @implementation audio
 
 @end
+*/

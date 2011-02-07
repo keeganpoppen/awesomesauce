@@ -14,6 +14,15 @@
 @synthesize window;
 @synthesize viewController;
 
+-(void) timePassed:(float)time {
+	touchMatrix->advanceTime(time);
+}
+
+-(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData {
+	touchMatrix->sonifyMatrix(buffer, numFrames, userData);
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self.window addSubview:self.viewController.view];

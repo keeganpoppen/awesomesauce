@@ -18,13 +18,8 @@
 	TouchMatrix *touchMatrix;
 }
 
--(void) timePassed:(float)time {
-	touchMatrix->advanceTime(time);
-}
-
--(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData {
-	touchMatrix->sonifyMatrix(buffer, numFrames, userData);
-}
+-(void) timePassed:(float)time;
+-(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet awesomesauceViewController *viewController;

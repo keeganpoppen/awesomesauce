@@ -8,12 +8,16 @@
 
 #import "TouchMatrix.h"
 
-void TouchMatrix::timeElapsed(float timeElapsed) {
+void TouchMatrix::advanceTime(float timeElapsed) {
 	time_elapsed += timeElapsed;
+	
+	NSLog(@"time elapsed: %f", time_elapsed);
 	
 	//if the time is right, tell the sonifier and the graphics thingy that the playhead has moved
 }
 
+/*
 @implementation TouchMatrix
 
 @end
+*/
