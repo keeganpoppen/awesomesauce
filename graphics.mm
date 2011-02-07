@@ -105,7 +105,7 @@ void TouchMatrixDisplay::display() {
 					glColor4f( active_r, active_g, active_b, 1.0 );
 				}
 			}
-			GLfloat x = 10.0 + row * 20.0;
+			GLfloat x = 310.0 - row * 20.0;
 			GLfloat y = 10.0 + col * 20.0;
 			
 			glPushMatrix();
@@ -162,32 +162,29 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         location.x = location.y;
         location.y = temp;
 		
-		//TODO: better location detection
 		//TODO: don't use magic numbers for 20 and 10
-		int xval = (int) (location.x - 10.0) / 20.0;
-		int yval = (int) (location.y - 10.0) / 20.0;
-		NSLog( @"began: %d, %d", xval, yval );
-		if( touch.phase == UITouchPhaseBegan )
-        {
-			
-			//TODO: toggle point
-			pad_is_on = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] toggleTouch:xval withYval:yval];
-			current_touches[xval][yval] = true;
+		int xval = (int) 15 - (location.x / 20.0);
+		int yval = (int) location.y / 20.0;
+		if(yval >= 16 || xval >= 16 || yval < 0 || xval < 0) {
+			//out of square
 		}
-		else if( touch.phase == UITouchPhaseMoved )
-        {
-			if(!current_touches[xval][yval]) {
-				[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] setTouch:xval withYval:yval withBool:pad_is_on];
+		else {
+			if( touch.phase == UITouchPhaseBegan )
+			{
+				pad_is_on = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] toggleTouch:xval withYval:yval];
 				current_touches[xval][yval] = true;
 			}
-			//NSLog( @"moved: %f, %f,", location.x, location.y );
-			//eventually we will handle this case, but for now no
-		}
-		else if( touch.phase == UITouchPhaseEnded )
-        {
-			resetCurrentTouches();
-			//NSLog( @"moved: %f, %f,", location.x, location.y );
-			//eventually we will handle this case, but for now no
+			else if( touch.phase == UITouchPhaseMoved )
+			{
+				if(!current_touches[xval][yval]) {
+					[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] setTouch:xval withYval:yval withBool:pad_is_on];
+					current_touches[xval][yval] = true;
+				}
+			}
+			else if( touch.phase == UITouchPhaseEnded )
+			{
+				resetCurrentTouches();
+			}
 		}
     }
 }
