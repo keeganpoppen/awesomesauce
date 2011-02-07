@@ -48,6 +48,19 @@ void TouchMatrixDisplay::display() {
         -half_width, half_width,
         half_width, half_width,
     };
+    static const GLfloat normals[] = {
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1
+    };
+    
+    static const GLfloat texCoords[] = {
+        0, 1,
+        1, 1,
+        0, 0,
+        1, 0
+    };
 	
 	
 	//active color: yellow
@@ -74,6 +87,14 @@ void TouchMatrixDisplay::display() {
 	
 	int activeCol = parent->getColumn();
 	
+	
+	// enable texture mapping
+    glEnable( GL_TEXTURE_2D );
+    // enable blending
+    glEnable( GL_BLEND );
+    // blend function
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	
 	for (int col = 0; col < 16; ++col) {
 		for (int row = 0; row < 16; ++row) {
 			glColor4f( off_r, off_g, off_b, 1.0 );
@@ -88,15 +109,26 @@ void TouchMatrixDisplay::display() {
 			GLfloat y = 10.0 + col * 20.0;
 			
 			glPushMatrix();
+			glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 			glTranslatef( x, y, 0.0 );
 			// vertex
 			glVertexPointer( 2, GL_FLOAT, 0, squareVertices );
+			// normal
+			glNormalPointer( GL_FLOAT, 0, normals );
+			// texture coordinate
+			glTexCoordPointer( 2, GL_FLOAT, 0, texCoords );
 			
 			// triangle strip
 			glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
+			glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 			glPopMatrix();
 		}
 	}
+	
+	
+    // disable
+    glDisable( GL_TEXTURE_2D );
+    glDisable( GL_BLEND );
 }
 
 /*
@@ -105,6 +137,7 @@ void TouchMatrixDisplay::display() {
 
 bool pad_is_on;
 bool current_touches[16][16];
+GLuint g_texture[1];
 
 void resetCurrentTouches() {
 	for (int i = 0; i < 16; ++i) {
@@ -163,5 +196,17 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
 bool graphicsInit() {
 	MoTouch::addCallback( touchCallback, NULL );
 	resetCurrentTouches();
+	
+	// TEXTURE STUFF
+    // generate texture name
+    glGenTextures( 1, &g_texture[0] );
+    // bind the texture
+    glBindTexture( GL_TEXTURE_2D, g_texture[0] );
+    // setting parameters
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+	//load the texture
+    MoGfx::loadTexture( @"square_texture", @"png" );
+	
 	return true;
 }
