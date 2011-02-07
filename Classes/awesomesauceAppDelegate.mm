@@ -8,6 +8,7 @@
 
 #import "awesomesauceAppDelegate.h"
 #import "awesomesauceViewController.h"
+#import "audio.h"
 
 @implementation awesomesauceAppDelegate
 
@@ -28,6 +29,8 @@
     [self.window addSubview:self.viewController.view];
 	
 	touchMatrix = new TouchMatrix();
+
+	audioInit();
 	
     return YES;
 }

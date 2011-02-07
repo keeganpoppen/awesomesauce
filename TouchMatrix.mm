@@ -11,9 +11,8 @@
 void TouchMatrix::advanceTime(float timeElapsed) {
 	time_elapsed += timeElapsed;
 	
-	NSLog(@"time elapsed: %f", time_elapsed);
-	
-	//if the time is right, tell the sonifier and the graphics thingy that the playhead has moved
+	//current column is time_elapsed * beats/sec % number of columns
+	current_column = (int)(time_elapsed * (bpm / 60.)) % 16;
 }
 
 /*

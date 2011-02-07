@@ -20,8 +20,8 @@ public:
 	
 	void sonify( Float32 * buffer, UInt32 numFrames, void * userData );
 	
-	TouchMatrix *parent;
-	SineWave *wave;
+	TouchMatrix *parent;	
+	SineWave *waves[16];
 };
 
 void audioInit();
