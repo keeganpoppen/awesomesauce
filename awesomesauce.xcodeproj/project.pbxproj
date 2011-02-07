@@ -156,6 +156,7 @@
 		EF48731712FFC8130034E955 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48731612FFC8130034E955 /* CoreGraphics.framework */; };
 		EF48731D12FFC9F00034E955 /* audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48731C12FFC9F00034E955 /* audio.mm */; };
 		EF48732212FFC9F90034E955 /* graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732112FFC9F90034E955 /* graphics.mm */; };
+		EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732412FFCED80034E955 /* TouchMatrix.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -418,6 +419,8 @@
 		EF48731C12FFC9F00034E955 /* audio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = audio.mm; sourceTree = "<group>"; };
 		EF48732012FFC9F90034E955 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		EF48732112FFC9F90034E955 /* graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = graphics.mm; sourceTree = "<group>"; };
+		EF48732312FFCED80034E955 /* TouchMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchMatrix.h; sourceTree = "<group>"; };
+		EF48732412FFCED80034E955 /* TouchMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TouchMatrix.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -791,10 +794,12 @@
 		EF48731A12FFC9030034E955 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				EF48732012FFC9F90034E955 /* graphics.h */,
-				EF48732112FFC9F90034E955 /* graphics.mm */,
 				EF48731B12FFC9F00034E955 /* audio.h */,
 				EF48731C12FFC9F00034E955 /* audio.mm */,
+				EF48732012FFC9F90034E955 /* graphics.h */,
+				EF48732112FFC9F90034E955 /* graphics.mm */,
+				EF48732312FFCED80034E955 /* TouchMatrix.h */,
+				EF48732412FFCED80034E955 /* TouchMatrix.mm */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1001,6 +1006,7 @@
 				EF48731012FFC7F00034E955 /* mo_accel.mm in Sources */,
 				EF48731D12FFC9F00034E955 /* audio.mm in Sources */,
 				EF48732212FFC9F90034E955 /* graphics.mm in Sources */,
+				EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

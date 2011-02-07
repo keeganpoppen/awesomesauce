@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+class TouchMatrixSonifier {
+
+public:
+	TouchMatrixSonifier(){}
+	
+	int 
+};
+
 
 @interface audio : NSObject {
 
