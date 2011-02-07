@@ -11,10 +11,14 @@
 class TouchMatrixSonifier {
 
 public:
-	TouchMatrixSonifier(){}
+	TouchMatrixSonifier(TouchMatrix *parentMatrix) : parent(parentMatrix){}
 	
-	int 
+	void sonify( Float32 * buffer, UInt32 numFrames, void * userData );
+	
+	TouchMatrix *parent;
 };
+
+void audioInit();
 
 
 @interface audio : NSObject {

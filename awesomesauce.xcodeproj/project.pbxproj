@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* awesomesauceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* awesomesauceAppDelegate.m */; };
+		1D3623260D0F684500981E51 /* awesomesauceAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* awesomesauceAppDelegate.mm */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -162,7 +162,7 @@
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* awesomesauceAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauceAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* awesomesauceAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = awesomesauceAppDelegate.m; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* awesomesauceAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = awesomesauceAppDelegate.mm; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* awesomesauce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awesomesauce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2514C27910084DCA00A42282 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 				28FD14FC0DC6FC130079059D /* EAGLView.h */,
 				28FD14FD0DC6FC130079059D /* EAGLView.m */,
 				1D3623240D0F684500981E51 /* awesomesauceAppDelegate.h */,
-				1D3623250D0F684500981E51 /* awesomesauceAppDelegate.m */,
+				1D3623250D0F684500981E51 /* awesomesauceAppDelegate.mm */,
 				28EC4C5611D54ECE0027AA9F /* awesomesauceViewController.h */,
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 			);
@@ -909,7 +909,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* awesomesauceAppDelegate.m in Sources */,
+				1D3623260D0F684500981E51 /* awesomesauceAppDelegate.mm in Sources */,
 				28FD14FE0DC6FC130079059D /* EAGLView.m in Sources */,
 				28EC4C5911D54ECE0027AA9F /* awesomesauceViewController.mm in Sources */,
 				EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */,

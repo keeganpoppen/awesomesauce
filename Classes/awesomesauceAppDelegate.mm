@@ -17,6 +17,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self.window addSubview:self.viewController.view];
+	
+	touchMatrix = new TouchMatrix();
+	
     return YES;
 }
 
