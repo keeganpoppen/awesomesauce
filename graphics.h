@@ -8,9 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+class TouchMatrix;
 
-@interface graphics : NSObject {
+class TouchMatrixDisplay {
+	
+public:
+	TouchMatrixDisplay(TouchMatrix *parentMatrix);
+	
+	void display();
+	
+	TouchMatrix *parent;
+};
 
-}
+void audioInit();
 
-@end
+/*
+ @interface graphics : NSObject {
+ 
+ }
+ 
+ @end
+ */

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "audio.h"
+#import "graphics.h"
 
 class TouchMatrix {
 
@@ -19,6 +20,7 @@ public:
 			}
 		}
 		sonifier = new TouchMatrixSonifier(this);
+		display = new TouchMatrixDisplay(this);
 		time_elapsed = 0.;
 		current_column = 0;
 	}
@@ -33,10 +35,14 @@ public:
 	void sonifyMatrix( Float32 * buffer, UInt32 numFrames, void * userData ) {
 		sonifier->sonify(buffer, numFrames, userData);
 	}
+	
+	void displayMatrix() {
+		display->display();
+	}
 		
 	
 	TouchMatrixSonifier *sonifier;
-	//TouchMatrixDisplay *display;
+	TouchMatrixDisplay *display;
 	bool squares[16][16];
 	float time_elapsed;
 	int current_column;

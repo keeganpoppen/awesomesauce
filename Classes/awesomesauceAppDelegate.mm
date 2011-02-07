@@ -22,6 +22,10 @@
 	touchMatrix->sonifyMatrix(buffer, numFrames, userData);
 }
 
+-(void) displayMatrix {
+	touchMatrix->displayMatrix();
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
