@@ -19,10 +19,6 @@ public:
 			}
 		}
 		
-		squares[0][0] = squares[1][0] = true;
-		
-		squares[0][5] = squares[2][5] = true;
-		
 		sonifier = new TouchMatrixSonifier(this);
 		time_elapsed = 0.;
 		current_column = 0;
