@@ -154,6 +154,8 @@
 		EF48731012FFC7F00034E955 /* mo_accel.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48730B12FFC7F00034E955 /* mo_accel.mm */; };
 		EF48731312FFC80D0034E955 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48731212FFC80D0034E955 /* AudioToolbox.framework */; };
 		EF48731712FFC8130034E955 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48731612FFC8130034E955 /* CoreGraphics.framework */; };
+		EF48731D12FFC9F00034E955 /* audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48731C12FFC9F00034E955 /* audio.mm */; };
+		EF48732212FFC9F90034E955 /* graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732112FFC9F90034E955 /* graphics.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -412,6 +414,10 @@
 		EF48730B12FFC7F00034E955 /* mo_accel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_accel.mm; sourceTree = "<group>"; };
 		EF48731212FFC80D0034E955 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EF48731612FFC8130034E955 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF48731B12FFC9F00034E955 /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio.h; sourceTree = "<group>"; };
+		EF48731C12FFC9F00034E955 /* audio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = audio.mm; sourceTree = "<group>"; };
+		EF48732012FFC9F90034E955 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
+		EF48732112FFC9F90034E955 /* graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = graphics.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,6 +470,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				EF48731A12FFC9030034E955 /* core */,
 				EF48730012FFC7F00034E955 /* MoMu */,
 				EF48719C12FFC7E80034E955 /* STK */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -781,6 +788,17 @@
 			name = MoMu;
 			sourceTree = "<group>";
 		};
+		EF48731A12FFC9030034E955 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				EF48732012FFC9F90034E955 /* graphics.h */,
+				EF48732112FFC9F90034E955 /* graphics.mm */,
+				EF48731B12FFC9F00034E955 /* audio.h */,
+				EF48731C12FFC9F00034E955 /* audio.mm */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -981,6 +999,8 @@
 				EF48730E12FFC7F00034E955 /* mo_touch.mm in Sources */,
 				EF48730F12FFC7F00034E955 /* mo_gfx.mm in Sources */,
 				EF48731012FFC7F00034E955 /* mo_accel.mm in Sources */,
+				EF48731D12FFC9F00034E955 /* audio.mm in Sources */,
+				EF48732212FFC9F90034E955 /* graphics.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
