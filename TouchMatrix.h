@@ -29,7 +29,10 @@ public:
 		bpm = 480.; //actually 120
 	}
 	
-	void toggleSquare(int row, int col) { squares[row][col] = !squares[row][col]; }
+	bool toggleSquare(int row, int col) {
+		squares[row][col] = !squares[row][col];
+		return squares[row][col];
+	}
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	

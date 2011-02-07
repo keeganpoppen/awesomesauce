@@ -103,6 +103,17 @@ void TouchMatrixDisplay::display() {
  * END TouchMatrixDisplay methods
  */
 
+bool pad_is_on;
+bool current_touches[16][16];
+
+void resetCurrentTouches() {
+	for (int i = 0; i < 16; ++i) {
+		for (int j = 0; j < 16; ++j) {
+			current_touches[i][j] = false;
+		}
+	}
+}
+
 // touch callback
 void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTrack> & touchPts, void * data)
 {
@@ -117,17 +128,31 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         double temp = location.x;
         location.x = location.y;
         location.y = temp;
+		
+		//TODO: better location detection
+		//TODO: don't use magic numbers for 20 and 10
+		int xval = (int) (location.x - 10.0) / 20.0;
+		int yval = (int) (location.y - 10.0) / 20.0;
+		NSLog( @"began: %d, %d", xval, yval );
 		if( touch.phase == UITouchPhaseBegan )
         {
-			int xval = (int) (location.x - 10.0) / 20.0;
-			int yval = (int) (location.y - 10.0) / 20.0;
-			NSLog( @"began: %d, %d", xval, yval );
 			
 			//TODO: toggle point
-			[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] registerTouch:xval withYval:yval];
+			pad_is_on = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] toggleTouch:xval withYval:yval];
+			current_touches[xval][yval] = true;
 		}
 		else if( touch.phase == UITouchPhaseMoved )
         {
+			if(!current_touches[xval][yval]) {
+				[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] setTouch:xval withYval:yval withBool:pad_is_on];
+				current_touches[xval][yval] = true;
+			}
+			//NSLog( @"moved: %f, %f,", location.x, location.y );
+			//eventually we will handle this case, but for now no
+		}
+		else if( touch.phase == UITouchPhaseEnded )
+        {
+			resetCurrentTouches();
 			//NSLog( @"moved: %f, %f,", location.x, location.y );
 			//eventually we will handle this case, but for now no
 		}
@@ -137,5 +162,6 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
 // initialize
 bool graphicsInit() {
 	MoTouch::addCallback( touchCallback, NULL );
+	resetCurrentTouches();
 	return true;
 }

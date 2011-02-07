@@ -28,8 +28,12 @@
 	touchMatrix->displayMatrix();
 }
 
--(void) registerTouch:(int)row withYval:(int)col {
-	touchMatrix->toggleSquare(row, col);
+-(bool) toggleTouch:(int)row withYval:(int)col {
+	return touchMatrix->toggleSquare(row, col);
+}
+
+-(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on {
+	touchMatrix->setSquare(row, col, is_on);
 }
 
 
