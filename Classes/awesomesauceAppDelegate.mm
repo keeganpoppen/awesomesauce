@@ -28,6 +28,10 @@
 	touchMatrix->displayMatrix();
 }
 
+-(void) registerTouch:(int)row withYval:(int)col {
+	touchMatrix->toggleSquare(row, col);
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

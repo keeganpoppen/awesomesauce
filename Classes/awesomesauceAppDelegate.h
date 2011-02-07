@@ -21,6 +21,7 @@
 -(void) timePassed:(float)time;
 -(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData;
 -(void) displayMatrix;
+-(void) registerTouch:(int)row withYval:(int)col;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet awesomesauceViewController *viewController;

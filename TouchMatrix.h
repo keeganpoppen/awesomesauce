@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "audio.h"
+
 #import "graphics.h"
+#import "audio.h"
+
 
 class TouchMatrix {
 
@@ -24,9 +26,10 @@ public:
 		display = new TouchMatrixDisplay(this);
 		time_elapsed = 0.;
 		current_column = 0;
-		bpm = 120.;
+		bpm = 480.; //actually 120
 	}
 	
+	void toggleSquare(int row, int col) { squares[row][col] = !squares[row][col]; }
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	
@@ -45,6 +48,7 @@ public:
 	
 	TouchMatrixSonifier *sonifier;
 	TouchMatrixDisplay *display;
+	
 	bool squares[16][16];
 	float time_elapsed;
 	int current_column;

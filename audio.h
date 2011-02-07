@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SineWave.h"
 
-using namespace stk;
-
 class TouchMatrix;
+
+using namespace stk;
 
 class TouchMatrixSonifier {
 

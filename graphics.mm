@@ -7,7 +7,8 @@
 //
 
 #import "graphics.h"
-#include "mo_gfx.h"
+#import "mo_gfx.h"
+#import "awesomesauceAppDelegate.h"
 
 #import "mo_touch.h"
 
@@ -40,7 +41,7 @@ void TouchMatrixDisplay::display() {
 	
 	//draw stuff sample
 	
-	static const GLfloat half_width = 30;
+	static const GLfloat half_width = 10;
     static const GLfloat squareVertices[] = {
         -half_width, -half_width,
         half_width, -half_width,
@@ -48,19 +49,54 @@ void TouchMatrixDisplay::display() {
         half_width, half_width,
     };
 	
-	glPushMatrix();
-	// translate
-	glTranslatef( 50.0, 50.0, 0 );
 	
-    // color
-    glColor4f( 1.0, 0.5, 0.0, 1.0 );
-    // vertex
-    glVertexPointer( 2, GL_FLOAT, 0, squareVertices );
-    
-    // triangle strip
-    glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
+	//active color: yellow
+	GLfloat active_r = 1.0;
+	GLfloat active_g = 1.0;
+	GLfloat active_b = 0.3;
 	
-	glPopMatrix();
+	//on color: blue
+	GLfloat on_r = 0.3;
+	GLfloat on_g = 0.5;
+	GLfloat on_b = 1.0;
+	
+	//off color: dark grey
+	GLfloat off_r = 0.1;
+	GLfloat off_g = 0.1;
+	GLfloat off_b = 0.1;
+	
+	/*
+	parent->squares[1][1] = true;
+	parent->squares[2][3] = true;
+	parent->squares[3][4] = true;
+	parent->squares[4][6] = true;
+	 */
+	
+	int activeCol = parent->getColumn();
+	
+	for (int col = 0; col < 16; ++col) {
+		for (int row = 0; row < 16; ++row) {
+			glColor4f( off_r, off_g, off_b, 1.0 );
+			//TODO: replace with checking if active for reals
+			if(parent->squares[row][col]) {
+				glColor4f( on_r, on_g, on_b, 1.0 );
+				if(col == activeCol) {
+					glColor4f( active_r, active_g, active_b, 1.0 );
+				}
+			}
+			GLfloat x = 10.0 + row * 20.0;
+			GLfloat y = 10.0 + col * 20.0;
+			
+			glPushMatrix();
+			glTranslatef( x, y, 0.0 );
+			// vertex
+			glVertexPointer( 2, GL_FLOAT, 0, squareVertices );
+			
+			// triangle strip
+			glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
+			glPopMatrix();
+		}
+	}
 }
 
 /*
@@ -81,8 +117,20 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         double temp = location.x;
         location.x = location.y;
         location.y = temp;
-		
-        NSLog( @"touch: %f, %f,", location.x, location.y );
+		if( touch.phase == UITouchPhaseBegan )
+        {
+			int xval = (int) (location.x - 10.0) / 20.0;
+			int yval = (int) (location.y - 10.0) / 20.0;
+			NSLog( @"began: %d, %d", xval, yval );
+			
+			//TODO: toggle point
+			[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] registerTouch:xval withYval:yval];
+		}
+		else if( touch.phase == UITouchPhaseMoved )
+        {
+			//NSLog( @"moved: %f, %f,", location.x, location.y );
+			//eventually we will handle this case, but for now no
+		}
     }
 }
 
