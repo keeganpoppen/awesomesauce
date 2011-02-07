@@ -14,15 +14,17 @@ class TouchMatrix {
 
 public:
 	TouchMatrix() {
-		for (int i = 0; i < 4; ++i) {
-			for (int j = 0; j < 4; ++j) {
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
 			}
 		}
+		
 		sonifier = new TouchMatrixSonifier(this);
 		display = new TouchMatrixDisplay(this);
 		time_elapsed = 0.;
 		current_column = 0;
+		bpm = 120.;
 	}
 	
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
@@ -46,6 +48,7 @@ public:
 	bool squares[16][16];
 	float time_elapsed;
 	int current_column;
+	int bpm;
 };
 
 /*
