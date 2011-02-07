@@ -9,6 +9,7 @@
 #import "awesomesauceAppDelegate.h"
 #import "awesomesauceViewController.h"
 #import "audio.h"
+#import "graphics.h"
 
 @implementation awesomesauceAppDelegate
 
@@ -35,6 +36,7 @@
 	touchMatrix = new TouchMatrix();
 
 	audioInit();
+	graphicsInit();
 	
     return YES;
 }

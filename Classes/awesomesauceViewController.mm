@@ -11,7 +11,6 @@
 #import "awesomesauceViewController.h"
 #import "awesomesauceAppDelegate.h"
 #import "EAGLView.h"
-#import "graphics.h"
 
 // Uniform index.
 enum {
@@ -58,7 +57,6 @@ enum {
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
-	//graphicsInit();
 }
 
 - (void)dealloc

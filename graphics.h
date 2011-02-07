@@ -20,7 +20,7 @@ public:
 	TouchMatrix *parent;
 };
 
-void audioInit();
+bool graphicsInit();
 
 /*
  @interface graphics : NSObject {
