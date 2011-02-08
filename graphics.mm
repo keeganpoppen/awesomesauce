@@ -163,7 +163,7 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         location.y = temp;
 		
 		//TODO: don't use magic numbers for 20 and 10
-		int xval = (int) 15 - (location.x / 20.0);
+		int xval = (int) 16 - (location.x / 20.0);
 		int yval = (int) location.y / 20.0;
 		if(yval >= 16 || xval >= 16 || yval < 0 || xval < 0) {
 			//out of square
@@ -171,6 +171,7 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
 		else {
 			if( touch.phase == UITouchPhaseBegan )
 			{
+				//NSLog(@"x: %d, y: %d", xval, yval);
 				pad_is_on = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] toggleTouch:xval withYval:yval];
 				current_touches[xval][yval] = true;
 			}
