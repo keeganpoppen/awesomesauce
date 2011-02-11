@@ -35,13 +35,13 @@ void TouchMatrixDisplay::display() {
 	glClear( GL_COLOR_BUFFER_BIT );
 	
 	// map the viewport
-	MoGfx::ortho( 320, 480, 1 );
+	MoGfx::ortho( 768, 1024, 1 );
 	
 	glEnableClientState( GL_VERTEX_ARRAY );
 	
 	//draw stuff sample
 	
-	static const GLfloat half_width = 10;
+	static const GLfloat half_width = 24;
     static const GLfloat squareVertices[] = {
         -half_width, -half_width,
         half_width, -half_width,
@@ -105,8 +105,9 @@ void TouchMatrixDisplay::display() {
 					glColor4f( active_r, active_g, active_b, 1.0 );
 				}
 			}
-			GLfloat x = 310.0 - row * 20.0;
-			GLfloat y = 10.0 + col * 20.0;
+			//GLfloat x = 768 - half_width - col * half_width * 2;
+			GLfloat x = half_width + col * half_width * 2;
+			GLfloat y = half_width + row * half_width * 2;
 			
 			glPushMatrix();
 			glEnableClientState( GL_TEXTURE_COORD_ARRAY );
@@ -162,9 +163,11 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         location.x = location.y;
         location.y = temp;
 		
-		//TODO: don't use magic numbers for 20 and 10
-		int xval = (int) 16 - (location.x / 20.0);
-		int yval = (int) location.y / 20.0;
+		//TODO: store cell_size as a global variable
+		float cell_size = 48.0;
+		
+		int xval = (int) location.y / cell_size;
+		int yval = (int) location.x / cell_size;
 		if(yval >= 16 || xval >= 16 || yval < 0 || xval < 0) {
 			//out of square
 		}
