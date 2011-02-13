@@ -59,6 +59,11 @@ enum {
     self.displayLink = nil;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
 - (void)dealloc
 {
     if (program)
