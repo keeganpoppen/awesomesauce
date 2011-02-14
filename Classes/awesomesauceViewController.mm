@@ -56,8 +56,8 @@ enum {
 	
 	//TODO
 	[track1 setTrackNum:0];
-	[track1 setTrackNum:1];
-	[track1 setTrackNum:2];
+	[track2 setTrackNum:1];
+	[track3 setTrackNum:2];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
