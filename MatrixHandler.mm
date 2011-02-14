@@ -16,8 +16,19 @@ using namespace std;
 MatrixHandler::MatrixHandler() {
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix();
+	firstMatrix->track_name = "Sine Track 1";
 	matrices.push_back(firstMatrix);
 	currentMatrix = 0;
+	time_elapsed = 0.;
+	current_column = 0;
+	bpm = 480.; //actually 120
+}
+
+void MatrixHandler::addNewMatrix() {
+	TouchMatrix *newMatrix = new TouchMatrix();
+	newMatrix->track_name = "Sine Track TODO";
+	matrices.push_back(newMatrix);
+	currentMatrix = matrices.size() - 1;
 }
 
 void MatrixHandler::clearCurrentMatrix() {
@@ -25,8 +36,14 @@ void MatrixHandler::clearCurrentMatrix() {
 }
 
 void MatrixHandler::advanceTime(float timeElapsed) {
+	time_elapsed += timeElapsed;
+	
+	//current column is time_elapsed * beats/sec % number of columns
+	current_column = (int)(time_elapsed * (bpm / 60.)) % 16;
+	
 	for(int i = 0; i < matrices.size(); i++) {
-		matrices[i]->advanceTime(timeElapsed);
+		matrices[i]->time_elapsed = time_elapsed;
+		matrices[i]->current_column = current_column;
 	}
 }
 

@@ -40,6 +40,11 @@
 	matrixHandler->clearCurrentMatrix();
 }
 
+-(void) addNewMatrix {
+	NSLog(@"delegate:addNewMatrix");
+	matrixHandler->addNewMatrix();
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self.window addSubview:self.viewController.view];

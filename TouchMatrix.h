@@ -10,6 +10,12 @@
 
 #import "graphics.h"
 #import "audio.h"
+#import "SineWave.h"
+#import <string>
+
+using namespace stk;
+using namespace std;
+
 
 class TouchMatrix {
 
@@ -23,7 +29,17 @@ public:
 		
 		time_elapsed = 0.;
 		current_column = 0;
-		bpm = 480.; //actually 120
+		
+		//init waves var
+		for (int i = 0; i < 16; ++i) {
+			int index = i % 5;
+			int octave = i / 5 + 1;
+			
+			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
+			
+			waves[i] = new SineWave();
+			waves[i]->setFrequency(freq);		
+		}
 	}
 	
 	bool toggleSquare(int row, int col) {
@@ -35,11 +51,12 @@ public:
 	
 	int getColumn() { return current_column; }
 	
-	void advanceTime(float timeElapsed);
+	//void advanceTime(float timeElapsed);
 	void clear();
 	
 	bool squares[16][16];
+	SineWave *waves[16];
 	float time_elapsed;
 	int current_column;
-	int bpm;
+	string track_name;
 };
