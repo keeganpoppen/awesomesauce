@@ -14,7 +14,7 @@
 	GKSession *sesh;
 }
 
-- (void)init_networking;
+- (id)init;
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state;
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID;
@@ -22,6 +22,6 @@
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error;
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error;
 
-@property (retain) GKSession *sesh;
+@property (nonatomic, retain) GKSession *sesh;
 
 @end
