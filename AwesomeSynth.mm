@@ -15,13 +15,13 @@
 AwesomeSynth::AwesomeSynth(int inst) {
 	instrument = inst;
 	if(instrument == 0) {
-		gen = new Clarinet();
+		gen = new Clarinet(100.0);
 	}
 	else if(instrument == 1){
-		gen = new Flute();
+		gen = new Flute(100.0);
 	}
 	else if(instrument == 2){
-		gen = new Plucked();
+		gen = new Plucked(100.0);
 	}
 	else {
 		gen = new Drummer();
@@ -29,7 +29,7 @@ AwesomeSynth::AwesomeSynth(int inst) {
 }
 
 StkFloat AwesomeSynth::tick() {
-	gen->tick();
+	return gen->tick();
 }
 
 void AwesomeSynth::setFrequency(Float32 inFreq) {
