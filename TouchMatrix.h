@@ -55,7 +55,7 @@ public:
 		NSNumber *tid = [NSNumber numberWithInt:track_id];
 		NSMutableDictionary *dict = [[NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil] retain];
 		
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"square_changed" object:nil userInfo:dict];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
 	}
 	
 	bool isOn;
