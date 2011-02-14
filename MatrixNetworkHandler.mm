@@ -13,9 +13,14 @@
 
 @synthesize sesh;
 
-- (void)init_networking {
-	NSLog(@"starting server in peer mode");
-	[sesh initWithSessionID:@"awesomesauce" displayName:@"lord keeganus" sessionMode:GKSessionModePeer];
+- (id)init {
+	self = [super init];
+	if (self) {
+		sesh = [[GKSession alloc] init];
+		[sesh initWithSessionID:@"awesomesauce" displayName:@"lord keeganus" sessionMode:GKSessionModePeer];
+		NSLog(@"starting server in peer mode");
+	}
+	return self;
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {

@@ -25,8 +25,8 @@ MatrixHandler::MatrixHandler() {
 	bpm = 480.; //actually 120
 	
 	//set up networking junk
-	[[networkHandler alloc] init];
-	[networkHandler init_networking];
+		NSLog(@"matrixhandler makear");
+	networkHandler = [[MatrixNetworkHandler alloc] init];
 }
 
 void MatrixHandler::addNewMatrix() {
