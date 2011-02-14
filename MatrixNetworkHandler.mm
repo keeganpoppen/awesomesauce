@@ -163,7 +163,13 @@
 }
 
 -(void) sendAllDataHandler:(NSNotification *)notification {
-	NSMutableDictionary *data = [notification object];
+	[notification retain];
+	
+	NSLog(@"GETTING ALL ZE DATA");
+	
+	NSMutableDictionary *data = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
+	
+	NSLog(@"THEY ARE: %@", [data description]);
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
@@ -172,6 +178,9 @@
 		TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:i]);
 		matrixHandler->addNewMatrix(matrix);
 	}
+	
+	[notification autorelease];
+	[data autorelease];
 }
 
 /*
