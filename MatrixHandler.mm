@@ -13,6 +13,18 @@
 
 using namespace std;
 
+void trackAddedEvent(int newIndex) {
+	NSNumber *tid = [NSNumber numberWithInt:newIndex];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackAddedEvent" object:nil userInfo:dict];
+}
+
+void trackClearedEvent(int index) {
+	NSNumber *tid = [NSNumber numberWithInt:index];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
+}
+
 MatrixHandler::MatrixHandler() {
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix(0);
@@ -42,17 +54,6 @@ void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
 	trackAddedEvent(currentMatrix);
 }
 
-void trackAddedEvent(int newIndex) {
-	NSNumber *tid = [NSNumber numberWithInt:newIndex];
-	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackAddedEvent" object:nil userInfo:dict];
-}
-
-void trackClearedEvent(int index) {
-	NSNumber *tid = [NSNumber numberWithInt:index];
-	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
-}
 /*
 void trackEditedEvent(int index, bool isOn, int instrument) {
 	NSNumber *instnum = [NSNumber numberWithInt:instrument];

@@ -36,8 +36,12 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeHandler:) name:@"time_sync" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendAllDataHandler:) name:@"send_all_data" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(squareChangeHandler:) name:@"square_change" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackAddedHandler:) name:@"track_added" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackClearedHandler:) name:@"track_cleared" object:nil];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendSquareChangeNotification:) name:@"squareChangedEvent" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendTrackAddedNotification:) name:@"trackAddedEvent" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendTrackClearedNotification:) name:@"trackClearedEvent" object:nil];
 		
 		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[sesh setDelegate:self];
@@ -217,8 +221,6 @@
 
 //handles being notified of someone else having changed a square
 - (void) squareChangeHandler:(NSNotification *)notification {
-	NSLog(@"square changed!!!!!");
-	
 	NSMutableDictionary *dict = [[notification userInfo] retain];
 	
 	int row = [[dict objectForKey:@"row"] intValue];
@@ -226,11 +228,26 @@
 	bool new_value = [[dict objectForKey:@"value"] boolValue];
 	int matrix_id = [[dict objectForKey:@"tid"] intValue];
 	
-	NSLog(@"r: %d, c: %d, val: %d, matrix_id: %d", row, col, new_value, matrix_id);
-	
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->matrices[matrix_id]->setSquare(row, col, new_value);
 }
+
+- (void) trackAddedHandler:(NSNotification *)notification {
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+	
+	//int matrix_id = [[dict objectForKey:@"tid"] intValue]; TODO:unnecessary for now
+	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	handler->addNewMatrix();
+}
+
+- (void) trackClearedHandler:(NSNotification *)notification {
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+	
+	int matrix_id = [[dict objectForKey:@"tid"] intValue];
+	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	handler->matrices[matrix_id]->clear();
+}
+
 
 /*
  * END INCOMING HANDLERS
@@ -242,9 +259,7 @@
  */
 
 //notifies other peers when the user has changed a square
--(void) sendSquareChangeNotification:(NSNotification *)notification {
-	NSLog(@"sending notification!!!");
-	
+-(void) sendSquareChangeNotification:(NSNotification *)notification {	
 	NSMutableDictionary *dict = [[notification userInfo] retain];
 		
 	[dict setObject:@"square_change" forKey:@"msg_type"];
@@ -258,6 +273,39 @@
 		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 	}
 }
+
+//TODO: COPY!!
+-(void) sendTrackAddedNotification:(NSNotification *)notification {
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+
+	[dict setObject:@"track_added" forKey:@"msg_type"];
+	[dict setObject:sesh.peerID forKey:@"originator_id"];
+	
+	NSData *tosend = [[[NSData alloc] initWithData:[NSKeyedArchiver archivedDataWithRootObject:dict]] retain];
+	
+	NSError *err;
+	//send data using UDP for better numbers / faster results (I think, anyway)
+	if (![sesh sendDataToAllPeers:tosend withDataMode:GKSendDataReliable error:&err]) {
+		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
+	}
+}
+
+
+-(void) sendTrackClearedNotification:(NSNotification *)notification {
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+	
+	[dict setObject:@"track_cleared" forKey:@"msg_type"];
+	[dict setObject:sesh.peerID forKey:@"originator_id"];
+	
+	NSData *tosend = [[[NSData alloc] initWithData:[NSKeyedArchiver archivedDataWithRootObject:dict]] retain];
+	
+	NSError *err;
+	//send data using UDP for better numbers / faster results (I think, anyway)
+	if (![sesh sendDataToAllPeers:tosend withDataMode:GKSendDataReliable error:&err]) {
+		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
+	}
+}
+
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
 	[data retain];
