@@ -20,6 +20,7 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		2D665F3E1308916800E962A4 /* awesomesauceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */; };
 		2D665F7B1308A5BC00E962A4 /* MatrixHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */; };
+		2D66610F1309169900E962A4 /* AwesomeSynth.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D66610E1309169900E962A4 /* AwesomeSynth.mm */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4871FF12FFC7E80034E955 /* ADSR.cpp */; };
 		EF48728112FFC7E80034E955 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720012FFC7E80034E955 /* Asymp.cpp */; };
@@ -182,6 +183,8 @@
 		2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = awesomesauceViewController.xib; sourceTree = "<group>"; };
 		2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixHandler.mm; sourceTree = "<group>"; };
 		2D665F7E1308A5D300E962A4 /* MatrixHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixHandler.h; sourceTree = "<group>"; };
+		2D66610B1309168000E962A4 /* AwesomeSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeSynth.h; sourceTree = "<group>"; };
+		2D66610E1309169900E962A4 /* AwesomeSynth.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeSynth.mm; sourceTree = "<group>"; };
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* awesomesauce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "awesomesauce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -815,6 +818,8 @@
 				F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */,
 				2D665F7E1308A5D300E962A4 /* MatrixHandler.h */,
 				2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */,
+				2D66610B1309168000E962A4 /* AwesomeSynth.h */,
+				2D66610E1309169900E962A4 /* AwesomeSynth.mm */,
 				EF48732312FFCED80034E955 /* TouchMatrix.h */,
 				EF48732412FFCED80034E955 /* TouchMatrix.mm */,
 			);
@@ -1027,6 +1032,7 @@
 				EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */,
 				2D665F7B1308A5BC00E962A4 /* MatrixHandler.mm in Sources */,
 				F2D1E98B1308E18C008E9DF1 /* MatrixNetworkHandler.mm in Sources */,
+				2D66610F1309169900E962A4 /* AwesomeSynth.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,11 @@
 
 #import "graphics.h"
 #import "audio.h"
-#import "Generator.h"
-#import "SineWave.h"
+#import "AwesomeSynth.h"
 #import <string>
 
 using namespace stk;
 using namespace std;
-
 
 class TouchMatrix {
 
@@ -38,8 +36,8 @@ public:
 			
 			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
 			
-			waves[i] = new SineWave();
-			waves[i]->setFrequency(freq);		
+			waves[i] = new AwesomeSynth();
+			waves[i]->frequnecy = freq;
 		}
 	}
 	
@@ -56,7 +54,7 @@ public:
 	void clear();
 	
 	bool squares[16][16];
-	SineWave *waves[16];
+	AwesomeSynth *waves[16];
 	float time_elapsed;
 	int current_column;
 	NSString *track_name;
