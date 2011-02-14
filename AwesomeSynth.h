@@ -6,18 +6,19 @@
 //  Copyright 2011 AwesomeBox. All rights reserved.
 //
 
-#import "Generator.h"
-#import "SineWave.h"
+#import "Instrmnt.h"
 
 using namespace stk;
 using namespace std;
 
 class AwesomeSynth {
 public:
-	AwesomeSynth();
+	AwesomeSynth(int inst);
 	StkFloat tick();
 	void setFrequency(Float32 inFreq);
 	
-	SineWave *gen;
+	int instrument;
+	
+	Instrmnt *gen;
 	Float32 frequency;
 };

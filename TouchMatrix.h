@@ -19,7 +19,7 @@ using namespace std;
 class TouchMatrix {
 
 public:
-	TouchMatrix() {
+	TouchMatrix(int inst) {
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
@@ -36,7 +36,7 @@ public:
 			
 			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
 			
-			waves[i] = new AwesomeSynth();
+			waves[i] = new AwesomeSynth(inst);
 			waves[i]->setFrequency(freq);
 		}
 	}
