@@ -15,7 +15,7 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface awesomesauceViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@interface awesomesauceViewController : UIViewController
 {
     EAGLContext *context;
     GLuint program;
@@ -23,13 +23,11 @@
     BOOL animating;
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
-	IBOutlet UITableView *mixerTable;
 	IBOutlet UISegmentedControl *instPicker;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
-@property (nonatomic, retain) IBOutlet UITableView *mixerTable;
 
 - (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;

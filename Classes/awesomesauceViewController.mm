@@ -33,7 +33,7 @@ enum {
 
 @implementation awesomesauceViewController
 
-@synthesize animating, context, displayLink, mixerTable;
+@synthesize animating, context, displayLink;
 
 - (void)awakeFromNib
 {
@@ -53,6 +53,8 @@ enum {
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
+	
+	//[[tblCell alloc] init];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -94,10 +96,6 @@ enum {
 }
 
 - (void)viewDidLoad {
-	mixerTable.delegate = self;
-	mixerTable.dataSource = self;
-	mixerTable.allowsSelection = YES;
-
 	[super viewDidLoad];
 }
 
@@ -200,51 +198,6 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
 	mh->changeInstrument(newInst);
-}
-
-//tableView stuff
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	if(mh == NULL) {
-		return 2;
-	}
-	return mh->matrices.size();
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
-	UITableViewCell *cell = [tableView
-							 dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-									  reuseIdentifier:SimpleTableIdentifier] autorelease];
-	}
-	
-	NSUInteger row = [indexPath row];
-	
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	if(mh == NULL) {
-		cell.textLabel.text = @"ravi is cool";
-	}
-	else {
-		NSLog(@"row: %d", row);
-		cell.textLabel.text = mh->matrices.at(row)->track_name;
-	}
-	return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
-{
-	//[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	NSLog(@"selection!");
 }
 
 @end
