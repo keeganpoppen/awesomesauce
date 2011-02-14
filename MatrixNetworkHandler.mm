@@ -170,13 +170,18 @@
 	
 	NSLog(@"GETTING ALL ZE DATA");
 	
-	NSMutableDictionary *data = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
 	
-	NSLog(@"THEY ARE: %@", [data description]);
+	NSLog(@"THEY ARE: %@", [dict description]);
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
-	NSMutableArray *matrices = [data objectForKey:@"matrices"];
+	NSMutableArray *matrices = [[[NSMutableArray alloc] initWithArray:[dict objectForKey:@"matrices"]] retain];
+	
+	if(matrices == nil) NSLog(@"NIL MATS");
+	
+	NSLog(@"count %d", [matrices count]);
+	
 	for (int i = 0; i < [matrices count]; ++i) {
 		TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:i]);
 		matrixHandler->addNewMatrix(matrix);
@@ -199,7 +204,11 @@
 	[data retain];
 	[peer retain];
 	
-	NSData *unarch = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+	NSLog(@"in data length: %d", [data length]);
+
+	NSMutableDictionary *unarch = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+	
+	NSLog(@"unarch size: %d", [unarch count]);
 	
 	if(unarch == nil) NSLog(@"UNAARCH WAS NILLLLL");
 	
@@ -244,9 +253,13 @@
 	//TODO: also add the universal time (estimation)	
 	NSData *arch = [[NSKeyedArchiver archivedDataWithRootObject:dict] retain];
 	
-	if(arch == nil) NSLog(@"AAAAAAAAAAAAHHHHHHHHHHHH    HHHHHHHHHHHHAAAAAAAAAAAAAA!!!!!!!");
+	NSLog(@"arch length: %d", [arch length]);
+	
+	if(arch == nil) NSLog(@"AAARRRRCCCHHHH nil");
 	
 	NSData *tosend = [[[NSData alloc] initWithData:arch] retain];
+	
+	NSLog(@"to send length: %d", [tosend length]);
 	
 	NSError *err;
 	//send data using UDP for better numbers / faster results (I think, anyway)
