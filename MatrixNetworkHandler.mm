@@ -59,12 +59,12 @@
 			
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
-				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {					
+				NSLog(@"SYNCING CLOCKS");
+				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {
 					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i], @"iter_num",
 													[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
 					[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataUnreliable];
-					
 					/*
 					//send data using UDP for better numbers / faster results (I think, anyway)
 					NSError *err;
@@ -73,6 +73,8 @@
 					}
 					 */
 				}
+				NSLog(@"SENDING ALL DATA!!!");
+				[self sendAllDataToPeer:peerID inSession:session];
 			}
 		}
 			break;
@@ -147,7 +149,15 @@
 }
 
 -(void) sendAllDataHandler:(NSNotification *)notification {
-	//TODO: RECEIVE ALL THAT HOT HOT DATA ACTION
+	NSMutableDictionary *data = [notification object];
+	
+	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	
+	NSMutableArray *matrices = [data objectForKey:@"matrices"];
+	for (int i = 0; i < [matrices count]; ++i) {
+		TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:i]);
+		matrixHandler->addNewMatrix(matrix);
+	}
 }
 
 /*
@@ -218,11 +228,6 @@
 	
 	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
-}
-
-- (void) receiveAllDataFromPeer:(NSString *)peer andData:(NSDictionary*)data {
-	//TODO: init touchmatrices from the data
-	//TODO: tell the peer that it's sync time
 }
 
 @end

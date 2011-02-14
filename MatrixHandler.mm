@@ -36,6 +36,11 @@ void MatrixHandler::addNewMatrix() {
 	currentMatrix = matrices.size() - 1;
 }
 
+void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
+	matrices.push_back(matrix);
+	currentMatrix = matrices.size() - 1;
+}
+
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();
 }
