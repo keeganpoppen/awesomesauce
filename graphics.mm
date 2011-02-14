@@ -14,7 +14,7 @@
 
 bool pad_is_on;
 bool current_touches[16][16];
-GLuint g_texture[1];
+GLuint g_texture[3];
 
 void displayMatrix(TouchMatrix *matrix) {
 	// reset projection matrix
@@ -59,10 +59,10 @@ void displayMatrix(TouchMatrix *matrix) {
     };
 	
 	
-	//active color: yellow
-	GLfloat active_r = 1.0;
-	GLfloat active_g = 1.0;
-	GLfloat active_b = 0.3;
+	//active color: lighter blue
+	GLfloat active_r = 0.5;
+	GLfloat active_g = 0.8;
+	GLfloat active_b = 1.0;
 	
 	//on color: blue
 	GLfloat on_r = 0.3;
@@ -70,9 +70,9 @@ void displayMatrix(TouchMatrix *matrix) {
 	GLfloat on_b = 1.0;
 	
 	//off color: light grey
-	GLfloat off_r = 0.9;
-	GLfloat off_g = 0.9;
-	GLfloat off_b = 0.9;
+	GLfloat off_r = 1.0;
+	GLfloat off_g = 1.0;
+	GLfloat off_b = 1.0;
 	
 	int activeCol = matrix->getColumn();
 	
@@ -89,10 +89,18 @@ void displayMatrix(TouchMatrix *matrix) {
 			glColor4f( off_r, off_g, off_b, 1.0 );
 			//TODO: replace with checking if active for reals
 			if(matrix->squares[row][col]) {
+				// bind the texture
+				glBindTexture( GL_TEXTURE_2D, g_texture[1] );
+				
+				
 				glColor4f( on_r, on_g, on_b, 1.0 );
 				if(col == activeCol) {
 					glColor4f( active_r, active_g, active_b, 1.0 );
 				}
+			}
+			else {
+				// bind the texture
+				glBindTexture( GL_TEXTURE_2D, g_texture[0] );
 			}
 			GLfloat x = 768 - half_width - row * half_width * 2;
 			GLfloat y = half_width + col * half_width * 2 + 256;
@@ -180,14 +188,30 @@ bool graphicsInit() {
 	
 	// TEXTURE STUFF
     // generate texture name
-    glGenTextures( 1, &g_texture[0] );
+    glGenTextures( 3, &g_texture[0] );
     // bind the texture
     glBindTexture( GL_TEXTURE_2D, g_texture[0] );
     // setting parameters
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 	//load the texture
-    MoGfx::loadTexture( @"white_gradient", @"png" );
+    MoGfx::loadTexture( @"square_texture", @"png" );
+	
+    // bind the texture
+    glBindTexture( GL_TEXTURE_2D, g_texture[1] );
+    // setting parameters
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+	//load the texture
+    MoGfx::loadTexture( @"white_gradient3", @"png" );
+	
+    // bind the texture
+    glBindTexture( GL_TEXTURE_2D, g_texture[2] );
+    // setting parameters
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+	//load the texture
+    MoGfx::loadTexture( @"white_gradient3", @"png" );
 	
 	return true;
 }
