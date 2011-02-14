@@ -216,6 +216,8 @@
 
 //handles being notified of someone else having changed a square
 - (void) squareChangeHandler:(NSNotification *)notification {
+	NSLog(@"square changed!!!!!");
+	
 	NSDictionary *dict = [[notification userInfo] retain];
 	
 	int row = [[dict objectForKey:@"row"] intValue];
@@ -238,6 +240,8 @@
 
 //notifies other peers when the user has changed a square
 -(void) sendSquareChangeNotification:(NSNotification *)notification {
+	NSLog(@"sending notification!!!");
+	
 	NSMutableDictionary *dict = [[notification userInfo] retain];
 		
 	[dict setObject:@"square_change" forKey:@"msg_type"];
