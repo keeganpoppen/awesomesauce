@@ -33,7 +33,7 @@ enum {
 
 @implementation awesomesauceViewController
 
-@synthesize animating, context, displayLink;
+@synthesize animating, context, displayLink, mixerTable;
 
 - (void)awakeFromNib
 {
@@ -84,6 +84,7 @@ enum {
     [super viewWillAppear:animated];
 	
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+	mixerTable.allowsSelection = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

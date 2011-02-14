@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -46,7 +47,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 65}, {101, 37}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -76,7 +76,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 20}, {79, 37}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -96,7 +95,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 144}, {256, 624}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="503988474"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -111,7 +109,6 @@
 				</object>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAwLjk3NzI3MjcyNzMgMC45NzcyNzI3MjczAA</bytes>
