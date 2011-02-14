@@ -16,7 +16,7 @@ using namespace std;
 MatrixHandler::MatrixHandler() {
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix(0);
-	firstMatrix->track_name = @"Sine Track 1";
+	firstMatrix->track_id = 0;
 	matrices.push_back(firstMatrix);
 	currentMatrix = 0;
 
@@ -31,7 +31,7 @@ MatrixHandler::MatrixHandler() {
 
 void MatrixHandler::addNewMatrix() {
 	TouchMatrix *newMatrix = new TouchMatrix(0);
-	newMatrix->track_name = @"Sine Track TODO";
+	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
 }

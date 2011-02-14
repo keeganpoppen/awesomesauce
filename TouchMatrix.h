@@ -64,5 +64,5 @@ public:
 	float time_elapsed;
 	int current_column;
 	int instrument;
-	NSString *track_name;
+	int track_id;
 };
