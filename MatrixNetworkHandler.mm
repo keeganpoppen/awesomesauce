@@ -107,7 +107,7 @@
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
-		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[dict objectForKey:@"iter_num"]];
+		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[[dict objectForKey:@"iter_num"] unsignedIntValue]];
 		num_timing_responses++;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
