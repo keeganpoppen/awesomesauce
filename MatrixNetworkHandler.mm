@@ -142,7 +142,7 @@
 			NSLog(@"PEN15");
 			NSLog(@"OBJ: %@", [dict description]);
 		}
-		[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
+		//[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]]; TODO: MEM ISSUES!!
 		++num_timing_responses;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
