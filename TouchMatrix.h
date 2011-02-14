@@ -37,6 +37,8 @@ public:
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	
+	bool isOn;
+	
 	void setInst(int newInst);
 	
 	int getColumn() { return current_column; }
@@ -49,7 +51,7 @@ public:
 	float time_elapsed;
 	int current_column;
 	int instrument;
-	NSString *track_name;
+	int track_id;
 	
 private:
 	void initialize_junk() {
@@ -72,5 +74,6 @@ private:
 			waves[i] = new AwesomeSynth(instrument);
 			waves[i]->setFrequency(freq);
 		}
+		isOn = true;
 	}
 };

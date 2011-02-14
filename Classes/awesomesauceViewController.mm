@@ -54,10 +54,6 @@ enum {
     animationFrameInterval = 1;
     self.displayLink = nil;
 	
-	//TODO
-	[track1 setTrackNum:0];
-	[track2 setTrackNum:1];
-	[track3 setTrackNum:2];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -100,6 +96,29 @@ enum {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+}
+
+- (void)initializeMixer {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	tracks = [[NSMutableArray alloc] init];
+	[tracks addObject:track1];
+	[tracks addObject:track2];
+	[tracks addObject:track3];
+	
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element;
+	int i = 0;
+	while(element = (MixerView *)[enumerator nextObject])
+    {
+		[element setTrackNum:i];
+		[element setMatrixHandler:mh];
+		[element setParent:self];
+		[element disableTrack];
+		i++;
+    }
+	
+	[track1 enableTrack:@"Sine"];
+	numTracks = 1;
 }
 
 - (void)viewDidUnload
@@ -192,15 +211,29 @@ enum {
 }
 
 - (IBAction)addMatrix {
+	numTracks++;
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
+	
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
+	[temp enableTrack:@"Sine"];
+	
 	[self matrixChanged];
-	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
 	mh->changeInstrument(newInst);
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:mh->currentMatrix];
+	if(newInst == 0) {
+		[temp setLabelText:@"Sine"];
+	}
+	else if(newInst == 1) {
+		[temp setLabelText:@"Square"];
+	}
+	else if(newInst == 2) {
+		[temp setLabelText:@"Saw"];
+	}
 }
 
 @end

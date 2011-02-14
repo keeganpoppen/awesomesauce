@@ -31,15 +31,9 @@
 	IBOutlet MixerView *track1;
 	IBOutlet MixerView *track2;
 	IBOutlet MixerView *track3;
-	/*
-	IBOutlet UILabel *track1Name;
-	IBOutlet UILabel *track2Name;
-	IBOutlet UILabel *track3Name;
 	
-	IBOutlet UIButton *track1Edit;
-	IBOutlet UIButton *track2Edit;
-	IBOutlet UIButton *track3Edit;
-	*/
+	NSMutableArray *tracks;
+	int numTracks;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -48,6 +42,7 @@
 - (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;
 - (void)stopAnimation;
+- (void)initializeMixer;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;

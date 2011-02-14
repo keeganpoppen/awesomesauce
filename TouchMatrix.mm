@@ -38,6 +38,8 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 			setSquare(i, j, val);
 		}
 	}
+	
+	track_id = [[fromDictionary objectForKey:@"track_id"] intValue];
 }
 
 /*
@@ -57,7 +59,7 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	
 	[dict setObject:flat_notes forKey:@"notes"];
 	
-	//[dict setObject:track_name forKey:@"track_name"];
+	[dict setObject:[NSNumber numberWithInt:track_id] forKey:@"track_id"];
 	[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
 	
 	return [dict autorelease];
