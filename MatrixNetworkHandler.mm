@@ -196,6 +196,9 @@
  */
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+	[data retain];
+	[peer retain];
+	
 	//TODO: RELEASE / MEM ISSUES???
 	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithData:data]] retain];
 	
@@ -221,6 +224,7 @@
 //helper wrapper function for 
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
 	[dict retain];
+	[toPeers retain];
 	
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
