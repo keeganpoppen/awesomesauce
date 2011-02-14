@@ -20,7 +20,6 @@
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
 		[sesh setAvailable:YES];
-		[sesh setConnec
 		NSLog(@"starting server in peer mode");
 	}
 	return self;
