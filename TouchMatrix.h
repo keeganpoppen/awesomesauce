@@ -53,7 +53,7 @@ public:
 		NSNumber *colnum = [NSNumber numberWithInt:col];
 		NSNumber *newval = [NSNumber numberWithBool:value];
 		NSNumber *tid = [NSNumber numberWithInt:track_id];
-		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil];
+		NSMutableDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil];
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:nil userInfo:dict];
 	}
