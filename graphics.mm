@@ -27,7 +27,7 @@ void displayMatrix(TouchMatrix *matrix) {
 	glLoadIdentity();
 	
 	// set clear color to black
-	glClearColor( 0, 0, 0, 1.0f );
+	glClearColor( 1.0, 1.0, 1.0, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
 	
 	// map the viewport
@@ -69,10 +69,10 @@ void displayMatrix(TouchMatrix *matrix) {
 	GLfloat on_g = 0.5;
 	GLfloat on_b = 1.0;
 	
-	//off color: dark grey
-	GLfloat off_r = 0.1;
-	GLfloat off_g = 0.1;
-	GLfloat off_b = 0.1;
+	//off color: light grey
+	GLfloat off_r = 0.9;
+	GLfloat off_g = 0.9;
+	GLfloat off_b = 0.9;
 	
 	int activeCol = matrix->getColumn();
 	
@@ -187,7 +187,7 @@ bool graphicsInit() {
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 	//load the texture
-    MoGfx::loadTexture( @"square_texture", @"png" );
+    MoGfx::loadTexture( @"white_gradient", @"png" );
 	
 	return true;
 }
