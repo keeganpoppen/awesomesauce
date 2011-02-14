@@ -36,21 +36,11 @@
 		case GKPeerStateConnected:
 		{
 			NSLog(@"connected to peer %@", [sesh displayNameForPeer:peerID]);
-
-			/*
-			NSString *test = @"Keegan is awesome";
-			NSData *data = [test dataUsingEncoding:NSUTF8StringEncoding];
-			
-			NSError *err;
-			if (![sesh sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&err]) {
-				NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
-			}
-			 */
 			
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
 				for (int i = 0; i < 10; ++i) {					
-					NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:i],
+					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:i],
 											@"iter_num", [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
 					//send data using UDP for better numbers / faster results (I think, anyway)
@@ -100,12 +90,7 @@
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	/*
-	NSString *rec_data = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSLog(@"data received! it was: %@", rec_data);
-	 */
-	
-	NSDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	
 	//if we sent the time packets originally
 	if ([self comparePeerID:peer]) {
