@@ -210,10 +210,14 @@
 	
 	NSLog(@"unarch size: %d", [unarch count]);
 	
+	NSLog(@"unarch scrip: %@", [unarch description]);
+	
 	if(unarch == nil) NSLog(@"UNAARCH WAS NILLLLL");
 	
 	//TODO: RELEASE / MEM ISSUES???
 	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:unarch] retain];
+	
+	NSLog(@"dict size: %d", [dict count]);
 	
 	if (dict == nil) {
 		NSLog(@"NIL DICT!");
@@ -221,6 +225,8 @@
 	}
 	
 	NSString *notificationType = [[dict objectForKey:@"msg_type"] retain];
+	
+	NSLog(@"notification type: %@", notificationType);
 	
 	if (notificationType == nil) {
 		NSLog(@"NIL TYPE!!!!!!");
