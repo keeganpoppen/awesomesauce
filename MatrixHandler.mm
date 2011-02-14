@@ -25,6 +25,15 @@ void trackClearedEvent(int index) {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
 }
 
+void trackEditedEvent(int index, bool isOn, int instrument) {
+	NSNumber *instnum = [NSNumber numberWithInt:instrument];
+	NSNumber *onnum = [NSNumber numberWithBool:isOn];
+	NSNumber *tid = [NSNumber numberWithInt:index];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:instnum, @"inst", onnum, @"on", tid, @"tid", nil] retain];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
+}
+
 MatrixHandler::MatrixHandler() {
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix(0);
@@ -56,16 +65,10 @@ void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
 	trackAddedEvent(currentMatrix);
 }
 
-/*
-void trackEditedEvent(int index, bool isOn, int instrument) {
-	NSNumber *instnum = [NSNumber numberWithInt:instrument];
-	NSNumber *onnum = [NSNumber numberWithBool:isOn];
-	NSNumber *tid = [NSNumber numberWithInt:index];
-	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:instnum, @"inst", onnum, @"on", tid, @"tid", nil] retain];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
+void MatrixHandler::setMatrixOn(int trackId, bool newOnState) {
+	matrices[trackId]->isOn = newOnState;
+	trackEditedEvent(trackId, newOnState, matrices[trackId]->instrument);
 }
-*/
 
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();

@@ -59,7 +59,7 @@
 }
 
 - (IBAction)onSwitchToggled {
-	matrixHandler->matrices[trackNum]->isOn = onSwitch.on;
+	matrixHandler->setMatrixOn(trackNum, onSwitch.on);
 }
 
 - (void)dealloc {
