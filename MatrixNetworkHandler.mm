@@ -120,7 +120,6 @@
 /*
  * handlers for incoming messages
  */
-//- (void) timeHandler:(NSMutableDictionary *)dict {
 - (void) timeHandler:(NSNotification *)notification {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[notification object]];
 	
@@ -178,9 +177,21 @@
  */
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	NSMutableDictionary *dict = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];//TODO: RELEASE???
+	//TODO: RELEASE / MEM ISSUES???
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithData:data]] retain];
+	
+	if (dict == nil) {
+		NSLog(@"NIL DICT!");
+		return;
+	}
 	
 	NSString *notificationType = [dict objectForKey:@"msg_type"];
+	
+	if (notificationType == nil) {
+		NSLog(@"NIL TYPE!!!!!!");
+		NSLog(@"dict: %@", [dict description]);
+		return;
+	}
 	
 	//NSLog(@"sending notification of type: %@", notificationType);
 	
@@ -190,6 +201,8 @@
 
 //helper wrapper function for 
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
+	[dict retain];
+	
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
 	
@@ -205,6 +218,8 @@
 	if (![sesh sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:peers withDataMode:mode error:&err]) {
 		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 	}
+	
+	[dict release];
 }
 
 
