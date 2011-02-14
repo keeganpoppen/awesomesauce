@@ -7,29 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SineWave.h"
 
 class TouchMatrix;
 
-using namespace stk;
-
-class TouchMatrixSonifier {
-
-public:
-	TouchMatrixSonifier(TouchMatrix *parentMatrix);
-	
-	void sonify( Float32 * buffer, UInt32 numFrames, void * userData );
-	
-	TouchMatrix *parent;	
-	SineWave *waves[16];
-};
-
 void audioInit();
+void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices);
 
 /*
-@interface audio : NSObject {
+ 
+ class TouchMatrix;
+ 
+ using namespace stk;
+ 
+ class TouchMatrixSonifier {
+ 
+ public:
+ TouchMatrixSonifier(TouchMatrix *parentMatrix);
+ 
+ void sonify( Float32 * buffer, UInt32 numFrames, void * userData );
+ 
+ TouchMatrix *parent;	
+ 
+ };
 
-}
-
-@end
 */

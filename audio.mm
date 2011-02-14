@@ -9,61 +9,38 @@
 #import "audio.h"
 #import "mo_audio.h"
 #import "awesomesauceAppDelegate.h"
+#import "SineWave.h"
 #import <math.h>
 
 #define SRATE 44100
 #define FRAMESIZE 512
 #define NUM_CHANNELS 2
 
-/*
- * TouchMatrixSonifier methods
- */
+using namespace stk;
 
-TouchMatrixSonifier::TouchMatrixSonifier(TouchMatrix *parentMatrix) {
-	parent = parentMatrix;
-	
-	static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
-	static float base_freq = 110.;
-	
-	for (int i = 0; i < 16; ++i) {
-		int index = i % 5;
-		int octave = i / 5 + 1;
-				
-		float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
-		
-		waves[i] = new SineWave();
-		waves[i]->setFrequency(freq);		
-	}
-}
+static float base_freq = 110.;
+static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
+SineWave *waves[16];
 
-void TouchMatrixSonifier::sonify(Float32 * buffer, UInt32 numFrames, void *userData) {
-	int col = parent->getColumn();
+void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices) {
+	int col = matrix->getColumn();
 	
 	for (UInt32 i = 0; i < numFrames; ++i) {
 		Float32 val = 0.;
 		int num_notes = 0;
 		
 		for (int row = 0; row < 16; ++row) {
-			if(!parent->squares[row][col]) continue;
+			if(!matrix->squares[row][col]) continue;
 			
 			val += waves[row]->tick();
 			++num_notes;
 		}
 		val /= num_notes;
+		val /= numMatrices;
 		buffer[2*i] += val;
 		buffer[2*i + 1] += val;
 	}
 }
-
-/*
- * END TouchMatrixSonifier methods
- */
-
-
-
-/*
- * Global setup stuff
- */
 
 void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
 	for (int i = 0; i < numFrames; ++i) buffer[2*i] = buffer[2*i + 1] = 0.;
@@ -73,6 +50,17 @@ void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
 }
 
 void audioInit() {
+	//init waves var
+	for (int i = 0; i < 16; ++i) {
+		int index = i % 5;
+		int octave = i / 5 + 1;
+		
+		float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
+		
+		waves[i] = new SineWave();
+		waves[i]->setFrequency(freq);		
+	}
+	
 	// init
     bool result = MoAudio::init( SRATE, FRAMESIZE, NUM_CHANNELS );
     if( !result )
@@ -94,10 +82,3 @@ void audioInit() {
 	NSLog(@"MoAudio started!");
 	
 }
-
-
-/*
-@implementation audio
-
-@end
-*/

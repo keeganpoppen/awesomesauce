@@ -14,9 +14,3 @@ void TouchMatrix::advanceTime(float timeElapsed) {
 	//current column is time_elapsed * beats/sec % number of columns
 	current_column = (int)(time_elapsed * (bpm / 60.)) % 16;
 }
-
-/*
-@implementation TouchMatrix
-
-@end
-*/

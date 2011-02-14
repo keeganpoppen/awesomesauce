@@ -17,23 +17,23 @@
 @synthesize viewController;
 
 -(void) timePassed:(float)time {
-	touchMatrix->advanceTime(time);
+	matrixHandler->advanceTime(time);
 }
 
 -(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData {
-	touchMatrix->sonifyMatrix(buffer, numFrames, userData);
+	matrixHandler->sonifyAllMatrices(buffer, numFrames, userData);
 }
 
 -(void) displayMatrix {
-	touchMatrix->displayMatrix();
+	matrixHandler->displayCurrentMatrix();
 }
 
 -(bool) toggleTouch:(int)row withYval:(int)col {
-	return touchMatrix->toggleSquare(row, col);
+	return matrixHandler->getCurrentMatrix()->toggleSquare(row, col);
 }
 
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on {
-	touchMatrix->setSquare(row, col, is_on);
+	matrixHandler->getCurrentMatrix()->setSquare(row, col, is_on);
 }
 
 
@@ -41,7 +41,7 @@
 {
     [self.window addSubview:self.viewController.view];
 	
-	touchMatrix = new TouchMatrix();
+	matrixHandler = new MatrixHandler();
 
 	audioInit();
 	graphicsInit();

@@ -10,22 +10,21 @@
 
 class TouchMatrix;
 
-class TouchMatrixDisplay {
-	
-public:
-	TouchMatrixDisplay(TouchMatrix *parentMatrix);
-	
-	void display();
-	
-	TouchMatrix *parent;
-};
-
 bool graphicsInit();
+void displayMatrix(TouchMatrix *matrix);
 
 /*
- @interface graphics : NSObject {
  
- }
+ class TouchMatrix;
  
- @end
- */
+ class TouchMatrixDisplay {
+ 
+ public:
+ TouchMatrixDisplay(TouchMatrix *parentMatrix);
+ 
+ void display();
+ 
+ TouchMatrix *parent;
+ };
+
+*/

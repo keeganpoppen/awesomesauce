@@ -11,7 +11,6 @@
 #import "graphics.h"
 #import "audio.h"
 
-
 class TouchMatrix {
 
 public:
@@ -22,8 +21,6 @@ public:
 			}
 		}
 		
-		sonifier = new TouchMatrixSonifier(this);
-		display = new TouchMatrixDisplay(this);
 		time_elapsed = 0.;
 		current_column = 0;
 		bpm = 480.; //actually 120
@@ -40,28 +37,8 @@ public:
 	
 	void advanceTime(float timeElapsed);
 	
-	void sonifyMatrix( Float32 * buffer, UInt32 numFrames, void * userData ) {
-		sonifier->sonify(buffer, numFrames, userData);
-	}
-	
-	void displayMatrix() {
-		display->display();
-	}
-		
-	
-	TouchMatrixSonifier *sonifier;
-	TouchMatrixDisplay *display;
-	
 	bool squares[16][16];
 	float time_elapsed;
 	int current_column;
 	int bpm;
 };
-
-/*
-@interface TouchMatrix : NSObject {
-
-}
-
-@end
-*/

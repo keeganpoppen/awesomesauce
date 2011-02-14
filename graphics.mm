@@ -12,15 +12,11 @@
 
 #import "mo_touch.h"
 
-/*
- * TouchMatrixDisplay methods
- */
+bool pad_is_on;
+bool current_touches[16][16];
+GLuint g_texture[1];
 
-TouchMatrixDisplay::TouchMatrixDisplay(TouchMatrix *parentMatrix) {
-	parent = parentMatrix;
-}
-
-void TouchMatrixDisplay::display() {
+void displayMatrix(TouchMatrix *matrix) {
 	// reset projection matrix
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
@@ -78,14 +74,7 @@ void TouchMatrixDisplay::display() {
 	GLfloat off_g = 0.1;
 	GLfloat off_b = 0.1;
 	
-	/*
-	parent->squares[1][1] = true;
-	parent->squares[2][3] = true;
-	parent->squares[3][4] = true;
-	parent->squares[4][6] = true;
-	 */
-	
-	int activeCol = parent->getColumn();
+	int activeCol = matrix->getColumn();
 	
 	
 	// enable texture mapping
@@ -99,7 +88,7 @@ void TouchMatrixDisplay::display() {
 		for (int row = 0; row < 16; ++row) {
 			glColor4f( off_r, off_g, off_b, 1.0 );
 			//TODO: replace with checking if active for reals
-			if(parent->squares[row][col]) {
+			if(matrix->squares[row][col]) {
 				glColor4f( on_r, on_g, on_b, 1.0 );
 				if(col == activeCol) {
 					glColor4f( active_r, active_g, active_b, 1.0 );
@@ -130,14 +119,6 @@ void TouchMatrixDisplay::display() {
     glDisable( GL_TEXTURE_2D );
     glDisable( GL_BLEND );
 }
-
-/*
- * END TouchMatrixDisplay methods
- */
-
-bool pad_is_on;
-bool current_touches[16][16];
-GLuint g_texture[1];
 
 void resetCurrentTouches() {
 	for (int i = 0; i < 16; ++i) {

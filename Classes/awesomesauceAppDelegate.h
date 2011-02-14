@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TouchMatrix.h"
+#import "MatrixHandler.h"
 
 @class awesomesauceViewController;
 
@@ -15,7 +15,7 @@
     UIWindow *window;
     awesomesauceViewController *viewController;
 
-	TouchMatrix *touchMatrix;
+	MatrixHandler *matrixHandler;
 }
 
 -(void) timePassed:(float)time;
@@ -28,4 +28,3 @@
 @property (nonatomic, retain) IBOutlet awesomesauceViewController *viewController;
 
 @end
-
