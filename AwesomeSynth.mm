@@ -8,6 +8,15 @@
 
 #import "AwesomeSynth.h"
 
-void AwesomeSynth::tick() {
-	//TODO
+AwesomeSynth::AwesomeSynth() {
+	gen = new SineWave();	
+}
+
+StkFloat AwesomeSynth::tick() {
+	return gen->tick();
+}
+
+void AwesomeSynth::setFrequency(Float32 inFreq) {
+	frequency = inFreq;
+	gen->setFrequency(frequency);
 }

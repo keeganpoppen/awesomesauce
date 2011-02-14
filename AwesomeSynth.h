@@ -15,7 +15,9 @@ using namespace std;
 class AwesomeSynth {
 public:
 	AwesomeSynth();
-	void tick();
+	StkFloat tick();
+	void setFrequency(Float32 inFreq);
 	
-	Float32 frequnecy;
-}
+	SineWave *gen;
+	Float32 frequency;
+};

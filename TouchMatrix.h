@@ -11,7 +11,7 @@
 #import "graphics.h"
 #import "audio.h"
 #import "AwesomeSynth.h"
-#import <string>
+//#import <string>
 
 using namespace stk;
 using namespace std;
@@ -37,7 +37,7 @@ public:
 			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
 			
 			waves[i] = new AwesomeSynth();
-			waves[i]->frequnecy = freq;
+			waves[i]->setFrequency(freq);
 		}
 	}
 	

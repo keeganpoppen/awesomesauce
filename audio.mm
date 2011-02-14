@@ -9,7 +9,7 @@
 #import "audio.h"
 #import "mo_audio.h"
 #import "awesomesauceAppDelegate.h"
-#import "SineWave.h"
+#import "AwesomeSynth.h"
 #import <math.h>
 
 #define SRATE 44100
