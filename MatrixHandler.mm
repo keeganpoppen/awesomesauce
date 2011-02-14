@@ -48,8 +48,15 @@ void trackAddedEvent(int newIndex) {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackAddedEvent" object:nil userInfo:dict];
 }
 
+void trackClearedEvent(int index) {
+	NSNumber *tid = [NSNumber numberWithInt:index];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
+}
+
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();
+	trackClearedEvent(currentMatrix);
 }
 
 void MatrixHandler::changeInstrument(int newInst) {
