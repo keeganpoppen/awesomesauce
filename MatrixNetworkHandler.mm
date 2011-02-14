@@ -34,8 +34,9 @@
 }
 		 
  - (BOOL) comparePeerID:(NSString*)otherID {
-	 //TODO: CHANGE THIS, OBV!!! return [otherID compare:sesh.peerID] == NSOrderedAscending;
-	 return [[sesh displayName] compare:@"chewbacca"];
+	 //TODO: CHANGE THIS, OBV!!!
+	 //return [otherID compare:sesh.peerID] == NSOrderedAscending;
+	 return ![otherID localizedCaseInsensitiveCompare:@"Chewbacca"];
  }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -107,7 +108,11 @@
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
-		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[[dict objectForKey:@"iter_num"] unsignedIntValue]];
+		
+		unsigned index = [[dict objectForKey:@"iter_num"] unsignedIntValue];
+		NSLog(@"index: %d", index);
+		
+		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:index];
 		num_timing_responses++;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
