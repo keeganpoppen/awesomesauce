@@ -20,8 +20,8 @@ class MatrixHandler {
 public:
 	MatrixHandler();
 	
-	void addNewMatrix();
-	void addNewMatrix(TouchMatrix *matrix);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
+	void addNewMatrix(bool sendNotification = true);
+	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
 	void changeInstrument(int newInst);
 	void clearCurrentMatrix();
