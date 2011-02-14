@@ -39,10 +39,24 @@ void MatrixHandler::addNewMatrix() {
 void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
 	matrices.push_back(matrix);
 	currentMatrix = matrices.size() - 1;
+	trackAddedEvent(currentMatrix);
+}
+
+void trackAddedEvent(int newIndex) {
+	NSNumber *tid = [NSNumber numberWithInt:newIndex];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackAddedEvent" object:nil userInfo:dict];
+}
+
+void trackClearedEvent(int index) {
+	NSNumber *tid = [NSNumber numberWithInt:index];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"tid", nil] retain];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
 }
 
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();
+	trackClearedEvent(currentMatrix);
 }
 
 void MatrixHandler::changeInstrument(int newInst) {
