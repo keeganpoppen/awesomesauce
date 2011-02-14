@@ -18,9 +18,6 @@
 
 using namespace stk;
 
-static float base_freq = 110.;
-static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
-SineWave *waves[16];
 
 void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices) {
 	int col = matrix->getColumn();
@@ -32,13 +29,15 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 		for (int row = 0; row < 16; ++row) {
 			if(!matrix->squares[row][col]) continue;
 			
-			val += waves[row]->tick();
+			val += matrix->waves[row]->tick();
 			++num_notes;
 		}
-		val /= num_notes;
-		val /= numMatrices;
-		buffer[2*i] += val;
-		buffer[2*i + 1] += val;
+		if(val != 0) {
+			val /= num_notes;
+			val /= numMatrices;
+			buffer[2*i] += val;
+			buffer[2*i + 1] += val;
+		}
 	}
 }
 
@@ -50,16 +49,6 @@ void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
 }
 
 void audioInit() {
-	//init waves var
-	for (int i = 0; i < 16; ++i) {
-		int index = i % 5;
-		int octave = i / 5 + 1;
-		
-		float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
-		
-		waves[i] = new SineWave();
-		waves[i]->setFrequency(freq);		
-	}
 	
 	// init
     bool result = MoAudio::init( SRATE, FRAMESIZE, NUM_CHANNELS );

@@ -23,6 +23,7 @@
     BOOL animating;
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
+	IBOutlet UITableView *mixerTable;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;

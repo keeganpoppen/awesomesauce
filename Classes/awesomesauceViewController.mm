@@ -176,8 +176,7 @@ enum {
 }
 
 - (IBAction)addMatrix {
-	//TODO: add another matrix and switch to it
-	NSLog(@"add matrix");
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
 }
 
 @end
