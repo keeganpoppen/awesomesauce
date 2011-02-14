@@ -122,7 +122,7 @@
  */
 //- (void) timeHandler:(NSMutableDictionary *)dict {
 - (void) timeHandler:(NSNotification *)notification {
-	NSMutableDictionary *dict = [notification object];
+	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[notification object];
 	
 	NSString *originator = [dict objectForKey:@"originator_id"];
 	
