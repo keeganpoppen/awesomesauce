@@ -20,6 +20,10 @@ MatrixHandler::MatrixHandler() {
 	currentMatrix = 0;
 }
 
+void MatrixHandler::clearCurrentMatrix() {
+	getCurrentMatrix()->clear();
+}
+
 void MatrixHandler::advanceTime(float timeElapsed) {
 	for(int i = 0; i < matrices.size(); i++) {
 		matrices[i]->advanceTime(timeElapsed);

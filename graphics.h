@@ -12,19 +12,3 @@ class TouchMatrix;
 
 bool graphicsInit();
 void displayMatrix(TouchMatrix *matrix);
-
-/*
- 
- class TouchMatrix;
- 
- class TouchMatrixDisplay {
- 
- public:
- TouchMatrixDisplay(TouchMatrix *parentMatrix);
- 
- void display();
- 
- TouchMatrix *parent;
- };
-
-*/

@@ -170,4 +170,14 @@ enum {
     // Release any cached data, images, etc. that aren't in use.
 }
 
+//Interface Builder IB stuff
+- (IBAction)clearCurrentMatrix {
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] clearCurrentMatrix];
+}
+
+- (IBAction)addMatrix {
+	//TODO: add another matrix and switch to it
+	NSLog(@"add matrix");
+}
+
 @end

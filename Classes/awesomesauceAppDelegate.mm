@@ -36,6 +36,9 @@
 	matrixHandler->getCurrentMatrix()->setSquare(row, col, is_on);
 }
 
+-(void) clearCurrentMatrix {
+	matrixHandler->clearCurrentMatrix();
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -30,5 +30,8 @@
 
 - (void)startAnimation;
 - (void)stopAnimation;
+- (IBAction)clearCurrentMatrix;
+- (IBAction)addMatrix;
+
 
 @end

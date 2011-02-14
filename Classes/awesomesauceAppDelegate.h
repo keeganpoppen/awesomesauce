@@ -18,6 +18,7 @@
 	MatrixHandler *matrixHandler;
 }
 
+-(void) clearCurrentMatrix;
 -(void) timePassed:(float)time;
 -(void) sonifyMatricesInfoBuffer:(Float32 *)buffer withNumFrames:(UInt32)numFrames withUserData:(void *)userData;
 -(void) displayMatrix;

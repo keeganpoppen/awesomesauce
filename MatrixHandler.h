@@ -19,6 +19,7 @@ class MatrixHandler {
 public:
 	MatrixHandler();
 	
+	void clearCurrentMatrix();
 	void advanceTime(float timeElapsed);
 	void displayCurrentMatrix();
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);

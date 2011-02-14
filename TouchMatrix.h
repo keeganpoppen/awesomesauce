@@ -36,6 +36,7 @@ public:
 	int getColumn() { return current_column; }
 	
 	void advanceTime(float timeElapsed);
+	void clear();
 	
 	bool squares[16][16];
 	float time_elapsed;
