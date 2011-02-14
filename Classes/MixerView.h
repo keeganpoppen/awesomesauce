@@ -16,8 +16,11 @@
 	MatrixHandler *matrixHandler;
 }
 
+- (void)setLabelText:(NSString *)labelText;
 - (void)setTrackNum:(int)num;
 - (void)setMatrixHandler:(MatrixHandler *)mh;
+- (void)disableTrack;
+- (void)enableTrack:(NSString *)labelText;
 - (IBAction)editButtonPressed:(UIButton *)sender;
 
 @end

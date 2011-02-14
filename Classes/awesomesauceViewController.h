@@ -31,6 +31,9 @@
 	IBOutlet MixerView *track1;
 	IBOutlet MixerView *track2;
 	IBOutlet MixerView *track3;
+	
+	NSMutableArray *tracks;
+	int numTracks;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;

@@ -21,8 +21,21 @@
     return self;
 }
 
+- (void)setLabelText:(NSString *)labelText {
+	trackName.text = labelText;
+}
+
 - (void)setTrackNum:(int)num {
 	trackNum = num;
+}
+
+- (void)disableTrack {
+	editButton.hidden = YES;
+}
+
+- (void)enableTrack:(NSString *)labelText {
+	editButton.hidden = NO;
+	trackName.text = labelText;
 }
 
 - (void)setMatrixHandler:(MatrixHandler *)mh {

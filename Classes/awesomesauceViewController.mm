@@ -105,9 +105,22 @@ enum {
 
 - (void)initializeMixer {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	[track1 setMatrixHandler:mh];
-	[track2 setMatrixHandler:mh];
-	[track3 setMatrixHandler:mh];
+	tracks = [[NSMutableArray alloc] init];
+	[tracks addObject:track1];
+	[tracks addObject:track2];
+	[tracks addObject:track3];
+	
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element;
+	
+	while(element = (MixerView *)[enumerator nextObject])
+    {
+		[element setMatrixHandler:mh];
+		[element disableTrack];
+    }
+	
+	[track1 enableTrack:@"Sine"];
+	numTracks = 1;
 }
 
 - (void)viewDidUnload
@@ -200,9 +213,22 @@ enum {
 }
 
 - (IBAction)addMatrix {
+	numTracks++;
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	
+	/*
+	if(numTracks == 2) {
+		[track2 enableTrack:@"Sine"];
+	}
+	else if(numTracks == 3) {
+		[track3 enableTrack:@"Sine"];
+	}
+	*/
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
+	[temp enableTrack:@"Sine"];
+	
 	[self matrixChanged];
-	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
