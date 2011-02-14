@@ -134,9 +134,12 @@
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
 		
 		NSLog(@"set1");
-		if([dict objectForKey:@"receiver_time"] == nil) NSLog(@"PEN14");
-		if([dict objectForKey:@"iter_num"] == nil) NSLog(@"PEN15");
-		[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
+		
+		if ([[dict objectForKey:[dict objectForKey:@"iter_num"]] intValue] != 0) {
+			if([dict objectForKey:@"receiver_time"] == nil) NSLog(@"PEN14");
+			if([dict objectForKey:@"iter_num"] == nil) NSLog(@"PEN15");
+			[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
+		}
 		++num_timing_responses;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
