@@ -16,8 +16,9 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		sesh = [[GKSession alloc] init];
-		[sesh initWithSessionID:@"awesomesauce" displayName:@"lord keeganus" sessionMode:GKSessionModePeer];
+		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:@"lord keeganus" sessionMode:GKSessionModePeer];
+		[sesh setDelegate:self];
+		[sesh setDataReceiveHandler:self withContext:nil];
 		NSLog(@"starting server in peer mode");
 	}
 	return self;
@@ -63,6 +64,10 @@
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
 	NSLog(@"connection with peer %s failed with error: %s", peerID, error);
+}
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+	NSLog(@"data received!");
 }
 
 @end
