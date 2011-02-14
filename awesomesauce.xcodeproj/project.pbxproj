@@ -28,6 +28,7 @@
 		2D66660413096E4200E962A4 /* white_gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D66660313096E4200E962A4 /* white_gradient2.png */; };
 		2D66660613096E4900E962A4 /* white_gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D66660513096E4900E962A4 /* white_gradient3.png */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
+		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
 		EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4871FF12FFC7E80034E955 /* ADSR.cpp */; };
 		EF48728112FFC7E80034E955 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720012FFC7E80034E955 /* Asymp.cpp */; };
 		EF48728212FFC7E80034E955 /* BandedWG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720112FFC7E80034E955 /* BandedWG.cpp */; };
@@ -199,6 +200,7 @@
 		2D66660313096E4200E962A4 /* white_gradient2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_gradient2.png; sourceTree = "<group>"; };
 		2D66660513096E4900E962A4 /* white_gradient3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_gradient3.png; sourceTree = "<group>"; };
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
+		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* awesomesauce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "awesomesauce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		EF48719E12FFC7E80034E955 /* ADSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSR.h; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 			children = (
 				2DBA431A13001EAD00FC8599 /* square_texture.png */,
 				2D6665F513096BF000E962A4 /* square_texture2.png */,
+				2DBB53641309735600DCA380 /* square_texture3.png */,
 				2D6665FD13096D5000E962A4 /* white_gradient.png */,
 				2D66660313096E4200E962A4 /* white_gradient2.png */,
 				2D66660513096E4900E962A4 /* white_gradient3.png */,
@@ -946,6 +949,7 @@
 				2D6665FE13096D5000E962A4 /* white_gradient.png in Resources */,
 				2D66660413096E4200E962A4 /* white_gradient2.png in Resources */,
 				2D66660613096E4900E962A4 /* white_gradient3.png in Resources */,
+				2DBB53651309735600DCA380 /* square_texture3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
