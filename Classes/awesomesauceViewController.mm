@@ -242,7 +242,7 @@ enum {
 
 - (IBAction)addMatrix {
 	numTracks++;
-	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix:true];
 	
 	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
 	[temp enableTrack:@"Sine"];
