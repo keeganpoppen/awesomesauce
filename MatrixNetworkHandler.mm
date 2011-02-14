@@ -8,14 +8,22 @@
 
 #import "MatrixNetworkHandler.h"
 
+#define NUM_TIMING_TRIES 10000
+
 
 @implementation MatrixNetworkHandler
 
 @synthesize sesh;
+@synthesize response_times;
 
 - (id)init {
 	self = [super init];
 	if (self) {
+		//initialize timing infrastructure
+		response_times = [[NSMutableArray alloc] initWithCapacity:NUM_TIMING_TRIES];
+		aggregate_round_trip_times = 0.;
+		num_timing_responses = 0;
+		
 		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
@@ -39,8 +47,8 @@
 			
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
-				for (int i = 0; i < 10; ++i) {					
-					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:i],
+				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {					
+					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i],
 											@"iter_num", [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
 					//send data using UDP for better numbers / faster results (I think, anyway)
@@ -97,7 +105,17 @@
 		NSNumber *old_time = [dict objectForKey:@"sender_time"];		
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
-		NSLog(@"ROUND TRIP TIME ESTIMATE: %@, iter num: %@", [cur_time doubleValue] - [old_time doubleValue], [dict objectForKey:@"iter_num"]);
+		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
+		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[[dict objectForKey:@"iter_num"] unsignedIntValue]];
+		num_timing_responses++;
+		
+		if (num_timing_responses == NUM_TIMING_TRIES) {
+			NSLog(@"ROUND TRIP AVG: %f", aggregate_round_trip_times / NUM_TIMING_TRIES);
+		}
+		
+		if (num_timing_responses > NUM_TIMING_TRIES - 100) {
+			NSLog(@"reponses gotten %d", num_timing_responses);
+		}
 	} else {
 		NSLog(@"they sent from sys time: %@", [dict objectForKey:@"sender_time"]);
 		
@@ -109,9 +127,6 @@
 			NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 		}
 	}
-
-	
-
 }
 
 @end

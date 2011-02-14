@@ -12,6 +12,9 @@
 
 @interface MatrixNetworkHandler : NSObject <GKSessionDelegate> {
 	GKSession *sesh;
+	NSMutableArray *response_times;
+	double aggregate_round_trip_times;
+	int num_timing_responses;
 }
 
 - (id)init;
@@ -25,5 +28,6 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context;
 
 @property (nonatomic, retain) GKSession *sesh;
+@property (nonatomic, retain) NSMutableArray *response_times;
 
 @end
