@@ -235,7 +235,7 @@
 - (void) trackAddedHandler:(NSNotification *)notification {
 	NSMutableDictionary *dict = [[notification userInfo] retain];
 	
-	int matrix_id = [[dict objectForKey:@"tid"] intValue];
+	//int matrix_id = [[dict objectForKey:@"tid"] intValue]; TODO:unnecessary for now
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->addNewMatrix();
 }
