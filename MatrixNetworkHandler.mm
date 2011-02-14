@@ -46,7 +46,7 @@
 }
 		 
 - (BOOL) comparePeerID:(NSString*)otherID {
-	return [peerID compare:sesh.peerID] == NSOrderedAscending;
+	return [otherID compare:sesh.peerID] == NSOrderedAscending;
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -121,7 +121,7 @@
 	NSString *originator = [dict objectForKey:@"originator_id"];
 	
 	//if we sent the time packets originally
-	if ([otherID compare:sesh.peerID] == NSOrderedSame) {
+	if ([originator compare:sesh.peerID] == NSOrderedSame) {
 		NSNumber *old_time = [dict objectForKey:@"sender_time"];		
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
@@ -170,7 +170,7 @@
 	//make it easier to dispatch on the originator
 	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
 	
-	//TODO: also add the universal time (estimation)
+	//TODO: also add the universal time (estimation)	
 	
 	NSError *err;
 	//send data using UDP for better numbers / faster results (I think, anyway)
@@ -191,6 +191,7 @@
 	/*
 		SEND: the notes, the instrument, and the track name
 	 */
+	
 	/*
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
 		
@@ -199,8 +200,8 @@
 }
 
 - (void) receiveAllDataFromPeer:(NSString *)peer andData:(NSDictionary*)data {
-		//TODO: init touchmatrices from the data
-		//TODO: tell the peer that it's sync time
+	//TODO: init touchmatrices from the data
+	//TODO: tell the peer that it's sync time
 }
 
 @end
