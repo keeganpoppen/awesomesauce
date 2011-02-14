@@ -158,7 +158,11 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
 	NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:[dict objectForKey:@"msg_type"] object:nil userInfo:dict];
+	NSString *notificationType = [dict objectForKey:@"msg_type"];
+	
+	NSLog(@"sending notification of type: %@", notificationType);
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:nil userInfo:dict];
 }
 
 
@@ -166,6 +170,8 @@
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
+	
+	NSLog(@"sending notification of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
 	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
