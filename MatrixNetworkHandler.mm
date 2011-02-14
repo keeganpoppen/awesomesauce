@@ -222,7 +222,7 @@
 	
 	int row = [[dict objectForKey:@"row"] intValue];
 	int col = [[dict objectForKey:@"col"] intValue];
-	bool new_value = [[dict objectForKey:@"val"] boolValue];
+	bool new_value = [[dict objectForKey:@"value"] boolValue];
 	int matrix_id = [[dict objectForKey:@"tid"] intValue];
 	
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
