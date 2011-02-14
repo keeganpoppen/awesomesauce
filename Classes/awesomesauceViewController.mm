@@ -54,11 +54,6 @@ enum {
     animationFrameInterval = 1;
     self.displayLink = nil;
 	
-	//TODO
-	NSLog(@"this happened");
-	[track1 setTrackNum:0];
-	[track2 setTrackNum:1];
-	[track3 setTrackNum:2];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -112,11 +107,13 @@ enum {
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
-	
+	int i = 0;
 	while(element = (MixerView *)[enumerator nextObject])
     {
+		[element setTrackNum:i];
 		[element setMatrixHandler:mh];
 		[element disableTrack];
+		i++;
     }
 	
 	[track1 enableTrack:@"Sine"];
@@ -215,16 +212,7 @@ enum {
 - (IBAction)addMatrix {
 	numTracks++;
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
-	/*
-	if(numTracks == 2) {
-		[track2 enableTrack:@"Sine"];
-	}
-	else if(numTracks == 3) {
-		[track3 enableTrack:@"Sine"];
-	}
-	*/
 	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
 	[temp enableTrack:@"Sine"];
 	
@@ -235,6 +223,16 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
 	mh->changeInstrument(newInst);
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:mh->currentMatrix];
+	if(newInst == 0) {
+		[temp setLabelText:@"Sine"];
+	}
+	else if(newInst == 1) {
+		[temp setLabelText:@"Square"];
+	}
+	else if(newInst == 2) {
+		[temp setLabelText:@"Saw"];
+	}
 }
 
 @end
