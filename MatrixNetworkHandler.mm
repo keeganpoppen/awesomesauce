@@ -134,6 +134,7 @@
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
 		
+		/*
 		if([dict objectForKey:@"receiver_time"] == nil){
 			NSLog(@"PEN14");
 			NSLog(@"OBJ: %@", [dict description]);
@@ -142,6 +143,7 @@
 			NSLog(@"PEN15");
 			NSLog(@"OBJ: %@", [dict description]);
 		}
+		 */
 		//[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]]; TODO: MEM ISSUES!!
 		++num_timing_responses;
 		
@@ -239,7 +241,7 @@
 	/*
 		SEND: the notes, the instrument, and the track name
 	 */
-	NSMutableDictionary *data = [NSMutableDictionary dictionaryWithCapacity:1];
+	NSMutableDictionary *data = [[NSMutableDictionary dictionaryWithCapacity:1] retain];
 	
 	NSMutableArray *matrices = [NSMutableArray arrayWithCapacity:handler->matrices.size()];
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
@@ -247,16 +249,17 @@
 		
 		NSMutableDictionary *dict = [matrix->toDictionary() retain];
 		
-		[matrices insertObject:dict atIndex:i];
+		//TODO: mem leak?
+		[matrices insertObject:[[NSMutableDictionary dictionaryWithDictionary:dict]retain] atIndex:i];
 		
 		[dict autorelease];
 	}
 	
-	NSLog(@"set5");
 	[data setObject:matrices forKey:@"matrices"];
 	
 	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
+	[data autorelease];
 }
 
 @end
