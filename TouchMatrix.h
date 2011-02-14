@@ -33,21 +33,13 @@ public:
 	bool toggleSquare(int row, int col) {
 		squares[row][col] = !squares[row][col];
 		
-		NSNumber *rownum = [NSNumber numberWithInt:row];
-		NSNumber *colnum = [NSNumber numberWithInt:row];
-		NSNumber *newval = [NSNumber numberWithBool:value];
-		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, "value", nil];
-		squareChangedEvent(dict);
+		squareChangedEvent(row, col, squares[row][col]);
 		
 		return squares[row][col];
 	}
 	void setSquare(int row, int col, bool value) {
 		if(squares[row][col] != value) {
-			NSNumber *rownum = [NSNumber numberWithInt:row];
-			NSNumber *colnum = [NSNumber numberWithInt:row];
-			NSNumber *newval = [NSNumber numberWithBool:value];
-			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, "value", nil];
-			squareChangedEvent(dict);
+			squareChangedEvent(row, col, value);
 			
 			squares[row][col] = value;
 		}
@@ -56,8 +48,14 @@ public:
 	
 	
 	//something like this?
-	void squareChangedEvent(NSDictionary *dict) {
-		 [[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:this userInfo:dict];
+	void squareChangedEvent(int row, int col, bool value) {
+		NSNumber *rownum = [NSNumber numberWithInt:row];
+		NSNumber *colnum = [NSNumber numberWithInt:col];
+		NSNumber *newval = [NSNumber numberWithBool:value];
+		NSNumber *tid = [NSNumber numberWithInt:track_id];
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:nil userInfo:dict];
 	}
 	
 	bool isOn;
