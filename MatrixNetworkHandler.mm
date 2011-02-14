@@ -234,7 +234,7 @@
 	//NSLog(@"sending message of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
-	NSString peerCpy = [[[NSString alloc] initWithString:sesh.peerID] retain];
+	NSString *peerCpy = [[[NSString alloc] initWithString:sesh.peerID] retain];
 	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:peerCpy forKey:@"originator_id"];
 	
 	//TODO: also add the universal time (estimation)	
