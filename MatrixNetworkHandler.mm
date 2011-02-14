@@ -274,7 +274,7 @@
 	
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
 	
-	[data autorelease];
+	//[data autorelease];
 }
 
 @end
