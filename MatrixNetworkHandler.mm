@@ -206,7 +206,7 @@
 	int row = [[dict objectForKey:@"row"] intValue];
 	int col = [[dict objectForKey:@"col"] intValue];
 	bool new_value = [[dict objectForKey:@"value"] boolValue];
-	int tid = [[dict objectForKey:@"tid"] intValue];
+	int tid = [[dict objectForKey:@"track_id"] intValue];
 	
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->matrices[tid]->setSquare(row, col, new_value);
