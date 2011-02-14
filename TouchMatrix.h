@@ -20,6 +20,7 @@ class TouchMatrix {
 
 public:
 	TouchMatrix(int inst) {
+		instrument = inst;
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
@@ -36,7 +37,7 @@ public:
 			
 			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
 			
-			waves[i] = new AwesomeSynth(inst);
+			waves[i] = new AwesomeSynth(instrument);
 			waves[i]->setFrequency(freq);
 		}
 	}
@@ -59,5 +60,6 @@ public:
 	AwesomeSynth *waves[16];
 	float time_elapsed;
 	int current_column;
+	int instrument;
 	NSString *track_name;
 };

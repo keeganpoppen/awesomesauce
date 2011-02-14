@@ -163,6 +163,11 @@ enum {
     }
 }
 
+- (void)matrixChanged {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
+}
+
 - (void)drawFrame
 {
     [(EAGLView *)self.view setFramebuffer];
@@ -187,6 +192,7 @@ enum {
 
 - (IBAction)addMatrix {
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix];
+	[self matrixChanged];
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 

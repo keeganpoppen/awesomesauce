@@ -17,8 +17,8 @@ void TouchMatrix::clear() {
 }
 
 void TouchMatrix::setInst(int newInst) {
-	//init waves var
+	instrument = newInst;
 	for (int i = 0; i < 16; ++i) {
-		waves[i]->setInstrument(newInst);
+		waves[i]->setInstrument(instrument);
 	}
 }

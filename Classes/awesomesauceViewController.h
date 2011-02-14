@@ -31,6 +31,7 @@
 @property (nonatomic) NSInteger animationFrameInterval;
 @property (nonatomic, retain) IBOutlet UITableView *mixerTable;
 
+- (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;
 - (void)stopAnimation;
 - (IBAction)clearCurrentMatrix;
