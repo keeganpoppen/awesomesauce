@@ -28,6 +28,8 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context;
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode;
 
+- (void) sendAllDataToPeer:(NSString *)peer inSession:(GKSession *)session;
+
 @property (nonatomic, retain) GKSession *sesh;
 @property (nonatomic, retain) NSMutableDictionary *response_times;
 

@@ -133,6 +133,7 @@
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
 		
+		NSLog(@"set1");
 		[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
 		++num_timing_responses;
 		
@@ -141,7 +142,8 @@
 		}
 		
 		if(num_timing_responses % 10 == 0) NSLog(@"num timing responses: %d", num_timing_responses); 
-	} else {		
+	} else {
+		NSLog(@"set2");
 		[dict setObject:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
 		
 		[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataUnreliable];
@@ -182,13 +184,14 @@
 
 //helper wrapper function for 
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
+	NSLog(@"set3");
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
 	
 	//NSLog(@"sending message of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
-	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
+	if([dict objectForKey:@"originator_id"] == nil){ NSLog(@"set4"); [dict setObject:sesh.peerID forKey:@"originator_id"]; }
 	
 	//TODO: also add the universal time (estimation)	
 	
@@ -224,6 +227,7 @@
 		[dict autorelease];
 	}
 	
+	NSLog(@"set5");
 	[data setObject:matrices forKey:@"matrices"];
 	
 	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
