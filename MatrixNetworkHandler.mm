@@ -133,13 +133,9 @@
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
 		
-		NSLog(@"set1");
-		
-		if ([[dict objectForKey:[dict objectForKey:@"iter_num"]] intValue] != 0) {
-			if([dict objectForKey:@"receiver_time"] == nil) NSLog(@"PEN14");
-			if([dict objectForKey:@"iter_num"] == nil) NSLog(@"PEN15");
-			[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
-		}
+		if([dict objectForKey:@"receiver_time"] == nil) NSLog(@"PEN14");
+		if([dict objectForKey:@"iter_num"] == nil) NSLog(@"PEN15");
+		[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
 		++num_timing_responses;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
@@ -148,7 +144,6 @@
 		
 		if(num_timing_responses % 10 == 0) NSLog(@"num timing responses: %d", num_timing_responses); 
 	} else {
-		NSLog(@"set2");
 		[dict setObject:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
 		
 		[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataUnreliable];
@@ -177,7 +172,7 @@
  */
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	NSMutableDictionary *dict = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];//TODO: RELEASE???
 	
 	NSString *notificationType = [dict objectForKey:@"msg_type"];
 	
@@ -189,14 +184,13 @@
 
 //helper wrapper function for 
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
-	NSLog(@"set3");
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
 	
 	//NSLog(@"sending message of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
-	if([dict objectForKey:@"originator_id"] == nil){ NSLog(@"set4"); [dict setObject:sesh.peerID forKey:@"originator_id"]; }
+	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
 	
 	//TODO: also add the universal time (estimation)	
 	
