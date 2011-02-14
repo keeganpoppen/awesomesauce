@@ -17,6 +17,7 @@
 }
 
 - (id)init;
+- (BOOL) comparePeerID:(NSString*)otherID;
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state;
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID;

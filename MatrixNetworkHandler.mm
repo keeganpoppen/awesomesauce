@@ -45,10 +45,9 @@
 	return self;
 }
 		 
- - (BOOL) comparePeerID:(NSString*)otherID {
-	 //TODO: CHANGE THIS, OBV!!!
-	 return [otherID compare:sesh.peerID] == NSOrderedSame;
- }
+- (BOOL) comparePeerID:(NSString*)otherID {
+	return [peerID compare:sesh.peerID] == NSOrderedAscending;
+}
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
 	NSLog(@"peer state change for peer %@ with display name %@", peerID, [sesh displayNameForPeer:peerID]);
@@ -81,6 +80,7 @@
 			NSLog(@"connecting");
 			break;
 		case GKPeerStateAvailable:
+			NSLog(@"availability found");
 			if ([self comparePeerID:peerID]) {
 				NSLog(@"available... gonna try and connect");
 				[sesh connectToPeer:peerID withTimeout:30.];
@@ -121,7 +121,7 @@
 	NSString *originator = [dict objectForKey:@"originator_id"];
 	
 	//if we sent the time packets originally
-	if ([self comparePeerID:originator]) {
+	if ([otherID compare:sesh.peerID] == NSOrderedSame) {
 		NSNumber *old_time = [dict objectForKey:@"sender_time"];		
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
