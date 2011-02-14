@@ -200,4 +200,22 @@ enum {
 	mh->changeInstrument(newInst);
 }
 
+- (IBAction)editTrackButtons:(UIButton *)sender {
+	int num = 0;
+	if(sender == track1Edit) {
+		num = 0;
+	}
+	else if(sender == track2Edit) {
+		num = 1;
+	}
+	else if(sender == track3Edit) {
+		num = 2;
+	}
+	else {
+		return;
+	}
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->currentMatrix = num;
+}
+
 @end

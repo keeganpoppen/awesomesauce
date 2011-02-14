@@ -30,7 +30,9 @@
 	IBOutlet UILabel *track2Name;
 	IBOutlet UILabel *track3Name;
 	
-	
+	IBOutlet UIButton *track1Edit;
+	IBOutlet UIButton *track2Edit;
+	IBOutlet UIButton *track3Edit;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -42,6 +44,7 @@
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
+- (IBAction)editTrackButtons:(UIButton *)sender;
 
 
 @end
