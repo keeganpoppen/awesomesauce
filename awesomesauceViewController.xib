@@ -1112,6 +1112,14 @@
 					</object>
 					<int key="connectionID">98</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addTrackButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="853181661"/>
+					</object>
+					<int key="connectionID">99</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1502,7 +1510,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAww0AAA</bytes>
 					</object>
 					<string>EAGLView</string>
-					<string>{{-1, 60}, {1039, 696}}</string>
+					<string>{{0, 60}, {1039, 696}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -1681,7 +1689,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">98</int>
+			<int key="maxID">99</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1819,6 +1827,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addTrackButton</string>
 							<string>currentlyEditingLabel</string>
 							<string>instPicker</string>
 							<string>track1</string>
@@ -1831,6 +1840,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UISegmentedControl</string>
 							<string>MixerView</string>
@@ -1846,6 +1856,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addTrackButton</string>
 							<string>currentlyEditingLabel</string>
 							<string>instPicker</string>
 							<string>track1</string>
@@ -1858,6 +1869,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">addTrackButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">currentlyEditingLabel</string>
 								<string key="candidateClassName">UILabel</string>
