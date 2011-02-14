@@ -219,12 +219,14 @@
 - (void) squareChangeHandler:(NSNotification *)notification {
 	NSLog(@"square changed!!!!!");
 	
-	NSDictionary *dict = [[notification userInfo] retain];
+	NSMutableDictionary *dict = [[notification userInfo] retain];
 	
 	int row = [[dict objectForKey:@"row"] intValue];
 	int col = [[dict objectForKey:@"col"] intValue];
 	bool new_value = [[dict objectForKey:@"value"] boolValue];
 	int matrix_id = [[dict objectForKey:@"tid"] intValue];
+	
+	NSLog(@"r: %d, c: %d, val: %d, matrix_id: %d", row, col, new_value, matrix_id);
 	
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->matrices[matrix_id]->setSquare(row, col, new_value);
