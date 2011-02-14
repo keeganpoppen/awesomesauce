@@ -12,6 +12,10 @@
 @interface MixerView : UIView {
 	IBOutlet UILabel *trackName;
 	IBOutlet UIButton *editButton;
+	int trackNum;
 }
+
+- (void)setTrackNum:(int)num;
+- (IBAction)editButtonPressed:(UIButton *)sender;
 
 @end

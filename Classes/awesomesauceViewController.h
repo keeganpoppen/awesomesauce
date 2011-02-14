@@ -15,6 +15,8 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+#import "MixerView.h"
+
 @interface awesomesauceViewController : UIViewController
 {
     EAGLContext *context;
@@ -26,6 +28,10 @@
 	IBOutlet UISegmentedControl *instPicker;
 	
 	//table replacements
+	IBOutlet MixerView *track1;
+	IBOutlet MixerView *track2;
+	IBOutlet MixerView *track3;
+	/*
 	IBOutlet UILabel *track1Name;
 	IBOutlet UILabel *track2Name;
 	IBOutlet UILabel *track3Name;
@@ -33,6 +39,7 @@
 	IBOutlet UIButton *track1Edit;
 	IBOutlet UIButton *track2Edit;
 	IBOutlet UIButton *track3Edit;
+	*/
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -44,7 +51,6 @@
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
-- (IBAction)editTrackButtons:(UIButton *)sender;
 
 
 @end
