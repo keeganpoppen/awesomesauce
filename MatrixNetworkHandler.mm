@@ -182,8 +182,8 @@
 		matrixHandler->addNewMatrix(matrix);
 	}
 	
-	[notification autorelease];
-	[data autorelease];
+	//[notification autorelease];
+	//[data autorelease];
 }
 
 /*
@@ -199,15 +199,19 @@
 	[data retain];
 	[peer retain];
 	
+	NSData *unarch = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+	
+	if(unarch == nil) NSLog(@"UNAARCH WAS NILLLLL");
+	
 	//TODO: RELEASE / MEM ISSUES???
-	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithData:data]] retain];
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:unarch] retain];
 	
 	if (dict == nil) {
 		NSLog(@"NIL DICT!");
 		return;
 	}
 	
-	NSString *notificationType = [dict objectForKey:@"msg_type"];
+	NSString *notificationType = [[dict objectForKey:@"msg_type"] retain];
 	
 	if (notificationType == nil) {
 		NSLog(@"NIL TYPE!!!!!!");
