@@ -19,7 +19,7 @@
 		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
-		[sesh setAvailable:YES];
+		//[sesh setAvailable:YES];
 		NSLog(@"starting server in peer mode");
 	}
 	return self;
@@ -50,22 +50,22 @@
 }
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-	NSLog(@"cnxn request from peer %s, dawg", peerID);
+	NSLog(@"cnxn request from peer %@, dawg", peerID);
 	NSLog(@"accepting said connection");
 	
 	NSError *err = [[NSError alloc] autorelease];
 	[session acceptConnectionFromPeer:peerID error:&err];
 	if (err != NULL) {
-		NSLog(@"ERROR: %s", [err localizedDescription]);
+		NSLog(@"ERROR: %@", err);
 	}
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	NSLog(@"session failed with error %s", error);
+	NSLog(@"session failed with error %@", error);
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-	NSLog(@"connection with peer %s failed with error: %s", peerID, error);
+	NSLog(@"connection with peer %s failed with error: %@", peerID, error);
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
