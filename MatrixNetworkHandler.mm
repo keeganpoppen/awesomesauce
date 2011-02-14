@@ -121,7 +121,9 @@
  * handlers for incoming messages
  */
 - (void) timeHandler:(NSNotification *)notification {
-	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[notification object]];
+	[notification retain];
+	
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
 	
 	NSString *originator = [dict objectForKey:@"originator_id"];
 	
@@ -153,6 +155,9 @@
 		
 		[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataUnreliable];
 	}
+	
+	[notification autorelease];
+	[dict autorelease];
 }
 
 -(void) sendAllDataHandler:(NSNotification *)notification {
