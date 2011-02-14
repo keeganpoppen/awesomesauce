@@ -84,7 +84,6 @@ enum {
     [super viewWillAppear:animated];
 	
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-	mixerTable.allowsSelection = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -92,6 +91,14 @@ enum {
     [self stopAnimation];
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidLoad {
+	mixerTable.delegate = self;
+	mixerTable.dataSource = self;
+	mixerTable.allowsSelection = YES;
+
+	[super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -185,8 +192,12 @@ enum {
 
 
 //tableView stuff
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	if(mh == NULL) {

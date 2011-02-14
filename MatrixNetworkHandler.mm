@@ -59,7 +59,7 @@
 	NSLog(@"cnxn request from peer %@, dawg", peerID);
 	NSLog(@"accepting said connection");
 	
-	NSError *err = [[NSError alloc] autorelease];
+	NSError *err = [[[NSError alloc] init] autorelease];
 	[session acceptConnectionFromPeer:peerID error:&err];
 	if (err != NULL) {
 		NSLog(@"ERROR: %@", err);

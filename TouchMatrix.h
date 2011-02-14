@@ -10,6 +10,7 @@
 
 #import "graphics.h"
 #import "audio.h"
+#import "Generator.h"
 #import "SineWave.h"
 #import <string>
 
