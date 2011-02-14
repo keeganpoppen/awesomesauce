@@ -15,7 +15,7 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface awesomesauceViewController : UIViewController
+@interface awesomesauceViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
     EAGLContext *context;
     GLuint program;

@@ -58,5 +58,5 @@ public:
 	SineWave *waves[16];
 	float time_elapsed;
 	int current_column;
-	string track_name;
+	NSString *track_name;
 };

@@ -45,6 +45,10 @@
 	matrixHandler->addNewMatrix();
 }
 
+-(MatrixHandler *) getMatrixHandler {
+	return matrixHandler;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self.window addSubview:self.viewController.view];

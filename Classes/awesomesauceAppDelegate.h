@@ -26,6 +26,8 @@
 -(bool) toggleTouch:(int)row withYval:(int)col;
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on;
 
+-(MatrixHandler *) getMatrixHandler;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet awesomesauceViewController *viewController;
 

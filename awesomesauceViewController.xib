@@ -91,7 +91,7 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="29912308"/>
 					</object>
-					<object class="IBUITableView" id="202779561">
+					<object class="IBUITableView" id="778008028">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 144}, {256, 624}}</string>
@@ -156,9 +156,25 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mixerTable</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="202779561"/>
+						<reference key="destination" ref="778008028"/>
 					</object>
 					<int key="connectionID">14</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="778008028"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="778008028"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">16</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -188,7 +204,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="244014827"/>
 							<reference ref="853181661"/>
-							<reference ref="202779561"/>
+							<reference ref="778008028"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -204,7 +220,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="202779561"/>
+						<reference key="object" ref="778008028"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
 				</object>
@@ -262,7 +278,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
