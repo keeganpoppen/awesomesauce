@@ -194,7 +194,15 @@
 	
 	NSLog(@"count %d", [matrices count]);
 	
-	for (int i = 0; i < [matrices count]; ++i) {
+	
+	TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:0]);
+	matrixHandler->matrices[0] = matrix;	//TODO: memory leak!!!
+	
+	for (int i = 1; i < matrixHandler->matrices.size(); ++i) {
+		matrixHandler->matrices.pop_back();
+	}
+	
+	for (int i = 1; i < [matrices count]; ++i) {
 		TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:i]);
 		matrixHandler->addNewMatrix(matrix);
 	}
