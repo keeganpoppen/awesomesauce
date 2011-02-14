@@ -192,8 +192,8 @@ enum {
 
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	int newInst = [segmentedControl selectedSegmentIndex];
-	mh->changeInstrument(newInst)
+	int newInst = [sender selectedSegmentIndex];
+	mh->changeInstrument(newInst);
 }
 
 //tableView stuff

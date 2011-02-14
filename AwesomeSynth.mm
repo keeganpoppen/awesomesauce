@@ -47,6 +47,7 @@ void AwesomeSynth::setInstrument(int newInst) {
 	else {
 		gen = new BlitSaw();
 	}
+	setFrequency(frequency);
 }
 
 void AwesomeSynth::setFrequency(Float32 inFreq) {
