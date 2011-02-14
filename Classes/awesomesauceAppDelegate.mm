@@ -40,9 +40,8 @@
 	matrixHandler->clearCurrentMatrix();
 }
 
--(void) addNewMatrix {
-	NSLog(@"delegate:addNewMatrix");
-	matrixHandler->addNewMatrix();
+-(void) addNewMatrix:(BOOL)sendNotification {
+	matrixHandler->addNewMatrix(sendNotification);
 }
 
 -(MatrixHandler *) getMatrixHandler {

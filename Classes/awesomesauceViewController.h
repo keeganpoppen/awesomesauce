@@ -49,6 +49,7 @@
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)initializeMixer;
+- (void)trackAddedHandler:(NSNotification *)notification;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;

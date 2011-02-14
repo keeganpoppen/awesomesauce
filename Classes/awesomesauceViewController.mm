@@ -54,6 +54,24 @@ enum {
     animationFrameInterval = 1;
     self.displayLink = nil;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackAddedHandler:) name:@"track_added" object:nil];
+	
+}
+
+- (void) trackAddedHandler:(NSNotification *)notification {
+	numTracks++;
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix:false];
+	
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
+	[temp enableTrack:@"Sine"];
+	
+	[self matrixChanged];
+	
+	//TODO: 7 is a magic number so we should replace that at some point
+	//also the tableview not working is kinda lame
+	if(numTracks >= 7) {
+		addTrackButton.hidden = YES;
+	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
