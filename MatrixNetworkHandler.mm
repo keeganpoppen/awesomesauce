@@ -26,7 +26,7 @@
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
-	NSLog(@"peer state change: %s", peerID);
+	NSLog(@"peer state change for peer %@ with display name %@", peerID, [sesh displayNameForPeer:peerID]);
 	
 	switch (state) {
 		case GKPeerStateConnected:
@@ -36,7 +36,8 @@
 			NSLog(@"connecting");
 			break;
 		case GKPeerStateAvailable:
-			NSLog(@"available");
+			NSLog(@"available... gonna try and connect");
+			[sesh connectToPeer:peerID withTimeout:30.];
 			break;
 		case GKPeerStateUnavailable:
 			NSLog(@"unavailable");
