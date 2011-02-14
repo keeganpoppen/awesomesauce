@@ -22,3 +22,43 @@ void TouchMatrix::setInst(int newInst) {
 		waves[i]->setInstrument(instrument);
 	}
 }
+
+//instantiate a touchmatrix from a NSMutableDictionary
+TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
+	int instToCopy = [[fromDictionary objectForKey:@"instrument"] intValue];
+	
+	setInst(instToCopy);
+	initialize_junk();
+	
+	NSMutableArray *notes = [fromDictionary objectForKey:@"notes"];
+	
+	for (int i = 0; i < 16; ++i) {
+		for (int j = 0; j < 16; ++j) {
+			bool val = [[notes objectAtIndex:(i*16 + j)] boolValue];
+			setSquare(i, j, val);
+		}
+	}
+}
+
+/*
+ * serialize the touchmatrix to a NSMutableDictionary. the return value is of the form:
+ {notes: [[row1],[row2],...,[row16]], track_id: ###, instrument: ###}
+ */
+NSMutableDictionary *TouchMatrix::toDictionary() {
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:(256 + 2)];
+	
+	//flatten squares array (NOTE: technically this is probably the same as the squares array already is in memory...)
+	NSMutableArray *flat_notes = [NSMutableArray arrayWithCapacity:256];
+	for (int i = 0; i < 16; ++i) {
+		for (int j = 0; j < 16; ++j) {
+			[flat_notes insertObject:[NSNumber numberWithBool:squares[i][j]] atIndex:(i*16 + j)];
+		}
+	}
+	
+	[dict setObject:flat_notes forKey:@"notes"];
+	
+	//[dict setObject:track_name forKey:@"track_name"];
+	[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
+	
+	return [dict autorelease];
+}

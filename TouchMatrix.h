@@ -21,26 +21,14 @@ class TouchMatrix {
 public:
 	TouchMatrix(int inst) {
 		instrument = inst;
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 16; ++j) {
-				squares[i][j] = false;
-			}
-		}
-		
-		time_elapsed = 0.;
-		current_column = 0;
-		
-		//init waves var
-		for (int i = 0; i < 16; ++i) {
-			int index = i % 5;
-			int octave = i / 5 + 1;
-			
-			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
-			
-			waves[i] = new AwesomeSynth(instrument);
-			waves[i]->setFrequency(freq);
-		}
+		initialize_junk();
 	}
+	
+	//instantiate a touchmatrix from a NSMutableDictionary
+	TouchMatrix(NSMutableDictionary *fromDictionary);
+	
+	//serialize the touchmatrix to a NSMutableDictionary
+	NSMutableDictionary *toDictionary();
 	
 	bool toggleSquare(int row, int col) {
 		squares[row][col] = !squares[row][col];
@@ -62,4 +50,27 @@ public:
 	int current_column;
 	int instrument;
 	NSString *track_name;
+	
+private:
+	void initialize_junk() {
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				squares[i][j] = false;
+			}
+		}
+		
+		time_elapsed = 0.;
+		current_column = 0;
+		
+		//init waves var
+		for (int i = 0; i < 16; ++i) {
+			int index = i % 5;
+			int octave = i / 5 + 1;
+			
+			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
+			
+			waves[i] = new AwesomeSynth(instrument);
+			waves[i]->setFrequency(freq);
+		}
+	}
 };

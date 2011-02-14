@@ -40,7 +40,7 @@
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
 		[sesh setAvailable:YES];
-		NSLog(@"starting server in peer mode");
+		NSLog(@"starting server in peer mode w/ peerID %@", sesh.peerID);
 	}
 	return self;
 }
@@ -140,14 +140,14 @@
 		
 		if(num_timing_responses % 10 == 0) NSLog(@"num timing responses: %d", num_timing_responses); 
 	} else {		
-		[dict setValue:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
+		[dict setObject:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
 		
 		[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataUnreliable];
 	}
 }
 
--(void) sendAllDataHandler:(NSDictionary *)dict {
-	//TODO: SEND ALL YO' DATA, HO'!
+-(void) sendAllDataHandler:(NSNotification *)notification {
+	//TODO: RECEIVE ALL THAT HOT HOT DATA ACTION
 }
 
 /*
@@ -164,7 +164,7 @@
 	
 	NSString *notificationType = [dict objectForKey:@"msg_type"];
 	
-	NSLog(@"sending notification of type: %@", notificationType);
+	//NSLog(@"sending notification of type: %@", notificationType);
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:nil userInfo:dict];
 }
@@ -175,7 +175,7 @@
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
 	
-	NSLog(@"sending notification of type: %@", msgType);
+	//NSLog(@"sending message of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
 	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
@@ -201,10 +201,23 @@
 	/*
 		SEND: the notes, the instrument, and the track name
 	 */
+	NSMutableDictionary *data = [NSMutableDictionary dictionaryWithCapacity:1];
 	
+	NSMutableArray *matrices = [NSMutableArray arrayWithCapacity:handler->matrices.size()];
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
+		TouchMatrix *matrix = handler->matrices[i];
 		
+		NSMutableDictionary *dict = [matrix->toDictionary() retain];
+		
+		[matrices insertObject:dict atIndex:i];
+		
+		[dict autorelease];
 	}
+	
+	[data setObject:matrices forKey:@"matrices"];
+	
+	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
+	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
 }
 
 - (void) receiveAllDataFromPeer:(NSString *)peer andData:(NSDictionary*)data {
