@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TouchMatrix.h"
+#import "MatrixNetworkHandler.h"
 #import <vector>
 
 using namespace std;
@@ -27,4 +28,5 @@ public:
 	
 	vector<TouchMatrix *> matrices;
 	int currentMatrix;
+	MatrixNetworkHandler *networkHandler;
 };

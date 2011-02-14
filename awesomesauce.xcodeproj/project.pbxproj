@@ -159,6 +159,8 @@
 		EF48731D12FFC9F00034E955 /* audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48731C12FFC9F00034E955 /* audio.mm */; };
 		EF48732212FFC9F90034E955 /* graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732112FFC9F90034E955 /* graphics.mm */; };
 		EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732412FFCED80034E955 /* TouchMatrix.mm */; };
+		F2D1E9811308DFE7008E9DF1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D1E9801308DFE7008E9DF1 /* GameKit.framework */; };
+		F2D1E98B1308E18C008E9DF1 /* MatrixNetworkHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -426,6 +428,9 @@
 		EF48732112FFC9F90034E955 /* graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = graphics.mm; sourceTree = "<group>"; };
 		EF48732312FFCED80034E955 /* TouchMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchMatrix.h; sourceTree = "<group>"; };
 		EF48732412FFCED80034E955 /* TouchMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TouchMatrix.mm; sourceTree = "<group>"; };
+		F2D1E9801308DFE7008E9DF1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		F2D1E9891308E18C008E9DF1 /* MatrixNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixNetworkHandler.h; sourceTree = "<group>"; };
+		F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixNetworkHandler.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +444,7 @@
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
 				EF48731312FFC80D0034E955 /* AudioToolbox.framework in Frameworks */,
 				EF48731712FFC8130034E955 /* CoreGraphics.framework in Frameworks */,
+				F2D1E9811308DFE7008E9DF1 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +526,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				EF48731212FFC80D0034E955 /* AudioToolbox.framework */,
 				EF48731612FFC8130034E955 /* CoreGraphics.framework */,
+				F2D1E9801308DFE7008E9DF1 /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -804,6 +811,8 @@
 				EF48731C12FFC9F00034E955 /* audio.mm */,
 				EF48732012FFC9F90034E955 /* graphics.h */,
 				EF48732112FFC9F90034E955 /* graphics.mm */,
+				F2D1E9891308E18C008E9DF1 /* MatrixNetworkHandler.h */,
+				F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */,
 				2D665F7E1308A5D300E962A4 /* MatrixHandler.h */,
 				2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */,
 				EF48732312FFCED80034E955 /* TouchMatrix.h */,
@@ -1017,6 +1026,7 @@
 				EF48732212FFC9F90034E955 /* graphics.mm in Sources */,
 				EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */,
 				2D665F7B1308A5BC00E962A4 /* MatrixHandler.mm in Sources */,
+				F2D1E98B1308E18C008E9DF1 /* MatrixNetworkHandler.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

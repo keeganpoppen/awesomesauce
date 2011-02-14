@@ -18,6 +18,10 @@ MatrixHandler::MatrixHandler() {
 	TouchMatrix *firstMatrix = new TouchMatrix();
 	matrices.push_back(firstMatrix);
 	currentMatrix = 0;
+
+	//set up networking junk
+	[[networkHandler alloc] init];
+	[networkHandler init_networking];
 }
 
 void MatrixHandler::clearCurrentMatrix() {
