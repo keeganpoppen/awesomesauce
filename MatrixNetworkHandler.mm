@@ -237,7 +237,7 @@
 		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 	}
 	
-	[dict release];
+	//[dict release];
 }
 
 
@@ -273,6 +273,7 @@
 	NSLog(@"here are the data: %@", [data description]);
 	
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
+	
 	[data autorelease];
 }
 
