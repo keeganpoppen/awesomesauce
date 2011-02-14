@@ -170,16 +170,20 @@
 	
 	NSLog(@"GETTING ALL ZE DATA");
 	
-	NSLog(@"size of notif obj: %d", [[notification object] count]);
-	NSLog(@"notification object: %@", [notification description]);
+	//NSLog(@"size of notif obj: %d", [[notification object] count]);
+	//NSLog(@"notification object: %@", [notification description]);
 	
+	/*
 	NSMutableDictionary *dict = [[notification object] retain];
 	NSMutableDictionary *dict1 = [[[NSMutableDictionary alloc] initWithDictionary:[notification object] copyItems:YES] retain];
 	NSMutableDictionary *dict2 = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
-
-	NSLog(@"THEY ARE: %@", [dict description]);
-	NSLog(@"THEY ARE1: %@", [dict1 description]);
-	NSLog(@"THEY ARE2: %@", [dict2 description]);
+	 */
+	
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+	
+	//NSLog(@"THEY ARE: %@", [dict description]);
+	//NSLog(@"THEY ARE1: %@", [dict1 description]);
+	//NSLog(@"THEY ARE2: %@", [dict2 description]);
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
