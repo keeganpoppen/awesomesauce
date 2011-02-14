@@ -7,32 +7,44 @@
 //
 
 #import "AwesomeSynth.h"
-#import "Clarinet.h"
-#import "Flute.h"
-#import "Plucked.h"
-#import "Drummer.h"
+#import "SineWave.h"
+#import "BlitSquare.h"
+#import "BlitSaw.h"
 
 AwesomeSynth::AwesomeSynth(int inst) {
 	instrument = inst;
 	if(instrument == 0) {
-		gen = new Clarinet(100.0);
+		gen = new SineWave();
 	}
 	else if(instrument == 1){
-		gen = new Flute(100.0);
-	}
-	else if(instrument == 2){
-		gen = new Plucked(100.0);
+		gen = new BlitSquare();
 	}
 	else {
-		gen = new Drummer();
+		gen = new BlitSaw();
 	}
 }
 
 StkFloat AwesomeSynth::tick() {
-	return gen->tick();
+	if(instrument == 0) {
+		return ((SineWave *) gen)->tick();
+	}
+	else if(instrument == 1){
+		return ((BlitSquare *) gen)->tick();
+	}
+	else {
+		return ((BlitSaw *) gen)->tick();
+	}
 }
 
 void AwesomeSynth::setFrequency(Float32 inFreq) {
 	frequency = inFreq;
-	gen->setFrequency(frequency);
+	if(instrument == 0) {
+		((SineWave *) gen)->setFrequency(frequency);
+	}
+	else if(instrument == 1){
+		((BlitSquare *) gen)->setFrequency(frequency);
+	}
+	else {
+		((BlitSaw *) gen)->setFrequency(frequency);
+	}
 }

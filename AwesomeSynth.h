@@ -6,7 +6,7 @@
 //  Copyright 2011 AwesomeBox. All rights reserved.
 //
 
-#import "Instrmnt.h"
+#import "Generator.h"
 
 using namespace stk;
 using namespace std;
@@ -19,6 +19,6 @@ public:
 	
 	int instrument;
 	
-	Instrmnt *gen;
+	Generator *gen;
 	Float32 frequency;
 };
