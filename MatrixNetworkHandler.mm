@@ -50,6 +50,7 @@
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+	
 	NSLog(@"peer state change for peer %@ with display name %@", peerID, [sesh displayNameForPeer:peerID]);
 	
 	switch (state) {
@@ -231,11 +232,15 @@
 	
 	//TODO: also add the universal time (estimation)	
 	
+	NSData *tosend = [[[NSData alloc] initWithData:[NSKeyedArchiver archivedDataWithRootObject:dict]] retain];
+	
 	NSError *err;
 	//send data using UDP for better numbers / faster results (I think, anyway)
-	if (![sesh sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:peers withDataMode:mode error:&err]) {
+	if (![sesh sendData:tosend toPeers:peers withDataMode:mode error:&err]) {
 		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 	}
+	
+	NSLog(@"data sent: %@", [dict description]);
 	
 	//[dict release];
 }
@@ -252,7 +257,8 @@
 	/*
 		SEND: the notes, the instrument, and the track name
 	 */
-	NSMutableDictionary *data = [[NSMutableDictionary dictionaryWithCapacity:1] retain];
+	//NSMutableDictionary *data = [[NSMutableDictionary dictionaryWithCapacity:1] retain];
+	NSMutableDictionary *data = [[[NSMutableDictionary alloc] initWithCapacity:1] retain];
 	
 	NSMutableArray *matrices = [NSMutableArray arrayWithCapacity:handler->matrices.size()];
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
