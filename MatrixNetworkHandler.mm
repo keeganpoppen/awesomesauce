@@ -16,9 +16,10 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:@"lord keeganus" sessionMode:GKSessionModePeer];
+		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
+		[sesh setAvailable:YES];
 		NSLog(@"starting server in peer mode");
 	}
 	return self;
