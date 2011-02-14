@@ -34,7 +34,8 @@
 }
 		 
  - (BOOL) comparePeerID:(NSString*)otherID {
-	 return [otherID compare:sesh.peerID] == NSOrderedAscending;
+	 //TODO: CHANGE THIS, OBV!!! return [otherID compare:sesh.peerID] == NSOrderedAscending;
+	 return [[sesh displayName] compare:@"chewbacca"];
  }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -48,8 +49,8 @@
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
 				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {					
-					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i],
-											@"iter_num", [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
+					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i], @"iter_num",
+													[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
 					//send data using UDP for better numbers / faster results (I think, anyway)
 					NSError *err;
@@ -106,7 +107,7 @@
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
-		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[[dict objectForKey:@"iter_num"] unsignedIntValue]];
+		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:[dict objectForKey:@"iter_num"]];
 		num_timing_responses++;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
@@ -116,9 +117,7 @@
 		if (num_timing_responses > NUM_TIMING_TRIES - 100) {
 			NSLog(@"reponses gotten %d", num_timing_responses);
 		}
-	} else {
-		NSLog(@"they sent from sys time: %@", [dict objectForKey:@"sender_time"]);
-		
+	} else {		
 		[dict setValue:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
 		
 		NSError *err;
