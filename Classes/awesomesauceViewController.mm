@@ -55,6 +55,7 @@ enum {
     self.displayLink = nil;
 	
 	//TODO
+	NSLog(@"this happened");
 	[track1 setTrackNum:0];
 	[track2 setTrackNum:1];
 	[track3 setTrackNum:2];
