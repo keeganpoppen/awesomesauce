@@ -215,11 +215,13 @@
 	 TODO:unnecessary for now, and need to be more careful with IDs!
 	 */
 	
-	//NSMutableDictionary *dict = [[notification userInfo] retain];
+	NSMutableDictionary *dict = [[notification userInfo] retain];
 	//int tid = [[dict objectForKey:@"tid"] intValue];
 	
+	NSString *originator_id = [dict objectForKey:@"originator_id"];
+	
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	handler->addNewMatrix();
+	handler->addNewMatrix(false);
 }
 
 - (void) trackClearedHandler:(NSNotification *)notification {
