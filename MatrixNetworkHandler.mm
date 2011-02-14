@@ -226,13 +226,16 @@
 	[dict retain];
 	[msgType retain];
 	
+	NSString *msgCpy = [[[NSString alloc] initWithString:msgType] retain];
+	
 	//make sure the type specifcation is in there
-	[dict setObject:msgType forKey:@"msg_type"];
+	[dict setObject:msgCpy forKey:@"msg_type"];
 	
 	//NSLog(@"sending message of type: %@", msgType);
 	
 	//make it easier to dispatch on the originator
-	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
+	NSString peerCpy = [[[NSString alloc] initWithString:sesh.peerID] retain];
+	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:peerCpy forKey:@"originator_id"];
 	
 	//TODO: also add the universal time (estimation)	
 	NSData *arch = [[NSKeyedArchiver archivedDataWithRootObject:dict] retain];
@@ -267,7 +270,8 @@
 	//NSMutableDictionary *data = [[NSMutableDictionary dictionaryWithCapacity:1] retain];
 	NSMutableDictionary *data = [[[NSMutableDictionary alloc] initWithCapacity:1] retain];
 	
-	NSMutableArray *matrices = [NSMutableArray arrayWithCapacity:handler->matrices.size()];
+	//NSMutableArray *matrices = [NSMutableArray arrayWithCapacity:handler->matrices.size()];
+	NSMutableArray *matrices = [[[NSMutableArray alloc] initWithCapacity:handler->matrices.size()] retain];
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
 		TouchMatrix *matrix = handler->matrices[i];
 		
