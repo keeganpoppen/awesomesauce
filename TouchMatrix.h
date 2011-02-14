@@ -53,7 +53,7 @@ public:
 		NSNumber *colnum = [NSNumber numberWithInt:col];
 		NSNumber *newval = [NSNumber numberWithBool:value];
 		NSNumber *tid = [NSNumber numberWithInt:track_id];
-		NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil] retain];
+		NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"track_id", nil] retain];
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
 	}

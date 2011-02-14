@@ -26,6 +26,7 @@ public:
 	void changeInstrument(int newInst);
 	void clearCurrentMatrix();
 	void displayCurrentMatrix();
+	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
 	TouchMatrix *getCurrentMatrix();
 	
