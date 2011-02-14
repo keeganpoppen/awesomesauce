@@ -32,10 +32,31 @@ public:
 	
 	bool toggleSquare(int row, int col) {
 		squares[row][col] = !squares[row][col];
+		
+		squareChangedEvent(row, col, squares[row][col]);
+		
 		return squares[row][col];
 	}
-	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
+	void setSquare(int row, int col, bool value) {
+		if(squares[row][col] != value) {
+			squareChangedEvent(row, col, value);
+			
+			squares[row][col] = value;
+		}
+	}
 	bool getSquare(int row, int col) { return squares[row][col]; }
+	
+	
+	//something like this?
+	void squareChangedEvent(int row, int col, bool value) {
+		NSNumber *rownum = [NSNumber numberWithInt:row];
+		NSNumber *colnum = [NSNumber numberWithInt:col];
+		NSNumber *newval = [NSNumber numberWithBool:value];
+		NSNumber *tid = [NSNumber numberWithInt:track_id];
+		NSMutableDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:rownum, @"row", colnum, @"col", newval, @"value", tid, @"tid", nil];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:notificationType object:nil userInfo:dict];
+	}
 	
 	bool isOn;
 	

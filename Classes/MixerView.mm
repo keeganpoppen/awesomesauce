@@ -18,6 +18,10 @@
     if (self) {
         // Initialization code.
     }
+	
+	//UIImage *backgroundImage = [[UIImage imageNamed:@"blue_gradient.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+	//[editButton setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+	
     return self;
 }
 
