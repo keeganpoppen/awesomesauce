@@ -26,11 +26,16 @@
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
 	IBOutlet UISegmentedControl *instPicker;
+	IBOutlet UILabel *currentlyEditingLabel;
 	
 	//table replacements
 	IBOutlet MixerView *track1;
 	IBOutlet MixerView *track2;
 	IBOutlet MixerView *track3;
+	IBOutlet MixerView *track4;
+	IBOutlet MixerView *track5;
+	IBOutlet MixerView *track6;
+	IBOutlet MixerView *track7;
 	
 	NSMutableArray *tracks;
 	int numTracks;
