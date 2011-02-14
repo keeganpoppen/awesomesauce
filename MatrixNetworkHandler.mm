@@ -34,6 +34,7 @@
 	
 	switch (state) {
 		case GKPeerStateConnected:
+		{
 			NSLog(@"connected to peer %@", [sesh displayNameForPeer:peerID]);
 			NSString *test = @"Keegan is awesome";
 			NSData *data = [test dataUsingEncoding:NSUTF8StringEncoding];
@@ -42,6 +43,7 @@
 			if (![sesh sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&err]) {
 				NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 			}
+		}
 			break;
 		case GKPeerStateConnecting:
 			NSLog(@"connecting");
@@ -81,8 +83,8 @@
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	NSString *data = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSLog(@"data received! it was: %@", data);
+	NSString *rec_data = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"data received! it was: %@", rec_data);
 }
 
 @end
