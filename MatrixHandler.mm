@@ -46,9 +46,11 @@ void MatrixHandler::addNewMatrix() {
 	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
+	trackAddedEvent(currentMatrix);
 }
 
 void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
+	matrix->track_id = matrices.size();
 	matrices.push_back(matrix);
 	currentMatrix = matrices.size() - 1;
 	trackAddedEvent(currentMatrix);
