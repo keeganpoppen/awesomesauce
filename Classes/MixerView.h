@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MatrixHandler.h"
 
 @interface MixerView : UIView {
 	IBOutlet UILabel *trackName;
 	IBOutlet UIButton *editButton;
 	int trackNum;
+	MatrixHandler *matrixHandler;
 }
 
 - (void)setTrackNum:(int)num;
+- (void)setMatrixHandler:(MatrixHandler *)mh;
 - (IBAction)editButtonPressed:(UIButton *)sender;
 
 @end

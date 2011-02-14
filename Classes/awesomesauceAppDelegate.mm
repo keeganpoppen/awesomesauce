@@ -54,7 +54,7 @@
     [self.window addSubview:self.viewController.view];
 	
 	matrixHandler = new MatrixHandler();
-
+	[self.viewController initializeMixer];
 	audioInit();
 	graphicsInit();
 	

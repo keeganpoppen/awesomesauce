@@ -103,6 +103,13 @@ enum {
 	[super viewDidLoad];
 }
 
+- (void)initializeMixer {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	[track1 setMatrixHandler:mh];
+	[track2 setMatrixHandler:mh];
+	[track3 setMatrixHandler:mh];
+}
+
 - (void)viewDidUnload
 {
 	[super viewDidUnload];
