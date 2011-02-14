@@ -118,7 +118,10 @@
 /*
  * handlers for incoming messages
  */
-- (void) timeHandler:(NSMutableDictionary *)dict {
+//- (void) timeHandler:(NSMutableDictionary *)dict {
+- (void) timeHandler:(NSNotification *)notification {
+	NSMutableDictionary *dict = [notification object];
+	
 	NSString *originator = [dict objectForKey:@"originator_id"];
 	
 	//if we sent the time packets originally
@@ -193,17 +196,15 @@
 
 
 - (void) sendAllDataToPeer:(NSString *)peer inSession:(GKSession *)session {
-	//MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] matrixHandler];
+	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
 	/*
 		SEND: the notes, the instrument, and the track name
 	 */
 	
-	/*
 	for (unsigned i = 0; i < handler->matrices.size(); ++i) {
 		
 	}
-	 */
 }
 
 - (void) receiveAllDataFromPeer:(NSString *)peer andData:(NSDictionary*)data {
