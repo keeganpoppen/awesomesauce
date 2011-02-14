@@ -34,7 +34,14 @@
 	
 	switch (state) {
 		case GKPeerStateConnected:
-			NSLog(@"connected");
+			NSLog(@"connected to peer %@", [sesh displayNameForPeer:peerID]);
+			NSString *test = @"Keegan is awesome";
+			NSData *data = [test dataUsingEncoding:NSUTF8StringEncoding];
+			
+			NSError *err;
+			if (![sesh sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&err]) {
+				NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
+			}
 			break;
 		case GKPeerStateConnecting:
 			NSLog(@"connecting");
@@ -59,23 +66,23 @@
 	NSLog(@"cnxn request from peer %@, dawg", peerID);
 	NSLog(@"accepting said connection");
 	
-	NSError *err = [[NSError alloc] autorelease];
-	[session acceptConnectionFromPeer:peerID error:&err];
-	if (err != NULL) {
-		NSLog(@"ERROR: %@", err);
+	NSError *err;
+	if (![session acceptConnectionFromPeer:peerID error:&err]) {
+		NSLog(@"ERROR: %@", [err localizedDescription]);
 	}
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	NSLog(@"session failed with error %@", error);
+	NSLog(@"session failed with error %@", [error localizedDescription]);
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-	NSLog(@"connection with peer %@ failed with error: %@", peerID, error);
+	NSLog(@"connection with peer %@ failed with error: %@", peerID, [error localizedDescription]);
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	NSLog(@"data received!");
+	NSString *data = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"data received! it was: %@", data);
 }
 
 @end
