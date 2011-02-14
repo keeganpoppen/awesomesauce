@@ -59,20 +59,22 @@
 			
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
+				/*
 				NSLog(@"SYNCING CLOCKS");
 				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {
 					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i], @"iter_num",
 													[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
 					[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataUnreliable];
-					/*
+					
 					//send data using UDP for better numbers / faster results (I think, anyway)
 					NSError *err;
 					if (![sesh sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataUnreliable error:&err]) {
 						NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 					}
-					 */
+					
 				}
+				 */
 				NSLog(@"SENDING ALL DATA!!!");
 				[self sendAllDataToPeer:peerID inSession:session];
 			}
