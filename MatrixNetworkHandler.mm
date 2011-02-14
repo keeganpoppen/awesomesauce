@@ -19,11 +19,15 @@
 		sesh = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
-		//[sesh setAvailable:YES];
+		[sesh setAvailable:YES];
 		NSLog(@"starting server in peer mode");
 	}
 	return self;
 }
+		 
+ - (BOOL) comparePeerID:(NSString*)otherID {
+	 return [otherID compare:sesh.peerID] == NSOrderedAscending;
+ }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
 	NSLog(@"peer state change for peer %@ with display name %@", peerID, [sesh displayNameForPeer:peerID]);
@@ -36,8 +40,10 @@
 			NSLog(@"connecting");
 			break;
 		case GKPeerStateAvailable:
-			NSLog(@"available... gonna try and connect");
-			[sesh connectToPeer:peerID withTimeout:30.];
+			if ([self comparePeerID:peerID]) {
+				NSLog(@"available... gonna try and connect");
+				[sesh connectToPeer:peerID withTimeout:30.];
+			}
 			break;
 		case GKPeerStateUnavailable:
 			NSLog(@"unavailable");
@@ -65,7 +71,7 @@
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-	NSLog(@"connection with peer %s failed with error: %@", peerID, error);
+	NSLog(@"connection with peer %@ failed with error: %@", peerID, error);
 }
 
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
