@@ -237,7 +237,7 @@
 		NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
 	}
 	
-	[dict release];
+	//[dict release];
 }
 
 
@@ -261,15 +261,19 @@
 		NSMutableDictionary *dict = [matrix->toDictionary() retain];
 		
 		//TODO: mem leak?
-		[matrices insertObject:[[NSMutableDictionary dictionaryWithDictionary:dict]retain] atIndex:i];
+		[matrices insertObject:dict atIndex:i];
 		
-		[dict autorelease];
+		//[dict autorelease];
 	}
 	
 	[data setObject:matrices forKey:@"matrices"];
 	
 	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
+	
+	NSLog(@"here are the data: %@", [data description]);
+	
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
+	
 	[data autorelease];
 }
 
