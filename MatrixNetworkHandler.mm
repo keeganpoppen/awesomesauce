@@ -235,8 +235,11 @@
 	if([dict objectForKey:@"originator_id"] == nil) [dict setObject:sesh.peerID forKey:@"originator_id"];
 	
 	//TODO: also add the universal time (estimation)	
+	NSData *arch = [[NSKeyedArchiver archivedDataWithRootObject:dict] retain];
 	
-	NSData *tosend = [[[NSData alloc] initWithData:[NSKeyedArchiver archivedDataWithRootObject:dict]] retain];
+	if(arch == nil) NSLog(@"AAAAAAAAAAAAHHHHHHHHHHHH    HHHHHHHHHHHHAAAAAAAAAAAAAA!!!!!!!");
+	
+	NSData *tosend = [[[NSData alloc] initWithData:arch] retain];
 	
 	NSError *err;
 	//send data using UDP for better numbers / faster results (I think, anyway)

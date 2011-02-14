@@ -47,13 +47,15 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
  {notes: [[row1],[row2],...,[row16]], track_id: ###, instrument: ###}
  */
 NSMutableDictionary *TouchMatrix::toDictionary() {
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:(256 + 2)];
+	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithCapacity:(256 + 2)] retain];
 	
 	//flatten squares array (NOTE: technically this is probably the same as the squares array already is in memory...)
-	NSMutableArray *flat_notes = [NSMutableArray arrayWithCapacity:256];
+	//NSMutableArray *flat_notes = [NSMutableArray arrayWithCapacity:256];
+	NSMutableArray *flat_notes = [[[NSMutableArray alloc] initWithCapacity:256] retain];
 	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 16; ++j) {
-			[flat_notes insertObject:[NSNumber numberWithBool:squares[i][j]] atIndex:(i*16 + j)];
+			NSNumber *boolnum = [[[NSNumber alloc] initWithBool:squares[i][j]] retain];
+			[flat_notes insertObject:boolnum atIndex:(i*16 + j)];
 		}
 	}
 	
@@ -62,5 +64,6 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	[dict setObject:[NSNumber numberWithInt:track_id] forKey:@"track_id"];
 	[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
 	
-	return [dict autorelease];
+	//return [dict autorelease];
+	return dict;
 }
