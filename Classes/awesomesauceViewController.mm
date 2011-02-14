@@ -104,6 +104,10 @@ enum {
 	[tracks addObject:track1];
 	[tracks addObject:track2];
 	[tracks addObject:track3];
+	[tracks addObject:track4];
+	[tracks addObject:track5];
+	[tracks addObject:track6];
+	[tracks addObject:track7];
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
@@ -114,6 +118,12 @@ enum {
 		[element setMatrixHandler:mh];
 		[element setParent:self];
 		[element disableTrack];
+		
+		CAGradientLayer *gradient = [CAGradientLayer layer];
+		gradient.frame = element.bounds;
+		gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+		[element.layer insertSublayer:gradient atIndex:0];
+		
 		i++;
     }
 	
@@ -186,6 +196,8 @@ enum {
 - (void)matrixChanged {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
+	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
+	[currentlyEditingLabel setText:newText];
 }
 
 - (void)drawFrame
