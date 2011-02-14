@@ -50,7 +50,7 @@ MatrixHandler::MatrixHandler() {
 	networkHandler = [[MatrixNetworkHandler alloc] init];
 }
 
-void MatrixHandler::addNewMatrix(bool sendNotification = true) {
+void MatrixHandler::addNewMatrix(bool sendNotification) {
 	TouchMatrix *newMatrix = new TouchMatrix(0);
 	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
@@ -60,7 +60,7 @@ void MatrixHandler::addNewMatrix(bool sendNotification = true) {
 	}
 }
 
-void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification = false) {
+void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification) {
 	matrix->track_id = matrices.size();
 	matrices.push_back(matrix);
 	currentMatrix = matrices.size() - 1;
