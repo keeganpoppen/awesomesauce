@@ -24,6 +24,7 @@
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
 	IBOutlet UITableView *mixerTable;
+	IBOutlet UISegmentedControl *instPicker;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -34,6 +35,7 @@
 - (void)stopAnimation;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 
 
 @end

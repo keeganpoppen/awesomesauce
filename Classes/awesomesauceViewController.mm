@@ -190,6 +190,9 @@ enum {
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
+	//[segmentedControl selectedSegmentIndex]
+}
 
 //tableView stuff
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
