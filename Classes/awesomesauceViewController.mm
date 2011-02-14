@@ -112,6 +112,7 @@ enum {
     {
 		[element setTrackNum:i];
 		[element setMatrixHandler:mh];
+		[element setParent:self];
 		[element disableTrack];
 		i++;
     }

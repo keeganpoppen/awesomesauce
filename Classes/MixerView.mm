@@ -31,10 +31,12 @@
 
 - (void)disableTrack {
 	editButton.hidden = YES;
+	onSwitch.hidden = YES;
 }
 
 - (void)enableTrack:(NSString *)labelText {
 	editButton.hidden = NO;
+	onSwitch.hidden = NO;
 	trackName.text = labelText;
 }
 
@@ -43,10 +45,18 @@
 	NSLog(@"go");
 }
 
-- (IBAction)editButtonPressed:(UIButton *)sender {
-	matrixHandler->currentMatrix = trackNum;
+- (void)setParent:(awesomesauceViewController *)avc {
+	parent = avc;
 }
 
+- (IBAction)editButtonPressed:(UIButton *)sender {
+	matrixHandler->currentMatrix = trackNum;
+	[parent matrixChanged];
+}
+
+- (IBAction)onSwitchToggled {
+	matrixHandler->matrices[trackNum]->isOn = onSwitch.on;
+}
 
 - (void)dealloc {
     [super dealloc];

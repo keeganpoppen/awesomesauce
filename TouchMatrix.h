@@ -40,6 +40,7 @@ public:
 			waves[i] = new AwesomeSynth(instrument);
 			waves[i]->setFrequency(freq);
 		}
+		isOn = true;
 	}
 	
 	bool toggleSquare(int row, int col) {
@@ -48,6 +49,8 @@ public:
 	}
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
 	bool getSquare(int row, int col) { return squares[row][col]; }
+	
+	bool isOn;
 	
 	void setInst(int newInst);
 	

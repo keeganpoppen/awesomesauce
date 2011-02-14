@@ -63,7 +63,9 @@ void MatrixHandler::displayCurrentMatrix() {
 void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData) {
 	int numMatrices = matrices.size();
 	for(int i = 0; i < numMatrices; i++) {
-		sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices);
+		if(matrices[i]->isOn) {
+			sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices);
+		}
 	}
 }
 
