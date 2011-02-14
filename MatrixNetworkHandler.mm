@@ -20,7 +20,7 @@
 	self = [super init];
 	if (self) {
 		//initialize timing infrastructure
-		response_times = [[NSMutableArray alloc] initWithCapacity:NUM_TIMING_TRIES];
+		response_times = [[NSMutableDictionary alloc] initWithCapacity:NUM_TIMING_TRIES];
 		aggregate_round_trip_times = 0.;
 		num_timing_responses = 0;
 		
@@ -109,11 +109,8 @@
 		
 		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
 		
-		unsigned index = [[dict objectForKey:@"iter_num"] unsignedIntValue];
-		NSLog(@"index: %d", index);
-		
-		[response_times insertObject:[dict objectForKey:@"receiver_time"] atIndex:index];
-		num_timing_responses++;
+		[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]];
+		++num_timing_responses;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
 			NSLog(@"ROUND TRIP AVG: %f", aggregate_round_trip_times / NUM_TIMING_TRIES);
