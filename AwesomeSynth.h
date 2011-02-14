@@ -16,6 +16,7 @@ public:
 	AwesomeSynth(int inst);
 	StkFloat tick();
 	void setFrequency(Float32 inFreq);
+	void setInstrument(int newInst);
 	
 	int instrument;
 	

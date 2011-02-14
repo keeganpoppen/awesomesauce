@@ -36,6 +36,19 @@ StkFloat AwesomeSynth::tick() {
 	}
 }
 
+void AwesomeSynth::setInstrument(int newInst) {
+	instrument = newInst;
+	if(instrument == 0) {
+		gen = new SineWave();
+	}
+	else if(instrument == 1){
+		gen = new BlitSquare();
+	}
+	else {
+		gen = new BlitSaw();
+	}
+}
+
 void AwesomeSynth::setFrequency(Float32 inFreq) {
 	frequency = inFreq;
 	if(instrument == 0) {

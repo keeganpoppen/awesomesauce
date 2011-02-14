@@ -30,7 +30,7 @@ MatrixHandler::MatrixHandler() {
 }
 
 void MatrixHandler::addNewMatrix() {
-	TouchMatrix *newMatrix = new TouchMatrix(matrices.size());
+	TouchMatrix *newMatrix = new TouchMatrix(0);
 	newMatrix->track_name = @"Sine Track TODO";
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
@@ -38,6 +38,10 @@ void MatrixHandler::addNewMatrix() {
 
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();
+}
+
+void MatrixHandler::changeInstrument(int newInst) {
+	getCurrentMatrix()->setInst(newInst);
 }
 
 void MatrixHandler::advanceTime(float timeElapsed) {

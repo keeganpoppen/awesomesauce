@@ -48,6 +48,8 @@ public:
 	void setSquare(int row, int col, bool value) { squares[row][col] = value; }
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	
+	void setInst(int newInst);
+	
 	int getColumn() { return current_column; }
 	
 	//void advanceTime(float timeElapsed);

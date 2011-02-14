@@ -22,6 +22,7 @@ public:
 	
 	void addNewMatrix();
 	void advanceTime(float timeElapsed);
+	void changeInstrument(int newInst);
 	void clearCurrentMatrix();
 	void displayCurrentMatrix();
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
