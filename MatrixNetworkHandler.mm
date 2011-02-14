@@ -83,7 +83,6 @@
 					
 				}
 				 */
-				NSLog(@"SENDING ALL DATA!!!");
 				[self sendAllDataToPeer:peerID inSession:session];
 			}
 		}
@@ -176,32 +175,11 @@
 -(void) sendAllDataHandler:(NSNotification *)notification {
 	[notification retain];
 	
-	NSLog(@"GETTING ALL ZE DATA");
-	
-	//NSLog(@"size of notif obj: %d", [[notification object] count]);
-	//NSLog(@"notification object: %@", [notification description]);
-	
-	/*
-	NSMutableDictionary *dict = [[notification object] retain];
-	NSMutableDictionary *dict1 = [[[NSMutableDictionary alloc] initWithDictionary:[notification object] copyItems:YES] retain];
-	NSMutableDictionary *dict2 = [[[NSMutableDictionary alloc] initWithDictionary:[notification object]] retain];
-	 */
-	
 	NSMutableDictionary *dict = [[notification userInfo] retain];
-	
-	//NSLog(@"THEY ARE: %@", [dict description]);
-	//NSLog(@"THEY ARE1: %@", [dict1 description]);
-	//NSLog(@"THEY ARE2: %@", [dict2 description]);
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
-	//NSMutableArray *matrices = [[[NSMutableArray alloc] initWithArray:[dict objectForKey:@"matrices"]] retain];
 	NSMutableArray *matrices = [[dict objectForKey:@"matrices"] retain];
-	
-	if(matrices == nil) NSLog(@"NIL MATS");
-	
-	NSLog(@"count %d", [matrices count]);
-	
 	
 	TouchMatrix *matrix = new TouchMatrix([matrices objectAtIndex:0]);
 	matrixHandler->matrices[0] = matrix;	//TODO: memory leak!!!
@@ -262,10 +240,10 @@
  * MESSAGING HELPERS
  */
 
--(void) broadcastNotificationWithData:(NSMutableDictionary*)data andMessageType:(NSString*)type {
+-(void) broadcastNotificationWithData:(NSMutableDictionary*)data andMessageType:(NSString*)msgType {
 	[data retain];
 	
-	[data setObject:type forKey:@"msg_type"];
+	[data setObject:msgType forKey:@"msg_type"];
 	[data setObject:sesh.peerID forKey:@"originator_id"];
 	
 	NSData *tosend = [[[NSData alloc] initWithData:[NSKeyedArchiver archivedDataWithRootObject:data]] retain];
@@ -351,22 +329,9 @@
 	//TODO: RELEASE / MEM ISSUES???
 	NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithDictionary:unarch] retain];
 	
-	NSLog(@"dict size: %d", [dict count]);
-	
-	if (dict == nil) {
-		NSLog(@"NIL DICT!");
-		return;
-	}
-	
 	NSString *notificationType = [[dict objectForKey:@"msg_type"] retain];
 	
 	NSLog(@"notification type: %@", notificationType);
-	
-	if (notificationType == nil) {
-		NSLog(@"NIL TYPE!!!!!!");
-		NSLog(@"dict: %@", [dict description]);
-		return;
-	}
 	
 	//NSLog(@"sending notification of type: %@", notificationType);
 	
