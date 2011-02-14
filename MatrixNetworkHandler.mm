@@ -36,7 +36,7 @@
  - (BOOL) comparePeerID:(NSString*)otherID {
 	 //TODO: CHANGE THIS, OBV!!!
 	 //return [otherID compare:sesh.peerID] == NSOrderedAscending;
-	 return [otherID localizedCaseInsensitiveCompare:@"Chewbacca"] != NSOrderedSame;
+	 return [[sesh displayNameForPeer:otherID] localizedCaseInsensitiveCompare:@"Chewbacca"] != NSOrderedSame;
  }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -133,6 +133,8 @@
 	}
 }
 
-//- (void) sendAllDataToPeer:(
+- (void) sendAllDataToPeer:(NSString *)peer inSession:(GKSession *)session {
+	
+}
 
 @end
