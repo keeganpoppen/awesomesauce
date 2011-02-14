@@ -24,6 +24,13 @@
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
 	IBOutlet UISegmentedControl *instPicker;
+	
+	//table replacements
+	IBOutlet UILabel *track1Name;
+	IBOutlet UILabel *track2Name;
+	IBOutlet UILabel *track3Name;
+	
+	
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
