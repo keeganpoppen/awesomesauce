@@ -224,7 +224,7 @@
 //helper wrapper function for 
 - (void) sendData:(NSMutableDictionary *)dict withMessageType:(NSString *)msgType toPeers:(NSArray *)peers withDataMode:(GKSendDataMode)mode {
 	[dict retain];
-	[toPeers retain];
+	[msgType retain];
 	
 	//make sure the type specifcation is in there
 	[dict setObject:msgType forKey:@"msg_type"];
