@@ -27,8 +27,8 @@ void TouchMatrix::setInst(int newInst) {
 TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 	int instToCopy = [[fromDictionary objectForKey:@"instrument"] intValue];
 	
-	setInst(instToCopy);
 	initialize_junk();
+	setInst(instToCopy);
 	
 	NSMutableArray *notes = [fromDictionary objectForKey:@"notes"];
 	
