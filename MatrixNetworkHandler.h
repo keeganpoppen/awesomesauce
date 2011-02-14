@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
-
 @interface MatrixNetworkHandler : NSObject <GKSessionDelegate> {
 	GKSession *sesh;
 	NSMutableArray *response_times;
