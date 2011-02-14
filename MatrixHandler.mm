@@ -46,13 +46,26 @@ void MatrixHandler::addNewMatrix() {
 	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
+	trackAddedEvent(currentMatrix);
 }
 
 void MatrixHandler::addNewMatrix(TouchMatrix *matrix) {
+	matrix->track_id = matrices.size();
 	matrices.push_back(matrix);
 	currentMatrix = matrices.size() - 1;
 	trackAddedEvent(currentMatrix);
 }
+
+/*
+void trackEditedEvent(int index, bool isOn, int instrument) {
+	NSNumber *instnum = [NSNumber numberWithInt:instrument];
+	NSNumber *onnum = [NSNumber numberWithBool:isOn];
+	NSNumber *tid = [NSNumber numberWithInt:index];
+	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:instnum, @"inst", onnum, @"on", tid, @"tid", nil] retain];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
+}
+*/
 
 void MatrixHandler::clearCurrentMatrix() {
 	getCurrentMatrix()->clear();
@@ -61,6 +74,7 @@ void MatrixHandler::clearCurrentMatrix() {
 
 void MatrixHandler::changeInstrument(int newInst) {
 	getCurrentMatrix()->setInst(newInst);
+	//trackEditedEvent(currentMatrix, getCurrentMatrix()->isOn, newInst);
 }
 
 void MatrixHandler::advanceTime(float timeElapsed) {
