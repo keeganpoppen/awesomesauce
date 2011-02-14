@@ -21,13 +21,16 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
+- (void)setTrackNum:(int)num {
+	trackNum = num;
 }
-*/
+
+- (IBAction)editButtonPressed:(UIButton *)sender {
+	//MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	//mh->currentMatrix = trackNum;
+	NSLog(@"edit button pressed: %d", trackNum);
+}
+
 
 - (void)dealloc {
     [super dealloc];

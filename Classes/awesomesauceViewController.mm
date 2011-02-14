@@ -54,7 +54,10 @@ enum {
     animationFrameInterval = 1;
     self.displayLink = nil;
 	
-	//[[tblCell alloc] init];
+	//TODO
+	[track1 setTrackNum:0];
+	[track1 setTrackNum:1];
+	[track1 setTrackNum:2];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -198,24 +201,6 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
 	mh->changeInstrument(newInst);
-}
-
-- (IBAction)editTrackButtons:(UIButton *)sender {
-	int num = 0;
-	if(sender == track1Edit) {
-		num = 0;
-	}
-	else if(sender == track2Edit) {
-		num = 1;
-	}
-	else if(sender == track3Edit) {
-		num = 2;
-	}
-	else {
-		return;
-	}
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->currentMatrix = num;
 }
 
 @end
