@@ -27,6 +27,7 @@
     CADisplayLink *displayLink;
 	IBOutlet UISegmentedControl *instPicker;
 	IBOutlet UILabel *currentlyEditingLabel;
+	IBOutlet UIButton *addTrackButton;
 	
 	//table replacements
 	IBOutlet MixerView *track1;

@@ -230,6 +230,12 @@ enum {
 	[temp enableTrack:@"Sine"];
 	
 	[self matrixChanged];
+	
+	//TODO: 7 is a magic number so we should replace that at some point
+	//also the tableview not working is kinda lame
+	if(numTracks >= 7) {
+		addTrackButton.hidden = YES;
+	}
 }
 
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
