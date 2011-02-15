@@ -97,7 +97,7 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 }
 
 void MatrixHandler::addOffset(double offset) {
-	time_elapsed -= offset;
+	time_elapsed += offset;
 }
 
 void MatrixHandler::displayCurrentMatrix() {
