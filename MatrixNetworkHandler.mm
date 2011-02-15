@@ -16,7 +16,7 @@
 #import "awesomesauceAppDelegate.h"
 #import "MatrixHandler.h"
 
-#define NUM_TIMING_TRIES 100
+#define NUM_TIMING_TRIES 20
 
 
 @implementation MatrixNetworkHandler
@@ -27,14 +27,20 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+		father_time = false;
+		now = [[NSDate date] retain];
+		global_offset = 0.;
+		
 		//initialize timing infrastructure
 		response_times = [[NSMutableDictionary alloc] initWithCapacity:NUM_TIMING_TRIES];
 		aggregate_round_trip_times = 0.;
+		aggregate_recipient_displacement = 0.;
 		num_timing_responses = 0;
 		
 		//set up dispatch on different message types
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeHandler:) name:@"time_sync" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendAllDataHandler:) name:@"send_all_data" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeDerivedHandler:) name:@"derive_time" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(squareChangeHandler:) name:@"square_change" object:nil];
 		//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackAddedHandler:) name:@"track_added" object:nil]; TODO:DEPRECATED FOR NOW
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackClearedHandler:) name:@"track_cleared" object:nil];
@@ -67,23 +73,15 @@
 			
 			//this way only one peer tries to send connection junk
 			if ([self comparePeerID:peerID]) {
-				/*
+				
 				NSLog(@"SYNCING CLOCKS");
 				for (unsigned i = 0; i < NUM_TIMING_TRIES; ++i) {
 					NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:i], @"iter_num",
 													[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]], @"sender_time", nil];
 					
-					[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataUnreliable];
-					
-					//send data using UDP for better numbers / faster results (I think, anyway)
-					NSError *err;
-					if (![sesh sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataUnreliable error:&err]) {
-						NSLog(@"DATA SEND ERROR: %@", [err localizedDescription]);
-					}
-					
+					[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable];
 				}
-				 */
-				[self sendAllDataToPeer:peerID inSession:session];
+				
 			}
 		}
 			break;
@@ -138,32 +136,30 @@
 	
 	//if we sent the time packets originally
 	if ([originator compare:sesh.peerID] == NSOrderedSame) {
-		NSNumber *old_time = [dict objectForKey:@"sender_time"];		
+		NSNumber *old_time = [dict objectForKey:@"sender_time"];
 		NSNumber *cur_time = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
+		NSNumber *their_time = [dict objectForKey:@"receiver_time"];
 		
-		aggregate_round_trip_times += [cur_time doubleValue] - [old_time doubleValue];
-		
-		/*
-		if([dict objectForKey:@"receiver_time"] == nil){
-			NSLog(@"PEN14");
-			NSLog(@"OBJ: %@", [dict description]);
-		}
-		if([dict objectForKey:@"iter_num"] == nil) {
-			NSLog(@"PEN15");
-			NSLog(@"OBJ: %@", [dict description]);
-		}
-		 */
-		
-		//[response_times setObject:[dict objectForKey:@"receiver_time"] forKey:[dict objectForKey:@"iter_num"]]; TODO: MEM ISSUES!!
+		double middletime = ([cur_time doubleValue] + [old_time doubleValue]) / 2.0;
+		aggregate_recipient_displacement +=  [their_time doubleValue] - middletime;
 		++num_timing_responses;
 		
 		if (num_timing_responses == NUM_TIMING_TRIES) {
-			NSLog(@"ROUND TRIP AVG: %f", aggregate_round_trip_times / NUM_TIMING_TRIES);
+			double offset = aggregate_recipient_displacement / NUM_TIMING_TRIES;
+			NSLog(@"RECEIPIENT AVG: %f", offset);
+			NSTimeInterval age = -[now timeIntervalSinceNow];
+			NSMutableDictionary *offset_dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+										 [NSNumber numberWithDouble:offset], @"offset",
+										 [NSNumber numberWithDouble:age], @"age",
+										[NSNumber numberWithBool:father_time], @"the_answer", nil];
+			NSString *receiver_id = [dict objectForKey:@"receiver_id"];
+			[self sendData:offset_dict withMessageType:@"derive_time" toPeers:[NSArray arrayWithObject:receiver_id] withDataMode:GKSendDataReliable];
 		}
 		
 		if(num_timing_responses % 10 == 0) NSLog(@"num timing responses: %d", num_timing_responses); 
 	} else {
 		[dict setObject:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]] forKey:@"receiver_time"];
+		[dict setObject:sesh.peerID forKey:@"receiver_id"];
 		
 		[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataUnreliable];
 	}
@@ -217,7 +213,7 @@
 	//TODO:unnecessary for now, and need to be more careful with IDs!
 	
 	//NSMutableDictionary *dict = [[notification userInfo] retain];
-	//int tid = [[dict objectForKey:@"tid"] intValue];
+	//int tid = [[dict objectForKey:@"track_id"] intValue];
 		
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->addNewMatrix(false);
@@ -227,9 +223,53 @@
 - (void) trackClearedHandler:(NSNotification *)notification {
 	NSMutableDictionary *dict = [[notification userInfo] retain];
 	
-	int tid = [[dict objectForKey:@"tid"] intValue];
+	int tid = [[dict objectForKey:@"track_id"] intValue];
 	MatrixHandler *handler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	handler->matrices[tid]->clear();
+}
+
+- (void) timeDerivedHandler:(NSNotification *)notification {
+	NSMutableDictionary *dict = [[notification userInfo] retain];
+	NSString *originator = [dict objectForKey:@"originator_id"];
+	if ([originator compare:sesh.peerID] == NSOrderedSame) {
+	//	[self sendAllDataToPeer:sesh.peerID inSession:sesh];
+		if (![dict objectForKey:@"are_older"]) {
+			[self sendAllDataToPeer:[NSArray arrayWithObject:originator] inSession:sesh];
+		}
+		if (![dict objectForKey:@"did_accept_offset"]) {
+			global_offset = [[dict objectForKey:@"offset"] doubleValue];
+			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+			matrixHandler->addOffset(global_offset);
+		}
+	}
+	else {
+		bool answer = [[dict objectForKey:@"the_answer"] boolValue];
+		double offset = [[dict objectForKey:@"offset"] doubleValue];
+		double their_age = [[dict objectForKey:@"age"] doubleValue];
+		NSTimeInterval our_age = -[now timeIntervalSinceNow];
+		NSLog(@"their age: %f, our age: %f, offset: %f", their_age, our_age, offset);
+		
+		bool ourResponse = false;
+		if(!father_time) {
+			global_offset = offset;
+			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+			matrixHandler->addOffset(global_offset);
+			ourResponse = true;
+		}
+		
+		bool older = (our_age >= their_age);
+		
+		if(older) {
+			[self sendAllDataToPeer:[NSArray arrayWithObject:originator] inSession:sesh];
+		}
+		
+		NSMutableDictionary *response_dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+									 [NSNumber numberWithBool:ourResponse], @"did_accept_offset",
+									 [NSNumber numberWithBool:older], @"are_older",
+									 [NSNumber numberWithDouble:offset], @"offset", nil];
+		[self sendData:response_dict withMessageType:@"derive_time" toPeers:[NSArray arrayWithObject:originator] withDataMode:GKSendDataReliable];
+
+	}
 }
 
 
@@ -349,9 +389,8 @@
 	
 	[data setObject:matrices forKey:@"matrices"];
 	
-	NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
-	
-	NSLog(@"here are the data: %@", [data description]);
+	//NSLog(@"sending all data to peer: %@", [sesh displayNameForPeer:peer]);
+	//NSLog(@"here are the data: %@", [data description]);
 	
 	[self sendData:data withMessageType:@"send_all_data" toPeers:[NSArray arrayWithObject:peer] withDataMode:GKSendDataReliable];
 	

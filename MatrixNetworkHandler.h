@@ -12,8 +12,12 @@
 @interface MatrixNetworkHandler : NSObject <GKSessionDelegate> {
 	GKSession *sesh;
 	NSMutableDictionary *response_times;
+	NSDate *now;
 	double aggregate_round_trip_times;
+	double aggregate_recipient_displacement;
 	int num_timing_responses;
+	bool father_time;
+	double global_offset;
 }
 
 - (id)init;

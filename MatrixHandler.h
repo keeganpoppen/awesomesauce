@@ -28,6 +28,8 @@ public:
 	void displayCurrentMatrix();
 	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
+	void addOffset(double offset);
+	
 	TouchMatrix *getCurrentMatrix();
 	
 	vector<TouchMatrix *> matrices;
