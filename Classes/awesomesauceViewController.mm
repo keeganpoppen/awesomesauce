@@ -139,7 +139,12 @@ enum {
 		
 		CAGradientLayer *gradient = [CAGradientLayer layer];
 		gradient.frame = element.bounds;
-		gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+		if(i == mh->currentMatrix) {
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor orangeColor] CGColor], (id)[[UIColor redColor] CGColor], nil];
+		}
+		else {
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+		}
 		[element.layer insertSublayer:gradient atIndex:0];
 		
 		i++;
@@ -216,6 +221,29 @@ enum {
 	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[currentlyEditingLabel setText:newText];
+	
+	
+	//highlight current track, unhighlight old track
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element;
+	int i = 0;
+	while(element = (MixerView *)[enumerator nextObject])
+    {
+		CAGradientLayer *gradient = [CAGradientLayer layer];
+		gradient.frame = element.bounds;
+		if(i == mh->currentMatrix) {
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor orangeColor] CGColor], (id)[[UIColor redColor] CGColor], nil];
+			NSLog(@"pokemon %d", mh->currentMatrix);
+		}
+		else {
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+		}
+		[(CALayer *)[element.layer.sublayers objectAtIndex:0] removeFromSuperlayer];
+		[element.layer insertSublayer:gradient atIndex:0];
+		[element setNeedsDisplay];
+		i++;
+    }
+	
 }
 
 - (void)drawFrame
