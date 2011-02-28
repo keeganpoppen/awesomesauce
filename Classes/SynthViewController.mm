@@ -10,10 +10,15 @@
 
 
 @implementation SynthViewController
+@synthesize delegate;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+- (IBAction) returnToMain:(id)sender {
+	[delegate closeSynthView];
 }
 
 - (void)didReceiveMemoryWarning {

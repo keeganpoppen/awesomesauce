@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ArrangeViewProtocol;
+
 
 @interface ArrangeViewController : UIViewController {
-
+	id <ArrangeViewProtocol> delegate;
 }
+
+@property (nonatomic, retain) id <ArrangeViewProtocol> delegate;
+
+- (IBAction) returnToMain:(id)sender;
 
 @end
 

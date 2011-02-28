@@ -284,7 +284,6 @@ enum {
 	}
 }
 
-
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
@@ -304,7 +303,7 @@ enum {
 // button action
 - (IBAction) flipToSynthView:(id)sender {
 	SynthViewController *controller = [[SynthViewController alloc] initWithNibName:@"SynthViewController" bundle:nil];
-	//controller.delegate = self;
+	controller.delegate = self;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:controller animated:YES];
@@ -322,7 +321,7 @@ enum {
 // button action
 - (IBAction) flipToArrangeView:(id)sender {
 	ArrangeViewController *controller = [[ArrangeViewController alloc] initWithNibName:@"ArrangeViewController" bundle:nil];
-	//controller.delegate = self;
+	controller.delegate = self;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:controller animated:YES];

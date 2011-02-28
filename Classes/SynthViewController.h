@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SynthViewProtocol;
+
 
 @interface SynthViewController : UIViewController {
-
+	id <SynthViewProtocol> delegate;
 }
+
+@property (nonatomic, retain) id <SynthViewProtocol> delegate;
+
+- (IBAction) returnToMain:(id)sender;
 
 @end
 
