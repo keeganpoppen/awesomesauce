@@ -11,14 +11,21 @@
 
 @implementation SynthViewController
 @synthesize delegate;
+@synthesize titleLabel;
+@synthesize instPicker;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-- (IBAction) returnToMain:(id)sender {
-	[delegate closeSynthView];
+- (IBAction)returnToMain:(id)sender {
+	[delegate closeMe];
+}
+
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
+	int newInst = [sender selectedSegmentIndex];
+	[delegate changeInstrument:newInst];
 }
 
 - (void)didReceiveMemoryWarning {

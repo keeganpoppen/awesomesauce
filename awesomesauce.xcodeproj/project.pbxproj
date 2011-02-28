@@ -209,6 +209,7 @@
 		2DACE64F131B5C57004EE909 /* ArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeViewController.h; sourceTree = "<group>"; };
 		2DACE650131B5C57004EE909 /* ArrangeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrangeViewController.mm; sourceTree = "<group>"; };
 		2DACE651131B5C57004EE909 /* ArrangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArrangeViewController.xib; path = Classes/ArrangeViewController.xib; sourceTree = "<group>"; };
+		2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipViewProtocol.h; sourceTree = "<group>"; };
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
@@ -482,6 +483,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */,
 				2DACE60B131B5401004EE909 /* SynthViewController.h */,
 				2DACE60C131B5401004EE909 /* SynthViewController.mm */,
 				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,

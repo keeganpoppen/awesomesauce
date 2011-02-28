@@ -18,8 +18,9 @@
 #import "MixerView.h"
 #import "SynthViewController.h"
 #import "ArrangeViewController.h"
+#import "FlipViewProtocol.h"
 
-@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol>
+@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol>
 {
     EAGLContext *context;
     GLuint program;

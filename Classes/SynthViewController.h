@@ -9,18 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @protocol SynthViewProtocol;
+@protocol FlipViewProtocol;
 
 
 @interface SynthViewController : UIViewController {
-	id <SynthViewProtocol> delegate;
+	id <FlipViewProtocol, SynthViewProtocol> delegate;
+	IBOutlet UILabel *titleLabel;
+	IBOutlet UISegmentedControl *instPicker;
 }
 
-@property (nonatomic, retain) id <SynthViewProtocol> delegate;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *instPicker;
+@property (nonatomic, retain) id <SynthViewProtocol, FlipViewProtocol> delegate;
 
-- (IBAction) returnToMain:(id)sender;
+- (IBAction)returnToMain:(id)sender;
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 
 @end
 
 @protocol SynthViewProtocol
--(void) closeSynthView;
+-(void) changeInstrument:(int)newInst;
 @end

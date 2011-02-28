@@ -9,18 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @protocol ArrangeViewProtocol;
+@protocol FlipViewProtocol;
 
 
 @interface ArrangeViewController : UIViewController {
-	id <ArrangeViewProtocol> delegate;
+	id <FlipViewProtocol, ArrangeViewProtocol> delegate;
 }
 
-@property (nonatomic, retain) id <ArrangeViewProtocol> delegate;
+@property (nonatomic, retain) id <ArrangeViewProtocol, FlipViewProtocol> delegate;
 
 - (IBAction) returnToMain:(id)sender;
 
 @end
 
 @protocol ArrangeViewProtocol
--(void) closeArrangeView;
 @end

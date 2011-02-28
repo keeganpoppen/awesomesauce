@@ -308,12 +308,16 @@ enum {
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:controller animated:YES];
 	
-	//TODO: initialize controller with params, e.g. current track num, the track's current synth, etc
+	//initialize controller with params, e.g. current track num, the track's current synth, etc
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	
-	//[[controller speedSlider] setValue:getSpeed()];
-	//[[controller dampingSlider] setValue:getDampingFactor()];
-	//[[controller shakeSwitch] setOn:isShakeOn()];
+	//set text label of currently edited track
+	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
+	[[controller titleLabel] setText:newText];
 	
+	//set the current track's selected instrument
+	NSInteger curInst = mh->getCurrentMatrix()->instrument;
+	[[controller instPicker] setSelectedSegmentIndex:curInst];
 	
 	[controller release];
 }
@@ -334,14 +338,16 @@ enum {
 	[controller release];
 }
 
-// delegate methods for ArrangeViewProtocol
-- (void) closeArrangeView {
+// delegate methods for FlipViewProtocol
+- (void) closeMe {
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 // delegate methods for SynthViewProtocol
-- (void) closeSynthView {
-	[self dismissModalViewControllerAnimated:YES];
+-(void) changeInstrument:(int)newInst {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->changeInstrument(newInst);
+	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
 }
 
 @end

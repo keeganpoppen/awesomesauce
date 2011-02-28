@@ -18,7 +18,7 @@
 }
 
 - (IBAction) returnToMain:(id)sender {
-	[delegate closeArrangeView];
+	[delegate closeMe];
 }
 
 - (void)didReceiveMemoryWarning {
