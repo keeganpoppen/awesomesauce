@@ -113,6 +113,55 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 	}
 }
 
+void MatrixHandler::setBpm(float newBpm) {
+	if(newBpm < 60.0 || newBpm > 180.0) {
+		return;
+	}
+	bpm = newBpm * 4.0;
+}
+
+NSDictionary *MatrixHandler::encode() {
+	//vars:
+	//vector<TouchMatrix *> matrices;
+	//int currentMatrix;
+	//float time_elapsed;
+	//int current_column;
+	//float bpm;
+	//will not encode the network handler, probably unnecessary to do so?
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+	int numMatrices = matrices.size();
+	NSMutableArray *array = [[NSMutableArray alloc] init]; 
+	for(int i = 0; i < numMatrices; i++) {
+		NSMutableDictionary *temp = matrices[i]->toDictionary();
+		[array addObject:temp];
+	}
+	
+	[dict setObject:array forKey:@"matrices"];
+	[dict setObject:[NSNumber numberWithInt:currentMatrix] forKey:@"currentMatrix"];
+	[dict setObject:[NSNumber numberWithFloat:time_elapsed] forKey:@"time_elapsed"];
+	[dict setObject:[NSNumber numberWithInt:current_column] forKey:@"current_column"];
+	[dict setObject:[NSNumber numberWithFloat:bpm] forKey:@"bpm"];
+	return dict;
+}
+
+void MatrixHandler::decode(NSDictionary *dict) {
+	matrices.clear();
+	
+	NSMutableArray *array = (NSMutableArray *) [dict objectForKey:@"matrices"];
+	NSEnumerator *enumerator = [array objectEnumerator];
+	NSMutableDictionary *element;
+	while(element = (NSMutableDictionary *)[enumerator nextObject])
+    {
+		TouchMatrix *newMatrix = new TouchMatrix(element);
+		matrices.push_back(newMatrix);
+    }
+	
+	currentMatrix = [((NSNumber *)[dict objectForKey:@"currentMatrix"]) intValue];
+	time_elapsed = [((NSNumber *)[dict objectForKey:@"time_elapsed"]) floatValue];
+	current_column = [((NSNumber *)[dict objectForKey:@"current_column"]) intValue];
+	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];
+}
+
 TouchMatrix *MatrixHandler::getCurrentMatrix() {
 	return matrices[currentMatrix];
 }

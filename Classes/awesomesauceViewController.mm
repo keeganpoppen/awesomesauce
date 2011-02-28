@@ -316,8 +316,7 @@ enum {
 	[[controller titleLabel] setText:newText];
 	
 	//set the current track's selected instrument
-	NSInteger curInst = mh->getCurrentMatrix()->instrument;
-	[[controller instPicker] setSelectedSegmentIndex:curInst];
+	[[controller instPicker] setSelectedSegmentIndex:mh->getCurrentMatrix()->instrument];
 	
 	[controller release];
 }
@@ -331,8 +330,8 @@ enum {
 	[self presentModalViewController:controller animated:YES];
 	
 	//TODO: initialize controller with params, e.g. current track num, bpm, etc
-	
-	//[[controller speedSlider] setValue:getSpeed()];
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	[[controller bpmSlider] setValue:(mh->bpm / 4.0)];
 	
 	
 	[controller release];
@@ -341,6 +340,13 @@ enum {
 // delegate methods for FlipViewProtocol
 - (void) closeMe {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+// delegate methods for ArrangeViewProtocol
+-(void) changeBpm:(float)newBpm {
+	//TODO
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->setBpm(newBpm);
 }
 
 // delegate methods for SynthViewProtocol

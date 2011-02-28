@@ -20,6 +20,7 @@ class MatrixHandler {
 public:
 	MatrixHandler();
 	
+	void setBpm(float newBpm);
 	void addNewMatrix(bool sendNotification = true);
 	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
@@ -29,6 +30,8 @@ public:
 	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
 	void addOffset(double offset);
+	NSDictionary *encode();
+	void decode(NSDictionary *dict);
 	
 	TouchMatrix *getCurrentMatrix();
 	
@@ -37,7 +40,7 @@ public:
 	
 	float time_elapsed;
 	int current_column;
-	int bpm; //number of sixteenth notes per minute, actually
+	float bpm; //number of sixteenth notes per minute, actually
 	
 	MatrixNetworkHandler *networkHandler;
 };

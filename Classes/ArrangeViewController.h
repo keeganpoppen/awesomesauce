@@ -14,13 +14,17 @@
 
 @interface ArrangeViewController : UIViewController {
 	id <FlipViewProtocol, ArrangeViewProtocol> delegate;
+	IBOutlet UISlider *bpmSlider;
 }
 
+@property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
 @property (nonatomic, retain) id <ArrangeViewProtocol, FlipViewProtocol> delegate;
 
-- (IBAction) returnToMain:(id)sender;
+- (IBAction)returnToMain:(id)sender;
+- (IBAction)bpmChanged:(UISlider *)sender;
 
 @end
 
 @protocol ArrangeViewProtocol
+-(void) changeBpm:(float)newBpm;
 @end

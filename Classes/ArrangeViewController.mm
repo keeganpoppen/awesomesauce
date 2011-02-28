@@ -11,27 +11,26 @@
 
 @implementation ArrangeViewController
 @synthesize delegate;
+@synthesize bpmSlider;
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-- (IBAction) returnToMain:(id)sender {
+- (IBAction)returnToMain:(id)sender {
 	[delegate closeMe];
 }
 
+- (IBAction)bpmChanged:(UISlider *)sender {
+	[delegate changeBpm:[sender value]];
+}
+
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
