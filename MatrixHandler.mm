@@ -123,10 +123,8 @@ void MatrixHandler::setBpm(float newBpm) {
 NSDictionary *MatrixHandler::encode() {
 	//vars:
 	//vector<TouchMatrix *> matrices;
-	//int currentMatrix;
-	//float time_elapsed;
-	//int current_column;
 	//float bpm;
+	//will not encode current column, current matrix, or time elapsed
 	//will not encode the network handler, probably unnecessary to do so?
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	int numMatrices = matrices.size();
@@ -137,9 +135,6 @@ NSDictionary *MatrixHandler::encode() {
 	}
 	
 	[dict setObject:array forKey:@"matrices"];
-	[dict setObject:[NSNumber numberWithInt:currentMatrix] forKey:@"currentMatrix"];
-	[dict setObject:[NSNumber numberWithFloat:time_elapsed] forKey:@"time_elapsed"];
-	[dict setObject:[NSNumber numberWithInt:current_column] forKey:@"current_column"];
 	[dict setObject:[NSNumber numberWithFloat:bpm] forKey:@"bpm"];
 	return dict;
 }
@@ -156,9 +151,9 @@ void MatrixHandler::decode(NSDictionary *dict) {
 		matrices.push_back(newMatrix);
     }
 	
-	currentMatrix = [((NSNumber *)[dict objectForKey:@"currentMatrix"]) intValue];
-	time_elapsed = [((NSNumber *)[dict objectForKey:@"time_elapsed"]) floatValue];
-	current_column = [((NSNumber *)[dict objectForKey:@"current_column"]) intValue];
+	currentMatrix = 0;
+	time_elapsed = 0.0;
+	current_column = 0;
 	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];
 }
 
