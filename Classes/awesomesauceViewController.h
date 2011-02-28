@@ -16,8 +16,9 @@
 #import <OpenGLES/ES2/glext.h>
 
 #import "MixerView.h"
+#import "SynthViewController.h"
 
-@interface awesomesauceViewController : UIViewController
+@interface awesomesauceViewController : UIViewController <SynthViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
@@ -53,6 +54,7 @@
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
+- (IBAction)flipToSynthView:(id)sender;
 
 
 @end

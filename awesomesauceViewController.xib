@@ -696,6 +696,25 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
+					<object class="IBUIButton" id="282082417">
+						<reference key="NSNextResponder" ref="184854543"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 181}, {111, 37}}</string>
+						<reference key="NSSuperview" ref="184854543"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="1025776730"/>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">flip to synth</string>
+						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="29912308"/>
+					</object>
 				</object>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
@@ -1119,6 +1138,15 @@
 					</object>
 					<int key="connectionID">99</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">flipToSynthView:</string>
+						<reference key="source" ref="282082417"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">101</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1156,6 +1184,7 @@
 							<reference ref="20107207"/>
 							<reference ref="853181661"/>
 							<reference ref="244014827"/>
+							<reference ref="282082417"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1403,6 +1432,11 @@
 						<reference key="object" ref="246692960"/>
 						<reference key="parent" ref="834517315"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100</int>
+						<reference key="object" ref="282082417"/>
+						<reference key="parent" ref="184854543"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1411,6 +1445,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>100.IBPluginDependency</string>
+					<string>100.IBViewBoundsToFrameTransform</string>
 					<string>17.IBPluginDependency</string>
 					<string>17.IBViewBoundsToFrameTransform</string>
 					<string>2.CustomClassName</string>
@@ -1504,6 +1540,10 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>awesomesauceViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDPAAAw1gAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAww0AAA</bytes>
@@ -1688,7 +1728,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">99</int>
+			<int key="maxID">101</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1789,10 +1829,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addMatrix</string>
 							<string>clearCurrentMatrix</string>
+							<string>flipToSynthView:</string>
 							<string>instPickerChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>UISegmentedControl</string>
@@ -1804,6 +1846,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addMatrix</string>
 							<string>clearCurrentMatrix</string>
+							<string>flipToSynthView:</string>
 							<string>instPickerChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1814,6 +1857,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clearCurrentMatrix</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">flipToSynthView:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

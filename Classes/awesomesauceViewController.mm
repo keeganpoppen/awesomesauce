@@ -284,6 +284,7 @@ enum {
 	}
 }
 
+
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int newInst = [sender selectedSegmentIndex];
@@ -298,6 +299,30 @@ enum {
 	else if(newInst == 2) {
 		[temp setLabelText:@"Saw"];
 	}
+}
+
+// button action
+- (IBAction) flipToSynthView:(id)sender {
+	SynthViewController *controller = [[SynthViewController alloc] initWithNibName:@"SynthViewController" bundle:nil];
+	//controller.delegate = self;
+	
+	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:controller animated:YES];
+	
+	//TODO: initialize controller with params, e.g. current track num
+	
+	//[[controller speedSlider] setValue:getSpeed()];
+	//[[controller dampingSlider] setValue:getDampingFactor()];
+	//[[controller shakeSwitch] setOn:isShakeOn()];
+	
+	
+	[controller release];
+}
+
+
+// delegate methods for SynthViewProtocol
+- (void) closeMe {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 @end
