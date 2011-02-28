@@ -1,5 +1,5 @@
 //
-//  SynthViewController.h
+//  ArrangeViewController.h
 //  awesomesauce
 //
 //  Created by Ravi Parikh on 2/27/11.
@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SynthViewController : UIViewController {
+@interface ArrangeViewController : UIViewController {
 
 }
 
 @end
 
-@protocol SynthViewProtocol
--(void) closeSynthView;
+@protocol ArrangeViewProtocol
+-(void) closeArrangeView;
 @end

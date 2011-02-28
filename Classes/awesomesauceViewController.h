@@ -17,8 +17,9 @@
 
 #import "MixerView.h"
 #import "SynthViewController.h"
+#import "ArrangeViewController.h"
 
-@interface awesomesauceViewController : UIViewController <SynthViewProtocol>
+@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
@@ -55,6 +56,7 @@
 - (IBAction)addMatrix;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 - (IBAction)flipToSynthView:(id)sender;
+- (IBAction)flipToArrangeView:(id)sender;
 
 
 @end

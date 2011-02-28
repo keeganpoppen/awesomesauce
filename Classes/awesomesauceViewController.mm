@@ -309,7 +309,7 @@ enum {
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:controller animated:YES];
 	
-	//TODO: initialize controller with params, e.g. current track num
+	//TODO: initialize controller with params, e.g. current track num, the track's current synth, etc
 	
 	//[[controller speedSlider] setValue:getSpeed()];
 	//[[controller dampingSlider] setValue:getDampingFactor()];
@@ -319,9 +319,29 @@ enum {
 	[controller release];
 }
 
+// button action
+- (IBAction) flipToArrangeView:(id)sender {
+	ArrangeViewController *controller = [[ArrangeViewController alloc] initWithNibName:@"ArrangeViewController" bundle:nil];
+	//controller.delegate = self;
+	
+	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:controller animated:YES];
+	
+	//TODO: initialize controller with params, e.g. current track num, bpm, etc
+	
+	//[[controller speedSlider] setValue:getSpeed()];
+	
+	
+	[controller release];
+}
+
+// delegate methods for ArrangeViewProtocol
+- (void) closeArrangeView {
+	[self dismissModalViewControllerAnimated:YES];
+}
 
 // delegate methods for SynthViewProtocol
-- (void) closeMe {
+- (void) closeSynthView {
 	[self dismissModalViewControllerAnimated:YES];
 }
 
