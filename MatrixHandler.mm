@@ -47,7 +47,18 @@ MatrixHandler::MatrixHandler() {
 	
 	//set up networking junk
 	NSLog(@"matrixhandler makear");
-	networkHandler = [[MatrixNetworkHandler alloc] init];
+	networkHandler = [[MatrixNetworkHandler alloc] init]; //TODO: MEMORY LEAK!!!
+	
+	NSLog(@"setting up the awesome server delegate");
+	serverDelegate = [[AwesomeServerDelegate alloc] init]; //TODO: MEMORY LEAK!!!
+	
+	/* TODO: DELETE
+	NSLog(@"getting a list of them all");
+	NSDictionary *comps = [[[serverDelegate getCompositionListFromServer] retain] autorelease];
+	
+	NSLog(@"getting one of them");
+	NSDictionary *comp = [[[serverDelegate getCompositionFromServerWithID:2] retain] autorelease];
+	*/
 }
 
 void MatrixHandler::addNewMatrix(bool sendNotification) {
@@ -118,6 +129,12 @@ void MatrixHandler::setBpm(float newBpm) {
 		return;
 	}
 	bpm = newBpm * 4.0;
+}
+
+void MatrixHandler::saveCurrentComposition(NSString *name) {
+	NSLog(@"serializing self in order to save on the server");
+	[serverDelegate sendCompositionToServer:encode() withName:name];
+	NSLog(@"ideally, done being saved on the server");
 }
 
 NSDictionary *MatrixHandler::encode() {

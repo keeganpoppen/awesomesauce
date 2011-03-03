@@ -11,6 +11,9 @@
 #import "audio.h"
 #import "graphics.h"
 
+//TODO: KILL
+#import "AwesomeServerDelegate.h"
+
 @implementation awesomesauceAppDelegate
 
 @synthesize window;

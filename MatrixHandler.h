@@ -11,6 +11,7 @@
 
 #import "TouchMatrix.h"
 #import "MatrixNetworkHandler.h"
+#import "AwesomeServerDelegate.h"
 #import <vector>
 
 using namespace std;
@@ -33,6 +34,8 @@ public:
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	
+	void saveCurrentComposition(NSString *name);
+	
 	TouchMatrix *getCurrentMatrix();
 	
 	vector<TouchMatrix *> matrices;
@@ -43,4 +46,5 @@ public:
 	float bpm; //number of sixteenth notes per minute, actually
 	
 	MatrixNetworkHandler *networkHandler;
+	AwesomeServerDelegate *serverDelegate;
 };
