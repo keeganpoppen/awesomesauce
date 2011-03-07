@@ -53,6 +53,7 @@
 		[sesh setDelegate:self];
 		[sesh setDataReceiveHandler:self withContext:nil];
 		[sesh setAvailable:YES];
+		
 		NSLog(@"starting server in peer mode w/ peerID %@", sesh.peerID);
 	}
 	return self;
@@ -82,6 +83,8 @@
 					[self sendData:dict withMessageType:@"time_sync" toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable];
 				}
 				
+			} else {
+				NSLog(@"WAITING FOR PEER TO SYNC CLOCKS WITH ME");
 			}
 		}
 			break;
@@ -93,7 +96,10 @@
 			if ([self comparePeerID:peerID]) {
 				NSLog(@"available... gonna try and connect");
 				[sesh connectToPeer:peerID withTimeout:30.];
+			} else {
+				NSLog(@"gonna wait for peer to connect to me");
 			}
+
 			break;
 		case GKPeerStateUnavailable:
 			NSLog(@"unavailable");
