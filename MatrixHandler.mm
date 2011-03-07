@@ -123,9 +123,16 @@ void MatrixHandler::setBpm(float newBpm) {
 	bpm = newBpm * 4.0;
 }
 
-void MatrixHandler::setCurrentTrackEnvLength(float newLength) {
-	getCurrentMatrix()->note_length = newLength;
-	NSLog(@"new length: %f", newLength);
+void MatrixHandler::setCurrentTrackEnvLength(float newVal) {
+	getCurrentMatrix()->note_length = newVal;
+}
+
+void MatrixHandler::setCurrentTrackEnvAttack(float newVal) {
+	getCurrentMatrix()->note_attack = newVal;
+}
+
+void MatrixHandler::setCurrentTrackEnvRelease(float newVal) {
+	getCurrentMatrix()->note_release = newVal;
 }
 
 NSDictionary *MatrixHandler::encode() {

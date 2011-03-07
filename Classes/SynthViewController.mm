@@ -13,6 +13,8 @@
 @synthesize delegate;
 @synthesize titleLabel;
 @synthesize envLength;
+@synthesize envAttack;
+@synthesize envRelease;
 @synthesize instPicker;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -22,6 +24,14 @@
 
 - (IBAction)envLengthChanged:(UISlider *)sender {
 	[delegate changeEnvLength:[sender value]];
+}
+
+- (IBAction)envAttackChanged:(UISlider *)sender {
+	[delegate changeEnvAttack:[sender value]];
+}
+
+- (IBAction)envReleaseChanged:(UISlider *)sender {
+	[delegate changeEnvRelease:[sender value]];
 }
 
 - (IBAction)returnToMain:(id)sender {

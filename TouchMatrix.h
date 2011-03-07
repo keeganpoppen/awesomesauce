@@ -23,6 +23,8 @@ public:
 		instrument = inst;
 		initialize_junk();
 		note_length = 0.8;
+		note_attack = 0.1;
+		note_release = 0.1;
 	}
 	
 	//instantiate a touchmatrix from a NSMutableDictionary
@@ -76,7 +78,7 @@ public:
 	int track_id;
 	
 	//envelope stuff
-	float note_length;
+	float note_length, note_attack, note_release;
 	float col_progress;
 	
 private:
