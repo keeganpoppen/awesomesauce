@@ -11,15 +11,17 @@
 @protocol SocialViewProtocol;
 @protocol FlipViewProtocol;
 
-@interface SocialViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface SocialViewController : UIViewController /*<UIPickerViewDelegate, UIPickerViewDataSource>*/ {
 	id <FlipViewProtocol, SocialViewProtocol> delegate;
 
+	/*
 	IBOutlet UIPickerView *sharedTracks;
 	IBOutlet UITextField *trackName;
 	NSDictionary *currentlySharedTracks;
 	NSMutableArray *sharedTrackList;
+	 */
 }
-
+/*
 @property (nonatomic, retain) NSDictionary *currentlySharedTracks;
 @property (nonatomic, retain) NSMutableArray *sharedTrackList;
 @property (nonatomic, retain) IBOutlet UIPickerView *sharedTracks;
@@ -34,7 +36,7 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-
+*/
 
 @property (nonatomic, retain) id <FlipViewProtocol, SocialViewProtocol> delegate;
 

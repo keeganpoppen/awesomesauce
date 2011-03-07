@@ -36,6 +36,7 @@
  * handlers and junk from before
  */
 
+/*
 //TODO: THIS LOGIC IS IN TOTALLY THE WRONG PLACE
 - (IBAction)shareTrack:(id)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
@@ -76,11 +77,13 @@
 	
 	[sharedTracks reloadAllComponents];
 }
+ */
 
 /*
  * pickerview crap
  */
 
+/*
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
 	return 1;
 }
@@ -99,5 +102,6 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	return [currentlySharedTracks objectForKey:[sharedTrackList objectAtIndex:row]];
 }
+*/
 
 @end
