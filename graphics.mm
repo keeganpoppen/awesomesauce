@@ -15,6 +15,7 @@
 bool pad_is_on;
 bool current_touches[16][16];
 GLuint g_texture[3];
+static const GLfloat half_width = 22;
 
 void displayMatrix(TouchMatrix *matrix) {
 	// reset projection matrix
@@ -37,7 +38,6 @@ void displayMatrix(TouchMatrix *matrix) {
 	
 	//draw stuff sample
 	
-	static const GLfloat half_width = 24;
     static const GLfloat squareVertices[] = {
         -half_width, -half_width,
         half_width, -half_width,
@@ -152,7 +152,7 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         location.y = temp;
 		
 		//TODO: store cell_size as a global variable
-		float cell_size = 48.0;
+		float cell_size = half_width * 2;
 		
 		int xval = (int) location.y / cell_size;
 		int yval = (int) (location.x - 256.0) / cell_size;
