@@ -11,6 +11,7 @@
 #import "awesomesauceViewController.h"
 #import "awesomesauceAppDelegate.h"
 #import "EAGLView.h"
+#import "graphics.h"
 
 // Uniform index.
 enum {
@@ -285,6 +286,7 @@ enum {
 
 // button action
 - (IBAction) flipToSynthView:(id)sender {
+	setMainScreen(false);
 	SynthViewController *controller = [[SynthViewController alloc] initWithNibName:@"SynthViewController" bundle:nil];
 	controller.delegate = self;
 	
@@ -306,6 +308,7 @@ enum {
 
 // button action
 - (IBAction) flipToArrangeView:(id)sender {
+	setMainScreen(false);
 	ArrangeViewController *controller = [[ArrangeViewController alloc] initWithNibName:@"ArrangeViewController" bundle:nil];
 	controller.delegate = self;
 	
@@ -321,6 +324,7 @@ enum {
 }
 
 - (IBAction)flipToSocialView:(id)sender {
+	setMainScreen(false);
 	SocialViewController *controller = [[SocialViewController alloc] initWithNibName:@"SocialViewController" bundle:nil];
 	controller.delegate = self;
 	
@@ -335,6 +339,7 @@ enum {
 // delegate methods for FlipViewProtocol
 - (void) closeMe {
 	[self dismissModalViewControllerAnimated:YES];
+	setMainScreen(true);
 }
 
 // delegate methods for ArrangeViewProtocol

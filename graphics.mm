@@ -12,10 +12,15 @@
 
 #import "mo_touch.h"
 
+bool on_main_screen = true;
 bool pad_is_on;
 bool current_touches[16][16];
 GLuint g_texture[3];
 static const GLfloat half_width = 22;
+
+void setMainScreen(bool newVal) {
+	on_main_screen = newVal;
+}
 
 void displayMatrix(TouchMatrix *matrix) {
 	// reset projection matrix
@@ -139,6 +144,9 @@ void resetCurrentTouches() {
 // touch callback
 void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTrack> & touchPts, void * data)
 {
+	if(!on_main_screen) {
+		return;
+	}
     // iterate over touch points
     CGPoint location;
     for( UITouch * touch in touches )

@@ -21,7 +21,7 @@
 #import "SocialViewController.h"
 #import "FlipViewProtocol.h"
 
-@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol>
+@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
