@@ -365,6 +365,20 @@ enum {
 	return numTracks;
 }
 
+-(void) stopPlayback {
+	setPlayback(false);
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->resetTime();
+}
+
+-(void) pausePlayback {
+	setPlayback(false);
+}
+
+-(void) startPlayback {
+	setPlayback(true);
+}
+
 // delegate methods for SynthViewProtocol
 -(void) changeInstrument:(int)newInst withIndex:(int)index {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];

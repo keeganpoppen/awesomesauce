@@ -36,6 +36,7 @@ public:
 	void addOffset(double offset);
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
+	void resetTime();
 	
 	void saveCurrentComposition(NSString *name);
 	

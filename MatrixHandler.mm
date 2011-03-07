@@ -115,6 +115,12 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 	}
 }
 
+void MatrixHandler::resetTime() {
+	time_elapsed = 0.0;
+	current_column = 0;
+	col_progress = 0.0;
+}
+
 void MatrixHandler::addOffset(double offset) {
 	time_elapsed += offset;
 }
