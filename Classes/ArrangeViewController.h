@@ -52,6 +52,7 @@
 @end
 
 @protocol ArrangeViewProtocol
--(void) changeBpm:(float)newBpm;
+- (void) changeBpm:(float)newBpm;
 - (int) getNumTracks;
+- (void) closeAndSwitchTrack:(int)trackNum;
 @end

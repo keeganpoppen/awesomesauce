@@ -18,7 +18,7 @@
 		28FD14FE0DC6FC130079059D /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.m */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */; };
+		2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.mm */; };
 		2D2A7CC9132501B9006EFED0 /* ArrangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */; };
 		2D5C672613248F12009676BA /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5C672413248F12009676BA /* SocialViewController.m */; };
 		2D5C672713248F12009676BA /* SocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D5C672513248F12009676BA /* SocialViewController.xib */; };
@@ -202,7 +202,7 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeTableViewCell.h; sourceTree = "<group>"; };
-		2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrangeTableViewCell.m; sourceTree = "<group>"; };
+		2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrangeTableViewCell.mm; sourceTree = "<group>"; };
 		2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArrangeTableViewCell.xib; sourceTree = "<group>"; };
 		2D5C672313248F12009676BA /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		2D5C672413248F12009676BA /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
 				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
 				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,
-				2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */,
+				2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.mm */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1150,7 +1150,7 @@
 				F2034815131C257200FA19FE /* SBJsonParser.m in Sources */,
 				F2034816131C257200FA19FE /* SBJsonWriter.m in Sources */,
 				2D5C672613248F12009676BA /* SocialViewController.m in Sources */,
-				2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.m in Sources */,
+				2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -111,10 +111,13 @@
 }
 
 //table view stuff
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [delegate getNumTracks];
@@ -128,8 +131,11 @@
 		[[NSBundle mainBundle] loadNibNamed:@"ArrangeTableViewCell" owner:self options:nil];
 		cell = tblCell;
 	}
-	
-	[cell setLabelText:@"todo!!!"];
+	NSString *trackTitle = [NSString stringWithFormat:@"Track %d", indexPath.row+1];
+	[cell setLabelText:trackTitle];
+	[cell setTrackNum:indexPath.row];
+	[cell setMatrixHandler:[delegate getMatrixHandler]];
+	[cell setParent:self];
 	return cell;
 }
 

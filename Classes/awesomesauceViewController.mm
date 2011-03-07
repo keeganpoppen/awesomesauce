@@ -353,6 +353,14 @@ enum {
 	mh->setBpm(newBpm);
 }
 
+- (void) closeAndSwitchTrack:(int)trackNum {
+	[self dismissModalViewControllerAnimated:YES];
+	setMainScreen(true);
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->currentMatrix = trackNum;
+	[self matrixChanged];
+}
+
 - (int) getNumTracks {
 	return numTracks;
 }

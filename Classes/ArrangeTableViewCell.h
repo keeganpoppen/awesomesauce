@@ -7,12 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MatrixHandler.h"
 
+@class ArrangeViewController;
 
 @interface ArrangeTableViewCell : UITableViewCell {
-	IBOutlet UILabel *cellText;
+	IBOutlet UILabel *trackName;
+	IBOutlet UIButton *editButton;
+	IBOutlet UISwitch *onSwitch;
+	
+	int trackNum;
+	MatrixHandler *matrixHandler;
+	ArrangeViewController *parent;
 }
 
-- (void)setLabelText:(NSString *)txt;
+- (void)setLabelText:(NSString *)labelText;
+- (void)setTrackNum:(int)num;
+- (void)setMatrixHandler:(MatrixHandler *)mh;
+- (void)disableTrack;
+- (void)enableTrack:(NSString *)labelText;
+- (void)setParent:(ArrangeViewController *)avc;
+- (IBAction)editButtonPressed:(UIButton *)sender;
+- (IBAction)onSwitchToggled;
 
 @end
