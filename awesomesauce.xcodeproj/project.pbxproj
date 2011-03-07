@@ -173,6 +173,12 @@
 		EF48731D12FFC9F00034E955 /* audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48731C12FFC9F00034E955 /* audio.mm */; };
 		EF48732212FFC9F90034E955 /* graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732112FFC9F90034E955 /* graphics.mm */; };
 		EF48732512FFCED80034E955 /* TouchMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF48732412FFCED80034E955 /* TouchMatrix.mm */; };
+		F20347DD131C21B400FA19FE /* AwesomeServerDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F20347DC131C21B400FA19FE /* AwesomeServerDelegate.mm */; };
+		F2034812131C257200FA19FE /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = F2034809131C257200FA19FE /* NSObject+SBJSON.m */; };
+		F2034813131C257200FA19FE /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = F203480B131C257200FA19FE /* NSString+SBJSON.m */; };
+		F2034814131C257200FA19FE /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F203480D131C257200FA19FE /* SBJsonBase.m */; };
+		F2034815131C257200FA19FE /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F203480F131C257200FA19FE /* SBJsonParser.m */; };
+		F2034816131C257200FA19FE /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2034811131C257200FA19FE /* SBJsonWriter.m */; };
 		F2D1E9811308DFE7008E9DF1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D1E9801308DFE7008E9DF1 /* GameKit.framework */; };
 		F2D1E98B1308E18C008E9DF1 /* MatrixNetworkHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */; };
 /* End PBXBuildFile section */
@@ -462,6 +468,19 @@
 		EF48732112FFC9F90034E955 /* graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = graphics.mm; sourceTree = "<group>"; };
 		EF48732312FFCED80034E955 /* TouchMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchMatrix.h; sourceTree = "<group>"; };
 		EF48732412FFCED80034E955 /* TouchMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TouchMatrix.mm; sourceTree = "<group>"; };
+		F20347DB131C21B400FA19FE /* AwesomeServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeServerDelegate.h; sourceTree = "<group>"; };
+		F20347DC131C21B400FA19FE /* AwesomeServerDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeServerDelegate.mm; sourceTree = "<group>"; };
+		F2034807131C257200FA19FE /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		F2034808131C257200FA19FE /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		F2034809131C257200FA19FE /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		F203480A131C257200FA19FE /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		F203480B131C257200FA19FE /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		F203480C131C257200FA19FE /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		F203480D131C257200FA19FE /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		F203480E131C257200FA19FE /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		F203480F131C257200FA19FE /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		F2034810131C257200FA19FE /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		F2034811131C257200FA19FE /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		F2D1E9801308DFE7008E9DF1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F2D1E9891308E18C008E9DF1 /* MatrixNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixNetworkHandler.h; sourceTree = "<group>"; };
 		F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixNetworkHandler.mm; sourceTree = "<group>"; };
@@ -527,6 +546,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				F20347FE131C252C00FA19FE /* JSON */,
 				EF48731A12FFC9030034E955 /* core */,
 				EF48730012FFC7F00034E955 /* MoMu */,
 				EF48719C12FFC7E80034E955 /* STK */,
@@ -863,6 +883,8 @@
 				EF48731C12FFC9F00034E955 /* audio.mm */,
 				EF48732012FFC9F90034E955 /* graphics.h */,
 				EF48732112FFC9F90034E955 /* graphics.mm */,
+				F20347DB131C21B400FA19FE /* AwesomeServerDelegate.h */,
+				F20347DC131C21B400FA19FE /* AwesomeServerDelegate.mm */,
 				F2D1E9891308E18C008E9DF1 /* MatrixNetworkHandler.h */,
 				F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */,
 				2D665F7E1308A5D300E962A4 /* MatrixHandler.h */,
@@ -873,6 +895,24 @@
 				EF48732412FFCED80034E955 /* TouchMatrix.mm */,
 			);
 			name = core;
+			sourceTree = "<group>";
+		};
+		F20347FE131C252C00FA19FE /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				F2034807131C257200FA19FE /* JSON.h */,
+				F2034808131C257200FA19FE /* NSObject+SBJSON.h */,
+				F2034809131C257200FA19FE /* NSObject+SBJSON.m */,
+				F203480A131C257200FA19FE /* NSString+SBJSON.h */,
+				F203480B131C257200FA19FE /* NSString+SBJSON.m */,
+				F203480C131C257200FA19FE /* SBJsonBase.h */,
+				F203480D131C257200FA19FE /* SBJsonBase.m */,
+				F203480E131C257200FA19FE /* SBJsonParser.h */,
+				F203480F131C257200FA19FE /* SBJsonParser.m */,
+				F2034810131C257200FA19FE /* SBJsonWriter.h */,
+				F2034811131C257200FA19FE /* SBJsonWriter.m */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1094,6 +1134,12 @@
 				2D66646413094CFE00E962A4 /* MixerView.mm in Sources */,
 				2DACE60E131B5401004EE909 /* SynthViewController.mm in Sources */,
 				2DACE652131B5C57004EE909 /* ArrangeViewController.mm in Sources */,
+				F20347DD131C21B400FA19FE /* AwesomeServerDelegate.mm in Sources */,
+				F2034812131C257200FA19FE /* NSObject+SBJSON.m in Sources */,
+				F2034813131C257200FA19FE /* NSString+SBJSON.m in Sources */,
+				F2034814131C257200FA19FE /* SBJsonBase.m in Sources */,
+				F2034815131C257200FA19FE /* SBJsonParser.m in Sources */,
+				F2034816131C257200FA19FE /* SBJsonWriter.m in Sources */,
 				2D5C672613248F12009676BA /* SocialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1134,13 +1180,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ge Wang (AR5E675E2R)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3FB330E3-12A3-48F2-8A27-408EBFC9C652";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
