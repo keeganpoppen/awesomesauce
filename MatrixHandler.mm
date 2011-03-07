@@ -153,7 +153,7 @@ void MatrixHandler::setCurrentTrackEnvRelease(float newVal) {
 
 void MatrixHandler::saveCurrentComposition(NSString *name) {
 	NSLog(@"serializing self in order to save on the server");
-	[serverDelegate sendCompositionToServer:encode() withName:name];
+	[serverDelegate requestSendCompositionToServerWithName:name];
 	NSLog(@"ideally, done being saved on the server");
 }
 
