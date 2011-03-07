@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SocialViewController.h"
 
-@interface CompositionsViewController : UIViewController {
+@interface CompositionsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	SocialViewController *parent;
+	
+	NSMutableArray *compIds;
+	NSMutableDictionary *compMap;
+	NSInteger selectedComp;
 	
 	IBOutlet UITableView *downloads;
 	
@@ -23,8 +27,13 @@
 
 - (IBAction)shareTrack:(id)sender;
 -(void)uploadDone;
+-(void)compositionsLoaded:(NSNotification*)notification;
+-(void)downloadedComposition:(NSNotification*)notification;
 
 @property(nonatomic, retain) SocialViewController *parent;
+
+@property(nonatomic, retain) NSMutableArray *compIds;
+@property(nonatomic, retain) NSMutableDictionary *compMap;
 
 @property(nonatomic, retain) IBOutlet UITableView *downloads;
 
@@ -35,5 +44,9 @@
 @property(nonatomic, retain) IBOutlet UILabel *loadingText;
 
 - (IBAction)returnToMain:(id)sender;
+
+//UITableViewDataSource methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 @end

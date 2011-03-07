@@ -184,6 +184,7 @@ void MatrixHandler::decode(NSDictionary *dict) {
 	NSMutableDictionary *element;
 	while(element = (NSMutableDictionary *)[enumerator nextObject])
     {
+		NSLog(@"element: %@", element);
 		TouchMatrix *newMatrix = new TouchMatrix(element);
 		matrices.push_back(newMatrix);
     }
