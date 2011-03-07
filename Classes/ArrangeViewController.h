@@ -7,18 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArrangeTableViewCell.h"
 
 @protocol ArrangeViewProtocol;
 @protocol FlipViewProtocol;
 
 
-@interface ArrangeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface ArrangeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource> {
 	id <FlipViewProtocol, ArrangeViewProtocol> delegate;
 	IBOutlet UISlider *bpmSlider;
+	IBOutlet UITableView *tracks;
+	IBOutlet ArrangeTableViewCell *tblCell;
 	
 	IBOutlet UIPickerView *sharedTracks;
 	IBOutlet UITextField *trackName;
-	
 	NSDictionary *currentlySharedTracks;
 	NSMutableArray *sharedTrackList;
 }
@@ -26,6 +28,7 @@
 @property (nonatomic, retain) NSDictionary *currentlySharedTracks;
 @property (nonatomic, retain) NSMutableArray *sharedTrackList;
 @property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
+@property (nonatomic, retain) IBOutlet UITableView *tracks;
 @property (nonatomic, retain) IBOutlet UIPickerView *sharedTracks;
 @property (nonatomic, retain) IBOutlet UITextField *trackName;
 
@@ -50,4 +53,5 @@
 
 @protocol ArrangeViewProtocol
 -(void) changeBpm:(float)newBpm;
+- (int) getNumTracks;
 @end

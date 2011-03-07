@@ -342,11 +342,19 @@ enum {
 	setMainScreen(true);
 }
 
+-(MatrixHandler *) getMatrixHandler {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	return mh;
+}
+
 // delegate methods for ArrangeViewProtocol
 -(void) changeBpm:(float)newBpm {
-	//TODO
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm(newBpm);
+}
+
+- (int) getNumTracks {
+	return numTracks;
 }
 
 // delegate methods for SynthViewProtocol

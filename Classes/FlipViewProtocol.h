@@ -11,4 +11,5 @@
 
 @protocol FlipViewProtocol
 -(void) closeMe;
+-(MatrixHandler *) getMatrixHandler;
 @end

@@ -24,8 +24,6 @@ void TouchMatrix::setOscillator(int newVal, int index) {
 
 //instantiate a touchmatrix from a NSMutableDictionary
 TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
-	int instToCopy = [[fromDictionary objectForKey:@"instrument"] intValue];
-	
 	initialize_junk();
 	//setInst(instToCopy);
 	

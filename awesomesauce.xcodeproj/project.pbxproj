@@ -18,6 +18,8 @@
 		28FD14FE0DC6FC130079059D /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.m */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */; };
+		2D2A7CC9132501B9006EFED0 /* ArrangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */; };
 		2D5C672613248F12009676BA /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5C672413248F12009676BA /* SocialViewController.m */; };
 		2D5C672713248F12009676BA /* SocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D5C672513248F12009676BA /* SocialViewController.xib */; };
 		2D665F3E1308916800E962A4 /* awesomesauceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */; };
@@ -199,6 +201,9 @@
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeTableViewCell.h; sourceTree = "<group>"; };
+		2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrangeTableViewCell.m; sourceTree = "<group>"; };
+		2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArrangeTableViewCell.xib; sourceTree = "<group>"; };
 		2D5C672313248F12009676BA /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		2D5C672413248F12009676BA /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
 		2D5C672513248F12009676BA /* SocialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SocialViewController.xib; path = Classes/SocialViewController.xib; sourceTree = "<group>"; };
@@ -507,13 +512,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */,
 				2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */,
 				2D5C672313248F12009676BA /* SocialViewController.h */,
 				2D5C672413248F12009676BA /* SocialViewController.m */,
 				2DACE60B131B5401004EE909 /* SynthViewController.h */,
 				2DACE60C131B5401004EE909 /* SynthViewController.mm */,
-				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
-				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
 				28FD14FC0DC6FC130079059D /* EAGLView.h */,
 				28FD14FD0DC6FC130079059D /* EAGLView.m */,
 				1D3623240D0F684500981E51 /* awesomesauceAppDelegate.h */,
@@ -522,6 +526,10 @@
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 				2D66646213094CFE00E962A4 /* MixerView.h */,
 				2D66646313094CFE00E962A4 /* MixerView.mm */,
+				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
+				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
+				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,
+				2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -547,9 +555,9 @@
 			isa = PBXGroup;
 			children = (
 				F20347FE131C252C00FA19FE /* JSON */,
-				EF48731A12FFC9030034E955 /* core */,
 				EF48730012FFC7F00034E955 /* MoMu */,
 				EF48719C12FFC7E80034E955 /* STK */,
+				EF48731A12FFC9030034E955 /* core */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				2514C27610084DB600A42282 /* Shaders */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1019,6 +1027,7 @@
 				2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */,
 				2DACE653131B5C57004EE909 /* ArrangeViewController.xib in Resources */,
 				2D5C672713248F12009676BA /* SocialViewController.xib in Resources */,
+				2D2A7CC9132501B9006EFED0 /* ArrangeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,6 +1150,7 @@
 				F2034815131C257200FA19FE /* SBJsonParser.m in Sources */,
 				F2034816131C257200FA19FE /* SBJsonWriter.m in Sources */,
 				2D5C672613248F12009676BA /* SocialViewController.m in Sources */,
+				2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

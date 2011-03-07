@@ -1,14 +1,14 @@
 /*----------------------------------------------------------------------------
-  MoMu: A Mobile Music Toolkit
-  Copyright ( c ) 2010 Nicholas J. Bryan, Jorge Herrera, Jieun Oh, and Ge Wang
-  All rights reserved.
-    http://momu.stanford.edu/toolkit/
+ MoMu: A Mobile Music Toolkit
+ Copyright ( c ) 2010 Nicholas J. Bryan, Jorge Herrera, Jieun Oh, and Ge Wang
+ All rights reserved.
+ http://momu.stanford.edu/toolkit/
  
-  Mobile Music Research @ CCRMA
-  Music, Computing, Design Group
-  Stanford University
-    http://momu.stanford.edu/
-    http://ccrma.stanford.edu/groups/mcd/
+ Mobile Music Research @ CCRMA
+ Music, Computing, Design Group
+ Stanford University
+ http://momu.stanford.edu/
+ http://ccrma.stanford.edu/groups/mcd/
  
  MoMu is distributed under the following BSD style open source license:
  
@@ -44,16 +44,20 @@
 //          Ge Wang
 //
 //    date: Fall 2009
-//    version: 1.0.0
+//    version: 1.0.1
 //
 // Mobile Music research @ CCRMA, Stanford University:
 //     http://momu.stanford.edu/
 //-----------------------------------------------------------------------------
-#include "mo_touch.h"
+#import "mo_touch.h"
 #import <objc/objc.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "mo_thread.h"
+
+
+// tom: I made the next four handlers also call the default implementations of the
+//      touch handling code because without that, UITableView cells can't be tapped.
 
 
 //-----------------------------------------------------------------------------
@@ -62,8 +66,14 @@
 //-----------------------------------------------------------------------------
 void myTouchesBegan( id self, SEL _cmd, NSSet * touches, UIEvent * event )
 {
-   // NSSet * allTouches = [event allTouches];
-    MoTouch::update( touches, self );    
+    static int depth = 0;
+    
+    if (depth == 0) // MoTouch::update expects a UIView
+        MoTouch::update( touches, self );
+    
+    depth++;
+    MoTouch::prevTouchesBegan(self, _cmd, touches, event);
+    depth--;
 }
 
 
@@ -73,8 +83,16 @@ void myTouchesBegan( id self, SEL _cmd, NSSet * touches, UIEvent * event )
 //-----------------------------------------------------------------------------
 void myTouchesMoved( id self, SEL _cmd, NSSet * touches, UIEvent *event )
 {   
-   // NSSet * allTouches = [event allTouches];
-    MoTouch::update( touches, self );
+    static int depth = 0;
+    
+    if (depth == 0) // MoTouch::update expects a UIView
+    {
+        MoTouch::update( touches, self );
+    }
+    
+    depth++;
+    MoTouch::prevTouchesMoved(self, _cmd, touches, event);
+    depth--;
 }
 
 
@@ -84,8 +102,14 @@ void myTouchesMoved( id self, SEL _cmd, NSSet * touches, UIEvent *event )
 //-----------------------------------------------------------------------------
 void myTouchesEnded( id self, SEL _cmd, NSSet *touches, UIEvent * event )
 {
-   // NSSet * allTouches = [event allTouches];
-    MoTouch::update( touches, self );
+    static int depth = 0;
+    
+    if (depth == 0) // MoTouch::update expects a UIView
+        MoTouch::update( touches, self );
+    
+    depth++;
+    MoTouch::prevTouchesEnded(self, _cmd, touches, event);
+    depth--;
 }
 
 
@@ -95,15 +119,26 @@ void myTouchesEnded( id self, SEL _cmd, NSSet *touches, UIEvent * event )
 //-----------------------------------------------------------------------------
 void myTouchesCancelled( id self, SEL _cmd, NSSet *touches, UIEvent * event )
 {
-   // NSSet * allTouches = [event allTouches];
-    MoTouch::update( touches, self );
+    static int depth = 0;
+    
+    if (depth == 0) // MoTouch::update expects a UIView
+        MoTouch::update( touches, self );
+    
+    depth++;
+    MoTouch::prevTouchesCanceled(self, _cmd, touches, event);
+    depth--;
 }
 
 
 // static initialization
 std::vector< MoTouchCallback > MoTouch::m_clients;
 std::vector<void *> MoTouch::m_clientData;
-std::vector<MoTouchTrack> MoTouch::m_touchVec;
+std::vector< MoTouchTrack > MoTouch::m_touchVec;
+
+IMP MoTouch::prevTouchesBegan;
+IMP MoTouch::prevTouchesMoved;
+IMP MoTouch::prevTouchesEnded;
+IMP MoTouch::prevTouchesCanceled;
 
 
 //-----------------------------------------------------------------------------
@@ -114,16 +149,16 @@ void MoTouch::checkSetup()
 {
     // override the touches methods, so the user doesn't have to do it
     Method method = class_getInstanceMethod( [UIView class], @selector( touchesBegan:withEvent: ) );
-    method_setImplementation( method, ( IMP )myTouchesBegan );
+    prevTouchesBegan = method_setImplementation( method, ( IMP )myTouchesBegan );
     
     method = class_getInstanceMethod( [UIView class], @selector( touchesMoved:withEvent: ) );
-    method_setImplementation( method, ( IMP )myTouchesMoved );
+    prevTouchesMoved = method_setImplementation( method, ( IMP )myTouchesMoved );
     
     method = class_getInstanceMethod( [UIView class], @selector( touchesEnded:withEvent: ) );
-    method_setImplementation( method, ( IMP )myTouchesEnded );
+    prevTouchesEnded = method_setImplementation( method, ( IMP )myTouchesEnded );
     
     method = class_getInstanceMethod( [UIView class], @selector( touchesCancelled:withEvent: ) );
-    method_setImplementation( method, ( IMP )myTouchesCancelled );
+    prevTouchesCanceled = method_setImplementation( method, ( IMP )myTouchesCancelled );
 }
 
 
@@ -135,7 +170,7 @@ void MoTouch::addCallback( const MoTouchCallback & callback, void * data )
 {
     // set up, if necessary
     checkSetup();
-
+    
     NSLog( @"adding MoTouch callback..." );
     m_clients.push_back( callback );
     m_clientData.push_back( data );
@@ -148,10 +183,9 @@ void MoTouch::addCallback( const MoTouchCallback & callback, void * data )
 //-----------------------------------------------------------------------------
 void MoTouch::removeCallback( const MoTouchCallback & callback )
 {
-
     NSLog( @"removing MoTouch callback..." );
     // find the callback and remove
-    for( int i = 0; i < m_clients.size(); i++ )
+    for( int i = m_clients.size()-1; i >= 0; i-- )
     {
         if( m_clients[i] == callback )
         {
@@ -184,16 +218,16 @@ void MoTouch::clear()
 //-----------------------------------------------------------------------------
 void MoTouch::update( NSSet * touches, UIView * view )
 {
-
+    
     // Set the view to be multi touch enabled
     [view setMultipleTouchEnabled:YES];
-            
+    
     // Populate the vector
     for( UITouch * touch in touches )
     {
         //populate the vector
         if( ( touch.phase == UITouchPhaseBegan ) || ( touch.phase == UITouchPhaseMoved ) 
-            || ( touch.phase == UITouchPhaseStationary ) )
+           || ( touch.phase == UITouchPhaseStationary ) )
         {    
             //try to find the touch
             bool found = false;
@@ -221,7 +255,7 @@ void MoTouch::update( NSSet * touches, UIView * view )
     {
         m_clients[i]( touches, NULL, m_touchVec, m_clientData[i] );
     }   
-
+    
     // post erase from the vector
     for( UITouch * touch in touches )
     {

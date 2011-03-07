@@ -57,22 +57,29 @@
 #include <map>
 #include <vector>
 
-
-
-
 //-----------------------------------------------------------------------------
 // name: class MoTouchTrack
 // desc: one track associated with a touch gesture (from begin to end/cancel)
 //-----------------------------------------------------------------------------
 struct MoTouchTrack
 {
-    UITouch * touch;  
+    UITouch * touch;
+    bool isEnding;
     void * data;
+    
+    // constructor
+    MoTouchTrack() : touch(NULL), isEnding(FALSE), data(NULL) { }
 };
 
 
 // type definition for general touch callback function
-typedef void (* MoTouchCallback)( NSSet * touches, UIView * view, const std::vector<MoTouchTrack> & tracks, void * data);
+typedef void (* MoTouchCallback)(
+                                 NSSet * touches,
+                                 UIView * view,
+                                 const std::vector<MoTouchTrack> & touchPts,
+                                 void * data
+                                 );
+
 
 //-----------------------------------------------------------------------------
 // name: class MoTouch
@@ -80,26 +87,30 @@ typedef void (* MoTouchCallback)( NSSet * touches, UIView * view, const std::vec
 //-----------------------------------------------------------------------------
 class MoTouch
 {
-
+public:
+    // updated by the system
+    static void update( NSSet * touches, UIView * view );
+    static void clear();
+    
 public: // client-side stuff
     static void addCallback( const MoTouchCallback & callback, void * data );
     static void removeCallback( const MoTouchCallback & callback );
-    static void clear();
     
 public:
-    // updated by the system, not you!
-    static void update( NSSet * touches, UIView * view );   
-
+    typedef std::map<int, MoTouchTrack>::iterator MoTouchMapIt;	
+    
 private:
     static void checkSetup();
+    
+public:
+    // overridden implementations of touch event handlers
+    static IMP prevTouchesBegan, prevTouchesMoved, prevTouchesEnded, prevTouchesCanceled;    
     
     // queue of callbacks
     static std::vector< MoTouchCallback > m_clients;
     static std::vector<void *> m_clientData;
-    static std::vector<MoTouchTrack> m_touchVec;
+    static std::vector< MoTouchTrack > m_touchVec;
 };
-
-
 
 
 #endif

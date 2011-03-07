@@ -19,6 +19,7 @@
 @synthesize trackName;
 @synthesize currentlySharedTracks;
 @synthesize sharedTrackList;
+@synthesize tracks;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
@@ -107,6 +108,33 @@
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	return [currentlySharedTracks objectForKey:[sharedTrackList objectAtIndex:row]];
+}
+
+//table view stuff
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [delegate getNumTracks];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *MyIdentifier = @"arrViewCell";
+	
+	ArrangeTableViewCell *cell = (ArrangeTableViewCell *)[tracks dequeueReusableCellWithIdentifier:MyIdentifier];
+	if(cell == nil) {
+		[[NSBundle mainBundle] loadNibNamed:@"ArrangeTableViewCell" owner:self options:nil];
+		cell = tblCell;
+	}
+	
+	[cell setLabelText:@"todo!!!"];
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//TODO
 }
 
 
