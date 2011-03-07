@@ -16,6 +16,7 @@
 @synthesize delegate;
 @synthesize bpmSlider;
 @synthesize tracks;
+@synthesize playButton;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
@@ -87,11 +88,8 @@
 	[cell setTrackNum:indexPath.row];
 	[cell setMatrixHandler:[delegate getMatrixHandler]];
 	[cell setParent:self];
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//TODO
 }
 
 
