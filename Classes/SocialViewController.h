@@ -23,5 +23,4 @@
 @end
 
 @protocol SocialViewProtocol
--(void) changeInstrument:(int)newInst;
 @end
