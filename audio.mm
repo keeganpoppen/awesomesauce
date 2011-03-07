@@ -28,6 +28,7 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 		
 		for (int row = 0; row < 16; ++row) {
 			if(!matrix->squares[row][col]) continue;
+			if(matrix->col_progress > matrix->note_length) continue;
 			
 			val += matrix->waves[row]->tick();
 			++num_notes;

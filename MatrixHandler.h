@@ -21,6 +21,7 @@ public:
 	MatrixHandler();
 	
 	void setBpm(float newBpm);
+	void setCurrentTrackEnvLength(float newLength);
 	void addNewMatrix(bool sendNotification = true);
 	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
@@ -39,6 +40,7 @@ public:
 	int currentMatrix;
 	
 	float time_elapsed;
+	float col_progress; //percentage of that column that has elapsed
 	int current_column;
 	float bpm; //number of sixteenth notes per minute, actually
 	

@@ -314,6 +314,7 @@ enum {
 	//set text label of currently edited track
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[[controller titleLabel] setText:newText];
+	[[controller envLength] setValue:mh->getCurrentMatrix()->note_length];
 	
 	//set the current track's selected instrument
 	[[controller instPicker] setSelectedSegmentIndex:mh->getCurrentMatrix()->instrument];
@@ -366,6 +367,11 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->changeInstrument(newInst);
 	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
+}
+
+-(void) changeEnvLength:(float)newLength {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->setCurrentTrackEnvLength(newLength);
 }
 
 @end

@@ -40,7 +40,7 @@ MatrixHandler::MatrixHandler() {
 	firstMatrix->track_id = 0;
 	matrices.push_back(firstMatrix);
 	currentMatrix = 0;
-
+	col_progress = 0.;
 	time_elapsed = 0.;
 	current_column = 0;
 	bpm = 480.; //actually 120
@@ -88,11 +88,14 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 	time_elapsed += timeElapsed;
 	
 	//current column is time_elapsed * beats/sec % number of columns
-	current_column = (int)(time_elapsed * (bpm / 60.)) % 16;
+	float col_exact = (time_elapsed * (bpm / 60.));
+	current_column = (int)col_exact % 16;
+	col_progress = col_exact - (float)((int)col_exact);
 	
 	for(int i = 0; i < matrices.size(); i++) {
 		matrices[i]->time_elapsed = time_elapsed;
 		matrices[i]->current_column = current_column;
+		matrices[i]->col_progress = col_progress;
 	}
 }
 
@@ -118,6 +121,11 @@ void MatrixHandler::setBpm(float newBpm) {
 		return;
 	}
 	bpm = newBpm * 4.0;
+}
+
+void MatrixHandler::setCurrentTrackEnvLength(float newLength) {
+	getCurrentMatrix()->note_length = newLength;
+	NSLog(@"new length: %f", newLength);
 }
 
 NSDictionary *MatrixHandler::encode() {

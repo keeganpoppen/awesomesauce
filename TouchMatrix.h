@@ -22,6 +22,7 @@ public:
 	TouchMatrix(int inst) {
 		instrument = inst;
 		initialize_junk();
+		note_length = 0.8;
 	}
 	
 	//instantiate a touchmatrix from a NSMutableDictionary
@@ -73,6 +74,10 @@ public:
 	int current_column;
 	int instrument;
 	int track_id;
+	
+	//envelope stuff
+	float note_length;
+	float col_progress;
 	
 private:
 	void initialize_junk() {
