@@ -29,7 +29,6 @@
     BOOL animating;
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
-	IBOutlet UISegmentedControl *instPicker;
 	IBOutlet UILabel *currentlyEditingLabel;
 	IBOutlet UIButton *addTrackButton;
 	
@@ -56,7 +55,6 @@
 - (void)trackAddedHandler:(NSNotification *)notification;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 - (IBAction)flipToSynthView:(id)sender;
 - (IBAction)flipToArrangeView:(id)sender;
 - (IBAction)flipToSocialView:(id)sender;

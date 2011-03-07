@@ -218,7 +218,6 @@ enum {
 
 - (void)matrixChanged {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[currentlyEditingLabel setText:newText];
 	
@@ -284,22 +283,6 @@ enum {
 	}
 }
 
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	int newInst = [sender selectedSegmentIndex];
-	mh->changeInstrument(newInst);
-	MixerView *temp = (MixerView *)[tracks objectAtIndex:mh->currentMatrix];
-	if(newInst == 0) {
-		[temp setLabelText:@"Sine"];
-	}
-	else if(newInst == 1) {
-		[temp setLabelText:@"Square"];
-	}
-	else if(newInst == 2) {
-		[temp setLabelText:@"Saw"];
-	}
-}
-
 // button action
 - (IBAction) flipToSynthView:(id)sender {
 	SynthViewController *controller = [[SynthViewController alloc] initWithNibName:@"SynthViewController" bundle:nil];
@@ -317,9 +300,6 @@ enum {
 	[[controller envLength] setValue:mh->getCurrentMatrix()->note_length];
 	[[controller envAttack] setValue:mh->getCurrentMatrix()->note_attack];
 	[[controller envRelease] setValue:mh->getCurrentMatrix()->note_release];
-	
-	//set the current track's selected instrument
-	[[controller instPicker] setSelectedSegmentIndex:mh->getCurrentMatrix()->instrument];
 	
 	[controller release];
 }
@@ -365,10 +345,9 @@ enum {
 }
 
 // delegate methods for SynthViewProtocol
--(void) changeInstrument:(int)newInst {
+-(void) changeInstrument:(int)newInst withIndex:(int)index {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->changeInstrument(newInst);
-	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->instrument;
+	mh->changeInstrument(newInst, index);
 }
 
 -(void) changeEnvLength:(float)newVal {

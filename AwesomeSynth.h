@@ -13,13 +13,13 @@ using namespace std;
 
 class AwesomeSynth {
 public:
-	AwesomeSynth(int inst);
+	AwesomeSynth();
 	StkFloat tick();
 	void setFrequency(Float32 inFreq);
-	void setInstrument(int newInst);
+	void setOscillator(int newVal, int index);
 	
-	int instrument;
+	int oscillator[3];
 	
-	Generator *gen;
+	Generator *gen[3];
 	Float32 frequency;
 };

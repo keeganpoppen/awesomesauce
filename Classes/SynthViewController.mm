@@ -15,7 +15,9 @@
 @synthesize envLength;
 @synthesize envAttack;
 @synthesize envRelease;
-@synthesize instPicker;
+@synthesize osc1Picker;
+@synthesize osc2Picker;
+@synthesize osc3Picker;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -38,9 +40,19 @@
 	[delegate closeMe];
 }
 
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
+- (IBAction)osc1PickerChanged:(UISegmentedControl *)sender {
 	int newInst = [sender selectedSegmentIndex];
-	[delegate changeInstrument:newInst];
+	[delegate changeInstrument:newInst withIndex:0];
+}
+
+- (IBAction)osc2PickerChanged:(UISegmentedControl *)sender {
+	int newInst = [sender selectedSegmentIndex];
+	[delegate changeInstrument:newInst withIndex:1];
+}
+
+- (IBAction)osc3PickerChanged:(UISegmentedControl *)sender {
+	int newInst = [sender selectedSegmentIndex];
+	[delegate changeInstrument:newInst withIndex:2];
 }
 
 - (void)didReceiveMemoryWarning {

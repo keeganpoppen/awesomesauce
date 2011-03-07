@@ -25,18 +25,23 @@ void trackClearedEvent(int index) {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
 }
 
-void trackEditedEvent(int index, bool isOn, int instrument) {
+//TODO
+void trackEditedEvent(int index, bool isOn) {
+	/*
+	 
 	NSNumber *instnum = [NSNumber numberWithInt:instrument];
 	NSNumber *onnum = [NSNumber numberWithBool:isOn];
 	NSNumber *tid = [NSNumber numberWithInt:index];
 	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:instnum, @"inst", onnum, @"on", tid, @"track_id", nil] retain];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
+	
+	 */
 }
 
 MatrixHandler::MatrixHandler() {
 	//initialize with one tone matrix
-	TouchMatrix *firstMatrix = new TouchMatrix(0);
+	TouchMatrix *firstMatrix = new TouchMatrix();
 	firstMatrix->track_id = 0;
 	matrices.push_back(firstMatrix);
 	currentMatrix = 0;
@@ -51,7 +56,7 @@ MatrixHandler::MatrixHandler() {
 }
 
 void MatrixHandler::addNewMatrix(bool sendNotification) {
-	TouchMatrix *newMatrix = new TouchMatrix(0);
+	TouchMatrix *newMatrix = new TouchMatrix();
 	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
@@ -71,7 +76,7 @@ void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification) {
 
 void MatrixHandler::setMatrixOn(int trackId, bool newOnState) {
 	matrices[trackId]->isOn = newOnState;
-	trackEditedEvent(trackId, newOnState, matrices[trackId]->instrument);
+	//trackEditedEvent(trackId, newOnState, matrices[trackId]->instrument);
 }
 
 void MatrixHandler::clearCurrentMatrix() {
@@ -79,8 +84,8 @@ void MatrixHandler::clearCurrentMatrix() {
 	trackClearedEvent(currentMatrix);
 }
 
-void MatrixHandler::changeInstrument(int newInst) {
-	getCurrentMatrix()->setInst(newInst);
+void MatrixHandler::changeInstrument(int newVal, int index) {
+	getCurrentMatrix()->setOscillator(newVal, index);
 	//trackEditedEvent(currentMatrix, getCurrentMatrix()->isOn, newInst);
 }
 

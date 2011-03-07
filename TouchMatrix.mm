@@ -16,10 +16,9 @@ void TouchMatrix::clear() {
 	}
 }
 
-void TouchMatrix::setInst(int newInst) {
-	instrument = newInst;
+void TouchMatrix::setOscillator(int newVal, int index) {
 	for (int i = 0; i < 16; ++i) {
-		waves[i]->setInstrument(instrument);
+		waves[i]->setOscillator(newVal, index);
 	}
 }
 
@@ -28,7 +27,7 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 	int instToCopy = [[fromDictionary objectForKey:@"instrument"] intValue];
 	
 	initialize_junk();
-	setInst(instToCopy);
+	//setInst(instToCopy);
 	
 	NSMutableArray *notes = [fromDictionary objectForKey:@"notes"];
 	
@@ -62,7 +61,7 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	[dict setObject:flat_notes forKey:@"notes"];
 	
 	[dict setObject:[NSNumber numberWithInt:track_id] forKey:@"track_id"];
-	[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
+	//[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
 	
 	//return [dict autorelease];
 	return dict;

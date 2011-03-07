@@ -19,8 +19,7 @@ using namespace std;
 class TouchMatrix {
 
 public:
-	TouchMatrix(int inst) {
-		instrument = inst;
+	TouchMatrix() {
 		initialize_junk();
 		note_length = 0.8;
 		note_attack = 0.1;
@@ -49,6 +48,8 @@ public:
 	}
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	
+	void setOscillator(int newVal, int index);
+	
 	
 	//something like this?
 	void squareChangedEvent(int row, int col, bool value) {
@@ -63,8 +64,6 @@ public:
 	
 	bool isOn;
 	
-	void setInst(int newInst);
-	
 	int getColumn() { return current_column; }
 	
 	//void advanceTime(float timeElapsed);
@@ -74,7 +73,6 @@ public:
 	AwesomeSynth *waves[16];
 	float time_elapsed;
 	int current_column;
-	int instrument;
 	int track_id;
 	
 	//envelope stuff
@@ -99,7 +97,7 @@ private:
 			
 			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
 			
-			waves[i] = new AwesomeSynth(instrument);
+			waves[i] = new AwesomeSynth();
 			waves[i]->setFrequency(freq);
 		}
 		isOn = true;

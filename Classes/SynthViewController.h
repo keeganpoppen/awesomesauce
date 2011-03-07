@@ -15,7 +15,9 @@
 @interface SynthViewController : UIViewController {
 	id <FlipViewProtocol, SynthViewProtocol> delegate;
 	IBOutlet UILabel *titleLabel;
-	IBOutlet UISegmentedControl *instPicker;
+	IBOutlet UISegmentedControl *osc1Picker;
+	IBOutlet UISegmentedControl *osc2Picker;
+	IBOutlet UISegmentedControl *osc3Picker;
 	
 	//envelope controls
 	IBOutlet UISlider *envLength;
@@ -24,14 +26,18 @@
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *instPicker;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *osc1Picker;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *osc2Picker;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *osc3Picker;
 @property (nonatomic, retain) IBOutlet UISlider *envLength;
 @property (nonatomic, retain) IBOutlet UISlider *envAttack;
 @property (nonatomic, retain) IBOutlet UISlider *envRelease;
 @property (nonatomic, retain) id <SynthViewProtocol, FlipViewProtocol> delegate;
 
 - (IBAction)returnToMain:(id)sender;
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
+- (IBAction)osc1PickerChanged:(UISegmentedControl *)sender;
+- (IBAction)osc2PickerChanged:(UISegmentedControl *)sender;
+- (IBAction)osc3PickerChanged:(UISegmentedControl *)sender;
 - (IBAction)envLengthChanged:(UISlider *)sender;
 - (IBAction)envAttackChanged:(UISlider *)sender;
 - (IBAction)envReleaseChanged:(UISlider *)sender;
@@ -39,7 +45,7 @@
 @end
 
 @protocol SynthViewProtocol
--(void) changeInstrument:(int)newInst;
+-(void) changeInstrument:(int)newInst withIndex:(int)index;
 -(void) changeEnvLength:(float)newVal;
 -(void) changeEnvAttack:(float)newVal;
 -(void) changeEnvRelease:(float)newVal;

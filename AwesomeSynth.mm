@@ -11,54 +11,68 @@
 #import "BlitSquare.h"
 #import "BlitSaw.h"
 
-AwesomeSynth::AwesomeSynth(int inst) {
-	instrument = inst;
-	if(instrument == 0) {
-		gen = new SineWave();
-	}
-	else if(instrument == 1){
-		gen = new BlitSquare();
-	}
-	else {
-		gen = new BlitSaw();
-	}
+AwesomeSynth::AwesomeSynth() {
+	gen[0] = new SineWave();
+	gen[1] = NULL;
+	gen[2] = NULL;
+	oscillator[0] = 0;
+	oscillator[1] = -1;
+	oscillator[2] = -1;
 }
 
 StkFloat AwesomeSynth::tick() {
-	if(instrument == 0) {
-		return ((SineWave *) gen)->tick();
+	StkFloat tick_val = 0.0;
+	int num = 3;
+	for(int i = 0; i < 3; i++) {
+		if(oscillator[i] == 0) {
+			tick_val += ((SineWave *) gen[i])->tick();
+		}
+		else if(oscillator[i] == 1){
+			tick_val += ((BlitSquare *) gen[i])->tick();
+		}
+		else if(oscillator[i] == 2) {
+			tick_val += ((BlitSaw *) gen[i])->tick();
+		}
+		else {
+			num--;
+		}
 	}
-	else if(instrument == 1){
-		return ((BlitSquare *) gen)->tick();
-	}
-	else {
-		return ((BlitSaw *) gen)->tick();
-	}
+	return tick_val / num;
 }
 
-void AwesomeSynth::setInstrument(int newInst) {
-	instrument = newInst;
-	if(instrument == 0) {
-		gen = new SineWave();
-	}
-	else if(instrument == 1){
-		gen = new BlitSquare();
+void AwesomeSynth::setOscillator(int newVal, int index) {
+	if(newVal < 0 || newVal > 2) {
+		oscillator[index] = -1;
 	}
 	else {
-		gen = new BlitSaw();
+		oscillator[index] = newVal;
+	}
+	if(newVal == 0) {
+		gen[index] = new SineWave();
+	}
+	else if(newVal == 1){
+		gen[index] = new BlitSquare();
+	}
+	else if(newVal == 2) {
+		gen[index] = new BlitSaw();
+	}
+	else {
+		gen[index] = NULL;
 	}
 	setFrequency(frequency);
 }
 
 void AwesomeSynth::setFrequency(Float32 inFreq) {
 	frequency = inFreq;
-	if(instrument == 0) {
-		((SineWave *) gen)->setFrequency(frequency);
-	}
-	else if(instrument == 1){
-		((BlitSquare *) gen)->setFrequency(frequency);
-	}
-	else {
-		((BlitSaw *) gen)->setFrequency(frequency);
+	for(int i = 0; i < 3; i++) {
+		if(oscillator[i] == 0) {
+			((SineWave *) gen[i])->setFrequency(frequency);
+		}
+		else if(oscillator[i] == 1){
+			((BlitSquare *) gen[i])->setFrequency(frequency);
+		}
+		else if(oscillator[i] == 2){
+			((BlitSaw *) gen[i])->setFrequency(frequency);
+		}
 	}
 }
