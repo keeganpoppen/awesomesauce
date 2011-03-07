@@ -514,8 +514,6 @@
 			children = (
 				2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */,
 				2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */,
-				2D5C672313248F12009676BA /* SocialViewController.h */,
-				2D5C672413248F12009676BA /* SocialViewController.m */,
 				2DACE60B131B5401004EE909 /* SynthViewController.h */,
 				2DACE60C131B5401004EE909 /* SynthViewController.mm */,
 				28FD14FC0DC6FC130079059D /* EAGLView.h */,
@@ -526,6 +524,8 @@
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 				2D66646213094CFE00E962A4 /* MixerView.h */,
 				2D66646313094CFE00E962A4 /* MixerView.mm */,
+				2D5C672313248F12009676BA /* SocialViewController.h */,
+				2D5C672413248F12009676BA /* SocialViewController.m */,
 				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
 				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
 				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,

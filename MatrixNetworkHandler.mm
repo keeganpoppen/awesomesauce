@@ -115,7 +115,6 @@
 	NSLog(@"cnxn request from peer %@, dawg", peerID);
 	NSLog(@"accepting said connection");
 	
-
 	NSError *err;
 	if (![session acceptConnectionFromPeer:peerID error:&err]) {
 		NSLog(@"ERROR: %@", [err localizedDescription]);
