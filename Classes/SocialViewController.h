@@ -11,8 +11,14 @@
 @protocol SocialViewProtocol;
 @protocol FlipViewProtocol;
 
-@interface SocialViewController : UIViewController /*<UIPickerViewDelegate, UIPickerViewDataSource>*/ {
+@interface SocialViewController : UIViewController <UITabBarDelegate> /*<UIPickerViewDelegate, UIPickerViewDataSource>*/ {
 	id <FlipViewProtocol, SocialViewProtocol> delegate;
+	IBOutlet UITabBar *tabBar;
+	IBOutlet UITabBarItem *globeTabBarItem;
+	IBOutlet UITabBarItem *compositionsTabBarItem;
+	IBOutlet UITabBarItem *instrumentsTabBarItem;
+	UIViewController *selectedViewController;
+	NSArray *viewControllers;
 
 	/*
 	IBOutlet UIPickerView *sharedTracks;
@@ -21,6 +27,14 @@
 	NSMutableArray *sharedTrackList;
 	 */
 }
+
+@property (nonatomic, retain) IBOutlet UITabBar *tabBar;
+@property (nonatomic, retain) IBOutlet UITabBarItem *globeTabBarItem;
+@property (nonatomic, retain) IBOutlet UITabBarItem *compositionsTabBarItem;
+@property (nonatomic, retain) IBOutlet UITabBarItem *instrumentsTabBarItem;
+@property (nonatomic, retain) UIViewController *selectedViewController;
+@property (nonatomic, retain) NSArray *viewControllers;
+
 /*
 @property (nonatomic, retain) NSDictionary *currentlySharedTracks;
 @property (nonatomic, retain) NSMutableArray *sharedTrackList;

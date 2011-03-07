@@ -7,17 +7,70 @@
 //
 
 #import "SocialViewController.h"
-
+#import "GlobeViewController.h"
+#import "CompositionsViewController.h"
+#import "InstrumentsViewController.h"
 
 @implementation SocialViewController
 @synthesize delegate;
+@synthesize tabBar;
+@synthesize	globeTabBarItem;
+@synthesize compositionsTabBarItem;
+@synthesize instrumentsTabBarItem;
+@synthesize selectedViewController;
+@synthesize viewControllers;
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+	int index = 0;
+	if (item == globeTabBarItem) {
+		index = 0;
+	}
+	else if (item == compositionsTabBarItem) {
+		index = 1;
+	}
+	else if (item == instrumentsTabBarItem) {
+		index = 2;
+	}
+	UIViewController *vc = [viewControllers objectAtIndex:index];
+	[self.selectedViewController.view removeFromSuperview];
+	[self.view addSubview:vc.view];
+	self.selectedViewController = vc;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		
+        // Custom initialization
+		GlobeViewController *globeTabViewController = [[GlobeViewController alloc] initWithNibName:@"GlobeViewController" bundle:nil];
+		CompositionsViewController *compsTabViewController = [[CompositionsViewController alloc] initWithNibName:@"CompositionsViewController" bundle:nil];
+		InstrumentsViewController *instsTabViewController = [[InstrumentsViewController alloc] initWithNibName:@"InstrumentsViewController" bundle:nil];
+		
+		globeTabViewController.parent = self;
+		compsTabViewController.parent = self;
+		instsTabViewController.parent = self;
+		
+		NSArray *array = [[NSArray alloc] initWithObjects:globeTabViewController, compsTabViewController, instsTabViewController, nil];
+		self.viewControllers = array;
+		
+		[self.view addSubview:compsTabViewController.view];
+		self.selectedViewController = compsTabViewController;
+		
+		[array release];
+		[globeTabViewController release];
+		[compsTabViewController release];
+		[instsTabViewController release];
+		
+    }
+    return self;
 }
 
 - (IBAction)returnToMain:(id)sender {
 	[delegate closeMe];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +82,12 @@
 }
 
 - (void)dealloc {
+	[tabBar release];
+	[globeTabBarItem release];
+	[compositionsTabBarItem release];
+	[instrumentsTabBarItem release];
+	[selectedViewController release];
+	[viewControllers release];
     [super dealloc];
 }
 
