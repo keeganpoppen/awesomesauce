@@ -337,6 +337,18 @@ enum {
 	[controller release];
 }
 
+- (IBAction)flipToSocialView:(id)sender {
+	SocialViewController *controller = [[SocialViewController alloc] initWithNibName:@"SocialViewController" bundle:nil];
+	controller.delegate = self;
+	
+	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:controller animated:YES];
+	
+	//TODO: initialize controller with params
+	
+	[controller release];
+}
+
 // delegate methods for FlipViewProtocol
 - (void) closeMe {
 	[self dismissModalViewControllerAnimated:YES];

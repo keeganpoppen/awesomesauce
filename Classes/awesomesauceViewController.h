@@ -18,6 +18,7 @@
 #import "MixerView.h"
 #import "SynthViewController.h"
 #import "ArrangeViewController.h"
+#import "SocialViewController.h"
 #import "FlipViewProtocol.h"
 
 @interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol>
@@ -58,6 +59,7 @@
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 - (IBAction)flipToSynthView:(id)sender;
 - (IBAction)flipToArrangeView:(id)sender;
+- (IBAction)flipToSocialView:(id)sender;
 
 
 @end
