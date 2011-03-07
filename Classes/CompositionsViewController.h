@@ -11,9 +11,28 @@
 
 @interface CompositionsViewController : UIViewController {
 	SocialViewController *parent;
+	
+	IBOutlet UITableView *downloads;
+	
+	IBOutlet UITextField *uploadName;
+	IBOutlet UIButton *shareButton;
+
+	IBOutlet UIActivityIndicatorView *loadingSpinner;
+	IBOutlet UILabel *loadingText;
 }
 
+- (IBAction)shareTrack:(id)sender;
+-(void)uploadDone;
+
 @property(nonatomic, retain) SocialViewController *parent;
+
+@property(nonatomic, retain) IBOutlet UITableView *downloads;
+
+@property(nonatomic, retain) IBOutlet UITextField *uploadName;
+@property(nonatomic, retain) IBOutlet UIButton *shareButton;
+
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property(nonatomic, retain) IBOutlet UILabel *loadingText;
 
 - (IBAction)returnToMain:(id)sender;
 
