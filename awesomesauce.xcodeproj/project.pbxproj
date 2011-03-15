@@ -22,7 +22,7 @@
 		2D2A7CC9132501B9006EFED0 /* ArrangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */; };
 		2D2A7D73132534EE006EFED0 /* GlobeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7D71132534EE006EFED0 /* GlobeViewController.m */; };
 		2D2A7D74132534EE006EFED0 /* GlobeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7D72132534EE006EFED0 /* GlobeViewController.xib */; };
-		2D2A7D941325366C006EFED0 /* CompositionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7D921325366C006EFED0 /* CompositionsViewController.m */; };
+		2D2A7D941325366C006EFED0 /* CompositionsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7D921325366C006EFED0 /* CompositionsViewController.mm */; };
 		2D2A7D951325366C006EFED0 /* CompositionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7D931325366C006EFED0 /* CompositionsViewController.xib */; };
 		2D2A7DC013253A3E006EFED0 /* InstrumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A7DBE13253A3E006EFED0 /* InstrumentsViewController.m */; };
 		2D2A7DC113253A3E006EFED0 /* InstrumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7DBF13253A3E006EFED0 /* InstrumentsViewController.xib */; };
@@ -214,7 +214,7 @@
 		2D2A7D71132534EE006EFED0 /* GlobeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobeViewController.m; sourceTree = "<group>"; };
 		2D2A7D72132534EE006EFED0 /* GlobeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GlobeViewController.xib; path = Classes/GlobeViewController.xib; sourceTree = "<group>"; };
 		2D2A7D911325366C006EFED0 /* CompositionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompositionsViewController.h; sourceTree = "<group>"; };
-		2D2A7D921325366C006EFED0 /* CompositionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompositionsViewController.m; sourceTree = "<group>"; };
+		2D2A7D921325366C006EFED0 /* CompositionsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CompositionsViewController.mm; sourceTree = "<group>"; };
 		2D2A7D931325366C006EFED0 /* CompositionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CompositionsViewController.xib; path = Classes/CompositionsViewController.xib; sourceTree = "<group>"; };
 		2D2A7DBD13253A3E006EFED0 /* InstrumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentsViewController.h; sourceTree = "<group>"; };
 		2D2A7DBE13253A3E006EFED0 /* InstrumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentsViewController.m; sourceTree = "<group>"; };
@@ -530,7 +530,9 @@
 				2D2A7DBD13253A3E006EFED0 /* InstrumentsViewController.h */,
 				2D2A7DBE13253A3E006EFED0 /* InstrumentsViewController.m */,
 				2D2A7D911325366C006EFED0 /* CompositionsViewController.h */,
-				2D2A7D921325366C006EFED0 /* CompositionsViewController.m */,
+				2D2A7D921325366C006EFED0 /* CompositionsViewController.mm */,
+				2D5C672313248F12009676BA /* SocialViewController.h */,
+				2D5C672413248F12009676BA /* SocialViewController.m */,
 				2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */,
 				2DACE60B131B5401004EE909 /* SynthViewController.h */,
 				2DACE60C131B5401004EE909 /* SynthViewController.mm */,
@@ -544,8 +546,6 @@
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 				2D66646213094CFE00E962A4 /* MixerView.h */,
 				2D66646313094CFE00E962A4 /* MixerView.mm */,
-				2D5C672313248F12009676BA /* SocialViewController.h */,
-				2D5C672413248F12009676BA /* SocialViewController.m */,
 				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
 				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
 				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,
@@ -1179,7 +1179,7 @@
 				2D5C672613248F12009676BA /* SocialViewController.m in Sources */,
 				2D2A7CC11324F8A3006EFED0 /* ArrangeTableViewCell.mm in Sources */,
 				2D2A7D73132534EE006EFED0 /* GlobeViewController.m in Sources */,
-				2D2A7D941325366C006EFED0 /* CompositionsViewController.m in Sources */,
+				2D2A7D941325366C006EFED0 /* CompositionsViewController.mm in Sources */,
 				2D2A7DC013253A3E006EFED0 /* InstrumentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

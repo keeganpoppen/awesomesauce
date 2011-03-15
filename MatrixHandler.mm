@@ -159,7 +159,7 @@ void MatrixHandler::setCurrentTrackEnvRelease(float newVal) {
 
 void MatrixHandler::saveCurrentComposition(NSString *name) {
 	NSLog(@"serializing self in order to save on the server");
-	[serverDelegate sendCompositionToServer:encode() withName:name];
+	[serverDelegate requestSendCompositionToServerWithName:name];
 	NSLog(@"ideally, done being saved on the server");
 }
 
@@ -190,6 +190,7 @@ void MatrixHandler::decode(NSDictionary *dict) {
 	NSMutableDictionary *element;
 	while(element = (NSMutableDictionary *)[enumerator nextObject])
     {
+		NSLog(@"element: %@", element);
 		TouchMatrix *newMatrix = new TouchMatrix(element);
 		matrices.push_back(newMatrix);
     }

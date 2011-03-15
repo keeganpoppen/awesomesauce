@@ -10,12 +10,20 @@
 
 
 @interface AwesomeServerDelegate : NSObject {
-
+	NSInteger user_id;
 }
 
 -(id)init;
--(NSDictionary*)getCompositionListFromServer;
--(NSDictionary*)getCompositionFromServerWithID:(int)comp_id;
--(bool)sendCompositionToServer:(NSDictionary*)composition withName:(NSString*)name;
+
+-(void)getUserIdFromServer;
+
+-(void)requestCompositionListFromServer;
+//-(NSDictionary*)getCompositionListFromServer;
+
+-(void)requestCompositionFromServerWithID:(int)comp_id;
+//-(NSDictionary*)getCompositionFromServerWithID:(int)comp_id;
+
+-(void)requestSendCompositionToServerWithName:(NSString *)name;
+//-(bool)sendCompositionToServer:(NSDictionary*)composition withName:(NSString*)name;
 
 @end
