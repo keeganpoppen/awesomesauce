@@ -43,6 +43,7 @@
 		2DACE653131B5C57004EE909 /* ArrangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE651131B5C57004EE909 /* ArrangeViewController.xib */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
+		3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */; };
 		EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4871FF12FFC7E80034E955 /* ADSR.cpp */; };
 		EF48728112FFC7E80034E955 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720012FFC7E80034E955 /* Asymp.cpp */; };
 		EF48728212FFC7E80034E955 /* BandedWG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720112FFC7E80034E955 /* BandedWG.cpp */; };
@@ -244,6 +245,8 @@
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
+		3DDCFFEB1330DEAB00912DF8 /* AwesomeNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeNetworker.h; sourceTree = "<group>"; };
+		3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeNetworker.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* awesomesauce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "awesomesauce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		EF48719E12FFC7E80034E955 /* ADSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSR.h; sourceTree = "<group>"; };
 		EF48719F12FFC7E80034E955 /* Asymp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asymp.h; sourceTree = "<group>"; };
@@ -919,6 +922,8 @@
 				F20347DC131C21B400FA19FE /* AwesomeServerDelegate.mm */,
 				F2D1E9891308E18C008E9DF1 /* MatrixNetworkHandler.h */,
 				F2D1E98A1308E18C008E9DF1 /* MatrixNetworkHandler.mm */,
+				3DDCFFEB1330DEAB00912DF8 /* AwesomeNetworker.h */,
+				3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */,
 				2D665F7E1308A5D300E962A4 /* MatrixHandler.h */,
 				2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */,
 				2D66610B1309168000E962A4 /* AwesomeSynth.h */,
@@ -1181,6 +1186,7 @@
 				2D2A7D73132534EE006EFED0 /* GlobeViewController.m in Sources */,
 				2D2A7D941325366C006EFED0 /* CompositionsViewController.mm in Sources */,
 				2D2A7DC013253A3E006EFED0 /* InstrumentsViewController.m in Sources */,
+				3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
