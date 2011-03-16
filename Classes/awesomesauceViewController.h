@@ -36,10 +36,6 @@
 	IBOutlet UIButton *arrangeButton;
 	IBOutlet UIButton *synthButton;
 	
-	//future buttons
-	UIButton *saveFutureButton;
-	UIButton *cancelFutureButton;
-	
 	//table replacements
 	IBOutlet MixerView *track1;
 	IBOutlet MixerView *track2;
@@ -48,6 +44,11 @@
 	IBOutlet MixerView *track5;
 	IBOutlet MixerView *track6;
 	IBOutlet MixerView *track7;
+	
+	//future ui
+	UIButton *saveFutureButton;
+	UIButton *cancelFutureButton;
+	UISlider *futureLengthSlider;
 	
 	NSMutableArray *tracks;
 	int numTracks;
@@ -61,8 +62,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *futureButton;
 @property (nonatomic, retain) IBOutlet UIButton *arrangeButton;
 @property (nonatomic, retain) IBOutlet UIButton *synthButton;
-@property (nonatomic, retain) UIButton *saveFutureButton;
-@property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) IBOutlet MixerView *track1;
 @property (nonatomic, retain) IBOutlet MixerView *track2;
 @property (nonatomic, retain) IBOutlet MixerView *track3;
@@ -70,6 +69,9 @@
 @property (nonatomic, retain) IBOutlet MixerView *track5;
 @property (nonatomic, retain) IBOutlet MixerView *track6;
 @property (nonatomic, retain) IBOutlet MixerView *track7;
+@property (nonatomic, retain) UIButton *saveFutureButton;
+@property (nonatomic, retain) UIButton *cancelFutureButton;
+@property (nonatomic, retain) UISlider *futureLengthSlider;
 
 - (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;
@@ -85,6 +87,6 @@
 - (IBAction)flipToArrangeView:(id)sender;
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;
-
+- (IBAction)bpmChanged:(UISlider *)sender;
 
 @end

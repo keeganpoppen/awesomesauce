@@ -43,6 +43,7 @@ enum {
 @synthesize synthButton;
 @synthesize saveFutureButton;
 @synthesize cancelFutureButton;
+@synthesize futureLengthSlider;
 @synthesize track1, track2, track3, track4, track5, track6, track7;
 
 - (void)awakeFromNib
@@ -117,16 +118,29 @@ enum {
 	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
-	saveFutureButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+	saveFutureButton.frame = CGRectMake(20.0, 210.0, 160.0, 40.0);
 	[self.view addSubview:saveFutureButton];
 	
 	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
-	cancelFutureButton.frame = CGRectMake(80.0, 410.0, 160.0, 40.0);
+	cancelFutureButton.frame = CGRectMake(20.0, 270.0, 160.0, 40.0);
 	[self.view addSubview:cancelFutureButton];
+	
+	CGRect sliderFrame = CGRectMake(20.0, 330.0, 160.0, 10.0);
+	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
+    //[futureLengthSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
+    futureLengthSlider.minimumValue = 2;
+    futureLengthSlider.maximumValue = 16;
+    futureLengthSlider.continuous = NO;
+    futureLengthSlider.value = 8;
+	[self.view addSubview:futureLengthSlider];
+	
+	
 	[saveFutureButton setHidden:YES];
 	[cancelFutureButton setHidden:YES];
+	[futureLengthSlider setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -367,7 +381,8 @@ enum {
 	//TODO
 	NSLog(@"save future pressed");
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->startFuture(8); //TODO: magic number
+	int len = (int)[futureLengthSlider value];
+	mh->startFuture(len);
 	[self toggleMainScreen:YES];
 }
 
@@ -393,7 +408,13 @@ enum {
 	
 	[saveFutureButton setHidden:isMain];
 	[cancelFutureButton setHidden:isMain];
+	[futureLengthSlider setHidden:isMain];
 	setFutureMode(!isMain);
+}
+
+- (IBAction)bpmChanged:(UISlider *)sender {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->setBpm([sender value]);
 }
 
 // delegate methods for FlipViewProtocol

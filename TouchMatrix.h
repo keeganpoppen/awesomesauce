@@ -93,6 +93,7 @@ public:
 	int future_steps_remaining;
 	void updateIntermediateSquares();
 	void startFuture(int future_length);
+	void clearFuture();
 	
 private:
 	void initialize_junk() {
