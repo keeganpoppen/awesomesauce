@@ -142,7 +142,7 @@ void displayMatrix(TouchMatrix *matrix) {
 }
 
 
-void displayMatrixFuture(TouchMatrix *matrix, TouchMatrix *futureMatrix) {
+void displayMatrixFuture(TouchMatrix *matrix) {
 	// reset projection matrix
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
@@ -222,7 +222,7 @@ void displayMatrixFuture(TouchMatrix *matrix, TouchMatrix *futureMatrix) {
 	for (int col = 0; col < 16; ++col) {
 		for (int row = 0; row < 16; ++row) {
 			glColor4f( off_r, off_g, off_b, 1.0 );
-			if(futureMatrix->squares[row][col]) {
+			if(matrix->futureSquares[row][col]) {
 				glBindTexture( GL_TEXTURE_2D, g_texture[1] );
 				glColor4f( f_on_r, f_on_g, f_on_b, 1.0 );
 				if(col == activeCol) {
@@ -292,7 +292,6 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
         location.x = location.y;
         location.y = temp;
 		
-		//TODO: store cell_size as a global variable
 		float cell_size = half_width * 2;
 		
 		int xval = (int) location.y / cell_size;

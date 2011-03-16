@@ -32,11 +32,19 @@
 }
 
 -(bool) toggleTouch:(int)row withYval:(int)col {
-	return matrixHandler->getCurrentOrFutureMatrix()->toggleSquare(row, col);
+	if(isFutureMode()) {
+		return matrixHandler->getCurrentMatrix()->toggleFutureSquare(row, col);
+	}
+	return matrixHandler->getCurrentMatrix()->toggleSquare(row, col);
 }
 
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on {
-	matrixHandler->getCurrentOrFutureMatrix()->setSquare(row, col, is_on);
+	if(isFutureMode()) {
+		matrixHandler->getCurrentMatrix()->setFutureSquare(row, col, is_on);
+	}
+	else {
+		matrixHandler->getCurrentMatrix()->setSquare(row, col, is_on);
+	}
 }
 
 -(void) clearCurrentMatrix {

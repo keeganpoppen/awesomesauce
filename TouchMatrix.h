@@ -34,19 +34,27 @@ public:
 	
 	bool toggleSquare(int row, int col) {
 		squares[row][col] = !squares[row][col];
-		
 		squareChangedEvent(row, col, squares[row][col]);
-		
 		return squares[row][col];
 	}
 	void setSquare(int row, int col, bool value) {
 		if(squares[row][col] != value) {
 			squareChangedEvent(row, col, value);
-			
 			squares[row][col] = value;
 		}
 	}
+	
+	bool toggleFutureSquare(int row, int col) {
+		futureSquares[row][col] = !futureSquares[row][col];
+		return futureSquares[row][col];
+	}
+	void setFutureSquare(int row, int col, bool value) {
+		if(futureSquares[row][col] != value) {
+			futureSquares[row][col] = value;
+		}
+	}
 	bool getSquare(int row, int col) { return squares[row][col]; }
+	bool getFutureSquare(int row, int col) { return futureSquares[row][col]; }
 	
 	void setOscillator(int newVal, int index);
 	
@@ -70,6 +78,7 @@ public:
 	void clear();
 	
 	bool squares[16][16];
+	bool futureSquares[16][16];
 	AwesomeSynth *waves[16];
 	float time_elapsed;
 	int current_column;
@@ -79,11 +88,14 @@ public:
 	float note_length, note_attack, note_release;
 	float col_progress;
 	
+	//future stuff
+	
 private:
 	void initialize_junk() {
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
+				futureSquares[i][j] = false;
 			}
 		}
 		
