@@ -102,6 +102,11 @@
 	
 	//TODO: hopefully calling this multiple times doesn't break anything...
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"composition_uploaded" object:nil];
+	
+	//refresh the datas (TODO:COPIED) -- refresh the list
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(compositionsLoaded:) name:@"composition_list_loaded" object:nil];
+	MatrixHandler *mh = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	[mh->serverDelegate requestCompositionListFromServer];
 }
 
 -(void)killDoneAfterTimeout:(NSNumber*)time {
@@ -144,8 +149,11 @@
 	
 	MatrixHandler *mh = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 
-	NSLog(@"decoding...");
-	mh->decode(new_mh);
+	NSLog(@"decoding... %@", new_mh);
+	mh->decode([new_mh objectForKey:@"data"]);
+	
+	selectedComp = -1;
+	[downloads reloadData];
 	
 	[new_mh release];
 }
@@ -162,7 +170,6 @@
 		[newCellLabel setText:[compMap objectForKey:[compIds objectAtIndex:indexPath.row]]];
 	}
 
-	
 	return newCell;
 }
 

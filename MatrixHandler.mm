@@ -179,13 +179,14 @@ NSDictionary *MatrixHandler::encode() {
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
 	
-	NSMutableArray *array = (NSMutableArray *) [dict objectForKey:@"matrices"];
+	NSLog(@"aspdgb: %@", [dict description]);
+	
+	NSArray *array = (NSArray *) [dict objectForKey:@"matrices"];
 	NSEnumerator *enumerator = [array objectEnumerator];
-	NSMutableDictionary *element;
-	while(element = (NSMutableDictionary *)[enumerator nextObject])
+	id element;
+	while(element = [enumerator nextObject])
     {
-		NSLog(@"element: %@", element);
-		TouchMatrix *newMatrix = new TouchMatrix(element);
+		TouchMatrix *newMatrix = new TouchMatrix((NSDictionary*)element);
 		matrices.push_back(newMatrix);
     }
 	
