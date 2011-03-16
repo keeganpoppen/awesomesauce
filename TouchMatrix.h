@@ -21,9 +21,9 @@ class TouchMatrix {
 public:
 	TouchMatrix() {
 		initialize_junk();
-		note_length = 0.8;
-		note_attack = 0.1;
-		note_release = 0.1;
+		note_length = 0.1;
+		note_attack = 0.0;
+		note_release = 1.0;
 	}
 	
 	//instantiate a touchmatrix from a NSMutableDictionary

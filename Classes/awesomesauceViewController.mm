@@ -35,6 +35,15 @@ enum {
 @implementation awesomesauceViewController
 
 @synthesize animating, context, displayLink;
+@synthesize currentlyEditingLabel;
+@synthesize addTrackButton;
+@synthesize clearTrackButton;
+@synthesize futureButton;
+@synthesize arrangeButton;
+@synthesize synthButton;
+@synthesize saveFutureButton;
+@synthesize cancelFutureButton;
+@synthesize track1, track2, track3, track4, track5, track6, track7;
 
 - (void)awakeFromNib
 {
@@ -104,6 +113,20 @@ enum {
     [super viewWillAppear:animated];
 	
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+	//add in new stuff
+	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
+	saveFutureButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+	[self.view addSubview:saveFutureButton];
+	
+	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
+	cancelFutureButton.frame = CGRectMake(80.0, 410.0, 160.0, 40.0);
+	[self.view addSubview:cancelFutureButton];
+	[saveFutureButton setHidden:YES];
+	[cancelFutureButton setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -334,6 +357,40 @@ enum {
 	//TODO: initialize controller with params
 	
 	[controller release];
+}
+
+- (IBAction)futureButtonPressed:(id)sender {
+	[self toggleMainScreen:NO];
+}
+
+- (void)saveFuture:(id)sender {
+	//TODO
+	NSLog(@"save future pressed");
+	[self toggleMainScreen:YES];
+}
+
+- (void)cancelFuture:(id)sender {
+	//TODO
+	NSLog(@"cancel future pressed");
+	[self toggleMainScreen:YES];
+}
+
+-(void)toggleMainScreen:(bool)isMain {
+	[futureButton setHidden:!isMain];
+	[arrangeButton setHidden:!isMain];
+	[synthButton setHidden:!isMain];
+	[clearTrackButton setHidden:!isMain];
+	[addTrackButton setHidden:!isMain];
+	
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element;
+	while(element = (MixerView *)[enumerator nextObject])
+    {
+		[element setHidden:!isMain];
+	}
+	
+	[saveFutureButton setHidden:isMain];
+	[cancelFutureButton setHidden:isMain];
 }
 
 // delegate methods for FlipViewProtocol
