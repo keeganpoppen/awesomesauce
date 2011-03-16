@@ -18,14 +18,18 @@
 	IBOutlet UISlider *bpmSlider;
 	IBOutlet UITableView *tracks;
 	IBOutlet ArrangeTableViewCell *tblCell;
+	IBOutlet UIButton *playButton;
 }
 
 @property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
+@property (nonatomic, retain) IBOutlet UIButton *playButton;
 @property (nonatomic, retain) IBOutlet UITableView *tracks;
 @property (nonatomic, retain) id <ArrangeViewProtocol, FlipViewProtocol> delegate;
 
 - (IBAction)returnToMain:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;
+- (IBAction)playButtonPressed;
+- (IBAction)stopButtonPressed;
 
 @end
 
@@ -33,4 +37,7 @@
 - (void) changeBpm:(float)newBpm;
 - (int) getNumTracks;
 - (void) closeAndSwitchTrack:(int)trackNum;
+-(void) startPlayback;
+-(void) stopPlayback;
+-(void) pausePlayback;
 @end

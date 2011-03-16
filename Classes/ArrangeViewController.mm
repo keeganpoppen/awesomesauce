@@ -29,6 +29,22 @@
 	[delegate changeBpm:[sender value]];
 }
 
+- (IBAction)playButtonPressed {
+	if([[playButton titleLabel] text] == @"Play") {
+		[delegate startPlayback];
+		[playButton setTitle:@"Pause" forState:UIControlStateNormal];
+	}
+	else {
+		[delegate pausePlayback];
+		[playButton setTitle:@"Play" forState:UIControlStateNormal];
+	}
+}
+
+- (IBAction)stopButtonPressed {
+	[delegate stopPlayback];
+	[playButton setTitle:@"Play" forState:UIControlStateNormal];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 }
 
