@@ -41,6 +41,7 @@ enum {
 @synthesize futureButton;
 @synthesize arrangeButton;
 @synthesize synthButton;
+@synthesize bpmSlider;
 @synthesize saveFutureButton;
 @synthesize cancelFutureButton;
 @synthesize futureLengthSlider;
@@ -398,6 +399,7 @@ enum {
 	[synthButton setHidden:!isMain];
 	[clearTrackButton setHidden:!isMain];
 	[addTrackButton setHidden:!isMain];
+	[bpmSlider setHidden:!isMain];
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;

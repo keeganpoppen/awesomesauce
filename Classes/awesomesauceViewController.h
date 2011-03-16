@@ -35,6 +35,7 @@
 	IBOutlet UIButton *futureButton;
 	IBOutlet UIButton *arrangeButton;
 	IBOutlet UIButton *synthButton;
+	IBOutlet UISlider *bpmSlider;
 	
 	//table replacements
 	IBOutlet MixerView *track1;
@@ -62,6 +63,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *futureButton;
 @property (nonatomic, retain) IBOutlet UIButton *arrangeButton;
 @property (nonatomic, retain) IBOutlet UIButton *synthButton;
+@property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
 @property (nonatomic, retain) IBOutlet MixerView *track1;
 @property (nonatomic, retain) IBOutlet MixerView *track2;
 @property (nonatomic, retain) IBOutlet MixerView *track3;
