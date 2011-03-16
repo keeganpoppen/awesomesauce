@@ -41,8 +41,10 @@ public:
 	void saveCurrentComposition(NSString *name);
 	
 	TouchMatrix *getCurrentMatrix();
+	TouchMatrix *getCurrentOrFutureMatrix();
 	
 	vector<TouchMatrix *> matrices;
+	TouchMatrix *futureMatrix;
 	int currentMatrix;
 	
 	float time_elapsed;

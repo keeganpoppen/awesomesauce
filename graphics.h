@@ -12,4 +12,7 @@ class TouchMatrix;
 
 bool graphicsInit();
 void displayMatrix(TouchMatrix *matrix);
+void displayMatrixFuture(TouchMatrix *matrix, TouchMatrix *futureMatrix);
 void setMainScreen(bool newVal);
+void setFutureMode(bool newVal);
+bool isFutureMode();

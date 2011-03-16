@@ -391,6 +391,7 @@ enum {
 	
 	[saveFutureButton setHidden:isMain];
 	[cancelFutureButton setHidden:isMain];
+	setFutureMode(!isMain);
 }
 
 // delegate methods for FlipViewProtocol

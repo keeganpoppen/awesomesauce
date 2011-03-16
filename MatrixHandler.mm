@@ -40,6 +40,11 @@ void trackEditedEvent(int index, bool isOn) {
 }
 
 MatrixHandler::MatrixHandler() {
+	//init future matrix
+	TouchMatrix *temp = new TouchMatrix();
+	temp->track_id = -1;
+	futureMatrix = temp;
+	
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix();
 	firstMatrix->track_id = 0;
@@ -113,6 +118,9 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 		matrices[i]->current_column = current_column;
 		matrices[i]->col_progress = col_progress;
 	}
+	futureMatrix->time_elapsed = time_elapsed;
+	futureMatrix->current_column = current_column;
+	futureMatrix->col_progress = col_progress;
 }
 
 void MatrixHandler::resetTime() {
@@ -126,7 +134,12 @@ void MatrixHandler::addOffset(double offset) {
 }
 
 void MatrixHandler::displayCurrentMatrix() {
-	displayMatrix(getCurrentMatrix());
+	if(isFutureMode()) {
+		displayMatrixFuture(getCurrentMatrix(), futureMatrix);
+	}
+	else {
+		displayMatrix(getCurrentMatrix());
+	}
 }
 
 void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData) {
@@ -202,5 +215,12 @@ void MatrixHandler::decode(NSDictionary *dict) {
 }
 
 TouchMatrix *MatrixHandler::getCurrentMatrix() {
+	return matrices[currentMatrix];
+}
+
+TouchMatrix *MatrixHandler::getCurrentOrFutureMatrix() {
+	if(isFutureMode()) {
+		return futureMatrix;
+	}
 	return matrices[currentMatrix];
 }

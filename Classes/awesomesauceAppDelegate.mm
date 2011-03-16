@@ -32,11 +32,11 @@
 }
 
 -(bool) toggleTouch:(int)row withYval:(int)col {
-	return matrixHandler->getCurrentMatrix()->toggleSquare(row, col);
+	return matrixHandler->getCurrentOrFutureMatrix()->toggleSquare(row, col);
 }
 
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on {
-	matrixHandler->getCurrentMatrix()->setSquare(row, col, is_on);
+	matrixHandler->getCurrentOrFutureMatrix()->setSquare(row, col, is_on);
 }
 
 -(void) clearCurrentMatrix {
