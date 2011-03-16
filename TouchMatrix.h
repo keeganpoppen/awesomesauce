@@ -78,7 +78,6 @@ public:
 	void clear();
 	
 	bool squares[16][16];
-	bool futureSquares[16][16];
 	AwesomeSynth *waves[16];
 	float time_elapsed;
 	int current_column;
@@ -89,6 +88,11 @@ public:
 	float col_progress;
 	
 	//future stuff
+	bool futureSquares[16][16];
+	bool is_futuring;
+	int future_steps_remaining;
+	void updateIntermediateSquares();
+	void startFuture(int future_length);
 	
 private:
 	void initialize_junk() {
@@ -101,6 +105,8 @@ private:
 		
 		time_elapsed = 0.;
 		current_column = 0;
+		is_futuring = false;
+		future_steps_remaining = 0;
 		
 		//init waves var
 		for (int i = 0; i < 16; ++i) {

@@ -366,6 +366,8 @@ enum {
 - (void)saveFuture:(id)sender {
 	//TODO
 	NSLog(@"save future pressed");
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->startFuture(8); //TODO: magic number
 	[self toggleMainScreen:YES];
 }
 

@@ -37,6 +37,7 @@ public:
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();
+	void startFuture(int future_length);
 	
 	void saveCurrentComposition(NSString *name);
 	

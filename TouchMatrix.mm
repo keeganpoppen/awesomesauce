@@ -66,3 +66,52 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	//return [dict autorelease];
 	return dict;
 }
+
+void TouchMatrix::startFuture(int future_length) {
+	future_steps_remaining = future_length;
+	is_futuring = true;
+}
+
+void TouchMatrix::updateIntermediateSquares() {
+	if(!is_futuring) {
+		return;
+	}
+	future_steps_remaining--;
+	if(future_steps_remaining == 0) {
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				squares[i][j] = futureSquares[i][j];
+				futureSquares[i][j] = false;
+			}
+		}
+		is_futuring = false;
+	}
+	else {
+		for (int i = 0; i < 16; ++i) {
+			int index1 = -1;
+			int index2 = -1;
+			for (int j = 0; j < 16; ++j) {
+				if(squares[j][i]) {
+					index1 = j;
+				}
+				if(futureSquares[j][i]) {
+					index2 = j;
+				}
+			}
+			if(index1 == -1 && index2 == -1) {
+				//nothing
+			}
+			else if(index1 == -1) {
+				
+			}
+			else if(index2 == -1) {
+				
+			}
+			else {
+				int newindex = (int) (((float)(index2 - index1)) / (float)future_steps_remaining) + index1;
+				squares[index1][i] = false;
+				squares[newindex][i] = true;
+			}
+		}
+	}
+}
