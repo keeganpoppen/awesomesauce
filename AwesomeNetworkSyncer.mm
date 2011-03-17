@@ -60,7 +60,7 @@
 @synthesize matrixHandler;
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
-	//TODO: actually add said track
+	matrixHandler->addNewMatrix(false);
 }
 
 

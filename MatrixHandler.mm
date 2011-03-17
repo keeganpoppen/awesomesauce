@@ -13,18 +13,6 @@
 
 using namespace std;
 
-void trackAddedEvent(int newIndex) {
-	NSNumber *tid = [NSNumber numberWithInt:newIndex];
-	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"track_id", nil] retain];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackAddedEvent" object:nil userInfo:dict];
-}
-
-void trackClearedEvent(int index) {
-	NSNumber *tid = [NSNumber numberWithInt:index];
-	NSMutableDictionary *dict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:tid, @"track_id", nil] retain];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"trackClearedEvent" object:nil userInfo:dict];
-}
-
 //TODO
 void trackEditedEvent(int index, bool isOn) {
 	/*
@@ -79,7 +67,8 @@ void MatrixHandler::addNewMatrix(bool sendNotification) {
 	matrices.push_back(newMatrix);
 	currentMatrix = matrices.size() - 1;
 	if(sendNotification) {
-		trackAddedEvent(currentMatrix);
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp trackAddSync] sendTrackAddedWithId:newMatrix->track_id];
 	}
 }
 
@@ -88,7 +77,8 @@ void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification) {
 	matrices.push_back(matrix);
 	currentMatrix = matrices.size() - 1;
 	if(sendNotification) {
-		trackAddedEvent(currentMatrix);
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp trackAddSync] sendTrackAddedWithId:matrix->track_id];
 	}
 }
 
@@ -97,9 +87,15 @@ void MatrixHandler::setMatrixOn(int trackId, bool newOnState) {
 	//trackEditedEvent(trackId, newOnState, matrices[trackId]->instrument);
 }
 
-void MatrixHandler::clearCurrentMatrix() {
+void MatrixHandler::clearCurrentMatrix(bool sendNotification) {
 	getCurrentMatrix()->clear();
-	trackClearedEvent(currentMatrix);
+	if(sendNotification) {
+		/*
+		//TODO
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp trackClearedSync] sendTrackClearedWithId:matrix->track_id];
+		*/
+	}
 }
 
 AwesomeNetworkSyncer *MatrixHandler::getSyncer() {
