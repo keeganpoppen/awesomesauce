@@ -17,7 +17,6 @@
 
 @synthesize offsets;
 @synthesize networker;
-//@synthesize startTime;
 
 -(id)init {
 	self = [super init];
@@ -26,12 +25,14 @@
 		//NSLog(@"initting timesync.... setting start time to %f", startTime);
 		
 		offsets = [[NSMutableArray alloc] init];
+		num_packets_handled = 0;
 	}
 	return self;
 }
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	++num_packets_handled;
 	
 	NSNumber *time_received = [data objectForKey:@"time_received"];
 	NSNumber *age_offset = [data objectForKey:@"age_offset"];
@@ -50,6 +51,7 @@
 			NSDictionary *matrixData = matrixHandler->encode();
 			[networker sendData:matrixData withEventName:@"load_data"];
 		}
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 		
 	} else if (time_received == nil) {
 		//NSLog(@"gonna forward that packet right the fuck back, yo");
@@ -58,6 +60,8 @@
 		[toSend setObject:[NSNumber numberWithDouble:matrixHandler->time_elapsed] forKey:@"time_received"];
 		
 		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
+		
+		if(num_packets_handled == NUM_SYNCHRO_OFFSETS) [[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
@@ -105,10 +109,13 @@
 				NSDictionary *matrixData = matrixHandler->encode();
 								
 				[networker sendData:matrixData withEventName:@"load_data"];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 			}
 			
 			matrixHandler->addOffset(globalOffset);
 			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
+			
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
 		}
 	}
 
@@ -240,13 +247,12 @@
 				
 				//send the (first of the) timing packets. most of the work is done by default, which is why this looks a bit silly
 				[self sendData:nil withEventName:@"time_sync"];
+				
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_clocks" object:nil userInfo:nil];
 
 			} else {
 				NSLog(@"waiting for timing packets");
 			}
-
-			
-			//TODO: LOAD DATA FROM PEER IF YOUNGER
 			
 			break;
 		case GKPeerStateConnecting:
@@ -260,6 +266,10 @@
 			} else {
 				NSLog(@"gonna wait for peer to connect to me");
 			}
+			
+			//let the dope-ass progress bar show up and rock your world
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"connection_start" object:nil
+															  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[session displayNameForPeer:peerID],@"username",nil]];
 			
 			break;
 		case GKPeerStateUnavailable:

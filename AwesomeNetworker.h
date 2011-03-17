@@ -25,6 +25,7 @@
 	NSMutableArray *offsets;
 	
 	NSTimeInterval globalOffset;
+	int num_packets_handled;
 }
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
