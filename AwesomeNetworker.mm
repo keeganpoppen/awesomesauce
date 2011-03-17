@@ -51,6 +51,8 @@
 			NSDictionary *matrixData = matrixHandler->encode();
 			[networker sendData:matrixData withEventName:@"load_data"];
 		}
+		
+		NSLog(@"syncing is done, bro");
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 		
 	} else if (time_received == nil) {
@@ -62,6 +64,7 @@
 		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
 		
 		if(num_packets_handled == NUM_SYNCHRO_OFFSETS) [[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
+		
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
@@ -98,6 +101,8 @@
 				globalOffset = mean;
 				
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:0.0], @"age_offset", nil] withEventName:@"time_sync"];
+
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
 			} else {
 				NSLog(@"I'm older, so they're gonna have to grow up");
 				globalOffset = 0;
@@ -109,13 +114,13 @@
 				NSDictionary *matrixData = matrixHandler->encode();
 								
 				[networker sendData:matrixData withEventName:@"load_data"];
+				
+				NSLog(@"syncing is done, dawg");
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 			}
 			
 			matrixHandler->addOffset(globalOffset);
-			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
-			
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
+			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);			
 		}
 	}
 
