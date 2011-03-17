@@ -145,6 +145,7 @@
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	matrixHandler->decode(data);
 	
+	NSLog(@"the synkkkro is duun");
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 }
 

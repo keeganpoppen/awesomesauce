@@ -63,13 +63,16 @@
 -(void)hide:(NSNotification*)notification {
 	NSLog(@"HUD got hide message");
 	
+	setMainScreen(true);
+	
 	[HUD hide:YES];
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
+	NSLog(@"hud was hidden");
+	
 	[HUD release];
 	HUD = nil;
-	setMainScreen(true);
 }
 
 @end
