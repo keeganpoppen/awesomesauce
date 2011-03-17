@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HUDHandler.h"
 
 @protocol SocialViewProtocol;
 @protocol FlipViewProtocol;
@@ -26,6 +27,8 @@
 	NSDictionary *currentlySharedTracks;
 	NSMutableArray *sharedTrackList;
 	 */
+	
+	HUDHandler *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITabBar *tabBar;
@@ -34,6 +37,8 @@
 @property (nonatomic, retain) IBOutlet UITabBarItem *instrumentsTabBarItem;
 @property (nonatomic, retain) UIViewController *selectedViewController;
 @property (nonatomic, retain) NSArray *viewControllers;
+
+@property (nonatomic, retain) HUDHandler *HUD;
 
 /*
 @property (nonatomic, retain) NSDictionary *currentlySharedTracks;
