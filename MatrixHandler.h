@@ -44,13 +44,14 @@ public:
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();
-	void startFuture(int future_length);
+	void startFuture(int future_length, bool send_notification=true);
 	void cancelFuture();
 	AwesomeNetworkSyncer *getSyncer();
 	
 	void saveCurrentComposition(NSString *name);
 	
 	TouchMatrix *getCurrentMatrix();
+	TouchMatrix *getMatrix(int matrix_id);
 	
 	vector<TouchMatrix *> matrices;
 	int currentMatrix;
