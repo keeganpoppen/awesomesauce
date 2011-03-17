@@ -109,6 +109,7 @@
 - (void)toggleMainScreen:(bool)isMain;
 - (void)futureLengthChanged:(UISlider *)slider;
 - (void)trackAddedInterface;
+- (void)updateBpmSlider:(float)val;
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;

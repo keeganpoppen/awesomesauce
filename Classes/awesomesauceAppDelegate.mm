@@ -63,6 +63,10 @@
 	[self.viewController matrixChanged];
 }
 
+- (void)updateBpmSlider:(float)val {
+	[self.viewController updateBpmSlider:val];
+}
+
 -(MatrixHandler *) getMatrixHandler {
 	return matrixHandler;
 }

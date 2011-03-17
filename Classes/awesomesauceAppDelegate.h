@@ -27,6 +27,7 @@
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on;
 -(void) addMatrixInterface;
 -(void) matrixChanged;
+-(void) updateBpmSlider:(float)val;
 
 -(MatrixHandler *) getMatrixHandler;
 

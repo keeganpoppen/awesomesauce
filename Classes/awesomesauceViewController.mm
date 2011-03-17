@@ -112,6 +112,10 @@ enum {
 	}
 }
 
+- (void)updateBpmSlider:(float)val {
+	bpmSlider.value = val;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);

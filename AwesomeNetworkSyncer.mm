@@ -167,6 +167,7 @@
 	float bpm = [[data objectForKey:@"bpm"] floatValue];
 	matrixHandler->setBpm(bpm, false);
 	NSLog(@"receiving bpm changed");
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] updateBpmSlider:bpm];
 }
 
 -(void)sendBPMChanged:(float)bpm {
