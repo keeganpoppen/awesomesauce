@@ -140,8 +140,7 @@ enum {
     
     [super viewWillAppear:animated];
 	
-	HUD = [[HUDHandler alloc] init];
-	HUD.window  = self.view.window;
+	HUD = [[HUDHandler alloc] initWithWindow:self.view.window];
 	[HUD registerListeners];
 }
 
