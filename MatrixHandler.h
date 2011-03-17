@@ -22,7 +22,7 @@ class MatrixHandler {
 public:
 	MatrixHandler();
 	
-	void setBpm(float newBpm);
+	void setBpm(float newBpm, bool sendNotification = true);
 	void setCurrentTrackEnvLength(float newVal);
 	void setCurrentTrackEnvAttack(float newVal);
 	void setCurrentTrackEnvRelease(float newVal);
