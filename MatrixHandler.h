@@ -40,6 +40,7 @@ public:
 	void decode(NSDictionary *dict);
 	void resetTime();
 	void startFuture(int future_length);
+	void cancelFuture();
 	
 	void saveCurrentComposition(NSString *name);
 	
