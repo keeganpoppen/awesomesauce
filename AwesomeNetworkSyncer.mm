@@ -102,10 +102,12 @@
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	int trackId = [[data objectForKey:@"id"] intValue];
 	matrixHandler->getMatrix(trackId)->clear();
+	NSLog(@"received clearTrack");
 }
 
 -(void)sendTrackClearedWithId:(int)trackId {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"id",[NSNumber numberWithInt:trackId],nil] withEventName:@"track_clear"];
+	NSLog(@"sending clearTrack");
 }
 
 @end
@@ -121,11 +123,13 @@
 	int futureLength = [[data objectForKey:@"length"] intValue];
 	int trackId = [[data objectForKey:@"track_id"] intValue];
 	matrixHandler->getMatrix(trackId)->startFuture(futureLength);
+	NSLog(@"received future");
 }
 
 -(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:length],@"length",
-																	[NSNumber numberWithInt:trackId], @"track_id",nil] withEventName:@"future_start"];
+						 [NSNumber numberWithInt:trackId], @"track_id",nil] withEventName:@"future_start"];
+	NSLog(@"sending future");
 }
 
 @end
