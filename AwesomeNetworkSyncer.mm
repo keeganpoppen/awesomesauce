@@ -111,7 +111,7 @@
 
 -(void)sendTrackClearedWithId:(int)trackId {
 	int num = matrixHandler->currentMatrix;
-	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"id",[NSNumber numberWithInt:num],nil] withEventName:@"track_clear"];
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:num],@"id",nil] withEventName:@"track_clear"];
 	NSLog(@"sending clearTrack");
 }
 
