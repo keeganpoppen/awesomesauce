@@ -52,6 +52,8 @@
 	UIButton *saveFutureButton;
 	UIButton *cancelFutureButton;
 	UISlider *futureLengthSlider;
+	UILabel *futureLengthLabel;
+	UILabel *futureLengthTitle;
 	UILabel *futureDescription;
 	
 	NSMutableArray *tracks;
@@ -82,6 +84,8 @@
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
+@property (nonatomic, retain) UILabel *futureLengthLabel;
+@property (nonatomic, retain) UILabel *futureLengthTitle;
 @property (nonatomic, retain) UILabel *futureDescription;
 @property (nonatomic, retain) NSMutableArray *tracks;
 @property (nonatomic, retain) NSMutableArray *futureControls;
@@ -96,6 +100,7 @@
 - (void)saveFuture:(id)sender;
 - (void)cancelFuture:(id)sender;
 - (void)toggleMainScreen:(bool)isMain;
+- (void)futureLengthChanged:(UISlider *)slider;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)flipToSynthView:(id)sender;
