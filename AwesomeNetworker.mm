@@ -44,7 +44,7 @@
 		
 		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 
-		matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - timeSync.startTime) + globalOffset;
+		matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
 		NSLog(@"set global time to %f thanks to being told as such", matrixHandler->time_elapsed);
 		
 		NSLog(@"gonna send all m'data");
@@ -112,7 +112,7 @@
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 			
-			matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - timeSync.startTime) + globalOffset;
+			matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
 			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
 		}
 	}
