@@ -137,7 +137,7 @@ void MatrixHandler::changeInstrument(int newVal, int index, bool sendNotificatio
 	getCurrentMatrix()->setOscillator(newVal, index);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp instrumentChangedSync] sendInstrumentChanged:newVal withIndex:index withTrackId:getCurrentMatrix()->track_id];
+		[[temp instrumentChangeSync] sendInstrumentChanged:newVal withIndex:index withTrackId:getCurrentMatrix()->track_id];
 	}
 }
 
