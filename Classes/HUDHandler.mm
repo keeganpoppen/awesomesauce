@@ -27,9 +27,6 @@
 }
 
 -(void)setConnecting:(NSNotification*)notification {
-	if(HUD != nil) {
-		[HUD release];
-	}
 	HUD = [[MBProgressHUD alloc] initWithWindow:window];
 	
 	setMainScreen(false);
@@ -67,6 +64,10 @@
 	NSLog(@"HUD got hide message");
 	
 	[HUD hide:YES];
+	
+	[HUD release];
+	
+	HUD = nil;
 	
 	setMainScreen(true);
 	
