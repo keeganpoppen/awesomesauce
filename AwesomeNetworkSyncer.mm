@@ -146,6 +146,7 @@
 	int index = [[data objectForKey:@"index"] intValue];
 	int track_id = [[data objectForKey:@"track_id"] intValue];
 	matrixHandler->getMatrix(track_id)->setOscillator(intrument_id, index);
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] matrixChanged];
 }
 
 -(void)sendInstrumentChanged:(int)instrument withIndex:(int)index onTrack:(int)trackId {
