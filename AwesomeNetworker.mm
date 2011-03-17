@@ -73,7 +73,12 @@
 		
 		NSLog(@"num timing packets received: %d", [offsets count]);
 		
-		if([offsets count] == NUM_SYNCHRO_OFFSETS) {
+		if([offsets count] != NUM_SYNCHRO_OFFSETS) {
+			
+			//if we haven't gotten enough data, send some more
+			[networker sendData:nil withEventName:@"time_sync"];
+			
+		} else {
 			NSTimeInterval mean = totalOffset / (double)[offsets count];
 			NSTimeInterval sd_accum = 0;
 			
@@ -128,7 +133,7 @@
 
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
-	NSLog(@"received some matrix data: %@", data);
+	//NSLog(@"received some matrix data: %@", data);
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	matrixHandler->decode(data);
@@ -237,10 +242,9 @@
 			if ([self comparePeerID:peerID]) {
 				NSLog(@"sending timing packets");
 				
-				//send the timing packets. most of the work is done by default, which is why this looks a bit silly
-				for (int i = 0; i < NUM_SYNCHRO_OFFSETS; ++i) {
-					[self sendData:nil withEventName:@"time_sync"];
-				}
+				//send the (first of the) timing packets. most of the work is done by default, which is why this looks a bit silly
+				[self sendData:nil withEventName:@"time_sync"];
+
 			} else {
 				NSLog(@"waiting for timing packets");
 			}
