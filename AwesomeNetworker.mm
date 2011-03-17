@@ -93,7 +93,7 @@
 				
 				NSLog(@"My data are as follows: %@", [matrixData description]);
 				
-				[networker sendData:matrixData withEventName:@"load_data"]
+				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 
 		}

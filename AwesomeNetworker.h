@@ -46,6 +46,7 @@
 
 @end
 
+
 //ASDataSyncee for loading data
 @interface LoadDataSync : NSObject <ASDataSyncee>
 {
@@ -103,5 +104,6 @@
 @property(nonatomic, retain) NSMutableDictionary *handlerMap;
 @property(nonatomic, retain) GKSession *session;
 @property(nonatomic, retain) TimeSync *timeSync;
+@property(nonatomic, retain) LoadDataSync *loadDataSync;
 
 @end
