@@ -48,6 +48,9 @@
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
 		3DDC00F91332106F00912DF8 /* AwesomeNetworkSyncer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */; };
+		3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC032B13326B3200912DF8 /* MBProgressHUD.m */; };
+		3DDC032F13326B5100912DF8 /* Loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC032D13326B5100912DF8 /* Loading.png */; };
+		3DDC033013326B5100912DF8 /* Loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC032E13326B5100912DF8 /* Loading@2x.png */; };
 		3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */; };
 		EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4871FF12FFC7E80034E955 /* ADSR.cpp */; };
 		EF48728112FFC7E80034E955 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720012FFC7E80034E955 /* Asymp.cpp */; };
@@ -256,6 +259,10 @@
 		3DDC00F71332106F00912DF8 /* AwesomeNetworkSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeNetworkSyncer.h; sourceTree = "<group>"; };
 		3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeNetworkSyncer.mm; sourceTree = "<group>"; };
 		3DDC00FC1332110000912DF8 /* ASDataSyncee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDataSyncee.h; sourceTree = "<group>"; };
+		3DDC032A13326B3200912DF8 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		3DDC032B13326B3200912DF8 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		3DDC032D13326B5100912DF8 /* Loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Loading.png; sourceTree = "<group>"; };
+		3DDC032E13326B5100912DF8 /* Loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading@2x.png"; sourceTree = "<group>"; };
 		3DDCFFEB1330DEAB00912DF8 /* AwesomeNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeNetworker.h; sourceTree = "<group>"; };
 		3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeNetworker.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* awesomesauce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "awesomesauce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -586,6 +593,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3DDC032513326B0F00912DF8 /* HUD */,
 				F20347FE131C252C00FA19FE /* JSON */,
 				EF48730012FFC7F00034E955 /* MoMu */,
 				EF48719C12FFC7E80034E955 /* STK */,
@@ -650,6 +658,17 @@
 				F2D1E9801308DFE7008E9DF1 /* GameKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DDC032513326B0F00912DF8 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				3DDC032A13326B3200912DF8 /* MBProgressHUD.h */,
+				3DDC032B13326B3200912DF8 /* MBProgressHUD.m */,
+				3DDC032D13326B5100912DF8 /* Loading.png */,
+				3DDC032E13326B5100912DF8 /* Loading@2x.png */,
+			);
+			name = HUD;
 			sourceTree = "<group>";
 		};
 		EF48719C12FFC7E80034E955 /* STK */ = {
@@ -1082,6 +1101,8 @@
 				2D84D8C51331E81100335668 /* delete_clicked.png in Resources */,
 				2D84D8C61331E81100335668 /* future_clicked.png in Resources */,
 				2D84D8C71331E81100335668 /* plus_clicked.png in Resources */,
+				3DDC032F13326B5100912DF8 /* Loading.png in Resources */,
+				3DDC033013326B5100912DF8 /* Loading@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,6 +1230,7 @@
 				2D2A7DC013253A3E006EFED0 /* InstrumentsViewController.m in Sources */,
 				3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */,
 				3DDC00F91332106F00912DF8 /* AwesomeNetworkSyncer.mm in Sources */,
+				3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
