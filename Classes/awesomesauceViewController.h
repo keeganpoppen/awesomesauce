@@ -104,6 +104,7 @@
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
+- (IBAction)resetClock;
 - (IBAction)flipToSynthView:(id)sender;
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;

@@ -435,9 +435,14 @@ enum {
 	[self toggleMainScreen:YES];
 }
 
--(IBAction)printAge {
+- (IBAction)printAge {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	NSLog(@"current age: %f", mh->time_elapsed);
+}
+
+- (IBAction)resetClock {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->time_elapsed = 0.0;
 }
 
 -(void)toggleMainScreen:(bool)isMain {
