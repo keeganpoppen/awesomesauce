@@ -21,9 +21,9 @@ class TouchMatrix {
 public:
 	TouchMatrix() {
 		initialize_junk();
-		note_length = 0.8;
-		note_attack = 0.1;
-		note_release = 0.1;
+		note_length = 0.1;
+		note_attack = 0.0;
+		note_release = 1.0;
 	}
 	
 	//instantiate a touchmatrix from a NSMutableDictionary
@@ -34,19 +34,27 @@ public:
 	
 	bool toggleSquare(int row, int col) {
 		squares[row][col] = !squares[row][col];
-		
 		squareChangedEvent(row, col, squares[row][col]);
-		
 		return squares[row][col];
 	}
 	void setSquare(int row, int col, bool value) {
 		if(squares[row][col] != value) {
 			squareChangedEvent(row, col, value);
-			
 			squares[row][col] = value;
 		}
 	}
+	
+	bool toggleFutureSquare(int row, int col) {
+		futureSquares[row][col] = !futureSquares[row][col];
+		return futureSquares[row][col];
+	}
+	void setFutureSquare(int row, int col, bool value) {
+		if(futureSquares[row][col] != value) {
+			futureSquares[row][col] = value;
+		}
+	}
 	bool getSquare(int row, int col) { return squares[row][col]; }
+	bool getFutureSquare(int row, int col) { return futureSquares[row][col]; }
 	
 	void setOscillator(int newVal, int index);
 	
@@ -79,16 +87,27 @@ public:
 	float note_length, note_attack, note_release;
 	float col_progress;
 	
+	//future stuff
+	bool futureSquares[16][16];
+	bool is_futuring;
+	int future_steps_remaining;
+	void updateIntermediateSquares();
+	void startFuture(int future_length);
+	void clearFuture();
+	
 private:
 	void initialize_junk() {
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
+				futureSquares[i][j] = false;
 			}
 		}
 		
 		time_elapsed = 0.;
 		current_column = 0;
+		is_futuring = false;
+		future_steps_remaining = 0;
 		
 		//init waves var
 		for (int i = 0; i < 16; ++i) {

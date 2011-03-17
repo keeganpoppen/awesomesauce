@@ -92,6 +92,7 @@
 -(void)getCompositionListFromServer {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
+	NSLog(@"getting list from server, dawg");
 	//it's indistinguishable from magic!!!
 	NSError *err;
 	SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
@@ -119,9 +120,10 @@
 
 
 //fires a "composition_loaded" notification when the action has completed... easier than passing a selector and all that jazz
--(void)getCompositionFromServerWithID:(int)comp_id {
+-(void)getCompositionFromServerWithID:(NSNumber*)number {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
+	int comp_id = [number intValue];
 	SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
 	
 	NSError *err;
@@ -181,36 +183,5 @@
 	
 	[pool release];
 }
-
-
-
-//DEPRECATED												
-/*
--(bool)sendCompositionToServer:(NSDictionary*)composition withName:(NSString*)name {
-	SBJsonWriter *writer = [[[SBJsonWriter alloc] init] autorelease];
-	
-	NSDictionary *data = [[[NSDictionary dictionaryWithObjectsAndKeys:name,@"name",[NSNumber numberWithInt:2],@"user_id",composition,@"data",nil] retain] autorelease];
-	
-	NSString *compData = [[[writer stringWithObject:data] retain] autorelease];
-	NSString *urlString = [NSString stringWithFormat:@"http://%@:3000/compositions", CUR_IP];
-	NSLog(@"sending composition to url: %@", urlString);
-	
-	NSMutableURLRequest *req = [[[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]] retain] autorelease];
-	[req setHTTPBody:[compData dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	NSLog(@"data sent: %@", compData);
-	[req setHTTPMethod:@"POST"];
-	
-	NSLog(@"request: %@", [req description]);
-	
-	NSURLResponse *resp;
-	NSError *err;
-	NSData *respData = [[[NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err] retain] autorelease];
-	
-	NSLog(@"response: %@", [[[NSString alloc] initWithData:respData encoding:NSUTF8StringEncoding] autorelease]);
-	
-	return NO;
-}
-*/
 
 @end

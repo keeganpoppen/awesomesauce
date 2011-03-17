@@ -35,6 +35,24 @@ enum {
 @implementation awesomesauceViewController
 
 @synthesize animating, context, displayLink;
+@synthesize currentlyEditingLabel;
+@synthesize addTrackButton;
+@synthesize clearTrackButton;
+@synthesize futureButton;
+@synthesize addTrackLabel;
+@synthesize clearTrackLabel;
+@synthesize futureLabel;
+@synthesize bpmSlider;
+@synthesize bpmLabel1, bpmLabel2, bpmLabel3;
+@synthesize instPicker;
+@synthesize saveFutureButton;
+@synthesize cancelFutureButton;
+@synthesize futureLengthSlider;
+@synthesize futureDescription;
+@synthesize track1, track2, track3, track4, track5;
+@synthesize tracks;
+@synthesize futureControls;
+@synthesize mainControls;
 
 - (void)awakeFromNib
 {
@@ -68,9 +86,9 @@ enum {
 	
 	[self matrixChanged];
 	
-	//TODO: 7 is a magic number so we should replace that at some point
+	//TODO: 5 is a magic number so we should replace that at some point
 	//also the tableview not working is kinda lame
-	if(numTracks >= 7) {
+	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
 	}
 }
@@ -102,8 +120,6 @@ enum {
     [self startAnimation];
     
     [super viewWillAppear:animated];
-	
-	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -117,6 +133,74 @@ enum {
 	[super viewDidLoad];
 }
 
+- (void)initializeControls {
+	//set depressed button states
+	[addTrackButton setImage: [UIImage imageNamed: @"plus_clicked.png"] forState: UIControlStateHighlighted];
+	[clearTrackButton setImage: [UIImage imageNamed: @"delete_clicked.png"] forState: UIControlStateHighlighted];
+	[futureButton setImage: [UIImage imageNamed: @"future_clicked.png"] forState: UIControlStateHighlighted];
+	
+	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+	//add in new stuff
+	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
+	saveFutureButton.frame = CGRectMake(20.0, 210.0, 160.0, 40.0);
+	[self.view addSubview:saveFutureButton];
+	
+	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
+	cancelFutureButton.frame = CGRectMake(20.0, 270.0, 160.0, 40.0);
+	[self.view addSubview:cancelFutureButton];
+	
+	CGRect sliderFrame = CGRectMake(20.0, 330.0, 160.0, 10.0);
+	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
+	//TODO: a bpm label?
+    //[futureLengthSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
+    futureLengthSlider.minimumValue = 2;
+    futureLengthSlider.maximumValue = 16;
+    futureLengthSlider.continuous = NO;
+    futureLengthSlider.value = 8;
+	[self.view addSubview:futureLengthSlider];
+	
+	CGRect descFrame = CGRectMake(20.0, 360.0, 160.0, 380.0);
+	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
+	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
+	[self.view addSubview:futureDescription];
+	
+	[saveFutureButton setHidden:YES];
+	[cancelFutureButton setHidden:YES];
+	[futureLengthSlider setHidden:YES];
+	[futureDescription setHidden:YES];
+	
+	//add items to arrays
+	futureControls = [[NSMutableArray alloc] init];
+	[futureControls addObject:saveFutureButton];
+	[futureControls addObject:cancelFutureButton];
+	[futureControls addObject:futureLengthSlider];
+	[futureControls addObject:futureDescription];
+	NSEnumerator *futureEnum = [futureControls objectEnumerator];
+	UIView *element;
+	while(element = (UIView *)[futureEnum nextObject])
+    {
+		[element setHidden:YES];
+	}
+	
+	mainControls = [[NSMutableArray alloc] init];
+	[mainControls addObject:futureButton];
+	[mainControls addObject:clearTrackButton];
+	[mainControls addObject:addTrackButton];
+	[mainControls addObject:bpmSlider];
+	[mainControls addObject:instPicker];
+	[mainControls addObject:bpmLabel1];
+	[mainControls addObject:bpmLabel2];
+	[mainControls addObject:bpmLabel3];
+	[mainControls addObject:addTrackLabel];
+	[mainControls addObject:clearTrackLabel];
+	[mainControls addObject:futureLabel];
+}
+
 - (void)initializeMixer {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	tracks = [[NSMutableArray alloc] init];
@@ -125,8 +209,6 @@ enum {
 	[tracks addObject:track3];
 	[tracks addObject:track4];
 	[tracks addObject:track5];
-	[tracks addObject:track6];
-	[tracks addObject:track7];
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
@@ -222,7 +304,6 @@ enum {
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[currentlyEditingLabel setText:newText];
 	
-	
 	//highlight current track, unhighlight old track
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
@@ -277,9 +358,9 @@ enum {
 	
 	[self matrixChanged];
 	
-	//TODO: 7 is a magic number so we should replace that at some point
+	//TODO: 5 is a magic number so we should replace that at some point
 	//also the tableview not working is kinda lame
-	if(numTracks >= 7) {
+	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
 	}
 }
@@ -334,6 +415,60 @@ enum {
 	//TODO: initialize controller with params
 	
 	[controller release];
+}
+
+- (IBAction)futureButtonPressed:(id)sender {
+	[self toggleMainScreen:NO];
+}
+
+- (void)saveFuture:(id)sender {
+	//TODO
+	NSLog(@"save future pressed");
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	int len = (int)[futureLengthSlider value];
+	mh->startFuture(len);
+	[self toggleMainScreen:YES];
+}
+
+- (void)cancelFuture:(id)sender {
+	//TODO
+	NSLog(@"cancel future pressed");
+	[self toggleMainScreen:YES];
+}
+
+-(void)toggleMainScreen:(bool)isMain {
+	NSEnumerator *mainEnum = [mainControls objectEnumerator];
+	UIView *element1;
+	while(element1 = (UIView *)[mainEnum nextObject])
+    {
+		[element1 setHidden:!isMain];
+	}
+	
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element2;
+	while(element2 = (MixerView *)[enumerator nextObject])
+    {
+		[element2 setHidden:!isMain];
+	}
+	
+	NSEnumerator *futureEnum = [futureControls objectEnumerator];
+	UIView *element3;
+	while(element3 = (UIView *)[futureEnum nextObject])
+    {
+		[element3 setHidden:isMain];
+	}
+	
+	setFutureMode(!isMain);
+}
+
+- (IBAction)bpmChanged:(UISlider *)sender {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->setBpm([sender value]);
+}
+
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
+	int newInst = [sender selectedSegmentIndex];
+	[self changeInstrument:newInst withIndex:0];
 }
 
 // delegate methods for FlipViewProtocol
