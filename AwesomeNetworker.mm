@@ -7,6 +7,8 @@
 //
 
 #import "AwesomeNetworker.h"
+#import "awesomesauceAppDelegate.h"
+#import "MatrixHandler.h"
 #import <math.h>
 
 #define NUM_SYNCHRO_OFFSETS 25
@@ -83,6 +85,15 @@
 			} else {
 				NSLog(@"I'm older, so they're gonna have to grow up");
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:globalOffset], @"age_offset", nil] withEventName:@"time_sync"];
+				
+				NSLog(@"I'm gonna go ahead and send them my data too");
+				
+				MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+				NSDictionary *matrixData = matrixHandler->encode();
+				
+				NSLog(@"My data are as follows: %@", [matrixData description]);
+				
+				[networker sendData:matrixData withEventName:@"load_data"]
 			}
 
 		}
@@ -93,12 +104,29 @@
 @end
 
 
+@implementation LoadDataSync
+
+@synthesize networker;
+
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	NSLog(@"received some matrix data: %@", data);
+	
+	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	matrixHandler->decode(data);
+}
+
+
+@end
+
+
+
 
 @implementation AwesomeNetworker
 
 @synthesize handlerMap;
 @synthesize session;
-@synthesize timeSync;
+@synthesize timeSync, loadDataSync;
 
 
 - (id)init {
@@ -108,9 +136,14 @@
 		
 		//set self to handle incoming data from gamekit
 		[session setDataReceiveHandler:self withContext:NULL];
-		
+
+		//set up time_sync handler
 		timeSync = [[TimeSync alloc] init];
 		[self registerEventHandler:@"time_sync" withSyncee:timeSync];
+		
+		//set up load_data handler
+		loadDataSync = [[LoadDataSync alloc] init];
+		[self registerEventHandler:@"load_data" withSyncee:loadDataSync];
 		
 		session = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
 		[session setDelegate:self];

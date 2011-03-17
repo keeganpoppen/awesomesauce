@@ -46,6 +46,19 @@
 
 @end
 
+//ASDataSyncee for loading data
+@interface LoadDataSync : NSObject <ASDataSyncee>
+{
+	AwesomeNetworker *networker;
+}
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+
+@property(nonatomic, retain) AwesomeNetworker *networker;
+
+@end
+
+
 
 /**
  *
@@ -57,6 +70,7 @@
 	NSMutableDictionary *handlerMap;
 	GKSession *session;
 	TimeSync *timeSync;
+	LoadDataSync *loadDataSync;
 }
 
 /*

@@ -35,6 +35,7 @@ public:
 	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
 	void addOffset(double offset);
+	
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	
