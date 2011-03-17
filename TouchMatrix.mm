@@ -124,6 +124,156 @@ void TouchMatrix::updateIntermediateSquares() {
 					futureCount++;
 				}
 			}
+		}
+		if(futureCount == 0 && currentCount == 0) {
+			future_steps_remaining = 0;
+			return;
+		}
+		else if(futureCount == 0) {
+			srand ( time(NULL) );
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					if(squares[i][j]) {
+						int randNum = rand() % (future_steps_remaining+1);
+						if(randNum == 0) {
+							squares[i][j] = false;
+						}
+					}
+				}
+			}
+		}
+		else if(currentCount == 0) {
+			squares[0][0] = true;
+		}
+		else if(currentCount >= futureCount){
+			bool newSquares[16][16];
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					newSquares[i][j] = false;
+				}
+			}
+			int numDuplicates = 0;
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					if(squares[j][i]) {
+						float min_dist = -1.0;
+						int min_j = -1;
+						int min_i = -1;
+						for (int i2 = 0; i2 < 16; ++i2) {
+							for (int j2 = 0; j2 < 16; ++j2) {
+								if(futureSquares[j2][i2]) {
+									float dist = (i - i2)*(i - i2) + (j - j2)*(j - j2);
+									if(dist < min_dist || min_dist < 0) {
+										int new_i = (int) (((float)(i2 - i)) / (float)(future_steps_remaining+1)) + i;
+										int new_j = (int) (((float)(j2 - j)) / (float)(future_steps_remaining+1)) + j;
+										if(newSquares[new_j][new_i] && numDuplicates >= currentCount - futureCount) {
+											//keep fishing
+										}
+										else {
+											min_i = new_i;
+											min_j = new_j;
+											min_dist = dist;
+										}
+									}
+								}
+							}
+						}
+						if(newSquares[min_j][min_i]) {
+							numDuplicates++;
+						}
+						else {
+							newSquares[min_j][min_i] = true;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					squares[i][j] = newSquares[i][j];
+				}
+			}
+		}
+		else {
+			bool newSquares[16][16];
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					newSquares[i][j] = false;
+				}
+			}
+			int numDuplicates = 0;
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					if(futureSquares[j][i]) {
+						float min_dist = -1.0;
+						int min_j = -1;
+						int min_i = -1;
+						for (int i2 = 0; i2 < 16; ++i2) {
+							for (int j2 = 0; j2 < 16; ++j2) {
+								if(squares[j2][i2]) {
+									float dist = (i - i2)*(i - i2) + (j - j2)*(j - j2);
+									if(dist < min_dist || min_dist < 0) {
+										int new_i = (int) (((float)(i - i2)) / (float)(future_steps_remaining+1)) + i2;
+										int new_j = (int) (((float)(j - j2)) / (float)(future_steps_remaining+1)) + j2;
+										if(newSquares[new_j][new_i] && numDuplicates >= futureCount - currentCount) {
+											//keep fishing
+										}
+										else {
+											min_i = new_i;
+											min_j = new_j;
+											min_dist = dist;
+										}
+									}
+								}
+							}
+						}
+						if(newSquares[min_j][min_i]) {
+							numDuplicates++;
+						}
+						else {
+							newSquares[min_j][min_i] = true;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					squares[i][j] = newSquares[i][j];
+				}
+			}
+		}
+	}
+}
+
+void TouchMatrix::updateIntermediateSquares_naive() {
+	if(!is_futuring) {
+		return;
+	}
+	future_steps_remaining--;
+	if(future_steps_remaining == 0) {
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				squares[i][j] = futureSquares[i][j];
+				futureSquares[i][j] = false;
+			}
+		}
+		is_futuring = false;
+	}
+	else {
+		int futureCount = 0;
+		int currentCount = 0;
+		for (int i = 0; i < 16; ++i) {
+			int index1 = -1;
+			int index2 = -1;
+			for (int j = 0; j < 16; ++j) {
+				if(squares[j][i]) {
+					index1 = j;
+					currentCount++;
+				}
+				if(futureSquares[j][i]) {
+					index2 = j;
+					futureCount++;
+				}
+			}
 			if(index1 == -1 && index2 == -1) {
 				//nothing
 			}
@@ -135,10 +285,10 @@ void TouchMatrix::updateIntermediateSquares() {
 			}
 			else {
 				/*
-				int newindex = (int) (((float)(index2 - index1)) / (float)(future_steps_remaining+1)) + index1;
-				squares[index1][i] = false;
-				squares[newindex][i] = true;
-				*/
+				 int newindex = (int) (((float)(index2 - index1)) / (float)(future_steps_remaining+1)) + index1;
+				 squares[index1][i] = false;
+				 squares[newindex][i] = true;
+				 */
 			}
 		}
 		if(futureCount == 0 && currentCount == 0) {

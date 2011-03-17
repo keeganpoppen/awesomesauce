@@ -427,8 +427,9 @@ enum {
 }
 
 - (IBAction)flipToSocialView:(id)sender {
+	setMute(true);
 	setMainScreen(false);
-	SocialViewController *controller = [[SocialViewController alloc] initWithNibName:@"SocialViewController" bundle:nil];
+	CompositionsViewController *controller = [[CompositionsViewController alloc] initWithNibName:@"CompositionsViewController" bundle:nil];
 	controller.delegate = self;
 	
 	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -506,6 +507,7 @@ enum {
 
 // delegate methods for FlipViewProtocol
 - (void) closeMe {
+	setMute(false);
 	[self dismissModalViewControllerAnimated:YES];
 	setMainScreen(true);
 }

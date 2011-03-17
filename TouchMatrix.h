@@ -93,6 +93,7 @@ public:
 	bool is_futuring;
 	int future_steps_remaining;
 	void updateIntermediateSquares();
+	void updateIntermediateSquares_naive();
 	void startFuture(int future_length);
 	void clearFuture();
 	

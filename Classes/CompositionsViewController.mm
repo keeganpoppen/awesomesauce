@@ -13,7 +13,7 @@
 
 @implementation CompositionsViewController
 
-@synthesize parent;
+@synthesize delegate;
 @synthesize compIds;
 @synthesize compMap;
 @synthesize downloads;
@@ -24,7 +24,7 @@
 
 
 - (IBAction)returnToMain:(id)sender {
-	[parent returnToMain:sender];
+	[delegate closeMe];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
