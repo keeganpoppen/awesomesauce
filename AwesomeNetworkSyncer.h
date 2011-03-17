@@ -132,6 +132,7 @@
 	TrackAddSync *trackAddSync;
 	TrackRemoveSync *trackRemoveSync;
 	FutureStartSync *futureStartSync;
+	InstrumentChangeSync *instrumentChangeSync;
 }
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler;
@@ -141,5 +142,6 @@
 @property(nonatomic, retain) TrackAddSync *trackAddSync;
 @property(nonatomic, retain) TrackRemoveSync *trackRemoveSync;
 @property(nonatomic, retain) FutureStartSync *futureStartSync;
+@property(nonatomic, retain) InstrumentChangeSync *instrumentChangeSync;
 
 @end
