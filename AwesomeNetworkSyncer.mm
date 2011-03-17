@@ -172,7 +172,7 @@
 
 -(void)sendBPMChanged:(float)bpm {
 	//NSLog(@"sending bpm changed1: %f", bpm);
-	float tempBpm = matrixHandler->bpm;
+	float tempBpm = matrixHandler->bpm / 4.0;
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:tempBpm],@"bpm",nil] withEventName:@"bpm_change"];
 	//NSLog(@"sending bpm changed2: %f", bpm);
 }
