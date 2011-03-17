@@ -17,11 +17,10 @@
 
 #import "MixerView.h"
 #import "SynthViewController.h"
-#import "ArrangeViewController.h"
 #import "SocialViewController.h"
 #import "FlipViewProtocol.h"
 
-@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
+@interface awesomesauceViewController : UIViewController <SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
@@ -100,7 +99,6 @@
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)flipToSynthView:(id)sender;
-- (IBAction)flipToArrangeView:(id)sender;
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;

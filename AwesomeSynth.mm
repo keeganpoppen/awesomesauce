@@ -20,6 +20,10 @@ AwesomeSynth::AwesomeSynth() {
 	oscillator[2] = -1;
 }
 
+int AwesomeSynth::getInst(int index) {
+	return oscillator[index];
+}
+
 StkFloat AwesomeSynth::tick() {
 	StkFloat tick_val = 0.0;
 	int num = 3;

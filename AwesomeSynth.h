@@ -17,6 +17,7 @@ public:
 	StkFloat tick();
 	void setFrequency(Float32 inFreq);
 	void setOscillator(int newVal, int index);
+	int getInst(int index);
 	
 	int oscillator[3];
 	

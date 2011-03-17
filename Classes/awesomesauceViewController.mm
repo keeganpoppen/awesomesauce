@@ -144,16 +144,16 @@ enum {
 	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
-	saveFutureButton.frame = CGRectMake(20.0, 210.0, 160.0, 40.0);
+	saveFutureButton.frame = CGRectMake(20.0, 80.0, 210.0, 40.0);
 	[self.view addSubview:saveFutureButton];
 	
 	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
-	cancelFutureButton.frame = CGRectMake(20.0, 270.0, 160.0, 40.0);
+	cancelFutureButton.frame = CGRectMake(20.0, 140.0, 210.0, 40.0);
 	[self.view addSubview:cancelFutureButton];
 	
-	CGRect sliderFrame = CGRectMake(20.0, 330.0, 160.0, 10.0);
+	CGRect sliderFrame = CGRectMake(20.0, 200.0, 160.0, 10.0);
 	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
 	//TODO: a bpm label?
     //[futureLengthSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
@@ -164,9 +164,11 @@ enum {
     futureLengthSlider.value = 8;
 	[self.view addSubview:futureLengthSlider];
 	
-	CGRect descFrame = CGRectMake(20.0, 360.0, 160.0, 380.0);
+	CGRect descFrame = CGRectMake(20.0, 230.0, 210.0, 450.0);
 	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
 	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
+	futureDescription.lineBreakMode = UILineBreakModeWordWrap;
+	futureDescription.numberOfLines = 0;
 	[self.view addSubview:futureDescription];
 	
 	[saveFutureButton setHidden:YES];
@@ -387,23 +389,6 @@ enum {
 	[controller release];
 }
 
-// button action
-- (IBAction) flipToArrangeView:(id)sender {
-	setMainScreen(false);
-	ArrangeViewController *controller = [[ArrangeViewController alloc] initWithNibName:@"ArrangeViewController" bundle:nil];
-	controller.delegate = self;
-	
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
-	
-	//TODO: initialize controller with params, e.g. current track num, bpm, etc
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	[[controller bpmSlider] setValue:(mh->bpm / 4.0)];
-	
-	
-	[controller release];
-}
-
 - (IBAction)flipToSocialView:(id)sender {
 	setMainScreen(false);
 	SocialViewController *controller = [[SocialViewController alloc] initWithNibName:@"SocialViewController" bundle:nil];
@@ -482,7 +467,7 @@ enum {
 	return mh;
 }
 
-// delegate methods for ArrangeViewProtocol
+// delegate methods for ArrangeViewProtocol which no longer exists
 -(void) changeBpm:(float)newBpm {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm(newBpm);
