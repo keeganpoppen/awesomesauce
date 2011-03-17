@@ -98,10 +98,12 @@
 @synthesize trackAddSync, trackRemoveSync;
 
 
-- (id)init {
+- (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker {
 	self = [super init];
 	if (self) {
 		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+		
+		networker = awesomeNetworker;
 		
 		squareSync = [[SquareChangeSync alloc] init];
 		[networker registerEventHandler:@"square_change" withSyncee:squareSync];

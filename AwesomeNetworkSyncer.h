@@ -85,6 +85,8 @@
 	TrackRemoveSync *trackRemoveSync;
 }
 
+- (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker;
+
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic, retain) SquareChangeSync *squareSync;
 @property(nonatomic, retain) TrackAddSync *trackAddSync;
