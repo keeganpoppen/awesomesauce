@@ -40,21 +40,22 @@
 	//check if we were the sender, or the recipient
 	if (age_offset != nil) {
 		globalOffset = [age_offset doubleValue];
-		NSLog(@"global offset set to: ", globalOffset);
+		NSLog(@"global offset set to: %f", globalOffset);
 		
 		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 
 		matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
+
 		NSLog(@"set global time to %f thanks to being told as such", matrixHandler->time_elapsed);
 		
-		NSLog(@"gonna send all m'data");
-		
-		NSDictionary *matrixData = matrixHandler->encode();
-		if(globalOffset < 0.001) [networker sendData:matrixData withEventName:@"load_data"];
-		
+		if(globalOffset < 0.001) {
+			NSLog(@"gonna send all m'data");
+			NSDictionary *matrixData = matrixHandler->encode();
+			[networker sendData:matrixData withEventName:@"load_data"];
+		}
 		
 	} else if (time_received == nil) {
-		NSLog(@"gonna forward that packet right the fuck back, yo");
+		//NSLog(@"gonna forward that packet right the fuck back, yo");
 		
  		NSMutableDictionary *toSend = [[[NSMutableDictionary dictionaryWithDictionary:data] retain] autorelease];
 		[toSend setObject:[NSNumber numberWithDouble:cur_time] forKey:@"time_received"];
@@ -66,13 +67,11 @@
 		
 		NSTimeInterval offset = rec_time - ((sent_time + cur_time) / 2.);
 		
-		NSLog(@"rec time: %f, sent_time; %f, offset: %f", rec_time, sent_time, offset);
+		//NSLog(@"rec time: %f, sent_time; %f, cur_time: %f, offset: %f", rec_time, sent_time, cur_time, offset);
 		
 		[offsets addObject:[NSNumber numberWithDouble:offset]];
 		totalOffset += offset;
-		
-		NSLog(@"num timing packets received: %d", [offsets count]);
-		
+				
 		if([offsets count] != NUM_SYNCHRO_OFFSETS) {
 			
 			//if we haven't gotten enough data, send some more
@@ -86,14 +85,12 @@
 				sd_accum += pow([[offsets objectAtIndex:i] doubleValue] - mean, 2.);
 			}
 			
-			sd_accum /= (double)NUM_SYNCHRO_OFFSETS;
+			sd_accum /= pow((double)NUM_SYNCHRO_OFFSETS, .5);
 			sd_accum = pow(sd_accum, .5);
 			
-			NSLog(@"mean: %f", (totalOffset / NUM_SYNCHRO_OFFSETS));
-			NSLog(@"standard deviation of mean offset: %f", (sd_accum / pow(NUM_SYNCHRO_OFFSETS, .5)));
-			
-			NSLog(@"time offset: %f", mean);
-			
+			NSLog(@"mean: %f", mean);
+			NSLog(@"standard deviation of mean offset: %f", sd_accum);
+						
 			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 			
 			//if(mean > 0) then they are older than us
@@ -106,14 +103,12 @@
 				NSLog(@"I'm older, so they're gonna have to grow up");
 				globalOffset = 0;
 				
-				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:globalOffset], @"age_offset", nil] withEventName:@"time_sync"];
+				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:-mean], @"age_offset", nil] withEventName:@"time_sync"];
 				
 				NSLog(@"I'm gonna go ahead and send them my data too");
 				
 				NSDictionary *matrixData = matrixHandler->encode();
-				
-				//NSLog(@"My data are as follows: %@", [matrixData description]);
-				
+								
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 			

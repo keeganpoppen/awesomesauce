@@ -213,9 +213,7 @@ void MatrixHandler::startFuture(int future_length) {
 
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
-	
-	NSLog(@"aspdgb: %@", [dict description]);
-	
+		
 	NSArray *array = (NSArray *) [dict objectForKey:@"matrices"];
 	NSEnumerator *enumerator = [array objectEnumerator];
 	id element;
