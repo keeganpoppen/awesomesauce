@@ -11,7 +11,7 @@
 #import "MatrixHandler.h"
 #import <math.h>
 
-#define NUM_SYNCHRO_OFFSETS 50
+#define NUM_SYNCHRO_OFFSETS 1000
 
 @implementation TimeSync
 

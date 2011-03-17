@@ -214,7 +214,7 @@ enum {
 }
 
 - (void)futureLengthChanged:(UISlider *)slider {
-	NSString *string = [NSString stringWithFormat:@"%d", futureLengthSlider.value];
+	NSString *string = [NSString stringWithFormat:@"%d", (int)futureLengthSlider.value];
 	futureLengthLabel.text = string;
 }
 
