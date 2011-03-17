@@ -42,17 +42,13 @@
 		globalOffset = [age_offset doubleValue];
 		NSLog(@"global offset set to: ", globalOffset);
 		
-		/*
-		 * TODO!!!
-		 */
-		NSLog(@"YOOOOO!!!!!! YOU NEED TO SET THE REAL TIME!!!");
-		/*
-		 * TODO!!!
-		 */
+		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+
+		matrixHandler->time_elapsed = startTime + globalOffset;
+		NSLog(@"set global time to %f", matrixHandler->time_elapsed);
 		
 		NSLog(@"gonna send all m'data");
 		
-		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 		NSDictionary *matrixData = matrixHandler->encode();
 		if(globalOffset < 0.001) [networker sendData:matrixData withEventName:@"load_data"];
 		
@@ -93,10 +89,13 @@
 			
 			NSLog(@"time offset: %f", mean);
 			
+			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+			
 			//if(mean > 0) then they are older than us
 			if(mean > 0) {
 				NSLog(@"they're older, so I'm updating my age and sending 0");
 				globalOffset = mean;
+				
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:0.0], @"age_offset", nil] withEventName:@"time_sync"];
 			} else {
 				NSLog(@"I'm older, so they're gonna have to grow up");
@@ -104,14 +103,15 @@
 				
 				NSLog(@"I'm gonna go ahead and send them my data too");
 				
-				MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 				NSDictionary *matrixData = matrixHandler->encode();
 				
 				NSLog(@"My data are as follows: %@", [matrixData description]);
 				
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
-
+			
+			matrixHandler->time_elapsed = startTime + globalOffset;
+			NSLog(@"set global time to %f", matrixHandler->time_elapsed);
 		}
 	}
 
