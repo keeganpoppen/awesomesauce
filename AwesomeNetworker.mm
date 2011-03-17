@@ -51,6 +51,9 @@
 		 */
 		
 		NSLog(@"gonna send all m'data");
+		
+		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+		NSDictionary *matrixData = matrixHandler->encode();
 		if(globalOffset < 0.001) [networker sendData:matrixData withEventName:@"load_data"];
 		
 		
