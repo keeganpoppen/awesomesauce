@@ -63,7 +63,10 @@
 		
 		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
 		
-		if(num_packets_handled == NUM_SYNCHRO_OFFSETS) [[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
+		if(num_packets_handled == NUM_SYNCHRO_OFFSETS) {
+			NSLog(@"done forwarding packets, man. fuck that.");
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
+		}
 		
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
@@ -102,6 +105,7 @@
 				
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:0.0], @"age_offset", nil] withEventName:@"time_sync"];
 
+				NSLog(@"setting phasers to load");
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"loading_data" object:nil userInfo:nil];
 			} else {
 				NSLog(@"I'm older, so they're gonna have to grow up");
@@ -112,7 +116,8 @@
 				NSLog(@"I'm gonna go ahead and send them my data too");
 				
 				NSDictionary *matrixData = matrixHandler->encode();
-								
+				
+				NSLog(@"sending data to help out a friend in need");
 				[networker sendData:matrixData withEventName:@"load_data"];
 				
 				NSLog(@"syncing is done, dawg");
