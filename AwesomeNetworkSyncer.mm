@@ -105,17 +105,17 @@
 		
 		squareSync = [[SquareChangeSync alloc] init];
 		[networker registerEventHandler:@"square_change" withSyncee:squareSync];
-		squareSync.networker = self;
+		squareSync.networker = networker;
 		squareSync.matrixHandler = matrixHandler;
 		
 		trackAddSync = [[TrackAddSync alloc] init];
 		[networker registerEventHandler:@"track_add" withSyncee:trackAddSync];
-		trackAddSync.networker = self;
+		trackAddSync.networker = networker;
 		trackAddSync.matrixHandler = matrixHandler;
 		
 		trackRemoveSync = [[TrackRemoveSync alloc] init];
 		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
-		trackRemoveSync.networker = self;
+		trackRemoveSync.networker = networker;
 		trackRemoveSync.matrixHandler = matrixHandler;
 	}
 	return self;

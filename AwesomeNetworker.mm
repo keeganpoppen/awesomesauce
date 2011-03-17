@@ -163,6 +163,7 @@
 		[session setAvailable:YES];
 		
 		networkSyncer = [[AwesomeNetworkSyncer alloc] init];
+		[networkSyncer setNetworker:self];
 		
 		NSLog(@"starting server in peer mode w/ peerID %@", session.peerID);
 	}
