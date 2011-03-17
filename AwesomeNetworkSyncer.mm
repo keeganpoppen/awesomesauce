@@ -164,7 +164,7 @@
 @synthesize matrixHandler;
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
-	float bpm = [[data objectForKey:@"bpm_change"] floatValue];
+	float bpm = [[data objectForKey:@"bpm"] floatValue];
 	matrixHandler->setBpm(bpm, false);
 	NSLog(@"receiving bpm changed");
 }
