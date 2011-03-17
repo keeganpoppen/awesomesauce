@@ -7,6 +7,7 @@
 //
 
 #import "AwesomeNetworkSyncer.h"
+#import "awesomesauceAppDelegate.h"
 
 @implementation SquareChangeSync
 
