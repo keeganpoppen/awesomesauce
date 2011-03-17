@@ -8,23 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
+#import "ASDataSyncee.h"
 
-/**
- *
- * Protocol implemented by all event handlers that deal with awesome networking
- *
- */
-
+//forward declaration (obviously)
 @class AwesomeNetworker;
-
-@protocol ASDataSyncee
-
--(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
-
-@property(nonatomic, retain) AwesomeNetworker *networker;
-
-@end
-
 
 //ASDataSyncee for time sync messages
 @interface TimeSync : NSObject <ASDataSyncee>
