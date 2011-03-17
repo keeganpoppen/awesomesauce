@@ -198,11 +198,15 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 	}
 }
 
-void MatrixHandler::setBpm(float newBpm) {
+void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
 	if(newBpm < 60.0 || newBpm > 180.0) {
 		return;
 	}
 	bpm = newBpm * 4.0;
+	if(sendNotification) {
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp bpmChangeSync] sendBPMChanged:newBpm];
+	}
 }
 
 void MatrixHandler::setCurrentTrackEnvLength(float newVal) {

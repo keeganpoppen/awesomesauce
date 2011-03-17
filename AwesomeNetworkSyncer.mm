@@ -165,10 +165,13 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	float bpm = [[data objectForKey:@"bpm_change"] floatValue];
+	matrixHandler->setBpm(bpm, false);
+	NSLog(@"receiving bpm changed");
 }
 
 -(void)sendBPMChanged:(float)bpm {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:bpm],@"bpm",nil] withEventName:@"bpm_change"];
+	NSLog(@"sending bpm changed");
 }
 
 @end
