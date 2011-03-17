@@ -36,9 +36,6 @@
 	NSNumber *time_received = [data objectForKey:@"time_received"];
 	NSNumber *age_offset = [data objectForKey:@"age_offset"];
 	
-	//NSTimeInterval cur_time = [NSDate timeIntervalSinceReferenceDate] - startTime;
-	NSTimeInterval cur_age = matrixHandler->time_elapsed;
-	
 	//check if we were the sender, or the recipient
 	if (age_offset != nil) {
 		globalOffset = [age_offset doubleValue];
@@ -59,17 +56,17 @@
 		//NSLog(@"gonna forward that packet right the fuck back, yo");
 		
  		NSMutableDictionary *toSend = [[[NSMutableDictionary dictionaryWithDictionary:data] retain] autorelease];
-		[toSend setObject:[NSNumber numberWithDouble:cur_age] forKey:@"time_received"];
+		[toSend setObject:[NSNumber numberWithDouble:matrixHandler->time_elapsed] forKey:@"time_received"];
 		
 		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
 		
-		NSTimeInterval offset = rec_time - ((sent_time + cur_age) / 2.);
+		NSTimeInterval offset = rec_time - ((sent_time + matrixHandler->time_elapsed) / 2.);
 		
-		//NSLog(@"rec time: %f, sent_time; %f, cur_age: %f, offset: %f", rec_time, sent_time, cur_age, offset);
-		
+		NSLog(@"roundtrip: %f", matrixHandler->time_elapsed - sent_time);
+				
 		[offsets addObject:[NSNumber numberWithDouble:offset]];
 		totalOffset += offset;
 				
@@ -93,9 +90,7 @@
 			NSLog(@"standard deviation of mean offset: %f", sd_accum);
 			
 			NSLog(@"offsets: %@", offsets);
-						
-			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-			
+									
 			//if(mean > 0) then they are older than us
 			if(mean > 0) {
 				NSLog(@"they're older, so I'm updating my age and sending 0");
@@ -115,7 +110,6 @@
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 			
-			//matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
 			matrixHandler->addOffset(globalOffset);
 			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
 		}

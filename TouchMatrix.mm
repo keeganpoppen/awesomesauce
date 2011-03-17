@@ -29,9 +29,7 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 	
 	NSMutableArray *notes = [fromDictionary objectForKey:@"notes"];
 	NSMutableArray *futureNotes = [fromDictionary objectForKey:@"futureNotes"];
-	
-	NSLog(@"NOTES: %@", notes);
-	
+		
 	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 16; ++j) {
 			bool val = [[notes objectAtIndex:(i*16 + j)] boolValue];
