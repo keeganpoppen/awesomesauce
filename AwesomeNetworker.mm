@@ -11,7 +11,7 @@
 #import "MatrixHandler.h"
 #import <math.h>
 
-#define NUM_SYNCHRO_OFFSETS 25
+#define NUM_SYNCHRO_OFFSETS 50
 
 @implementation TimeSync
 
@@ -44,8 +44,8 @@
 		
 		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 
-		matrixHandler->time_elapsed = startTime + globalOffset;
-		NSLog(@"set global time to %f", matrixHandler->time_elapsed);
+		matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - timeSync.startTime) + globalOffset;
+		NSLog(@"set global time to %f thanks to being told as such", matrixHandler->time_elapsed);
 		
 		NSLog(@"gonna send all m'data");
 		
@@ -99,19 +99,21 @@
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:0.0], @"age_offset", nil] withEventName:@"time_sync"];
 			} else {
 				NSLog(@"I'm older, so they're gonna have to grow up");
+				globalOffset = 0;
+				
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:globalOffset], @"age_offset", nil] withEventName:@"time_sync"];
 				
 				NSLog(@"I'm gonna go ahead and send them my data too");
 				
 				NSDictionary *matrixData = matrixHandler->encode();
 				
-				NSLog(@"My data are as follows: %@", [matrixData description]);
+				//NSLog(@"My data are as follows: %@", [matrixData description]);
 				
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 			
-			matrixHandler->time_elapsed = startTime + globalOffset;
-			NSLog(@"set global time to %f", matrixHandler->time_elapsed);
+			matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - timeSync.startTime) + globalOffset;
+			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
 		}
 	}
 
@@ -201,7 +203,7 @@
 		[dict setObject:[NSNumber numberWithDouble:curAge] forKey:@"time_sent"];
 	}
 	
-	NSLog(@"sending some data that looks like this: %@", [dict description]);
+	//NSLog(@"sending some data that looks like this: %@", [dict description]);
 	
 	NSData *toSend = [[[NSKeyedArchiver archivedDataWithRootObject:dict] retain] autorelease];
 	
@@ -291,7 +293,7 @@
 	//unserialize data from peer
 	NSMutableDictionary *dict = [[[NSKeyedUnarchiver unarchiveObjectWithData:data] retain] autorelease];
 	
-	NSLog(@"got some data, yo. it's: %@", [dict description]);
+	//NSLog(@"got some data, yo. it's: %@", [dict description]);
 
 	NSString *eventName = [dict objectForKey:@"event_name"];
 	if (eventName == nil) {
