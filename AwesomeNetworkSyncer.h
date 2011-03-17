@@ -27,9 +27,9 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
 
--(void)presentMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue;
--(void)futureMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue;
--(void)sendSquareChangedInMatrix:(NSString*)matrix AtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue;
+-(void)presentMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId;
+-(void)futureMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId;
+-(void)sendSquareChangedInMatrix:(NSString*)matrix AtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId;
 
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic) MatrixHandler *matrixHandler;
@@ -81,6 +81,23 @@
 
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic) MatrixHandler *matrixHandler;
+
+@end
+
+
+//ASDataSyncee for track removing
+@interface TrackClearSync : NSObject <ASDataSyncee>
+{
+	AwesomeNetworker *networker;
+	MatrixHandler *matrixHandler;
+}
+
+@property(nonatomic, retain) AwesomeNetworker *networker;
+@property(nonatomic) MatrixHandler *matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+
+-(void)sendTrackClearedWithId:(int)trackId;
 
 @end
 
