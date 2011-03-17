@@ -18,7 +18,7 @@
 {
 	AwesomeNetworker *networker;
 	
-	NSTimeInterval startTime;
+	//NSTimeInterval startTime;
 	NSTimeInterval totalOffset;
 	NSMutableArray *offsets;
 	
@@ -29,7 +29,7 @@
 
 @property(nonatomic, retain) NSMutableArray *offsets;
 @property(nonatomic, retain) AwesomeNetworker *networker;
-@property(nonatomic) NSTimeInterval startTime;
+//@property(nonatomic) NSTimeInterval startTime;
 
 @end
 

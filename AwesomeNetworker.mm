@@ -17,13 +17,13 @@
 
 @synthesize offsets;
 @synthesize networker;
-@synthesize startTime;
+//@synthesize startTime;
 
 -(id)init {
 	self = [super init];
 	if (self) {
-		startTime = [NSDate timeIntervalSinceReferenceDate];
-		NSLog(@"initting timesync.... setting start time to %f", startTime);
+		//startTime = [NSDate timeIntervalSinceReferenceDate];
+		//NSLog(@"initting timesync.... setting start time to %f", startTime);
 		
 		offsets = [[NSMutableArray alloc] init];
 	}
@@ -31,20 +31,21 @@
 }
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
-
+	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	
 	NSNumber *time_received = [data objectForKey:@"time_received"];
 	NSNumber *age_offset = [data objectForKey:@"age_offset"];
 	
-	NSTimeInterval cur_time = [NSDate timeIntervalSinceReferenceDate] - startTime;
+	//NSTimeInterval cur_time = [NSDate timeIntervalSinceReferenceDate] - startTime;
+	NSTimeInterval cur_age = matrixHandler->time_elapsed;
 	
 	//check if we were the sender, or the recipient
 	if (age_offset != nil) {
 		globalOffset = [age_offset doubleValue];
 		NSLog(@"global offset set to: %f", globalOffset);
 		
-		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-
-		matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
+		//matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
+		matrixHandler->addOffset(globalOffset);
 
 		NSLog(@"set global time to %f thanks to being told as such", matrixHandler->time_elapsed);
 		
@@ -58,16 +59,16 @@
 		//NSLog(@"gonna forward that packet right the fuck back, yo");
 		
  		NSMutableDictionary *toSend = [[[NSMutableDictionary dictionaryWithDictionary:data] retain] autorelease];
-		[toSend setObject:[NSNumber numberWithDouble:cur_time] forKey:@"time_received"];
+		[toSend setObject:[NSNumber numberWithDouble:cur_age] forKey:@"time_received"];
 		
 		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
 		
-		NSTimeInterval offset = rec_time - ((sent_time + cur_time) / 2.);
+		NSTimeInterval offset = rec_time - ((sent_time + cur_age) / 2.);
 		
-		//NSLog(@"rec time: %f, sent_time; %f, cur_time: %f, offset: %f", rec_time, sent_time, cur_time, offset);
+		//NSLog(@"rec time: %f, sent_time; %f, cur_age: %f, offset: %f", rec_time, sent_time, cur_age, offset);
 		
 		[offsets addObject:[NSNumber numberWithDouble:offset]];
 		totalOffset += offset;
@@ -78,7 +79,7 @@
 			[networker sendData:nil withEventName:@"time_sync"];
 			
 		} else {
-			NSTimeInterval mean = totalOffset / (double)[offsets count];
+			NSTimeInterval mean = totalOffset / (double)NUM_SYNCHRO_OFFSETS;
 			NSTimeInterval sd_accum = 0;
 			
 			for (unsigned i = 0; i < NUM_SYNCHRO_OFFSETS; ++i) {
@@ -114,7 +115,8 @@
 				[networker sendData:matrixData withEventName:@"load_data"];
 			}
 			
-			matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
+			//matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
+			matrixHandler->addOffset(globalOffset);
 			NSLog(@"set global time to %f thanks to my own volition", matrixHandler->time_elapsed);
 		}
 	}
@@ -200,9 +202,12 @@
 	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:data];
 	[dict setObject:eventName forKey:@"event_name"];
 	
-	NSTimeInterval curAge = [NSDate timeIntervalSinceReferenceDate] - timeSync.startTime;
+	//NSTimeInterval curAge = [NSDate timeIntervalSinceReferenceDate] - timeSync.startTime;
+	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	float time_elapsed = matrixHandler->time_elapsed;
+	
 	if (!shouldOverride) {	
-		[dict setObject:[NSNumber numberWithDouble:curAge] forKey:@"time_sent"];
+		[dict setObject:[NSNumber numberWithDouble:time_elapsed] forKey:@"time_sent"];
 	}
 	
 	//NSLog(@"sending some data that looks like this: %@", [dict description]);
@@ -214,7 +219,7 @@
 		NSLog(@"DATA SEND ERROR: %@", err);
 	}
 	
-	return curAge;
+	return time_elapsed;
 }
 
 
