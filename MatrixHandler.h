@@ -12,6 +12,7 @@
 #import "TouchMatrix.h"
 #import "MatrixNetworkHandler.h"
 #import "AwesomeServerDelegate.h"
+#import "AwesomeNetworker.h"
 #import <vector>
 
 using namespace std;
@@ -50,5 +51,7 @@ public:
 	float bpm; //number of sixteenth notes per minute, actually
 	
 	MatrixNetworkHandler *networkHandler;
+	AwesomeNetworker *awesomeNetworker;
+	
 	AwesomeServerDelegate *serverDelegate;
 };

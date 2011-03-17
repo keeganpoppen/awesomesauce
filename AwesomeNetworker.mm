@@ -21,11 +21,15 @@
 	self = [super init];
 	if (self) {
 		startTime = [NSDate timeIntervalSinceReferenceDate];
+		NSLog(@"initting timesync.... setting start time to %f", startTime);
+		
+		offsets = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+
 	NSNumber *time_received = [data objectForKey:@"time_received"];
 	NSNumber *age_offset = [data objectForKey:@"age_offset"];
 	
@@ -36,16 +40,24 @@
 		globalOffset = [age_offset doubleValue];
 		NSLog(@"global offset set to: ", globalOffset);
 	} else if (time_received == nil) {
-		[self.networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:cur_time],@"time_received",nil]
-				   withEventName:@"time_sync" overrideTime:YES];
+		NSLog(@"gonna forward that packet right the fuck back, yo");
+		
+ 		NSMutableDictionary *toSend = [[[NSMutableDictionary dictionaryWithDictionary:data] retain] autorelease];
+		[toSend setObject:[NSNumber numberWithDouble:cur_time] forKey:@"time_received"];
+		
+		[self.networker sendData:toSend withEventName:@"time_sync" overrideTime:YES];
 	} else {
 		NSTimeInterval rec_time = [time_received doubleValue];
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
 		
 		NSTimeInterval offset = rec_time - ((sent_time + cur_time) / 2.);
 		
+		NSLog(@"rec time: %f, sent_time; %f, offset: %f", rec_time, sent_time, offset);
+		
 		[offsets addObject:[NSNumber numberWithDouble:offset]];
-		totalOffset += cur_time - sent_time;
+		totalOffset += offset;
+		
+		NSLog(@"num timing packets received: %d", [offsets count]);
 		
 		if([offsets count] == NUM_SYNCHRO_OFFSETS) {
 			NSTimeInterval mean = totalOffset / (double)[offsets count];
@@ -65,9 +77,11 @@
 			
 			//if(mean > 0) then they are older than us
 			if(mean > 0) {
+				NSLog(@"they're older, so I'm updating my age and sending 0");
 				globalOffset = mean;
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:0.0], @"age_offset", nil] withEventName:@"time_sync"];
 			} else {
+				NSLog(@"I'm older, so they're gonna have to grow up");
 				[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:globalOffset], @"age_offset", nil] withEventName:@"time_sync"];
 			}
 
@@ -90,17 +104,28 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+		handlerMap = [[NSMutableDictionary alloc] init];
+		
 		//set self to handle incoming data from gamekit
 		[session setDataReceiveHandler:self withContext:NULL];
 		
 		timeSync = [[TimeSync alloc] init];
 		[self registerEventHandler:@"time_sync" withSyncee:timeSync];
+		
+		session = [[GKSession alloc] initWithSessionID:@"awesomesauce" displayName:nil sessionMode:GKSessionModePeer];
+		[session setDelegate:self];
+		[session setDataReceiveHandler:self withContext:nil];
+		[session setAvailable:YES];
+		
+		NSLog(@"starting server in peer mode w/ peerID %@", session.peerID);
 	}
 	return self;
 }
 
 //registers an ASDataSyncee to handle all events with name eventName
 -(void)registerEventHandler:(NSString*)eventName withSyncee:(id<ASDataSyncee>)syncee {
+	NSLog(@"registering handler for key: %@", eventName);
+	
 	[handlerMap setObject:syncee forKey:eventName];
 	syncee.networker = self;
 }
@@ -125,7 +150,11 @@
 	[dict setObject:eventName forKey:@"event_name"];
 	
 	NSTimeInterval curAge = [NSDate timeIntervalSinceReferenceDate] - timeSync.startTime;
-	[dict setObject:[NSNumber numberWithDouble:curAge] forKey:@"time_sent"];
+	if (!shouldOverride) {	
+		[dict setObject:[NSNumber numberWithDouble:curAge] forKey:@"time_sent"];
+	}
+	
+	NSLog(@"sending some data that looks like this: %@", [dict description]);
 	
 	NSData *toSend = [[[NSKeyedArchiver archivedDataWithRootObject:dict] retain] autorelease];
 	
@@ -143,7 +172,10 @@
  */
 
 - (BOOL) comparePeerID:(NSString*)otherID {
-	return [otherID compare:session.peerID] == NSOrderedAscending;
+	//return [otherID compare:session.peerID] == NSOrderedAscending;
+	NSString *otherPeer = [session displayNameForPeer:otherID];
+	NSComparisonResult comp = [otherPeer caseInsensitiveCompare:@"Chewbacca"];
+	return comp != NSOrderedSame;
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -154,11 +186,16 @@
 			NSLog(@"connected to peer %@", [session displayNameForPeer:peerID]);
 			
 			if ([self comparePeerID:peerID]) {
+				NSLog(@"sending timing packets");
+				
 				//send the timing packets. most of the work is done by default, which is why this looks a bit silly
 				for (int i = 0; i < NUM_SYNCHRO_OFFSETS; ++i) {
 					[self sendData:nil withEventName:@"time_sync"];
 				}
+			} else {
+				NSLog(@"waiting for timing packets");
 			}
+
 			
 			//TODO: LOAD DATA FROM PEER IF YOUNGER
 			
@@ -186,7 +223,7 @@
 }
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-	NSLog(@"cnxn request from peer %@, dawg", [session displayNameForPeer:peerID]);
+	NSLog(@"cnxn request from peer %@, dawg. gonna accept it.", [session displayNameForPeer:peerID]);
 	
 	NSError *err;
 	if (![session acceptConnectionFromPeer:peerID error:&err]) {
@@ -206,6 +243,8 @@
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
 	//unserialize data from peer
 	NSMutableDictionary *dict = [[[NSKeyedUnarchiver unarchiveObjectWithData:data] retain] autorelease];
+	
+	NSLog(@"got some data, yo. it's: %@", [dict description]);
 
 	NSString *eventName = [dict objectForKey:@"event_name"];
 	if (eventName == nil) {
@@ -217,7 +256,7 @@
 	NSNumber *time_obj = (NSNumber*)[dict objectForKey:@"time_sent"];
 	if (time_obj == nil) {
 		NSLog(@"time not attached... problem?");
-	}	
+	}
 	
 	id<ASDataSyncee> syncee = [self handlerForEvent:eventName];
 	if(syncee == nil) {

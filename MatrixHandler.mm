@@ -51,8 +51,13 @@ MatrixHandler::MatrixHandler() {
 	bpm = 480.; //actually 120
 	
 	//set up networking junk
+	/*
 	NSLog(@"matrixhandler makear");
 	networkHandler = [[MatrixNetworkHandler alloc] init]; //TODO: MEMORY LEAK!!!
+	 */
+	NSLog(@"gonna test some of that newar awesomenetworker");
+	awesomeNetworker = [[AwesomeNetworker alloc] init];
+	
 	
 	NSLog(@"setting up the awesome server delegate");
 	serverDelegate = [[AwesomeServerDelegate alloc] init]; //TODO: MEMORY LEAK!!!
