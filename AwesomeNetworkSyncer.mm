@@ -151,7 +151,7 @@
 -(void)sendInstrumentChanged:(int)instrument withIndex:(int)index onTrack:(int)trackId {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:instrument], @"instrument_id",
 																	[NSNumber numberWithInt:index], @"index",
-																	[NSNumber numberWithInt:trackId], @"track_id", nil] withEventName:@"instument_change"];
+																	[NSNumber numberWithInt:trackId], @"track_id", nil] withEventName:@"instrument_change"];
 }
 
 @end
