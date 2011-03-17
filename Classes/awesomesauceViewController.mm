@@ -140,8 +140,6 @@ enum {
     
     [super viewWillAppear:animated];
 	
-	HUD = [[HUDHandler alloc] initWithWindow:self.view.window];
-	[HUD registerListeners];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -155,6 +153,10 @@ enum {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	HUD = [[HUDHandler alloc] init];
+	HUD.window = self.view.window;
+	[HUD registerListeners];
 }
 
 - (void)initializeControls {
