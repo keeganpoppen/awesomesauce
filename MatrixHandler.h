@@ -30,7 +30,7 @@ public:
 	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
 	void changeInstrument(int newInst, int index);
-	void clearCurrentMatrix();
+	void clearCurrentMatrix(bool sendNotification = true);
 	void displayCurrentMatrix();
 	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
