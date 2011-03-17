@@ -156,7 +156,7 @@
 
 @synthesize networker;
 @synthesize squareSync;
-@synthesize trackAddSync, trackRemoveSync, futureStartSync, instrumentChangeSync;
+@synthesize trackAddSync, trackRemoveSync, trackClearSync, futureStartSync, instrumentChangeSync;
 
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler {
@@ -178,6 +178,11 @@
 		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
 		trackRemoveSync.networker = networker;
 		trackRemoveSync.matrixHandler = handler;
+		
+		trackClearSync = [[TrackClearSync alloc] init];
+		[networker registerEventHandler:@"track_clear" withSyncee:trackClearSync];
+		trackClearSync.networker = networker;
+		trackClearSync.matrixHandler = handler;
 		
 		futureStartSync = [[FutureStartSync alloc] init];
 		[networker registerEventHandler:@"future_start" withSyncee:futureStartSync];

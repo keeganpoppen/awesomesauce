@@ -91,7 +91,7 @@ void MatrixHandler::clearCurrentMatrix(bool sendNotification) {
 	getCurrentMatrix()->clear();
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp trackClearedSync] sendTrackClearedWithId:getCurrentMatrix()->track_id];
+		[[temp trackClearSync] sendTrackClearedWithId:getCurrentMatrix()->track_id];
 	}
 }
 
