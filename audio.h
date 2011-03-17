@@ -16,3 +16,5 @@ static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
 void audioInit();
 void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices);
 void setPlayback(bool inval);
+void setMute(bool inval);
+void toggleMute();

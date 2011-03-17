@@ -19,12 +19,22 @@
 using namespace stk;
 
 bool playback_on = true;
+bool is_mute = false;
 
 void setPlayback(bool inval) {
 	playback_on = inval;
 }
 
+void setMute(bool inval) {
+	is_mute = inval;
+}
+
+void toggleMute() {
+	is_mute = !is_mute;
+}
+
 void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices) {
+	if(is_mute) { return; }
 	int col = matrix->getColumn();
 	
 	for (UInt32 i = 0; i < numFrames; ++i) {
@@ -58,6 +68,7 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 }
 
 void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
+	if(is_mute) { return; }
 	for (int i = 0; i < numFrames; ++i) buffer[2*i] = buffer[2*i + 1] = 0.;
 	if(playback_on) {
 		[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] sonifyMatricesInfoBuffer:buffer withNumFrames:numFrames withUserData:userData];
