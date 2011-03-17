@@ -131,6 +131,7 @@
 	SquareChangeSync *squareSync;
 	TrackAddSync *trackAddSync;
 	TrackRemoveSync *trackRemoveSync;
+	TrackClearSync *trackClearSync;
 	FutureStartSync *futureStartSync;
 	InstrumentChangeSync *instrumentChangeSync;
 }
@@ -141,6 +142,7 @@
 @property(nonatomic, retain) SquareChangeSync *squareSync;
 @property(nonatomic, retain) TrackAddSync *trackAddSync;
 @property(nonatomic, retain) TrackRemoveSync *trackRemoveSync;
+@property(nonatomic, retain) TrackClearSync *trackClearSync;
 @property(nonatomic, retain) FutureStartSync *futureStartSync;
 @property(nonatomic, retain) InstrumentChangeSync *instrumentChangeSync;
 
