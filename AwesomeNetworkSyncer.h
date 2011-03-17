@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ASDataSyncee.h"
-#import "AwesomeNetworker.h"
 #import "MatrixHandler.h"
 
 /**
@@ -16,6 +15,8 @@
  * Sync objects for all the matrix attribtues
  *
  */
+
+@class AwesomeNetworker;
 
 //ASDataSyncee for square changes
 @interface SquareChangeSync : NSObject <ASDataSyncee>

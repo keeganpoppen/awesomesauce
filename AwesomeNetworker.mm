@@ -127,6 +127,8 @@
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	matrixHandler->decode(data);
+	
+	networker.networkSyncer = [[AwesomeNetworkSyncer alloc] init];
 }
 
 
@@ -138,6 +140,7 @@
 @synthesize handlerMap;
 @synthesize session;
 @synthesize timeSync, loadDataSync;
+@synthesize networkSyncer;
 
 
 - (id)init {

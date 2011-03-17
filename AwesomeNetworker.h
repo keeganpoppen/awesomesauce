@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 #import "ASDataSyncee.h"
+//#import "AwesomeNetworkSyncer.h"
 
 //forward declaration (obviously)
 @class AwesomeNetworker;
+@class AwesomeNetworkSyncer;
 
 //ASDataSyncee for time sync messages
 @interface TimeSync : NSObject <ASDataSyncee>
@@ -59,6 +61,7 @@
 	GKSession *session;
 	TimeSync *timeSync;
 	LoadDataSync *loadDataSync;
+	AwesomeNetworkSyncer *networkSyncer;
 }
 
 /*
@@ -92,5 +95,6 @@
 @property(nonatomic, retain) GKSession *session;
 @property(nonatomic, retain) TimeSync *timeSync;
 @property(nonatomic, retain) LoadDataSync *loadDataSync;
+@property(nonatomic, retain) AwesomeNetworkSyncer *networkSyncer;
 
 @end
