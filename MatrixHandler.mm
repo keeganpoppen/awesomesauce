@@ -65,8 +65,8 @@ void MatrixHandler::addNewMatrix(bool sendNotification) {
 	TouchMatrix *newMatrix = new TouchMatrix();
 	newMatrix->track_id = matrices.size();
 	matrices.push_back(newMatrix);
-	currentMatrix = matrices.size() - 1;
 	if(sendNotification) {
+		currentMatrix = matrices.size() - 1;
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp trackAddSync] sendTrackAddedWithId:newMatrix->track_id];
 	}
@@ -75,8 +75,8 @@ void MatrixHandler::addNewMatrix(bool sendNotification) {
 void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification) {
 	matrix->track_id = matrices.size();
 	matrices.push_back(matrix);
-	currentMatrix = matrices.size() - 1;
 	if(sendNotification) {
+		currentMatrix = matrices.size() - 1;
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp trackAddSync] sendTrackAddedWithId:matrix->track_id];
 	}
@@ -136,9 +136,11 @@ void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 	getCurrentMatrix()->setFutureSquare(row, col, value);
 }
 
-void MatrixHandler::changeInstrument(int newVal, int index) {
+void MatrixHandler::changeInstrument(int newVal, int index, bool sendNotification) {
 	getCurrentMatrix()->setOscillator(newVal, index);
-	//trackEditedEvent(currentMatrix, getCurrentMatrix()->isOn, newInst);
+	if(sendNotification) {
+		//TODO: send notification
+	}
 }
 
 void MatrixHandler::advanceTime(float timeElapsed) {
@@ -241,8 +243,12 @@ NSDictionary *MatrixHandler::encode() {
 	return dict;
 }
 
-void MatrixHandler::startFuture(int future_length) {
+void MatrixHandler::startFuture(int future_length, bool sendNotification) {
 	getCurrentMatrix()->startFuture(future_length);
+	if(sendNotification) {
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];//TODO
+	}
 }
 
 void MatrixHandler::cancelFuture() {
@@ -267,4 +273,8 @@ void MatrixHandler::decode(NSDictionary *dict) {
 
 TouchMatrix *MatrixHandler::getCurrentMatrix() {
 	return matrices[currentMatrix];
+}
+
+TouchMatrix *MatrixHandler::getMatrix(int matrix_id) {
+	return matrices[matrix_id];
 }

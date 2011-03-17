@@ -29,7 +29,7 @@ public:
 	void addNewMatrix(bool sendNotification = true);
 	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
-	void changeInstrument(int newInst, int index);
+	void changeInstrument(int newInst, int index, bool sendNotification = true);
 	void clearCurrentMatrix(bool sendNotification = true);
 	void displayCurrentMatrix();
 	void setMatrixOn(int trackId, bool newOnState);
@@ -44,13 +44,14 @@ public:
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();
-	void startFuture(int future_length);
+	void startFuture(int future_length, bool sendNotification=true);
 	void cancelFuture();
 	AwesomeNetworkSyncer *getSyncer();
 	
 	void saveCurrentComposition(NSString *name);
 	
 	TouchMatrix *getCurrentMatrix();
+	TouchMatrix *getMatrix(int matrix_id);
 	
 	vector<TouchMatrix *> matrices;
 	int currentMatrix;

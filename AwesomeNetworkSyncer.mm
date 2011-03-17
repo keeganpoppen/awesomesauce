@@ -25,10 +25,10 @@
 	NSLog(@"Square at (%d,%d) in matrix %@ should change to value: %d on track: %d", row, column, matrix, value, track_id);
 	
 	if ([matrix caseInsensitiveCompare:@"future"] == NSOrderedSame) {
-		matrixHandler->getCurrentMatrix()->setFutureSquare(row, column, value);
+		matrixHandler->getMatrix(track_id)->setFutureSquare(row, column, value);
 		//TODO: set the square in the future matrix. This also implies the JITness of creating a future matrix if !exists
 	} else {
-		matrixHandler->getCurrentMatrix()->setSquare(row, column, value);
+		matrixHandler->getMatrix(track_id)->setSquare(row, column, value);
 		//TODO: set square in the current matrix
 	}
 
@@ -117,8 +117,7 @@
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	int futureLength = [[data objectForKey:@"length"] intValue];
 	int trackId = [[data objectForKey:@"track_id"] intValue];
-	
-	//TODO: SOMETHING
+	matrixHandler->getMatrix(trackId)->startFuture(futureLength);
 }
 
 -(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId {
