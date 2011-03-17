@@ -10,6 +10,7 @@
 #import "SocialViewController.h"
 
 @interface CompositionsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	id <FlipViewProtocol, SocialViewProtocol> delegate;
 	SocialViewController *parent;
 	
 	NSMutableArray *compIds;
@@ -25,25 +26,21 @@
 	IBOutlet UILabel *loadingText;
 }
 
-- (IBAction)shareTrack:(id)sender;
--(void)uploadDone;
--(void)compositionsLoaded:(NSNotification*)notification;
--(void)downloadedComposition:(NSNotification*)notification;
-
 @property(nonatomic, retain) SocialViewController *parent;
-
 @property(nonatomic, retain) NSMutableArray *compIds;
 @property(nonatomic, retain) NSMutableDictionary *compMap;
-
 @property(nonatomic, retain) IBOutlet UITableView *downloads;
-
 @property(nonatomic, retain) IBOutlet UITextField *uploadName;
 @property(nonatomic, retain) IBOutlet UIButton *shareButton;
-
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property(nonatomic, retain) IBOutlet UILabel *loadingText;
+@property(nonatomic, retain) id <FlipViewProtocol, SocialViewProtocol> delegate;
 
 - (IBAction)returnToMain:(id)sender;
+- (IBAction)shareTrack:(id)sender;
+- (void)uploadDone;
+- (void)compositionsLoaded:(NSNotification*)notification;
+- (void)downloadedComposition:(NSNotification*)notification;
 
 //UITableViewDataSource methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;

@@ -17,7 +17,7 @@
 
 #import "MixerView.h"
 #import "SynthViewController.h"
-#import "SocialViewController.h"
+#import "CompositionsViewController.h"
 #import "FlipViewProtocol.h"
 
 @interface awesomesauceViewController : UIViewController <SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
