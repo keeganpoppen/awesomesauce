@@ -45,8 +45,6 @@
 		2D84D8C71331E81100335668 /* plus_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8C41331E81100335668 /* plus_clicked.png */; };
 		2DACE60E131B5401004EE909 /* SynthViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DACE60C131B5401004EE909 /* SynthViewController.mm */; };
 		2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE60D131B5401004EE909 /* SynthViewController.xib */; };
-		2DACE652131B5C57004EE909 /* ArrangeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DACE650131B5C57004EE909 /* ArrangeViewController.mm */; };
-		2DACE653131B5C57004EE909 /* ArrangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE651131B5C57004EE909 /* ArrangeViewController.xib */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
 		3DDC00F91332106F00912DF8 /* AwesomeNetworkSyncer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */; };
@@ -251,9 +249,6 @@
 		2DACE60B131B5401004EE909 /* SynthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthViewController.h; sourceTree = "<group>"; };
 		2DACE60C131B5401004EE909 /* SynthViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SynthViewController.mm; sourceTree = "<group>"; };
 		2DACE60D131B5401004EE909 /* SynthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SynthViewController.xib; path = Classes/SynthViewController.xib; sourceTree = "<group>"; };
-		2DACE64F131B5C57004EE909 /* ArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrangeViewController.h; sourceTree = "<group>"; };
-		2DACE650131B5C57004EE909 /* ArrangeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrangeViewController.mm; sourceTree = "<group>"; };
-		2DACE651131B5C57004EE909 /* ArrangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArrangeViewController.xib; path = Classes/ArrangeViewController.xib; sourceTree = "<group>"; };
 		2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipViewProtocol.h; sourceTree = "<group>"; };
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
@@ -565,8 +560,6 @@
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 				2D66646213094CFE00E962A4 /* MixerView.h */,
 				2D66646313094CFE00E962A4 /* MixerView.mm */,
-				2DACE64F131B5C57004EE909 /* ArrangeViewController.h */,
-				2DACE650131B5C57004EE909 /* ArrangeViewController.mm */,
 				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,
 				2D2A7CC01324F8A3006EFED0 /* ArrangeTableViewCell.mm */,
 			);
@@ -637,7 +630,6 @@
 				2D6665F913096CAE00E962A4 /* blue_gradient.png */,
 				2D2A7CC8132501B9006EFED0 /* ArrangeTableViewCell.xib */,
 				2D5C672513248F12009676BA /* SocialViewController.xib */,
-				2DACE651131B5C57004EE909 /* ArrangeViewController.xib */,
 				2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */,
 				2DACE60D131B5401004EE909 /* SynthViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -1079,7 +1071,6 @@
 				2D66660613096E4900E962A4 /* white_gradient3.png in Resources */,
 				2DBB53651309735600DCA380 /* square_texture3.png in Resources */,
 				2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */,
-				2DACE653131B5C57004EE909 /* ArrangeViewController.xib in Resources */,
 				2D5C672713248F12009676BA /* SocialViewController.xib in Resources */,
 				2D2A7CC9132501B9006EFED0 /* ArrangeTableViewCell.xib in Resources */,
 				2D2A7D74132534EE006EFED0 /* GlobeViewController.xib in Resources */,
@@ -1205,7 +1196,6 @@
 				2D66610F1309169900E962A4 /* AwesomeSynth.mm in Sources */,
 				2D66646413094CFE00E962A4 /* MixerView.mm in Sources */,
 				2DACE60E131B5401004EE909 /* SynthViewController.mm in Sources */,
-				2DACE652131B5C57004EE909 /* ArrangeViewController.mm in Sources */,
 				F20347DD131C21B400FA19FE /* AwesomeServerDelegate.mm in Sources */,
 				F2034812131C257200FA19FE /* NSObject+SBJSON.m in Sources */,
 				F2034813131C257200FA19FE /* NSString+SBJSON.m in Sources */,

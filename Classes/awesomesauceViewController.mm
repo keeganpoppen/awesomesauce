@@ -48,6 +48,8 @@ enum {
 @synthesize saveFutureButton;
 @synthesize cancelFutureButton;
 @synthesize futureLengthSlider;
+@synthesize futureLengthLabel;
+@synthesize futureLengthTitle;
 @synthesize futureDescription;
 @synthesize track1, track2, track3, track4, track5;
 @synthesize tracks;
@@ -144,19 +146,24 @@ enum {
 	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
-	saveFutureButton.frame = CGRectMake(20.0, 210.0, 160.0, 40.0);
+	saveFutureButton.frame = CGRectMake(20.0, 90.0, 210.0, 40.0);
 	[self.view addSubview:saveFutureButton];
 	
 	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
-	cancelFutureButton.frame = CGRectMake(20.0, 270.0, 160.0, 40.0);
+	cancelFutureButton.frame = CGRectMake(20.0, 150.0, 210.0, 40.0);
 	[self.view addSubview:cancelFutureButton];
 	
-	CGRect sliderFrame = CGRectMake(20.0, 330.0, 160.0, 10.0);
+	CGRect sliderTitleFrame = CGRectMake(20.0, 210.0, 210.0, 30.0);
+	futureLengthTitle = [[UILabel alloc] initWithFrame:sliderTitleFrame];
+	futureLengthTitle.text = @"Automation Length";
+	[self.view addSubview:futureLengthTitle];
+	
+	CGRect sliderFrame = CGRectMake(20.0, 250.0, 160.0, 10.0);
 	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
 	//TODO: a bpm label?
-    //[futureLengthSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+    [futureLengthSlider addTarget:self action:@selector(futureLengthChanged:) forControlEvents:UIControlEventValueChanged];
     [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
     futureLengthSlider.minimumValue = 2;
     futureLengthSlider.maximumValue = 16;
@@ -164,22 +171,27 @@ enum {
     futureLengthSlider.value = 8;
 	[self.view addSubview:futureLengthSlider];
 	
-	CGRect descFrame = CGRectMake(20.0, 360.0, 160.0, 380.0);
+	CGRect sliderLabelFrame = CGRectMake(190.0, 250.0, 50.0, 30.0);
+	futureLengthLabel = [[UILabel alloc] initWithFrame:sliderLabelFrame];
+	futureLengthLabel.text = @"8";
+	[self.view addSubview:futureLengthLabel];
+	
+	CGRect descFrame = CGRectMake(20.0, 270.0, 210.0, 380.0);
 	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
 	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
+	futureDescription.lineBreakMode = UILineBreakModeWordWrap;
+	futureDescription.numberOfLines = 0;
 	[self.view addSubview:futureDescription];
-	
-	[saveFutureButton setHidden:YES];
-	[cancelFutureButton setHidden:YES];
-	[futureLengthSlider setHidden:YES];
-	[futureDescription setHidden:YES];
 	
 	//add items to arrays
 	futureControls = [[NSMutableArray alloc] init];
 	[futureControls addObject:saveFutureButton];
 	[futureControls addObject:cancelFutureButton];
 	[futureControls addObject:futureLengthSlider];
+	[futureControls addObject:futureLengthLabel];
+	[futureControls addObject:futureLengthTitle];
 	[futureControls addObject:futureDescription];
+	
 	NSEnumerator *futureEnum = [futureControls objectEnumerator];
 	UIView *element;
 	while(element = (UIView *)[futureEnum nextObject])
@@ -199,6 +211,11 @@ enum {
 	[mainControls addObject:addTrackLabel];
 	[mainControls addObject:clearTrackLabel];
 	[mainControls addObject:futureLabel];
+}
+
+- (void)futureLengthChanged:(UISlider *)slider {
+	NSString *string = [NSString stringWithFormat:@"%d", futureLengthSlider.value];
+	futureLengthLabel.text = string;
 }
 
 - (void)initializeMixer {
@@ -387,23 +404,6 @@ enum {
 	[controller release];
 }
 
-// button action
-- (IBAction) flipToArrangeView:(id)sender {
-	setMainScreen(false);
-	ArrangeViewController *controller = [[ArrangeViewController alloc] initWithNibName:@"ArrangeViewController" bundle:nil];
-	controller.delegate = self;
-	
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
-	
-	//TODO: initialize controller with params, e.g. current track num, bpm, etc
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	[[controller bpmSlider] setValue:(mh->bpm / 4.0)];
-	
-	
-	[controller release];
-}
-
 - (IBAction)flipToSocialView:(id)sender {
 	setMainScreen(false);
 	SocialViewController *controller = [[SocialViewController alloc] initWithNibName:@"SocialViewController" bundle:nil];
@@ -482,7 +482,7 @@ enum {
 	return mh;
 }
 
-// delegate methods for ArrangeViewProtocol
+// delegate methods for ArrangeViewProtocol which no longer exists
 -(void) changeBpm:(float)newBpm {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm(newBpm);

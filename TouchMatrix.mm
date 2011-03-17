@@ -28,17 +28,25 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 	//setInst(instToCopy);
 	
 	NSMutableArray *notes = [fromDictionary objectForKey:@"notes"];
+	NSMutableArray *futureNotes = [fromDictionary objectForKey:@"futureNotes"];
 	
 	NSLog(@"NOTES: %@", notes);
 	
 	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 16; ++j) {
 			bool val = [[notes objectAtIndex:(i*16 + j)] boolValue];
+			bool futureVal = [[futureNotes objectAtIndex:(i*16 + j)] boolValue];
 			setSquare(i, j, val);
+			setFutureSquare(i, j, futureVal);
 		}
 	}
 	
 	track_id = [[fromDictionary objectForKey:@"track_id"] intValue];
+	future_steps_remaining = [[fromDictionary objectForKey:@"future_steps_remaining"] intValue];
+	is_futuring = [[fromDictionary objectForKey:@"is_futuring"] boolValue];
+	setOscillator([[fromDictionary objectForKey:@"inst0"] intValue], 0);
+	setOscillator([[fromDictionary objectForKey:@"inst1"] intValue], 1);
+	setOscillator([[fromDictionary objectForKey:@"inst2"] intValue], 2);
 }
 
 /*
@@ -51,17 +59,25 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	//flatten squares array (NOTE: technically this is probably the same as the squares array already is in memory...)
 	//NSMutableArray *flat_notes = [NSMutableArray arrayWithCapacity:256];
 	NSMutableArray *flat_notes = [[[NSMutableArray alloc] initWithCapacity:256] retain];
+	NSMutableArray *future_notes = [[[NSMutableArray alloc] initWithCapacity:256] retain];
 	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 16; ++j) {
 			NSNumber *boolnum = [[[NSNumber alloc] initWithBool:squares[i][j]] retain];
 			[flat_notes insertObject:boolnum atIndex:(i*16 + j)];
+			
+			NSNumber *boolnum2 = [[[NSNumber alloc] initWithBool:futureSquares[i][j]] retain];
+			[future_notes insertObject:boolnum2 atIndex:(i*16 + j)];
 		}
 	}
 	
 	[dict setObject:flat_notes forKey:@"notes"];
-	
+	[dict setObject:future_notes forKey:@"futureNotes"];
 	[dict setObject:[NSNumber numberWithInt:track_id] forKey:@"track_id"];
-	//[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
+	[dict setObject:[NSNumber numberWithInt:future_steps_remaining] forKey:@"future_steps_remaining"];
+	[dict setObject:[NSNumber numberWithBool:is_futuring] forKey:@"is_futuring"];
+	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(0)] forKey:@"inst0"];
+	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(1)] forKey:@"inst1"];
+	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(2)] forKey:@"inst2"];
 	
 	//return [dict autorelease];
 	return dict;

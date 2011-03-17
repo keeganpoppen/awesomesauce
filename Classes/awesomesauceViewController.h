@@ -17,11 +17,10 @@
 
 #import "MixerView.h"
 #import "SynthViewController.h"
-#import "ArrangeViewController.h"
 #import "SocialViewController.h"
 #import "FlipViewProtocol.h"
 
-@interface awesomesauceViewController : UIViewController <ArrangeViewProtocol, SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
+@interface awesomesauceViewController : UIViewController <SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
@@ -53,6 +52,8 @@
 	UIButton *saveFutureButton;
 	UIButton *cancelFutureButton;
 	UISlider *futureLengthSlider;
+	UILabel *futureLengthLabel;
+	UILabel *futureLengthTitle;
 	UILabel *futureDescription;
 	
 	NSMutableArray *tracks;
@@ -83,6 +84,8 @@
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
+@property (nonatomic, retain) UILabel *futureLengthLabel;
+@property (nonatomic, retain) UILabel *futureLengthTitle;
 @property (nonatomic, retain) UILabel *futureDescription;
 @property (nonatomic, retain) NSMutableArray *tracks;
 @property (nonatomic, retain) NSMutableArray *futureControls;
@@ -97,10 +100,10 @@
 - (void)saveFuture:(id)sender;
 - (void)cancelFuture:(id)sender;
 - (void)toggleMainScreen:(bool)isMain;
+- (void)futureLengthChanged:(UISlider *)slider;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)flipToSynthView:(id)sender;
-- (IBAction)flipToArrangeView:(id)sender;
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;
