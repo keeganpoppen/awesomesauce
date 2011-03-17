@@ -136,9 +136,11 @@ void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 	getCurrentMatrix()->setFutureSquare(row, col, value);
 }
 
-void MatrixHandler::changeInstrument(int newVal, int index) {
+void MatrixHandler::changeInstrument(int newVal, int index, bool sendNotification) {
 	getCurrentMatrix()->setOscillator(newVal, index);
-	//trackEditedEvent(currentMatrix, getCurrentMatrix()->isOn, newInst);
+	if(sendNotification) {
+		//TODO: send notification
+	}
 }
 
 void MatrixHandler::advanceTime(float timeElapsed) {
@@ -241,9 +243,9 @@ NSDictionary *MatrixHandler::encode() {
 	return dict;
 }
 
-void MatrixHandler::startFuture(int future_length, bool send_notification) {
+void MatrixHandler::startFuture(int future_length, bool sendNotification) {
 	getCurrentMatrix()->startFuture(future_length);
-	if(send_notification) {
+	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];//TODO
 	}
