@@ -20,6 +20,8 @@
 #import "SocialViewController.h"
 #import "FlipViewProtocol.h"
 
+#import "HUDHandler.h"
+
 @interface awesomesauceViewController : UIViewController <SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
 {
     EAGLContext *context;
@@ -60,6 +62,9 @@
 	NSMutableArray *futureControls;
 	NSMutableArray *mainControls;
 	int numTracks;
+	
+	//cool HUD
+	HUDHandler *HUD;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -90,6 +95,8 @@
 @property (nonatomic, retain) NSMutableArray *tracks;
 @property (nonatomic, retain) NSMutableArray *futureControls;
 @property (nonatomic, retain) NSMutableArray *mainControls;
+
+@property (nonatomic, retain) HUDHandler *HUD;
 
 - (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;

@@ -12,6 +12,7 @@
 #import "awesomesauceAppDelegate.h"
 #import "EAGLView.h"
 #import "graphics.h"
+#import "HUDHandler.h"
 
 // Uniform index.
 enum {
@@ -55,6 +56,7 @@ enum {
 @synthesize tracks;
 @synthesize futureControls;
 @synthesize mainControls;
+@synthesize HUD;
 
 - (void)awakeFromNib
 {
@@ -137,6 +139,10 @@ enum {
     [self startAnimation];
     
     [super viewWillAppear:animated];
+	
+	HUD = [[HUDHandler alloc] init];
+	HUD.window  = self.view.window;
+	[HUD registerListeners];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -144,6 +150,8 @@ enum {
     [self stopAnimation];
     
     [super viewWillDisappear:animated];
+	
+	[HUD unregisterListeners];
 }
 
 - (void)viewDidLoad {
