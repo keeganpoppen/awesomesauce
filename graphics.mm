@@ -16,7 +16,7 @@ bool on_main_screen = true;
 bool pad_is_on;
 bool current_touches[16][16];
 GLuint g_texture[3];
-static const GLfloat half_width = 22;
+static const GLfloat half_width = 24;
 bool future_mode = false;
 
 void setMainScreen(bool newVal) {
