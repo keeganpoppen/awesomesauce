@@ -100,14 +100,22 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+		
 		squareSync = [[SquareChangeSync alloc] init];
 		[networker registerEventHandler:@"square_change" withSyncee:squareSync];
+		squareSync.networker = self;
+		squareSync.matrixHandler = matrixHandler;
 		
 		trackAddSync = [[TrackAddSync alloc] init];
 		[networker registerEventHandler:@"track_add" withSyncee:trackAddSync];
+		trackAddSync.networker = self;
+		trackAddSync.matrixHandler = matrixHandler;
 		
 		trackRemoveSync = [[TrackRemoveSync alloc] init];
 		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
+		trackRemoveSync.networker = self;
+		trackRemoveSync.matrixHandler = matrixHandler;
 	}
 	return self;
 }
