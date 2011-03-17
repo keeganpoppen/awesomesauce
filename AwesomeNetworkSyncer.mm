@@ -171,12 +171,14 @@
 }
 
 -(void)sendBPMChanged:(float)bpm {
-	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:bpm],@"bpm",nil] withEventName:@"bpm_change"];
-	NSLog(@"sending bpm changed");
+	//NSLog(@"sending bpm changed1: %f", bpm);
+	float tempBpm = matrixHandler->bpm;
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:tempBpm],@"bpm",nil] withEventName:@"bpm_change"];
+	//NSLog(@"sending bpm changed2: %f", bpm);
 }
 
 @end
-	 
+
 
 @implementation AwesomeNetworkSyncer
 
