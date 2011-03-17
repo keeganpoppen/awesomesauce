@@ -155,7 +155,8 @@ enum {
 	[super viewDidLoad];
 	
 	HUD = [[HUDHandler alloc] init];
-	HUD.window = self.view.window;
+	//HUD.window = self.view.window;
+	HUD.window = ((awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate]).window;
 	[HUD registerListeners];
 }
 
