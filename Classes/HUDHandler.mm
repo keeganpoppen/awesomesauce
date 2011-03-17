@@ -64,13 +64,12 @@
 	NSLog(@"HUD got hide message");
 	
 	[HUD hide:YES];
-	
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
 	[HUD release];
-	
 	HUD = nil;
-	
 	setMainScreen(true);
-	
 }
 
 @end
