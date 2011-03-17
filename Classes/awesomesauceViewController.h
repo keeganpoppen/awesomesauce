@@ -33,9 +33,13 @@
 	IBOutlet UIButton *addTrackButton;
 	IBOutlet UIButton *clearTrackButton;
 	IBOutlet UIButton *futureButton;
-	IBOutlet UIButton *arrangeButton;
-	IBOutlet UIButton *synthButton;
+	IBOutlet UILabel *addTrackLabel;
+	IBOutlet UILabel *clearTrackLabel;
+	IBOutlet UILabel *futureLabel;
 	IBOutlet UISlider *bpmSlider;
+	IBOutlet UILabel *bpmLabel1;
+	IBOutlet UILabel *bpmLabel2;
+	IBOutlet UILabel *bpmLabel3;
 	IBOutlet UISegmentedControl *instPicker;
 	
 	//table replacements
@@ -49,8 +53,11 @@
 	UIButton *saveFutureButton;
 	UIButton *cancelFutureButton;
 	UISlider *futureLengthSlider;
+	UILabel *futureDescription;
 	
 	NSMutableArray *tracks;
+	NSMutableArray *futureControls;
+	NSMutableArray *mainControls;
 	int numTracks;
 }
 
@@ -60,9 +67,13 @@
 @property (nonatomic, retain) IBOutlet UIButton *addTrackButton;
 @property (nonatomic, retain) IBOutlet UIButton *clearTrackButton;
 @property (nonatomic, retain) IBOutlet UIButton *futureButton;
-@property (nonatomic, retain) IBOutlet UIButton *arrangeButton;
-@property (nonatomic, retain) IBOutlet UIButton *synthButton;
+@property (nonatomic, retain) IBOutlet UILabel *addTrackLabel;
+@property (nonatomic, retain) IBOutlet UILabel *clearTrackLabel;
+@property (nonatomic, retain) IBOutlet UILabel *futureLabel;
 @property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
+@property (nonatomic, retain) IBOutlet UILabel *bpmLabel1;
+@property (nonatomic, retain) IBOutlet UILabel *bpmLabel2;
+@property (nonatomic, retain) IBOutlet UILabel *bpmLabel3;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *instPicker;
 @property (nonatomic, retain) IBOutlet MixerView *track1;
 @property (nonatomic, retain) IBOutlet MixerView *track2;
@@ -72,11 +83,16 @@
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
+@property (nonatomic, retain) UILabel *futureDescription;
+@property (nonatomic, retain) NSMutableArray *tracks;
+@property (nonatomic, retain) NSMutableArray *futureControls;
+@property (nonatomic, retain) NSMutableArray *mainControls;
 
 - (void)matrixChanged; //called whenever the matrix is changed
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)initializeMixer;
+- (void)initializeControls;
 - (void)trackAddedHandler:(NSNotification *)notification;
 - (void)saveFuture:(id)sender;
 - (void)cancelFuture:(id)sender;

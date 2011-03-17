@@ -65,6 +65,7 @@
 	
 	matrixHandler = new MatrixHandler();
 	[self.viewController initializeMixer];
+	[self.viewController initializeControls];
 	audioInit();
 	graphicsInit();
 	

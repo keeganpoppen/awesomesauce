@@ -39,14 +39,20 @@ enum {
 @synthesize addTrackButton;
 @synthesize clearTrackButton;
 @synthesize futureButton;
-@synthesize arrangeButton;
-@synthesize synthButton;
+@synthesize addTrackLabel;
+@synthesize clearTrackLabel;
+@synthesize futureLabel;
 @synthesize bpmSlider;
+@synthesize bpmLabel1, bpmLabel2, bpmLabel3;
+@synthesize instPicker;
 @synthesize saveFutureButton;
 @synthesize cancelFutureButton;
 @synthesize futureLengthSlider;
-@synthesize instPicker;
+@synthesize futureDescription;
 @synthesize track1, track2, track3, track4, track5;
+@synthesize tracks;
+@synthesize futureControls;
+@synthesize mainControls;
 
 - (void)awakeFromNib
 {
@@ -114,7 +120,20 @@ enum {
     [self startAnimation];
     
     [super viewWillAppear:animated];
-	
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self stopAnimation];
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+}
+
+- (void)initializeControls {
 	//set depressed button states
 	[addTrackButton setImage: [UIImage imageNamed: @"plus_clicked.png"] forState: UIControlStateHighlighted];
 	[clearTrackButton setImage: [UIImage imageNamed: @"delete_clicked.png"] forState: UIControlStateHighlighted];
@@ -136,6 +155,7 @@ enum {
 	
 	CGRect sliderFrame = CGRectMake(20.0, 330.0, 160.0, 10.0);
 	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
+	//TODO: a bpm label?
     //[futureLengthSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
     [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
     futureLengthSlider.minimumValue = 2;
@@ -144,21 +164,41 @@ enum {
     futureLengthSlider.value = 8;
 	[self.view addSubview:futureLengthSlider];
 	
+	CGRect descFrame = CGRectMake(20.0, 360.0, 160.0, 380.0);
+	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
+	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
+	[self.view addSubview:futureDescription];
 	
 	[saveFutureButton setHidden:YES];
 	[cancelFutureButton setHidden:YES];
 	[futureLengthSlider setHidden:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self stopAnimation];
-    
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
+	[futureDescription setHidden:YES];
+	
+	//add items to arrays
+	futureControls = [[NSMutableArray alloc] init];
+	[futureControls addObject:saveFutureButton];
+	[futureControls addObject:cancelFutureButton];
+	[futureControls addObject:futureLengthSlider];
+	[futureControls addObject:futureDescription];
+	NSEnumerator *futureEnum = [futureControls objectEnumerator];
+	UIView *element;
+	while(element = (UIView *)[futureEnum nextObject])
+    {
+		[element setHidden:YES];
+	}
+	
+	mainControls = [[NSMutableArray alloc] init];
+	[mainControls addObject:futureButton];
+	[mainControls addObject:clearTrackButton];
+	[mainControls addObject:addTrackButton];
+	[mainControls addObject:bpmSlider];
+	[mainControls addObject:instPicker];
+	[mainControls addObject:bpmLabel1];
+	[mainControls addObject:bpmLabel2];
+	[mainControls addObject:bpmLabel3];
+	[mainControls addObject:addTrackLabel];
+	[mainControls addObject:clearTrackLabel];
+	[mainControls addObject:futureLabel];
 }
 
 - (void)initializeMixer {
@@ -263,7 +303,6 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[currentlyEditingLabel setText:newText];
-	
 	
 	//highlight current track, unhighlight old track
 	NSEnumerator *enumerator = [tracks objectEnumerator];
@@ -398,24 +437,27 @@ enum {
 }
 
 -(void)toggleMainScreen:(bool)isMain {
-	[futureButton setHidden:!isMain];
-	[arrangeButton setHidden:!isMain];
-	[synthButton setHidden:!isMain];
-	[clearTrackButton setHidden:!isMain];
-	[addTrackButton setHidden:!isMain];
-	[bpmSlider setHidden:!isMain];
-	[instPicker setHidden:!isMain];
-	
-	NSEnumerator *enumerator = [tracks objectEnumerator];
-	MixerView *element;
-	while(element = (MixerView *)[enumerator nextObject])
+	NSEnumerator *mainEnum = [mainControls objectEnumerator];
+	UIView *element1;
+	while(element1 = (UIView *)[mainEnum nextObject])
     {
-		[element setHidden:!isMain];
+		[element1 setHidden:!isMain];
 	}
 	
-	[saveFutureButton setHidden:isMain];
-	[cancelFutureButton setHidden:isMain];
-	[futureLengthSlider setHidden:isMain];
+	NSEnumerator *enumerator = [tracks objectEnumerator];
+	MixerView *element2;
+	while(element2 = (MixerView *)[enumerator nextObject])
+    {
+		[element2 setHidden:!isMain];
+	}
+	
+	NSEnumerator *futureEnum = [futureControls objectEnumerator];
+	UIView *element3;
+	while(element3 = (UIView *)[futureEnum nextObject])
+    {
+		[element3 setHidden:isMain];
+	}
+	
 	setFutureMode(!isMain);
 }
 

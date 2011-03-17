@@ -609,7 +609,7 @@
 						<float key="IBUIMinValue">60</float>
 						<float key="IBUIMaxValue">180</float>
 					</object>
-					<object class="IBUILabel" id="574585595">
+					<object class="IBUILabel" id="628362342">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{21, 124}, {34, 21}}</string>
@@ -620,7 +620,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">clear</string>
-						<object class="NSFont" key="IBUIFont" id="642510065">
+						<object class="NSFont" key="IBUIFont" id="122295338">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
@@ -631,7 +631,7 @@
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
-					<object class="IBUILabel" id="1037763016">
+					<object class="IBUILabel" id="345125049">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{96, 124}, {34, 21}}</string>
@@ -642,14 +642,14 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">add</string>
-						<reference key="IBUIFont" ref="642510065"/>
+						<reference key="IBUIFont" ref="122295338"/>
 						<reference key="IBUITextColor" ref="1061714018"/>
 						<reference key="IBUIHighlightedColor" ref="503988474"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
-					<object class="IBUILabel" id="302477926">
+					<object class="IBUILabel" id="991711358">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{161, 124}, {59, 21}}</string>
@@ -660,14 +660,14 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">automate</string>
-						<reference key="IBUIFont" ref="642510065"/>
+						<reference key="IBUIFont" ref="122295338"/>
 						<reference key="IBUITextColor" ref="1061714018"/>
 						<reference key="IBUIHighlightedColor" ref="503988474"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
-					<object class="IBUISegmentedControl" id="393252539">
+					<object class="IBUISegmentedControl" id="856850273">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 153}, {230, 44}}</string>
@@ -1067,18 +1067,66 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">instPicker</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="393252539"/>
+						<reference key="destination" ref="856850273"/>
 					</object>
 					<int key="connectionID">124</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">instPickerChanged:</string>
-						<reference key="source" ref="393252539"/>
+						<reference key="source" ref="856850273"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">125</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bpmLabel1</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="550739628"/>
+					</object>
+					<int key="connectionID">126</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bpmLabel2</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="642123297"/>
+					</object>
+					<int key="connectionID">127</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bpmLabel3</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="478321992"/>
+					</object>
+					<int key="connectionID">128</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addTrackLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="345125049"/>
+					</object>
+					<int key="connectionID">129</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">clearTrackLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="628362342"/>
+					</object>
+					<int key="connectionID">130</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">futureLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="991711358"/>
+					</object>
+					<int key="connectionID">131</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1111,9 +1159,9 @@
 							<reference ref="853181661"/>
 							<reference ref="244014827"/>
 							<reference ref="452836511"/>
-							<reference ref="574585595"/>
-							<reference ref="1037763016"/>
-							<reference ref="302477926"/>
+							<reference ref="628362342"/>
+							<reference ref="345125049"/>
+							<reference ref="991711358"/>
 							<reference ref="392757124"/>
 							<reference ref="36047513"/>
 							<reference ref="165781218"/>
@@ -1123,7 +1171,7 @@
 							<reference ref="478321992"/>
 							<reference ref="642123297"/>
 							<reference ref="362293575"/>
-							<reference ref="393252539"/>
+							<reference ref="856850273"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1352,22 +1400,22 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">120</int>
-						<reference key="object" ref="574585595"/>
+						<reference key="object" ref="628362342"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">121</int>
-						<reference key="object" ref="1037763016"/>
+						<reference key="object" ref="345125049"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">122</int>
-						<reference key="object" ref="302477926"/>
+						<reference key="object" ref="991711358"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">123</int>
-						<reference key="object" ref="393252539"/>
+						<reference key="object" ref="856850273"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
 				</object>
@@ -1649,7 +1697,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">125</int>
+			<int key="maxID">131</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1851,13 +1899,17 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTrackButton</string>
-							<string>arrangeButton</string>
+							<string>addTrackLabel</string>
+							<string>bpmLabel1</string>
+							<string>bpmLabel2</string>
+							<string>bpmLabel3</string>
 							<string>bpmSlider</string>
 							<string>clearTrackButton</string>
+							<string>clearTrackLabel</string>
 							<string>currentlyEditingLabel</string>
 							<string>futureButton</string>
+							<string>futureLabel</string>
 							<string>instPicker</string>
-							<string>synthButton</string>
 							<string>track1</string>
 							<string>track2</string>
 							<string>track3</string>
@@ -1867,13 +1919,17 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
-							<string>UIButton</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UISlider</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UIButton</string>
+							<string>UILabel</string>
 							<string>UISegmentedControl</string>
-							<string>UIButton</string>
 							<string>MixerView</string>
 							<string>MixerView</string>
 							<string>MixerView</string>
@@ -1886,13 +1942,17 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTrackButton</string>
-							<string>arrangeButton</string>
+							<string>addTrackLabel</string>
+							<string>bpmLabel1</string>
+							<string>bpmLabel2</string>
+							<string>bpmLabel3</string>
 							<string>bpmSlider</string>
 							<string>clearTrackButton</string>
+							<string>clearTrackLabel</string>
 							<string>currentlyEditingLabel</string>
 							<string>futureButton</string>
+							<string>futureLabel</string>
 							<string>instPicker</string>
-							<string>synthButton</string>
 							<string>track1</string>
 							<string>track2</string>
 							<string>track3</string>
@@ -1906,8 +1966,20 @@
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">arrangeButton</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="name">addTrackLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">bpmLabel1</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">bpmLabel2</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">bpmLabel3</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">bpmSlider</string>
@@ -1918,6 +1990,10 @@
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">clearTrackLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">currentlyEditingLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
@@ -1926,12 +2002,12 @@
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">instPicker</string>
-								<string key="candidateClassName">UISegmentedControl</string>
+								<string key="name">futureLabel</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">synthButton</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="name">instPicker</string>
+								<string key="candidateClassName">UISegmentedControl</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">track1</string>
