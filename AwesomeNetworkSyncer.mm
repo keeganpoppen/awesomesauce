@@ -102,6 +102,7 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	int trackId = [[NSDictionary objectForKey:@"id"] intValue];
+	matrixHandler->getMatrix(trackId)->clear();
 }
 
 -(void)sendTrackClearedWithId:(int)trackId {

@@ -90,11 +90,8 @@ void MatrixHandler::setMatrixOn(int trackId, bool newOnState) {
 void MatrixHandler::clearCurrentMatrix(bool sendNotification) {
 	getCurrentMatrix()->clear();
 	if(sendNotification) {
-		/*
-		//TODO
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp trackClearedSync] sendTrackClearedWithId:matrix->track_id];
-		*/
 	}
 }
 
