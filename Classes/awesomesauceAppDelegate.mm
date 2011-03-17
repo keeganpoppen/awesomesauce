@@ -55,6 +55,10 @@
 	matrixHandler->addNewMatrix(sendNotification);
 }
 
+-(void) addMatrixInterface {
+	[self.viewController trackAddedInterface];
+}
+
 -(MatrixHandler *) getMatrixHandler {
 	return matrixHandler;
 }

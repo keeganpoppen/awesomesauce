@@ -63,6 +63,7 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	matrixHandler->addNewMatrix(false);
+	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addMatrixInterface];
 	NSLog(@"received addTrack");
 }
 

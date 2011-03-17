@@ -25,6 +25,7 @@
 -(void) displayMatrix;
 -(bool) toggleTouch:(int)row withYval:(int)col;
 -(void) setTouch:(int)row withYval:(int)col withBool:(bool)is_on;
+-(void) addMatrixInterface;
 
 -(MatrixHandler *) getMatrixHandler;
 

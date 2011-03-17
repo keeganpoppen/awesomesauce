@@ -95,6 +95,21 @@ enum {
 	}
 }
 
+- (void) trackAddedInterface {
+	numTracks++;
+	
+	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
+	[temp enableTrack:@"Sine"];
+	
+	[self matrixChanged];
+	
+	//TODO: 5 is a magic number so we should replace that at some point
+	//also the tableview not working is kinda lame
+	if(numTracks >= 5) {
+		addTrackButton.hidden = YES;
+	}
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
