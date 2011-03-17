@@ -108,23 +108,32 @@ AwesomeNetworkSyncer *MatrixHandler::getSyncer() {
 
 bool MatrixHandler::toggleSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleSquare(row, col);
-	//[awesomeNetworker.networkSyncer.squareSync presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled];
+	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+	if(temp != nil) {
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled];
+	}
 	return toggled;
 }
 
 void MatrixHandler::setSquare(int row, int col, bool value) {
-	//[awesomeNetworker.networkSyncer.squareSync presentMatrixSquareChangedAtRow:row andColumn:col toValue:value];
+	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+	if(temp != nil) {
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value];
+	}
 	getCurrentMatrix()->setSquare(row, col, value);
 }
 
 bool MatrixHandler::toggleFutureSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleFutureSquare(row, col);
-	//[awesomeNetworker.networkSyncer.squareSync futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled];
+	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+	if(temp != nil) {
+		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled];
+	}
 	return toggled;
 }
 
 void MatrixHandler::setFutureSquare(int row, int col, bool value) {
-	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;//getSyncer();
+	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
 		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:value];
 	}
