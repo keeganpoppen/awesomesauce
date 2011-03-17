@@ -205,7 +205,7 @@ void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
 	bpm = newBpm * 4.0;
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp bpmChangeSync] sendBpmChanged:newBpm];
+		[[temp bpmChangeSync] sendBPMChanged:newBpm];
 	}
 }
 

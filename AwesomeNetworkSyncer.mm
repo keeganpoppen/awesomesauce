@@ -165,6 +165,7 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	float bpm = [[data objectForKey:@"bpm_change"] floatValue];
+	matrixHandler->setBpm(bpm, false);
 }
 
 -(void)sendBPMChanged:(float)bpm {
