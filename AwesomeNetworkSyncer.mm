@@ -55,9 +55,6 @@
 @end
 
 
-
-
-
 //handler for track add messages
 @implementation TrackAddSync
 	 
@@ -101,7 +98,7 @@
 @synthesize matrixHandler;
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
-	int trackId = [[NSDictionary objectForKey:@"id"] intValue];
+	int trackId = [[data objectForKey:@"id"] intValue];
 	matrixHandler->getMatrix(trackId)->clear();
 }
 
@@ -127,6 +124,27 @@
 -(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:length],@"length",
 																	[NSNumber numberWithInt:trackId], @"track_id",nil] withEventName:@"future_start"];
+}
+
+@end
+
+//handler for track add messages
+@implementation InstrumentChangeSync
+
+@synthesize networker;
+@synthesize matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	int intrument_id = [[data objectForKey:@"instrument_id"] intValue];
+	int index = [[data objectForKey:@"index"] intValue];
+	int track_id = [[data objectForKey:@"track_id"] intValue];
+	matrixHandler->getMatrix(track_id)->setOscillator(intrument_id, index);
+}
+
+-(void)sendInstrumentChanged:(int)instrument withIndex:(int)index onTrack:(int)trackId {
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:instrument], @"instrument_id",
+																	[NSNumber numberWithInt:index], @"index",
+																	[NSNumber numberWithInt:trackId], @"track_id", nil] withEventName:@"instument_change"];
 }
 
 @end

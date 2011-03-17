@@ -91,7 +91,7 @@ void MatrixHandler::clearCurrentMatrix(bool sendNotification) {
 	getCurrentMatrix()->clear();
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp trackClearedSync] sendTrackClearedWithId:matrix->track_id];
+		[[temp trackClearedSync] sendTrackClearedWithId:getCurrentMatrix()->track_id];
 	}
 }
 
@@ -136,7 +136,8 @@ void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 void MatrixHandler::changeInstrument(int newVal, int index, bool sendNotification) {
 	getCurrentMatrix()->setOscillator(newVal, index);
 	if(sendNotification) {
-		//TODO: send notification
+		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
+		[[temp instrumentChangedSync] sendInstrumentChanged:newVal withIndex:index withTrackId:getCurrentMatrix()->track_id];
 	}
 }
 
@@ -244,7 +245,7 @@ void MatrixHandler::startFuture(int future_length, bool sendNotification) {
 	getCurrentMatrix()->startFuture(future_length);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];//TODO
+		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];
 	}
 }
 

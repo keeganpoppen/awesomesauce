@@ -43,6 +43,9 @@
 	MatrixHandler *matrixHandler;
 }
 
+-(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId;
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic) MatrixHandler *matrixHandler;
 
@@ -92,12 +95,26 @@
 	MatrixHandler *matrixHandler;
 }
 
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+-(void)sendTrackClearedWithId:(int)trackId;
+
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic) MatrixHandler *matrixHandler;
 
--(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+@end
 
--(void)sendTrackClearedWithId:(int)trackId;
+
+@interface InstrumentChangeSync : NSObject <ASDataSyncee>
+{
+	AwesomeNetworker *networker;
+	MatrixHandler *matrixHandler;
+}
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+-(void)sendInstrumentChanged:(int)instrument withIndex:(int)index onTrack:(int)trackId;
+
+@property(nonatomic, retain) AwesomeNetworker *networker;
+@property(nonatomic) MatrixHandler *matrixHandler;
 
 @end
 
