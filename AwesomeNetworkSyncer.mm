@@ -20,8 +20,9 @@
 	int row = [[data objectForKey:@"row"] intValue];
 	int column = [[data objectForKey:@"column"] intValue];
 	BOOL value = [[data	objectForKey:@"value"] boolValue];
+	int track_id = [[data objectForKey:@"track_id"] intValue];
 	
-	NSLog(@"Square at (%d,%d) in matrix %@ should change to value: %d", row, column, matrix, value);
+	NSLog(@"Square at (%d,%d) in matrix %@ should change to value: %d on track: %d", row, column, matrix, value, track_id);
 	
 	if ([matrix caseInsensitiveCompare:@"future"] == NSOrderedSame) {
 		matrixHandler->getCurrentMatrix()->setFutureSquare(row, column, value);
@@ -34,18 +35,19 @@
 	
 }
 
--(void)presentMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue {
-	[self sendSquareChangedInMatrix:@"present" AtRow:row andColumn:column toValue:squareValue];
+-(void)presentMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId {
+	[self sendSquareChangedInMatrix:@"present" AtRow:row andColumn:column toValue:squareValue withTrackId:trackId];
 }
 
--(void)futureMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue {
-	[self sendSquareChangedInMatrix:@"future" AtRow:row andColumn:column toValue:squareValue];	
+-(void)futureMatrixSquareChangedAtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId {
+	[self sendSquareChangedInMatrix:@"future" AtRow:row andColumn:column toValue:squareValue withTrackId:(int)trackId];	
 }
 
--(void)sendSquareChangedInMatrix:(NSString*)matrix AtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue {
+-(void)sendSquareChangedInMatrix:(NSString*)matrix AtRow:(int)row andColumn:(int)column toValue:(BOOL)squareValue withTrackId:(int)trackId{
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:row],@"row",
 																	[NSNumber numberWithInt:column], @"column",
 																	[NSNumber numberWithBool:squareValue], @"value",
+																	[NSNumber numberWithInt:trackId], @"track_id",
 																	matrix, @"matrix", nil] 
 		  withEventName:@"square_change"];
 }
@@ -92,6 +94,23 @@
 @end
 
 
+//ASDataSyncee for track removing
+@implementation TrackClearSync
+
+@synthesize networker;
+@synthesize matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	int trackId = [[NSDictionary objectForKey:@"id"] intValue];
+}
+
+-(void)sendTrackClearedWithId:(int)trackId {
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"id",[NSNumber numberWithInt:trackId],nil] withEventName:@"track_clear"];
+}
+
+@end
+
+
 //handler for track add messages
 @implementation FutureStartSync
 
@@ -100,12 +119,14 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	int futureLength = [[data objectForKey:@"length"] intValue];
+	int trackId = [[data objectForKey:@"track_id"] intValue];
 	
 	//TODO: SOMETHING
 }
 
--(void)sendFutureStartWithLength:(int)length {
-	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"length",[NSNumber numberWithInt:length],nil] withEventName:@"future_start"];
+-(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId {
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:length],@"length",
+																	[NSNumber numberWithInt:trackId], @"track_id",nil] withEventName:@"future_start"];
 }
 
 @end
@@ -115,7 +136,7 @@
 
 @synthesize networker;
 @synthesize squareSync;
-@synthesize trackAddSync, trackRemoveSync;
+@synthesize trackAddSync, trackRemoveSync, futureStartSync;
 
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler {
