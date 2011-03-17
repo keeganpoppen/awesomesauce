@@ -45,7 +45,8 @@ enum {
 @synthesize saveFutureButton;
 @synthesize cancelFutureButton;
 @synthesize futureLengthSlider;
-@synthesize track1, track2, track3, track4, track5, track6, track7;
+@synthesize instPicker;
+@synthesize track1, track2, track3, track4, track5;
 
 - (void)awakeFromNib
 {
@@ -79,9 +80,9 @@ enum {
 	
 	[self matrixChanged];
 	
-	//TODO: 7 is a magic number so we should replace that at some point
+	//TODO: 5 is a magic number so we should replace that at some point
 	//also the tableview not working is kinda lame
-	if(numTracks >= 7) {
+	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
 	}
 }
@@ -113,6 +114,11 @@ enum {
     [self startAnimation];
     
     [super viewWillAppear:animated];
+	
+	//set depressed button states
+	[addTrackButton setImage: [UIImage imageNamed: @"plus_clicked.png"] forState: UIControlStateHighlighted];
+	[clearTrackButton setImage: [UIImage imageNamed: @"delete_clicked.png"] forState: UIControlStateHighlighted];
+	[futureButton setImage: [UIImage imageNamed: @"future_clicked.png"] forState: UIControlStateHighlighted];
 	
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 	//add in new stuff
@@ -163,8 +169,6 @@ enum {
 	[tracks addObject:track3];
 	[tracks addObject:track4];
 	[tracks addObject:track5];
-	[tracks addObject:track6];
-	[tracks addObject:track7];
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
@@ -315,9 +319,9 @@ enum {
 	
 	[self matrixChanged];
 	
-	//TODO: 7 is a magic number so we should replace that at some point
+	//TODO: 5 is a magic number so we should replace that at some point
 	//also the tableview not working is kinda lame
-	if(numTracks >= 7) {
+	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
 	}
 }
@@ -417,6 +421,11 @@ enum {
 - (IBAction)bpmChanged:(UISlider *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm([sender value]);
+}
+
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
+	int newInst = [sender selectedSegmentIndex];
+	[self changeInstrument:newInst withIndex:0];
 }
 
 // delegate methods for FlipViewProtocol

@@ -40,6 +40,9 @@
 		2D84D8AA13313E0E00335668 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8A813313E0E00335668 /* delete.png */; };
 		2D84D8AB13313E0E00335668 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8A913313E0E00335668 /* plus.png */; };
 		2D84D8AD13313E7E00335668 /* future.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8AC13313E7E00335668 /* future.png */; };
+		2D84D8C51331E81100335668 /* delete_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8C21331E81100335668 /* delete_clicked.png */; };
+		2D84D8C61331E81100335668 /* future_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8C31331E81100335668 /* future_clicked.png */; };
+		2D84D8C71331E81100335668 /* plus_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8C41331E81100335668 /* plus_clicked.png */; };
 		2DACE60E131B5401004EE909 /* SynthViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DACE60C131B5401004EE909 /* SynthViewController.mm */; };
 		2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE60D131B5401004EE909 /* SynthViewController.xib */; };
 		2DACE652131B5C57004EE909 /* ArrangeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DACE650131B5C57004EE909 /* ArrangeViewController.mm */; };
@@ -240,6 +243,9 @@
 		2D84D8A813313E0E00335668 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		2D84D8A913313E0E00335668 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		2D84D8AC13313E7E00335668 /* future.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = future.png; sourceTree = "<group>"; };
+		2D84D8C21331E81100335668 /* delete_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_clicked.png; sourceTree = "<group>"; };
+		2D84D8C31331E81100335668 /* future_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = future_clicked.png; sourceTree = "<group>"; };
+		2D84D8C41331E81100335668 /* plus_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus_clicked.png; sourceTree = "<group>"; };
 		2DACE60B131B5401004EE909 /* SynthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthViewController.h; sourceTree = "<group>"; };
 		2DACE60C131B5401004EE909 /* SynthViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SynthViewController.mm; sourceTree = "<group>"; };
 		2DACE60D131B5401004EE909 /* SynthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SynthViewController.xib; path = Classes/SynthViewController.xib; sourceTree = "<group>"; };
@@ -606,6 +612,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2D84D8C21331E81100335668 /* delete_clicked.png */,
+				2D84D8C31331E81100335668 /* future_clicked.png */,
+				2D84D8C41331E81100335668 /* plus_clicked.png */,
 				2D84D8AC13313E7E00335668 /* future.png */,
 				2D84D8A813313E0E00335668 /* delete.png */,
 				2D84D8A913313E0E00335668 /* plus.png */,
@@ -1067,6 +1076,9 @@
 				2D84D8AA13313E0E00335668 /* delete.png in Resources */,
 				2D84D8AB13313E0E00335668 /* plus.png in Resources */,
 				2D84D8AD13313E7E00335668 /* future.png in Resources */,
+				2D84D8C51331E81100335668 /* delete_clicked.png in Resources */,
+				2D84D8C61331E81100335668 /* future_clicked.png in Resources */,
+				2D84D8C71331E81100335668 /* plus_clicked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

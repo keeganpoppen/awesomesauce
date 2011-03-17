@@ -36,6 +36,7 @@
 	IBOutlet UIButton *arrangeButton;
 	IBOutlet UIButton *synthButton;
 	IBOutlet UISlider *bpmSlider;
+	IBOutlet UISegmentedControl *instPicker;
 	
 	//table replacements
 	IBOutlet MixerView *track1;
@@ -43,8 +44,6 @@
 	IBOutlet MixerView *track3;
 	IBOutlet MixerView *track4;
 	IBOutlet MixerView *track5;
-	IBOutlet MixerView *track6;
-	IBOutlet MixerView *track7;
 	
 	//future ui
 	UIButton *saveFutureButton;
@@ -64,13 +63,12 @@
 @property (nonatomic, retain) IBOutlet UIButton *arrangeButton;
 @property (nonatomic, retain) IBOutlet UIButton *synthButton;
 @property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *instPicker;
 @property (nonatomic, retain) IBOutlet MixerView *track1;
 @property (nonatomic, retain) IBOutlet MixerView *track2;
 @property (nonatomic, retain) IBOutlet MixerView *track3;
 @property (nonatomic, retain) IBOutlet MixerView *track4;
 @property (nonatomic, retain) IBOutlet MixerView *track5;
-@property (nonatomic, retain) IBOutlet MixerView *track6;
-@property (nonatomic, retain) IBOutlet MixerView *track7;
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
@@ -90,5 +88,6 @@
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;
+- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 
 @end
