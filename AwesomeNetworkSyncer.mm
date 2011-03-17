@@ -63,11 +63,13 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	matrixHandler->addNewMatrix(false);
+	NSLog(@"received addTrack");
 }
 
 
 -(NSTimeInterval)sendTrackAddedWithId:(int)trackId {
 	return [networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"id",[NSNumber numberWithInt:trackId],nil] withEventName:@"track_add"];
+	NSLog(@"sending addTrack");
 }	 
 	 
 @end
