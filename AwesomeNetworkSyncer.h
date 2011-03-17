@@ -36,6 +36,20 @@
 
 @end
 
+//ASDataSyncee for future starting
+@interface FutureStartSync : NSObject <ASDataSyncee>
+{
+	AwesomeNetworker *networker;
+	MatrixHandler *matrixHandler;
+}
+
+@property(nonatomic, retain) AwesomeNetworker *networker;
+@property(nonatomic) MatrixHandler *matrixHandler;
+
+
+@end
+
+
 //ASDataSyncee for track adding
 @interface TrackAddSync : NSObject <ASDataSyncee>
 {
@@ -83,6 +97,7 @@
 	SquareChangeSync *squareSync;
 	TrackAddSync *trackAddSync;
 	TrackRemoveSync *trackRemoveSync;
+	FutureStartSync *futureStartSync;
 }
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler;
@@ -91,5 +106,6 @@
 @property(nonatomic, retain) SquareChangeSync *squareSync;
 @property(nonatomic, retain) TrackAddSync *trackAddSync;
 @property(nonatomic, retain) TrackRemoveSync *trackRemoveSync;
+@property(nonatomic, retain) FutureStartSync *futureStartSync;
 
 @end

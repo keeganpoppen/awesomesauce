@@ -53,6 +53,9 @@
 @end
 
 
+
+
+
 //handler for track add messages
 @implementation TrackAddSync
 	 
@@ -89,6 +92,23 @@
 @end
 
 
+//handler for track add messages
+@implementation FutureStartSync
+
+@synthesize networker;
+@synthesize matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	int futureLength = [[data objectForKey:@"length"] intValue];
+	
+	//TODO: SOMETHING
+}
+
+-(void)sendFutureStartWithLength:(int)length {
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"length",[NSNumber numberWithInt:length],nil] withEventName:@"future_start"];
+}
+
+@end
 	 
 
 @implementation AwesomeNetworkSyncer
@@ -117,6 +137,11 @@
 		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
 		trackRemoveSync.networker = networker;
 		trackRemoveSync.matrixHandler = handler;
+		
+		futureStartSync = [[FutureStartSync alloc] init];
+		[networker registerEventHandler:@"future_start" withSyncee:futureStartSync];
+		futureStartSync.networker = networker;
+		futureStartSync.matrixHandler = handler;
 	}
 	return self;
 }
