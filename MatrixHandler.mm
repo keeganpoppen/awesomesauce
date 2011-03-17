@@ -200,9 +200,11 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 
 void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
 	if(newBpm < 60.0 || newBpm > 180.0) {
+		NSLog(@"BPM invalid: %f", newBpm);
 		return;
 	}
 	bpm = newBpm * 4.0;
+	NSLog(@"BPM set: %f", newBpm);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp bpmChangeSync] sendBPMChanged:newBpm];
