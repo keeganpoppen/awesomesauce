@@ -160,9 +160,8 @@ enum {
 	futureLengthTitle.text = @"Automation Length";
 	[self.view addSubview:futureLengthTitle];
 	
-	CGRect sliderFrame = CGRectMake(20.0, 250.0, 160.0, 10.0);
+	CGRect sliderFrame = CGRectMake(20.0, 250.0, 160.0, 20.0);
 	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
-	//TODO: a bpm label?
     [futureLengthSlider addTarget:self action:@selector(futureLengthChanged:) forControlEvents:UIControlEventValueChanged];
     [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
     futureLengthSlider.minimumValue = 2;
@@ -176,7 +175,7 @@ enum {
 	futureLengthLabel.text = @"8";
 	[self.view addSubview:futureLengthLabel];
 	
-	CGRect descFrame = CGRectMake(20.0, 270.0, 210.0, 380.0);
+	CGRect descFrame = CGRectMake(20.0, 290.0, 210.0, 380.0);
 	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
 	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
 	futureDescription.lineBreakMode = UILineBreakModeWordWrap;
@@ -214,7 +213,7 @@ enum {
 }
 
 - (void)futureLengthChanged:(UISlider *)slider {
-	NSString *string = [NSString stringWithFormat:@"%d", futureLengthSlider.value];
+	NSString *string = [NSString stringWithFormat:@"%d", (int)futureLengthSlider.value];
 	futureLengthLabel.text = string;
 }
 
@@ -422,7 +421,6 @@ enum {
 }
 
 - (void)saveFuture:(id)sender {
-	//TODO
 	NSLog(@"save future pressed");
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int len = (int)[futureLengthSlider value];
@@ -431,8 +429,9 @@ enum {
 }
 
 - (void)cancelFuture:(id)sender {
-	//TODO
 	NSLog(@"cancel future pressed");
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->cancelFuture();
 	[self toggleMainScreen:YES];
 }
 

@@ -211,6 +211,10 @@ void MatrixHandler::startFuture(int future_length) {
 	getCurrentMatrix()->startFuture(future_length);
 }
 
+void MatrixHandler::cancelFuture() {
+	getCurrentMatrix()->clearFuture();
+}
+
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
 		
