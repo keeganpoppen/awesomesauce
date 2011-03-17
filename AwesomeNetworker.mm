@@ -41,6 +41,16 @@
 	if (age_offset != nil) {
 		globalOffset = [age_offset doubleValue];
 		NSLog(@"global offset set to: ", globalOffset);
+		
+		/*
+		 * TODO!!!
+		 */
+		NSLog(@"YOOOOO!!!!!! YOU NEED TO SET THE REAL TIME!!!");
+		/*
+		 * TODO!!!
+		 */
+		
+		
 	} else if (time_received == nil) {
 		NSLog(@"gonna forward that packet right the fuck back, yo");
 		
@@ -118,8 +128,6 @@
 
 
 @end
-
-
 
 
 @implementation AwesomeNetworker
