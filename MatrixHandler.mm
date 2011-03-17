@@ -228,8 +228,6 @@ void MatrixHandler::decode(NSDictionary *dict) {
     }
 	
 	currentMatrix = 0;
-	time_elapsed = 0.0;
-	current_column = 0;
 	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];
 }
 
