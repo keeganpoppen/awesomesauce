@@ -7,6 +7,7 @@
 //
 
 #import "HUDHandler.h"
+#import "graphics.h"
 
 
 @implementation HUDHandler
@@ -31,12 +32,14 @@
 	}
 	HUD = [[MBProgressHUD alloc] initWithWindow:window];
 	
+	setMainScreen(false);
+	
 	NSLog(@"HUD got connecting message");
 	
 	NSString *username = [[notification userInfo] objectForKey:@"username"];
 	
 	HUD.mode = MBProgressHUDModeIndeterminate;
-	HUD.delegate = self;
+	//HUD.delegate = self;
 	HUD.labelText = @"reticulating splines";
 	HUD.detailsLabelText = [@"connecting with user: " stringByAppendingString:username];
 	HUD.removeFromSuperViewOnHide = YES;
@@ -64,6 +67,8 @@
 	NSLog(@"HUD got hide message");
 	
 	[HUD hide:YES];
+	
+	setMainScreen(true);
 	
 }
 

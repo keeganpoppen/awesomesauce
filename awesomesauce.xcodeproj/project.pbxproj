@@ -51,7 +51,7 @@
 		3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC032B13326B3200912DF8 /* MBProgressHUD.m */; };
 		3DDC032F13326B5100912DF8 /* Loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC032D13326B5100912DF8 /* Loading.png */; };
 		3DDC033013326B5100912DF8 /* Loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC032E13326B5100912DF8 /* Loading@2x.png */; };
-		3DDC033513326C6A00912DF8 /* HUDHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC033413326C6A00912DF8 /* HUDHandler.m */; };
+		3DDC033513326C6A00912DF8 /* HUDHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC033413326C6A00912DF8 /* HUDHandler.mm */; };
 		3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */; };
 		EF48728012FFC7E80034E955 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4871FF12FFC7E80034E955 /* ADSR.cpp */; };
 		EF48728112FFC7E80034E955 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF48720012FFC7E80034E955 /* Asymp.cpp */; };
@@ -265,7 +265,7 @@
 		3DDC032D13326B5100912DF8 /* Loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Loading.png; sourceTree = "<group>"; };
 		3DDC032E13326B5100912DF8 /* Loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loading@2x.png"; sourceTree = "<group>"; };
 		3DDC033313326C6A00912DF8 /* HUDHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDHandler.h; sourceTree = "<group>"; };
-		3DDC033413326C6A00912DF8 /* HUDHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDHandler.m; sourceTree = "<group>"; };
+		3DDC033413326C6A00912DF8 /* HUDHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HUDHandler.mm; sourceTree = "<group>"; };
 		3DDCFFEB1330DEAB00912DF8 /* AwesomeNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeNetworker.h; sourceTree = "<group>"; };
 		3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeNetworker.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* awesomesauce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "awesomesauce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 				28EC4C5611D54ECE0027AA9F /* awesomesauceViewController.h */,
 				28EC4C5711D54ECE0027AA9F /* awesomesauceViewController.mm */,
 				3DDC033313326C6A00912DF8 /* HUDHandler.h */,
-				3DDC033413326C6A00912DF8 /* HUDHandler.m */,
+				3DDC033413326C6A00912DF8 /* HUDHandler.mm */,
 				2D66646213094CFE00E962A4 /* MixerView.h */,
 				2D66646313094CFE00E962A4 /* MixerView.mm */,
 				2D2A7CBF1324F8A3006EFED0 /* ArrangeTableViewCell.h */,
@@ -1236,7 +1236,7 @@
 				3DDCFFED1330DEAB00912DF8 /* AwesomeNetworker.mm in Sources */,
 				3DDC00F91332106F00912DF8 /* AwesomeNetworkSyncer.mm in Sources */,
 				3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */,
-				3DDC033513326C6A00912DF8 /* HUDHandler.m in Sources */,
+				3DDC033513326C6A00912DF8 /* HUDHandler.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
