@@ -51,7 +51,8 @@
 
 @end
 
-	 
+
+//handler for track add messages
 @implementation TrackAddSync
 	 
 @synthesize networker;
@@ -68,13 +69,32 @@
 	 
 @end
 
+
+//handler for track remove messages
+@implementation TrackRemoveSync
+
+@synthesize networker;
+@synthesize matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	//TODO: actually remove said track
+}
+
+
+-(void)sendTrackAddedWithId:(int)trackId {
+	return [networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:@"id",[NSNumber numberWithInt:trackId],nil] withEventName:@"track_remove"];
+}
+
+@end
+
+
 	 
 
 @implementation AwesomeNetworkSyncer
 
 @synthesize networker;
 @synthesize squareSync;
-@synthesize trackAddSync;
+@synthesize trackAddSync, trackRemoveSync;
 
 
 - (id)init {
@@ -85,6 +105,9 @@
 		
 		trackAddSync = [[TrackAddSync alloc] init];
 		[networker registerEventHandler:@"track_add" withSyncee:trackAddSync];
+		
+		trackRemoveSync = [[TrackRemoveSync alloc] init];
+		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
 	}
 	return self;
 }

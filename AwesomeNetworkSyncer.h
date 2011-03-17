@@ -53,9 +53,9 @@
 
 @end
 
-/*
+
 //ASDataSyncee for track removing
-@interface TrackAddSync : NSObject <ASDataSyncee>
+@interface TrackRemoveSync : NSObject <ASDataSyncee>
 {
 	AwesomeNetworker *networker;
 	MatrixHandler *matrixHandler;
@@ -63,14 +63,13 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
 
-//send a track added notification. returns the time at which the track was addd.
--(void)sendTrackAddedWithId:(int)trackId;
+-(void)sendTrackRemovedWithId:(int)trackId;
 
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic) MatrixHandler *matrixHandler;
 
 @end
-*/
+
 
 
 /**
@@ -83,10 +82,12 @@
 	AwesomeNetworker *networker;
 	SquareChangeSync *squareSync;
 	TrackAddSync *trackAddSync;
+	TrackRemoveSync *trackRemoveSync;
 }
 
 @property(nonatomic, retain) AwesomeNetworker *networker;
 @property(nonatomic, retain) SquareChangeSync *squareSync;
 @property(nonatomic, retain) TrackAddSync *trackAddSync;
+@property(nonatomic, retain) TrackRemoveSync *trackRemoveSync;
 
 @end
