@@ -51,8 +51,13 @@ MatrixHandler::MatrixHandler() {
 	bpm = 480.; //actually 120
 	
 	//set up networking junk
+	/*
 	NSLog(@"matrixhandler makear");
 	networkHandler = [[MatrixNetworkHandler alloc] init]; //TODO: MEMORY LEAK!!!
+	 */
+	NSLog(@"gonna test some of that newar awesomenetworker");
+	awesomeNetworker = [[AwesomeNetworker alloc] init];
+	
 	
 	NSLog(@"setting up the awesome server delegate");
 	serverDelegate = [[AwesomeServerDelegate alloc] init]; //TODO: MEMORY LEAK!!!
@@ -185,12 +190,14 @@ NSDictionary *MatrixHandler::encode() {
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
 	
-	NSMutableArray *array = (NSMutableArray *) [dict objectForKey:@"matrices"];
+	NSLog(@"aspdgb: %@", [dict description]);
+	
+	NSArray *array = (NSArray *) [dict objectForKey:@"matrices"];
 	NSEnumerator *enumerator = [array objectEnumerator];
-	NSMutableDictionary *element;
-	while(element = (NSMutableDictionary *)[enumerator nextObject])
+	id element;
+	while(element = [enumerator nextObject])
     {
-		TouchMatrix *newMatrix = new TouchMatrix(element);
+		TouchMatrix *newMatrix = new TouchMatrix((NSDictionary*)element);
 		matrices.push_back(newMatrix);
     }
 	

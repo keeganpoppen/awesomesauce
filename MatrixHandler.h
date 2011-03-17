@@ -12,6 +12,7 @@
 #import "TouchMatrix.h"
 #import "MatrixNetworkHandler.h"
 #import "AwesomeServerDelegate.h"
+#import "AwesomeNetworker.h"
 #import <vector>
 
 using namespace std;
@@ -34,6 +35,7 @@ public:
 	void setMatrixOn(int trackId, bool newOnState);
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
 	void addOffset(double offset);
+	
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();
@@ -51,5 +53,7 @@ public:
 	float bpm; //number of sixteenth notes per minute, actually
 	
 	MatrixNetworkHandler *networkHandler;
+	AwesomeNetworker *awesomeNetworker;
+	
 	AwesomeServerDelegate *serverDelegate;
 };
