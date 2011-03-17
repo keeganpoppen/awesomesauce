@@ -144,6 +144,8 @@
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	matrixHandler->decode(data);
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"synchronizing_done" object:nil userInfo:nil];
 }
 
 
