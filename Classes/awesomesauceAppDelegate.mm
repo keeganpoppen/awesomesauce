@@ -59,6 +59,10 @@
 	[self.viewController trackAddedInterface];
 }
 
+-(void) matrixChanged {
+	[self.viewController matrixChanged];
+}
+
 -(MatrixHandler *) getMatrixHandler {
 	return matrixHandler;
 }
