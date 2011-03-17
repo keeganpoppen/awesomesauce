@@ -334,7 +334,7 @@ enum {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 	[currentlyEditingLabel setText:newText];
-	
+	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
 	//highlight current track, unhighlight old track
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;

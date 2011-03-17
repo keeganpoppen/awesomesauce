@@ -67,6 +67,10 @@ public:
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
 	}
 	
+	int getInstrument(int index) {
+		return waves[0]->oscillator[index];
+	}
+	
 	bool isOn;
 	
 	int getColumn() { return current_column; }
