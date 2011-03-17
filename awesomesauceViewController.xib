@@ -45,7 +45,7 @@
 					<object class="IBUIButton" id="853181661">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{95, 85}, {37, 37}}</string>
+						<string key="NSFrame">{{95, 85}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -76,7 +76,7 @@
 					<object class="IBUIButton" id="244014827">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 85}, {37, 37}}</string>
+						<string key="NSFrame">{{20, 85}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -530,7 +530,7 @@
 					<object class="IBUIButton" id="452836511">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{172, 85}, {37, 37}}</string>
+						<string key="NSFrame">{{172, 85}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -612,7 +612,7 @@
 					<object class="IBUILabel" id="30174372">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{21, 124}, {34, 21}}</string>
+						<string key="NSFrame">{{33, 141}, {34, 21}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -634,7 +634,7 @@
 					<object class="IBUILabel" id="622987604">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{96, 124}, {34, 21}}</string>
+						<string key="NSFrame">{{108, 141}, {34, 21}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -652,7 +652,7 @@
 					<object class="IBUILabel" id="657281538">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{161, 124}, {59, 21}}</string>
+						<string key="NSFrame">{{174, 141}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -670,7 +670,7 @@
 					<object class="IBUISegmentedControl" id="411577091">
 						<reference key="NSNextResponder" ref="184854543"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 153}, {230, 44}}</string>
+						<string key="NSFrame">{{20, 193}, {230, 44}}</string>
 						<reference key="NSSuperview" ref="184854543"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -1159,9 +1159,6 @@
 							<reference ref="853181661"/>
 							<reference ref="244014827"/>
 							<reference ref="452836511"/>
-							<reference ref="30174372"/>
-							<reference ref="622987604"/>
-							<reference ref="657281538"/>
 							<reference ref="392757124"/>
 							<reference ref="36047513"/>
 							<reference ref="165781218"/>
@@ -1172,6 +1169,9 @@
 							<reference ref="642123297"/>
 							<reference ref="362293575"/>
 							<reference ref="411577091"/>
+							<reference ref="30174372"/>
+							<reference ref="622987604"/>
+							<reference ref="657281538"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1545,19 +1545,19 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBqAAAwwwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCBAAAwygAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCwAAAwwwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC2AAAwygAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDIQAAwwwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDLQAAwygAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw2IAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw0MAAA</bytes>
 					</object>
 					<string>EAGLView</string>
 					<string>{{0, 60}, {1039, 696}}</string>
@@ -1814,7 +1814,6 @@
 							<string>bpmChanged:</string>
 							<string>cancelFuture:</string>
 							<string>clearCurrentMatrix</string>
-							<string>flipToArrangeView:</string>
 							<string>flipToSocialView:</string>
 							<string>flipToSynthView:</string>
 							<string>futureButtonPressed:</string>
@@ -1825,7 +1824,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>UISlider</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1843,7 +1841,6 @@
 							<string>bpmChanged:</string>
 							<string>cancelFuture:</string>
 							<string>clearCurrentMatrix</string>
-							<string>flipToArrangeView:</string>
 							<string>flipToSocialView:</string>
 							<string>flipToSynthView:</string>
 							<string>futureButtonPressed:</string>
@@ -1866,10 +1863,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">clearCurrentMatrix</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">flipToArrangeView:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
