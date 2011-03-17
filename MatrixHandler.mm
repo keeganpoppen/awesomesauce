@@ -58,7 +58,7 @@ MatrixHandler::MatrixHandler() {
 	networkHandler = [[MatrixNetworkHandler alloc] init]; //TODO: MEMORY LEAK!!!
 	 */
 	NSLog(@"gonna test some of that newar awesomenetworker");
-	awesomeNetworker = [[AwesomeNetworker alloc] init];
+	awesomeNetworker = [[AwesomeNetworker alloc] initWithMatrixHandler:this];
 	
 	
 	NSLog(@"setting up the awesome server delegate");

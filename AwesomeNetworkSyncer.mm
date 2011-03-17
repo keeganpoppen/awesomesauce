@@ -98,27 +98,25 @@
 @synthesize trackAddSync, trackRemoveSync;
 
 
-- (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker {
+- (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler {
 	self = [super init];
 	if (self) {
-		MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-		
 		networker = awesomeNetworker;
 		
 		squareSync = [[SquareChangeSync alloc] init];
 		[networker registerEventHandler:@"square_change" withSyncee:squareSync];
 		squareSync.networker = networker;
-		squareSync.matrixHandler = matrixHandler;
+		squareSync.matrixHandler = handler;
 		
 		trackAddSync = [[TrackAddSync alloc] init];
 		[networker registerEventHandler:@"track_add" withSyncee:trackAddSync];
 		trackAddSync.networker = networker;
-		trackAddSync.matrixHandler = matrixHandler;
+		trackAddSync.matrixHandler = handler;
 		
 		trackRemoveSync = [[TrackRemoveSync alloc] init];
 		[networker registerEventHandler:@"track_remove" withSyncee:trackRemoveSync];
 		trackRemoveSync.networker = networker;
-		trackRemoveSync.matrixHandler = matrixHandler;
+		trackRemoveSync.matrixHandler = handler;
 	}
 	return self;
 }

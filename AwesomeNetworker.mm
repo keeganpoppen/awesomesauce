@@ -141,7 +141,7 @@
 @synthesize networkSyncer;
 
 
-- (id)init {
+- (id)initWithMatrixHandler:(MatrixHandler*)handler {
 	self = [super init];
 	if (self) {
 		handlerMap = [[NSMutableDictionary alloc] init];
@@ -162,7 +162,7 @@
 		[session setDataReceiveHandler:self withContext:nil];
 		[session setAvailable:YES];
 		
-		networkSyncer = [[AwesomeNetworkSyncer alloc] initWithNetworker:self];
+		networkSyncer = [[AwesomeNetworkSyncer alloc] initWithNetworker:self andMatrixHandler:handler];
 		
 		NSLog(@"starting server in peer mode w/ peerID %@", session.peerID);
 	}
