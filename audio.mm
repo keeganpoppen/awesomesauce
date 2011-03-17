@@ -68,8 +68,8 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 }
 
 void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
-	if(is_mute) { return; }
 	for (int i = 0; i < numFrames; ++i) buffer[2*i] = buffer[2*i + 1] = 0.;
+	if(is_mute) { return; }
 	if(playback_on) {
 		[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] sonifyMatricesInfoBuffer:buffer withNumFrames:numFrames withUserData:userData];
 		[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] timePassed:(numFrames/(float)SRATE)];
