@@ -36,6 +36,11 @@ public:
 	void sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData);
 	void addOffset(double offset);
 	
+	void setSquare(int row, int col, bool value);
+	bool toggleSquare(int row, int col);
+	void setFutureSquare(int row, int col, bool value);
+	bool toggleFutureSquare(int row, int col);
+	
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();

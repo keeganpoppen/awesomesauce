@@ -102,6 +102,28 @@ void MatrixHandler::clearCurrentMatrix() {
 	trackClearedEvent(currentMatrix);
 }
 
+bool MatrixHandler::toggleSquare(int row, int col) {
+	bool toggled = getCurrentMatrix()->toggleSquare(row, col);
+	//TODO: [syncer presentMatrixSquareChangedAtRow:row andColumn:column toValue:toggled];
+	return toggled;
+}
+
+void MatrixHandler::setSquare(int row, int col, bool value) {
+	//TODO: [syncer presentMatrixSquareChangedAtRow:row andColumn:column toValue:value];
+	getCurrentMatrix()->setSquare(row, col, value);
+}
+
+bool MatrixHandler::toggleFutureSquare(int row, int col) {
+	bool toggled = getCurrentMatrix()->toggleFutureSquare(row, col);
+	//TODO: [syncer futureMatrixSquareChangedAtRow:row andColumn:column toValue:toggled];
+	return toggled;
+}
+
+void MatrixHandler::setFutureSquare(int row, int col, bool value) {
+	//TODO: [syncer futureMatrixSquareChangedAtRow:row andColumn:column toValue:value];
+	getCurrentMatrix()->setFutureSquare(row, col, value);
+}
+
 void MatrixHandler::changeInstrument(int newVal, int index) {
 	getCurrentMatrix()->setOscillator(newVal, index);
 	//trackEditedEvent(currentMatrix, getCurrentMatrix()->isOn, newInst);

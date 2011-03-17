@@ -23,8 +23,10 @@
 	NSLog(@"Square at (%d,%d) in matrix %@ should change to value: %d", row, column, matrix, value);
 	
 	if ([matrix caseInsensitiveCompare:@"future"] == NSOrderedSame) {
+		matrixHandler->getCurrentMatrix()->setFutureSquare(row, column, value);
 		//TODO: set the square in the future matrix. This also implies the JITness of creating a future matrix if !exists
 	} else {
+		matrixHandler->getCurrentMatrix()->setSquare(row, column, value);
 		//TODO: set square in the current matrix
 	}
 
