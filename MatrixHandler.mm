@@ -267,6 +267,9 @@ void MatrixHandler::decode(NSDictionary *dict) {
 	
 	currentMatrix = 0;
 	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];
+	for(int i = 0; i < matrices.size() - 1; i++) {
+		[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addMatrixInterface];
+	}
 }
 
 TouchMatrix *MatrixHandler::getCurrentMatrix() {
