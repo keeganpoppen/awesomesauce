@@ -435,6 +435,11 @@ enum {
 	[self toggleMainScreen:YES];
 }
 
+-(IBAction)printAge {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	NSLog(@"current age: %f", mh->time_elapsed);
+}
+
 -(void)toggleMainScreen:(bool)isMain {
 	NSEnumerator *mainEnum = [mainControls objectEnumerator];
 	UIView *element1;

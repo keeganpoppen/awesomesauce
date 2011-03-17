@@ -101,6 +101,7 @@
 - (void)cancelFuture:(id)sender;
 - (void)toggleMainScreen:(bool)isMain;
 - (void)futureLengthChanged:(UISlider *)slider;
+- (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
 - (IBAction)flipToSynthView:(id)sender;

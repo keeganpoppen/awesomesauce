@@ -707,6 +707,25 @@
 							<reference ref="4"/>
 						</object>
 					</object>
+					<object class="IBUIButton" id="746739966">
+						<reference key="NSNextResponder" ref="184854543"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{133, 244}, {74, 37}}</string>
+						<reference key="NSSuperview" ref="184854543"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="1025776730"/>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">age</string>
+						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="29912308"/>
+					</object>
 				</object>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
@@ -1128,6 +1147,15 @@
 					</object>
 					<int key="connectionID">131</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">printAge</string>
+						<reference key="source" ref="746739966"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">133</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1172,6 +1200,7 @@
 							<reference ref="30174372"/>
 							<reference ref="622987604"/>
 							<reference ref="657281538"/>
+							<reference ref="746739966"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1418,6 +1447,11 @@
 						<reference key="object" ref="411577091"/>
 						<reference key="parent" ref="184854543"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">132</int>
+						<reference key="object" ref="746739966"/>
+						<reference key="parent" ref="184854543"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1448,6 +1482,7 @@
 					<string>122.IBViewBoundsToFrameTransform</string>
 					<string>123.IBPluginDependency</string>
 					<string>123.IBViewBoundsToFrameTransform</string>
+					<string>132.IBPluginDependency</string>
 					<string>2.CustomClassName</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -1559,6 +1594,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw0MAAA</bytes>
 					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>EAGLView</string>
 					<string>{{0, 60}, {1039, 696}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1697,7 +1733,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">131</int>
+			<int key="maxID">133</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1818,6 +1854,7 @@
 							<string>flipToSynthView:</string>
 							<string>futureButtonPressed:</string>
 							<string>instPickerChanged:</string>
+							<string>printAge</string>
 							<string>saveFuture:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1830,6 +1867,7 @@
 							<string>id</string>
 							<string>id</string>
 							<string>UISegmentedControl</string>
+							<string>id</string>
 							<string>id</string>
 						</object>
 					</object>
@@ -1845,6 +1883,7 @@
 							<string>flipToSynthView:</string>
 							<string>futureButtonPressed:</string>
 							<string>instPickerChanged:</string>
+							<string>printAge</string>
 							<string>saveFuture:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1880,6 +1919,10 @@
 							<object class="IBActionInfo">
 								<string key="name">instPickerChanged:</string>
 								<string key="candidateClassName">UISegmentedControl</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">printAge</string>
+								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">saveFuture:</string>
