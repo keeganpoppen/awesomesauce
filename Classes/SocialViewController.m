@@ -19,6 +19,7 @@
 @synthesize instrumentsTabBarItem;
 @synthesize selectedViewController;
 @synthesize viewControllers;
+@synthesize HUD;
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
@@ -63,6 +64,24 @@
 		
     }
     return self;
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	HUD = [[HUDHandler alloc] init];
+	//HUD.window = self.view.window;
+	HUD.window = [[[UIApplication sharedApplication] delegate] window];
+	[HUD registerListeners];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self stopAnimation];
+    
+    [super viewWillDisappear:animated];
+	
+	[HUD unregisterListeners];
 }
 
 - (IBAction)returnToMain:(id)sender {

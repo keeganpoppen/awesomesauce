@@ -135,7 +135,7 @@
 
 @end
 
-//handler for track add messages
+//handler for instrument change messages
 @implementation InstrumentChangeSync
 
 @synthesize networker;
@@ -156,13 +156,29 @@
 }
 
 @end
+
+//handler for bpm change messages
+@implementation BPMChangeSync
+
+@synthesize networker;
+@synthesize matrixHandler;
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
+	float bpm = [[data objectForKey:@"bpm_change"] floatValue];
+}
+
+-(void)sendBPMChanged:(float)bpm {
+	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:bpm],@"bpm",nil] withEventName:@"bpm_change"];
+}
+
+@end
 	 
 
 @implementation AwesomeNetworkSyncer
 
 @synthesize networker;
 @synthesize squareSync;
-@synthesize trackAddSync, trackRemoveSync, trackClearSync, futureStartSync, instrumentChangeSync;
+@synthesize trackAddSync, trackRemoveSync, trackClearSync, futureStartSync, instrumentChangeSync, bpmChangeSync;
 
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler {
@@ -199,6 +215,11 @@
 		[networker registerEventHandler:@"instrument_change" withSyncee:instrumentChangeSync];
 		instrumentChangeSync.networker = networker;
 		instrumentChangeSync.matrixHandler = handler;
+		
+		bpmChangeSync = [[BPMChangeSync alloc] init];
+		[networker registerEventHandler:@"bpm_change" withSyncee:bpmChangeSync];
+		bpmChangeSync.networker = networker;
+		bpmChangeSync.matrixHandler = handler;
 	}
 	return self;
 }

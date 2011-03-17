@@ -119,6 +119,21 @@
 @end
 
 
+@interface BPMChangeSync : NSObject <ASDataSyncee>
+{
+	AwesomeNetworker *networker;
+	MatrixHandler *matrixHandler;
+}
+
+-(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
+-(void)sendBPMChanged:(float)bpm;
+
+@property(nonatomic, retain) AwesomeNetworker *networker;
+@property(nonatomic) MatrixHandler *matrixHandler;
+
+@end
+
+
 
 /**
  *
@@ -134,6 +149,7 @@
 	TrackClearSync *trackClearSync;
 	FutureStartSync *futureStartSync;
 	InstrumentChangeSync *instrumentChangeSync;
+	BPMChangeSync *bpmChangeSync;
 }
 
 - (id)initWithNetworker:(AwesomeNetworker*)awesomeNetworker andMatrixHandler:(MatrixHandler*)handler;
@@ -145,5 +161,6 @@
 @property(nonatomic, retain) TrackClearSync *trackClearSync;
 @property(nonatomic, retain) FutureStartSync *futureStartSync;
 @property(nonatomic, retain) InstrumentChangeSync *instrumentChangeSync;
+@property(nonatomic, retain) BPMChangeSync *bpmChangeSync;
 
 @end

@@ -44,7 +44,7 @@
 	SBJsonWriter *writer = [[[SBJsonWriter alloc] init] autorelease];
 	NSString *compData = [[[writer stringWithObject:request_obj] retain] autorelease];
 	
-	NSString *urlString = [NSString stringWithFormat:@"http://%@/users", BACKEND_URL];
+	NSString *urlString = [NSString stringWithFormat:@"http://%@/users.json", BACKEND_URL];
 	NSLog(@"posting user creation junk to url: %@", urlString);
 	
 	NSMutableURLRequest *req = [[[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]] retain] autorelease];
@@ -163,7 +163,7 @@
 	SBJsonWriter *writer = [[[SBJsonWriter alloc] init] autorelease];
 	
 	NSString *compData = [[[writer stringWithObject:data] retain] autorelease];
-	NSString *urlString = [NSString stringWithFormat:@"http://%@/compositions", BACKEND_URL];
+	NSString *urlString = [NSString stringWithFormat:@"http://%@/compositions.json", BACKEND_URL];
 	NSLog(@"sending composition to url: %@", urlString);
 	
 	NSMutableURLRequest *req = [[[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]] retain] autorelease];
