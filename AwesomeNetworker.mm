@@ -50,6 +50,9 @@
 		 * TODO!!!
 		 */
 		
+		NSLog(@"gonna send all m'data");
+		if(globalOffset < 0.001) [networker sendData:matrixData withEventName:@"load_data"];
+		
 		
 	} else if (time_received == nil) {
 		NSLog(@"gonna forward that packet right the fuck back, yo");
