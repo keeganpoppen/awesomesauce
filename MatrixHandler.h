@@ -46,6 +46,7 @@ public:
 	void resetTime();
 	void startFuture(int future_length);
 	void cancelFuture();
+	AwesomeNetworkSyncer *getSyncer();
 	
 	void saveCurrentComposition(NSString *name);
 	
