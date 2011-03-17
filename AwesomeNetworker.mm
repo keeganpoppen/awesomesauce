@@ -127,8 +127,6 @@
 	
 	MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	matrixHandler->decode(data);
-	
-	networker.networkSyncer = [[AwesomeNetworkSyncer alloc] init];
 }
 
 
@@ -163,6 +161,8 @@
 		[session setDelegate:self];
 		[session setDataReceiveHandler:self withContext:nil];
 		[session setAvailable:YES];
+		
+		networkSyncer = [[AwesomeNetworkSyncer alloc] init];
 		
 		NSLog(@"starting server in peer mode w/ peerID %@", session.peerID);
 	}
