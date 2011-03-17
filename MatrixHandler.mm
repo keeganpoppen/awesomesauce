@@ -10,6 +10,7 @@
 #import "MatrixHandler.h"
 #import "graphics.h"
 #import "audio.h"
+#import "awesomesauceAppDelegate.h"
 
 using namespace std;
 
