@@ -443,6 +443,7 @@ enum {
 - (IBAction)resetClock {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->time_elapsed = 0.0;
+	NSLog(@"RESET!");
 }
 
 -(void)toggleMainScreen:(bool)isMain {

@@ -41,7 +41,6 @@
 		globalOffset = [age_offset doubleValue];
 		NSLog(@"global offset set to: %f", globalOffset);
 		
-		//matrixHandler->time_elapsed = ([NSDate timeIntervalSinceReferenceDate] - startTime) + globalOffset;
 		matrixHandler->addOffset(globalOffset);
 
 		NSLog(@"set global time to %f thanks to being told as such", matrixHandler->time_elapsed);
@@ -64,9 +63,7 @@
 		NSTimeInterval sent_time = [[data objectForKey:@"time_sent"] doubleValue];
 		
 		NSTimeInterval offset = rec_time - ((sent_time + matrixHandler->time_elapsed) / 2.);
-		
-		NSLog(@"roundtrip: %f", matrixHandler->time_elapsed - sent_time);
-				
+						
 		[offsets addObject:[NSNumber numberWithDouble:offset]];
 		totalOffset += offset;
 				
