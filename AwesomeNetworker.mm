@@ -11,7 +11,7 @@
 #import "MatrixHandler.h"
 #import <math.h>
 
-#define NUM_SYNCHRO_OFFSETS 50
+#define NUM_SYNCHRO_OFFSETS 25
 
 @implementation TimeSync
 
@@ -90,6 +90,8 @@
 			
 			NSLog(@"mean: %f", mean);
 			NSLog(@"standard deviation of mean offset: %f", sd_accum);
+			
+			NSLog(@"offsets: %@", offsets);
 						
 			MatrixHandler *matrixHandler = [(awesomesauceAppDelegate*)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 			
