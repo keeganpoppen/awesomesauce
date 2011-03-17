@@ -40,10 +40,12 @@ void trackEditedEvent(int index, bool isOn) {
 }
 
 MatrixHandler::MatrixHandler() {
+	
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix();
 	firstMatrix->track_id = 0;
 	matrices.push_back(firstMatrix);
+	
 	currentMatrix = 0;
 	col_progress = 0.;
 	time_elapsed = 0.;
@@ -110,6 +112,12 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 	
 	//current column is time_elapsed * beats/sec % number of columns
 	float col_exact = (time_elapsed * (bpm / 60.));
+	
+	bool cusp = false;
+	if(current_column == 15) {
+		cusp = true;
+	}
+	
 	current_column = (int)col_exact % 16;
 	col_progress = col_exact - (float)((int)col_exact);
 	
@@ -117,6 +125,13 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 		matrices[i]->time_elapsed = time_elapsed;
 		matrices[i]->current_column = current_column;
 		matrices[i]->col_progress = col_progress;
+	}
+	
+	if(cusp && current_column == 0) {
+		//we have switched to a new frame
+		for(int i = 0; i < matrices.size(); i++) {
+			matrices[i]->updateIntermediateSquares();
+		}
 	}
 }
 
@@ -131,7 +146,12 @@ void MatrixHandler::addOffset(double offset) {
 }
 
 void MatrixHandler::displayCurrentMatrix() {
-	displayMatrix(getCurrentMatrix());
+	if(isFutureMode()) {
+		displayMatrixFuture(getCurrentMatrix());
+	}
+	else {
+		displayMatrix(getCurrentMatrix());
+	}
 }
 
 void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void * userData) {
@@ -187,6 +207,10 @@ NSDictionary *MatrixHandler::encode() {
 	return dict;
 }
 
+void MatrixHandler::startFuture(int future_length) {
+	getCurrentMatrix()->startFuture(future_length);
+}
+
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
 	
@@ -197,7 +221,8 @@ void MatrixHandler::decode(NSDictionary *dict) {
 	id element;
 	while(element = [enumerator nextObject])
     {
-		TouchMatrix *newMatrix = new TouchMatrix((NSDictionary*)element);
+		NSLog(@"element: %@", element);
+		TouchMatrix *newMatrix = new TouchMatrix(element);
 		matrices.push_back(newMatrix);
     }
 	

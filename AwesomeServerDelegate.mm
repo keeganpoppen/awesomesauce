@@ -92,6 +92,7 @@
 -(void)getCompositionListFromServer {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
+	NSLog(@"getting list from server, dawg");
 	//it's indistinguishable from magic!!!
 	NSError *err;
 	SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
@@ -123,7 +124,6 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	int comp_id = [number intValue];
-	
 	SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
 	
 	NSError *err;
@@ -185,6 +185,5 @@
 	
 	[pool release];
 }
-
 
 @end
