@@ -13,6 +13,7 @@
 #import "MatrixNetworkHandler.h"
 #import "AwesomeServerDelegate.h"
 #import "AwesomeNetworker.h"
+#import "AwesomeDataPersistenceHandler.h"
 #import "DrumPad.h"
 #import <vector>
 
@@ -69,4 +70,5 @@ public:
 	AwesomeNetworker *awesomeNetworker;
 	
 	AwesomeServerDelegate *serverDelegate;
+	AwesomeDataPersistenceHandler *dataPersistenceHandler;
 };

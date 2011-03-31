@@ -97,11 +97,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self.viewController stopAnimation];
+
+	[self saveContext];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Handle any background procedures not related to animation here.
+
+	[self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

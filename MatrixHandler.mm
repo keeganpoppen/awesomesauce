@@ -58,6 +58,9 @@ MatrixHandler::MatrixHandler() {
 	NSLog(@"setting up the awesome server delegate");
 	serverDelegate = [[AwesomeServerDelegate alloc] init]; //TODO: MEMORY LEAK!!!
 	
+	NSLog(@"setting up the awesome data persistence handler");
+	dataPersistenceHandler = [[AwesomeDataPersistenceHandler alloc] init];
+	
 	/* TODO: DELETE
 	NSLog(@"getting a list of them all");
 	NSDictionary *comps = [[[serverDelegate getCompositionListFromServer] retain] autorelease];

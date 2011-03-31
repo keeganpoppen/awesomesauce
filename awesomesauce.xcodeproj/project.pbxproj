@@ -57,6 +57,9 @@
 		2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE60D131B5401004EE909 /* SynthViewController.xib */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
+		3D18413813448BA300680AA8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D18413713448BA300680AA8 /* CoreData.framework */; };
+		3D18415F134492CE00680AA8 /* awesomedatamodel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */; };
+		3D1841621344932900680AA8 /* AwesomeDataPersistenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */; };
 		3DDC00F91332106F00912DF8 /* AwesomeNetworkSyncer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */; };
 		3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDC032B13326B3200912DF8 /* MBProgressHUD.m */; };
 		3DDC032F13326B5100912DF8 /* Loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC032D13326B5100912DF8 /* Loading.png */; };
@@ -279,6 +282,10 @@
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
+		3D18413713448BA300680AA8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = awesomedatamodel.xcdatamodel; sourceTree = "<group>"; };
+		3D1841601344932900680AA8 /* AwesomeDataPersistenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeDataPersistenceHandler.h; sourceTree = "<group>"; };
+		3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeDataPersistenceHandler.m; sourceTree = "<group>"; };
 		3DDC00F71332106F00912DF8 /* AwesomeNetworkSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeNetworkSyncer.h; sourceTree = "<group>"; };
 		3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AwesomeNetworkSyncer.mm; sourceTree = "<group>"; };
 		3DDC00FC1332110000912DF8 /* ASDataSyncee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDataSyncee.h; sourceTree = "<group>"; };
@@ -564,6 +571,7 @@
 				EF48731312FFC80D0034E955 /* AudioToolbox.framework in Frameworks */,
 				EF48731712FFC8130034E955 /* CoreGraphics.framework in Frameworks */,
 				F2D1E9811308DFE7008E9DF1 /* GameKit.framework in Frameworks */,
+				3D18413813448BA300680AA8 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +628,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3D18413B13448D7200680AA8 /* Models */,
 				3DDC032513326B0F00912DF8 /* HUD */,
 				F20347FE131C252C00FA19FE /* JSON */,
 				EF48730012FFC7F00034E955 /* MoMu */,
@@ -684,6 +693,7 @@
 				EF48731212FFC80D0034E955 /* AudioToolbox.framework */,
 				EF48731612FFC8130034E955 /* CoreGraphics.framework */,
 				F2D1E9801308DFE7008E9DF1 /* GameKit.framework */,
+				3D18413713448BA300680AA8 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -701,6 +711,14 @@
 				2D7A5CCB1343FE0E00215C8D /* 8shaker.wav */,
 			);
 			path = electrokit;
+			sourceTree = "<group>";
+		};
+		3D18413B13448D7200680AA8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		3DDC032513326B0F00912DF8 /* HUD */ = {
@@ -1005,6 +1023,8 @@
 				3DDCFFEC1330DEAB00912DF8 /* AwesomeNetworker.mm */,
 				3DDC00F71332106F00912DF8 /* AwesomeNetworkSyncer.h */,
 				3DDC00F81332106F00912DF8 /* AwesomeNetworkSyncer.mm */,
+				3D1841601344932900680AA8 /* AwesomeDataPersistenceHandler.h */,
+				3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */,
 				2D665F7E1308A5D300E962A4 /* MatrixHandler.h */,
 				2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */,
 				2D66610B1309168000E962A4 /* AwesomeSynth.h */,
@@ -1289,6 +1309,8 @@
 				3DDC033513326C6A00912DF8 /* HUDHandler.mm in Sources */,
 				2D7A5BFE13439C5A00215C8D /* mo_io.mm in Sources */,
 				2D7A5D22134447CD00215C8D /* DrumPad.mm in Sources */,
+				3D18415F134492CE00680AA8 /* awesomedatamodel.xcdatamodel in Sources */,
+				3D1841621344932900680AA8 /* AwesomeDataPersistenceHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

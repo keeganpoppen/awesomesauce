@@ -182,6 +182,10 @@
 		[session setDataReceiveHandler:self withContext:nil];
 		[session setAvailable:YES];
 		
+		/*
+			NOTE: ONE HACK THAT MIGHT FIX THE BLUETOOTH BUG IS TO SET AVAILABLE TO FASE AND THEN BACK TO TRUE AFTER A RANDOM TIME INTERVAL
+		 */
+		
 		networkSyncer = [[AwesomeNetworkSyncer alloc] initWithNetworker:self andMatrixHandler:handler];
 		
 		NSLog(@"starting server in peer mode w/ peerID %@", session.peerID);
