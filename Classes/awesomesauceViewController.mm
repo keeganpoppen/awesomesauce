@@ -300,12 +300,14 @@ enum {
 			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor orangeColor] CGColor], (id)[[UIColor redColor] CGColor], nil];
 		}
 		else {
-			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:0.95 alpha:1.0] CGColor], (id)[[UIColor colorWithWhite:0.72 alpha:1.0] CGColor], nil];
 		}
 		[element.layer insertSublayer:gradient atIndex:0];
 		
 		i++;
     }
+	
+	[[self view] setBackgroundColor:[UIColor blackColor]];
 	
 	[track1 enableTrack:@"Sine"];
 	[drumTrack enableTrack:@"Drums"];
@@ -415,7 +417,7 @@ enum {
 			NSLog(@"pokemon %d", mh->currentMatrix);
 		}
 		else {
-			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor darkGrayColor] CGColor], nil];
+			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithWhite:0.95 alpha:1.0] CGColor], (id)[[UIColor colorWithWhite:0.72 alpha:1.0] CGColor], nil];
 		}
 		[(CALayer *)[element.layer.sublayers objectAtIndex:0] removeFromSuperlayer];
 		[element.layer insertSublayer:gradient atIndex:0];
