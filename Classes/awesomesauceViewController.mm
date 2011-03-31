@@ -112,6 +112,7 @@ enum {
 	//also the tableview not working is kinda lame
 	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
+		addTrackLabel.hidden = YES;
 	}
 }
 
@@ -481,6 +482,7 @@ enum {
 	//also the tableview not working is kinda lame
 	if(numTracks >= 4) {
 		addTrackButton.hidden = YES;
+		addTrackLabel.hidden = YES;
 	}
 }
 
@@ -633,6 +635,17 @@ enum {
 -(void) changeInstrument:(int)newInst withIndex:(int)index {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->changeInstrument(newInst, index);
+	int trackNum = mh->currentMatrix;
+	MixerView *temp = (MixerView *) [tracks objectAtIndex:trackNum];
+	if(newInst == 0) {
+		[temp setLabelText:@"Sine"];
+	}
+	else if(newInst == 1) {
+		[temp setLabelText:@"Square"];
+	}
+	else if(newInst == 2) {
+		[temp setLabelText:@"Saw"];
+	}
 }
 
 -(void) changeEnvLength:(float)newVal {

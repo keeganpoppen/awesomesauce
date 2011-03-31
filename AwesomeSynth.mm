@@ -38,13 +38,18 @@ StkFloat AwesomeSynth::tick() {
 			tick_val += ((BlitSaw *) gen[i])->tick();
 		}
 		else if(oscillator[i] == -1) {
+			SAMPLE tempS = wavFile->tick();
+			tick_val += tempS;
+			/*
 			if(!wavSet || wavFile->m_filename == NULL || strcmp(wavFile->m_filename,"") == 0) {
 				//nothing happens
+				int awef = 0;
 			}
 			else {
 				SAMPLE tempS = wavFile->tick();
 				tick_val += tempS;
 			}
+			 */
 		}
 		else {
 			num--;
