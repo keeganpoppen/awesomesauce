@@ -121,7 +121,7 @@ bool MatrixHandler::toggleSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleSquare(row, col);
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:currentMatrix];
 	}
 	return toggled;
 }
@@ -132,7 +132,7 @@ void MatrixHandler::setSquare(int row, int col, bool value) {
 	}
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:currentMatrix];
 	}
 	getCurrentMatrix()->setSquare(row, col, value);
 }
@@ -141,7 +141,7 @@ bool MatrixHandler::toggleFutureSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleFutureSquare(row, col);
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:currentMatrix];
 	}
 	return toggled;
 }
@@ -149,7 +149,7 @@ bool MatrixHandler::toggleFutureSquare(int row, int col) {
 void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:currentMatrix];
 	}
 	getCurrentMatrix()->setFutureSquare(row, col, value);
 }
@@ -279,8 +279,9 @@ NSDictionary *MatrixHandler::encode() {
 		NSMutableDictionary *temp = matrices[i]->toDictionary();
 		[array addObject:temp];
 	}
-	
+	NSMutableDictionary *drumDict = drumMatrix->toDictionary();
 	[dict setObject:array forKey:@"matrices"];
+	[dict setObject:drumDict forKey:@"drumMatrix"];
 	[dict setObject:[NSNumber numberWithFloat:bpm] forKey:@"bpm"];
 	return dict;
 }
@@ -309,6 +310,8 @@ void MatrixHandler::decode(NSDictionary *dict) {
 		TouchMatrix *newMatrix = new TouchMatrix(element);
 		matrices.push_back(newMatrix);
     }
+	
+	drumMatrix = new TouchMatrix([dict objectForKey:@"drumMatrix"]);
 	
 	currentMatrix = 0;
 	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];
