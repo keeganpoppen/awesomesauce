@@ -96,6 +96,7 @@ enum {
 	//also the tableview not working is kinda lame
 	if(numTracks >= 5) {
 		addTrackButton.hidden = YES;
+		addTrackLabel.hidden = YES;
 	}
 }
 

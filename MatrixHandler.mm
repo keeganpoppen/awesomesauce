@@ -224,11 +224,11 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 	int numMatrices = matrices.size();
 	for(int i = 0; i < numMatrices; i++) {
 		if(matrices[i]->isOn) {
-			sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices+1);
+			sonifyMatrix(buffer, numFrames, userData, matrices[i], 0.4/((Float32)numMatrices));
 		}
 	}
-	sonifyMatrix(buffer, numFrames, userData, drumMatrix, numMatrices+1);
-	sonifyDrumPad(buffer, numFrames, userData, drumPad, numMatrices);
+	sonifyMatrix(buffer, numFrames, userData, drumMatrix, 0.6);
+	sonifyDrumPad(buffer, numFrames, userData, drumPad, 0.6);
 }
 
 void MatrixHandler::setBpm(float newBpm, bool sendNotification) {

@@ -33,7 +33,7 @@ void toggleMute() {
 	is_mute = !is_mute;
 }
 
-void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices) {
+void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, Float32 volRatio) {
 	if(is_mute) { return; }
 	int col = matrix->getColumn();
 	
@@ -60,17 +60,18 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 		}
 		if(val != 0) {
 			val /= num_notes;
-			val /= numMatrices;
+			val *= volRatio;
 			buffer[2*i] += val;
 			buffer[2*i + 1] += val;
 		}
 	}
 }
 
-void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, int numMatrices) {
+void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, Float32 volRatio) {
 	for (UInt32 i = 0; i < numFrames; ++i) {
 		Float32 val = pad->tick();
 		val = val / 2.0;
+		val *= volRatio;
 		buffer[2*i] += val;
 		buffer[2*i + 1] += val;
 	}
