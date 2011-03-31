@@ -91,7 +91,6 @@
 
 
 -(void)setData:(NSDictionary*)data forComposition:(NSString*)title {
-	
 	Composition *composition = [self getManagedObjectForComposition:title];
 	
 	if (composition == nil) {
@@ -104,7 +103,6 @@
 	composition.data = [[[writer stringWithObject:data] retain] autorelease];
 	
 	[self saveContext];
-	
 }
 
 
