@@ -142,6 +142,116 @@ void displayMatrix(TouchMatrix *matrix) {
 }
 
 
+void displayDrumMatrix(TouchMatrix *matrix) {
+	// reset projection matrix
+	glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+	glOrthof( -1.0f, 1.0f, -1.5f, 1.5f, 1.0f, 1.0f);
+	
+	// modelview
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
+	
+	// set clear color to black
+	glClearColor( 1.0, 1.0, 1.0, 1.0f );
+	glClear( GL_COLOR_BUFFER_BIT );
+	
+	// map the viewport
+	MoGfx::ortho( 1024, 768, 1 );
+	
+	glEnableClientState( GL_VERTEX_ARRAY );
+	
+	//draw stuff sample
+	
+    static const GLfloat squareVertices[] = {
+        -half_width, -half_width,
+        half_width, -half_width,
+        -half_width, half_width,
+        half_width, half_width,
+    };
+    static const GLfloat normals[] = {
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1
+    };
+    
+    static const GLfloat texCoords[] = {
+        0, 1,
+        1, 1,
+        0, 0,
+        1, 0
+    };
+	
+	
+	//active color: lighter blue
+	GLfloat active_r = 0.5;
+	GLfloat active_g = 0.8;
+	GLfloat active_b = 1.0;
+	
+	//on color: blue
+	GLfloat on_r = 0.3;
+	GLfloat on_g = 0.5;
+	GLfloat on_b = 1.0;
+	
+	//off color: light grey
+	GLfloat off_r = 0.92;
+	GLfloat off_g = 0.92;
+	GLfloat off_b = 0.92;
+	
+	int activeCol = matrix->getColumn();
+	
+	
+	// enable texture mapping
+    glEnable( GL_TEXTURE_2D );
+    // enable blending
+    glEnable( GL_BLEND );
+    // blend function
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	
+	for (int col = 0; col < 16; ++col) {
+		for (int row = 0; row < 8; ++row) {
+			bool isOff = true;
+			glColor4f( off_r, off_g, off_b, 1.0 );
+			if(matrix->squares[row][col]) {
+				// bind the texture
+				glBindTexture( GL_TEXTURE_2D, g_texture[1] );
+				
+				
+				glColor4f( on_r, on_g, on_b, 1.0 );
+				if(col == activeCol) {
+					glColor4f( active_r, active_g, active_b, 1.0 );
+				}
+			}
+			else {
+				// bind the texture
+				glBindTexture( GL_TEXTURE_2D, g_texture[0] );
+			}
+			GLfloat x = 768 - half_width - row * half_width * 2;
+			GLfloat y = half_width + col * half_width * 2 + 256;
+			
+			glPushMatrix();
+			glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+			glTranslatef( x, y, 0.0 );
+			// vertex
+			glVertexPointer( 2, GL_FLOAT, 0, squareVertices );
+			// normal
+			glNormalPointer( GL_FLOAT, 0, normals );
+			// texture coordinate
+			glTexCoordPointer( 2, GL_FLOAT, 0, texCoords );
+			
+			// triangle strip
+			glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
+			glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+			glPopMatrix();
+		}
+	}
+	
+    // disable
+    glDisable( GL_TEXTURE_2D );
+    glDisable( GL_BLEND );
+}
+
 void displayMatrixFuture(TouchMatrix *matrix) {
 	// reset projection matrix
 	glMatrixMode( GL_PROJECTION );

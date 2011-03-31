@@ -105,6 +105,9 @@ AwesomeNetworkSyncer *MatrixHandler::getSyncer() {
 }
 
 bool MatrixHandler::toggleSquare(int row, int col) {
+	if(currentMatrix == -1 && row >= 8) {
+		return false;
+	}
 	bool toggled = getCurrentMatrix()->toggleSquare(row, col);
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
@@ -114,6 +117,9 @@ bool MatrixHandler::toggleSquare(int row, int col) {
 }
 
 void MatrixHandler::setSquare(int row, int col, bool value) {
+	if(currentMatrix == -1 && row >= 8) {
+		return;
+	}
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
 		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:getCurrentMatrix()->track_id];
@@ -195,6 +201,9 @@ void MatrixHandler::addOffset(double offset) {
 void MatrixHandler::displayCurrentMatrix() {
 	if(isFutureMode()) {
 		displayMatrixFuture(getCurrentMatrix());
+	}
+	else if(currentMatrix == -1) {
+		displayDrumMatrix(getCurrentMatrix());
 	}
 	else {
 		displayMatrix(getCurrentMatrix());

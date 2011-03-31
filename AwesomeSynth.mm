@@ -38,11 +38,10 @@ StkFloat AwesomeSynth::tick() {
 			tick_val += ((BlitSaw *) gen[i])->tick();
 		}
 		else if(oscillator[i] == -1) {
-			if(wavFile->m_filename == NULL || strcmp(wavFile->m_filename,"") == 0) {
+			if(!wavSet || wavFile->m_filename == NULL || strcmp(wavFile->m_filename,"") == 0) {
 				//nothing happens
 			}
 			else {
-				//NSLog(@"cur filename: %s", wavFile->m_filename);
 				SAMPLE tempS = wavFile->tick();
 				tick_val += tempS;
 			}
@@ -55,12 +54,10 @@ StkFloat AwesomeSynth::tick() {
 }
 
 void AwesomeSynth::reset() {
-	if(!wavSet) {
+	if(!wavSet || getInst(0) != -1) {
 		return;
 	}
-	if(getInst(0) != -1) {
-		return;
-	}
+	/*
 	if(wavFile == NULL) {
 		return;
 	}
@@ -70,6 +67,7 @@ void AwesomeSynth::reset() {
 	if(strcmp(wavFile->m_filename,"") == 0) {
 		return;
 	}
+	*/
 	//TODO how do i set the sound back to the beginning?
 	//wavFile->closeFile();
 	wavFile->reset();

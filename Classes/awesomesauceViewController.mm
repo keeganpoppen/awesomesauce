@@ -356,10 +356,14 @@ enum {
 	if(mh->currentMatrix == -1) {
 		newText = @"Currently Editing Drums";
 		instPicker.hidden = YES;
+		futureButton.hidden = YES;
+		futureLabel.hidden = YES;
 	}
 	else {
 		newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 		instPicker.hidden = NO;
+		futureButton.hidden = NO;
+		futureLabel.hidden = NO;
 		instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
 	}
 	[currentlyEditingLabel setText:newText];
