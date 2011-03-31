@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrumPad.h"
 
 class TouchMatrix;
 
@@ -15,6 +16,7 @@ static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
 
 void audioInit();
 void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices);
+void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, int numMatrices);
 void setPlayback(bool inval);
 void setMute(bool inval);
 void toggleMute();

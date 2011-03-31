@@ -13,6 +13,7 @@
 #import "MatrixNetworkHandler.h"
 #import "AwesomeServerDelegate.h"
 #import "AwesomeNetworker.h"
+#import "DrumPad.h"
 #import <vector>
 
 using namespace std;
@@ -46,6 +47,7 @@ public:
 	void resetTime();
 	void startFuture(int future_length, bool sendNotification=true);
 	void cancelFuture();
+	void pressPad(int i);
 	AwesomeNetworkSyncer *getSyncer();
 	
 	void saveCurrentComposition(NSString *name);
@@ -53,6 +55,7 @@ public:
 	TouchMatrix *getCurrentMatrix();
 	TouchMatrix *getMatrix(int matrix_id);
 	
+	DrumPad *drumPad;
 	vector<TouchMatrix *> matrices;
 	TouchMatrix *drumMatrix;
 	int currentMatrix;

@@ -67,6 +67,15 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 	}
 }
 
+void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, int numMatrices) {
+	for (UInt32 i = 0; i < numFrames; ++i) {
+		Float32 val = pad->tick();
+		val = val / 2.0;
+		buffer[2*i] += val;
+		buffer[2*i + 1] += val;
+	}
+}
+
 void audio_callback( Float32 * buffer, UInt32 numFrames, void * userData ) {
 	for (int i = 0; i < numFrames; ++i) buffer[2*i] = buffer[2*i + 1] = 0.;
 	if(is_mute) { return; }

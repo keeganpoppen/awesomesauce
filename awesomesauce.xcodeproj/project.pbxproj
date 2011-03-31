@@ -46,6 +46,7 @@
 		2D7A5CD01343FE0E00215C8D /* 6hatopen.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D7A5CC91343FE0E00215C8D /* 6hatopen.wav */; };
 		2D7A5CD11343FE0E00215C8D /* 7hatclosed.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D7A5CCA1343FE0E00215C8D /* 7hatclosed.wav */; };
 		2D7A5CD21343FE0E00215C8D /* 8shaker.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D7A5CCB1343FE0E00215C8D /* 8shaker.wav */; };
+		2D7A5D22134447CD00215C8D /* DrumPad.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A5D21134447CD00215C8D /* DrumPad.mm */; };
 		2D84D8AA13313E0E00335668 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8A813313E0E00335668 /* delete.png */; };
 		2D84D8AB13313E0E00335668 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8A913313E0E00335668 /* plus.png */; };
 		2D84D8AD13313E7E00335668 /* future.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D84D8AC13313E7E00335668 /* future.png */; };
@@ -263,6 +264,8 @@
 		2D7A5CC91343FE0E00215C8D /* 6hatopen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6hatopen.wav; sourceTree = "<group>"; };
 		2D7A5CCA1343FE0E00215C8D /* 7hatclosed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7hatclosed.wav; sourceTree = "<group>"; };
 		2D7A5CCB1343FE0E00215C8D /* 8shaker.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 8shaker.wav; sourceTree = "<group>"; };
+		2D7A5D20134447CD00215C8D /* DrumPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumPad.h; sourceTree = "<group>"; };
+		2D7A5D21134447CD00215C8D /* DrumPad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DrumPad.mm; sourceTree = "<group>"; };
 		2D84D8A813313E0E00335668 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		2D84D8A913313E0E00335668 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		2D84D8AC13313E7E00335668 /* future.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = future.png; sourceTree = "<group>"; };
@@ -1008,6 +1011,8 @@
 				2D66610E1309169900E962A4 /* AwesomeSynth.mm */,
 				EF48732312FFCED80034E955 /* TouchMatrix.h */,
 				EF48732412FFCED80034E955 /* TouchMatrix.mm */,
+				2D7A5D20134447CD00215C8D /* DrumPad.h */,
+				2D7A5D21134447CD00215C8D /* DrumPad.mm */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1283,6 +1288,7 @@
 				3DDC032C13326B3200912DF8 /* MBProgressHUD.m in Sources */,
 				3DDC033513326C6A00912DF8 /* HUDHandler.mm in Sources */,
 				2D7A5BFE13439C5A00215C8D /* mo_io.mm in Sources */,
+				2D7A5D22134447CD00215C8D /* DrumPad.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,7 @@ void trackEditedEvent(int index, bool isOn) {
 }
 
 MatrixHandler::MatrixHandler() {
+	drumPad = new DrumPad();
 	
 	//initialize with one tone matrix
 	TouchMatrix *firstMatrix = new TouchMatrix();
@@ -64,6 +65,10 @@ MatrixHandler::MatrixHandler() {
 	NSLog(@"getting one of them");
 	NSDictionary *comp = [[[serverDelegate getCompositionFromServerWithID:2] retain] autorelease];
 	*/
+}
+
+void MatrixHandler::pressPad(int i) {
+	drumPad->reset(i);
 }
 
 void MatrixHandler::addNewMatrix(bool sendNotification) {
@@ -223,6 +228,7 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 		}
 	}
 	sonifyMatrix(buffer, numFrames, userData, drumMatrix, numMatrices+1);
+	sonifyDrumPad(buffer, numFrames, userData, drumPad, numMatrices);
 }
 
 void MatrixHandler::setBpm(float newBpm, bool sendNotification) {

@@ -53,9 +53,11 @@ enum {
 @synthesize futureLengthTitle;
 @synthesize futureDescription;
 @synthesize track1, track2, track3, track4, drumTrack;
+@synthesize drumpadLabel, drumpad1, drumpad2, drumpad3, drumpad4, drumpad5, drumpad6, drumpad7, drumpad8;
 @synthesize tracks;
 @synthesize futureControls;
 @synthesize mainControls;
+@synthesize drumControls;
 @synthesize HUD;
 
 - (void)awakeFromNib
@@ -239,6 +241,18 @@ enum {
 	[mainControls addObject:addTrackLabel];
 	[mainControls addObject:clearTrackLabel];
 	[mainControls addObject:futureLabel];
+	
+	drumControls = [[NSMutableArray alloc] init];
+	[drumControls addObject:drumpadLabel];
+	[drumControls addObject:drumpad1];
+	[drumControls addObject:drumpad2];
+	[drumControls addObject:drumpad3];
+	[drumControls addObject:drumpad4];
+	[drumControls addObject:drumpad5];
+	[drumControls addObject:drumpad6];
+	[drumControls addObject:drumpad7];
+	[drumControls addObject:drumpad8];
+	[self hideDrumpad:YES];
 }
 
 - (void)futureLengthChanged:(UISlider *)slider {
@@ -350,6 +364,15 @@ enum {
     }
 }
 
+- (void)hideDrumpad:(bool)toHide {
+	NSEnumerator *drumEnum = [drumControls objectEnumerator];
+	UIView *element;
+	while(element = (UIView *)[drumEnum nextObject])
+    {
+		[element setHidden:toHide];
+	}
+}
+
 - (void)matrixChanged {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	NSString *newText;
@@ -358,12 +381,14 @@ enum {
 		instPicker.hidden = YES;
 		futureButton.hidden = YES;
 		futureLabel.hidden = YES;
+		[self hideDrumpad:NO];
 	}
 	else {
 		newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
 		instPicker.hidden = NO;
 		futureButton.hidden = NO;
 		futureLabel.hidden = NO;
+		[self hideDrumpad:YES];
 		instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
 	}
 	[currentlyEditingLabel setText:newText];
@@ -408,6 +433,36 @@ enum {
 }
 
 //Interface Builder IB stuff
+- (IBAction)drumpadPressed:(id)sender {
+	int num = 0;
+	if(sender == drumpad1) {
+		num = 1;
+	}
+	else if(sender == drumpad2) {
+		num = 2;
+	}
+	else if(sender == drumpad3) {
+		num = 3;
+	}
+	else if(sender == drumpad4) {
+		num = 4;
+	}
+	else if(sender == drumpad5) {
+		num = 5;
+	}
+	else if(sender == drumpad6) {
+		num = 6;
+	}
+	else if(sender == drumpad7) {
+		num = 7;
+	}
+	else if(sender == drumpad8) {
+		num = 8;
+	}
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	mh->pressPad(num-1);
+}
+
 - (IBAction)clearCurrentMatrix {
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] clearCurrentMatrix];
 }

@@ -50,6 +50,17 @@
 	IBOutlet MixerView *track4;
 	IBOutlet MixerView *drumTrack;
 	
+	//drum pad
+	IBOutlet UILabel *drumpadLabel;
+	IBOutlet UIButton *drumpad1;
+	IBOutlet UIButton *drumpad2;
+	IBOutlet UIButton *drumpad3;
+	IBOutlet UIButton *drumpad4;
+	IBOutlet UIButton *drumpad5;
+	IBOutlet UIButton *drumpad6;
+	IBOutlet UIButton *drumpad7;
+	IBOutlet UIButton *drumpad8;
+	
 	//future ui
 	UIButton *saveFutureButton;
 	UIButton *cancelFutureButton;
@@ -61,6 +72,7 @@
 	NSMutableArray *tracks;
 	NSMutableArray *futureControls;
 	NSMutableArray *mainControls;
+	NSMutableArray *drumControls;
 	int numTracks;
 	
 	//cool HUD
@@ -86,6 +98,15 @@
 @property (nonatomic, retain) IBOutlet MixerView *track3;
 @property (nonatomic, retain) IBOutlet MixerView *track4;
 @property (nonatomic, retain) IBOutlet MixerView *drumTrack;
+@property (nonatomic, retain) IBOutlet UILabel *drumpadLabel;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad1;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad2;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad3;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad4;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad5;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad6;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad7;
+@property (nonatomic, retain) IBOutlet UIButton *drumpad8;
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
@@ -95,6 +116,7 @@
 @property (nonatomic, retain) NSMutableArray *tracks;
 @property (nonatomic, retain) NSMutableArray *futureControls;
 @property (nonatomic, retain) NSMutableArray *mainControls;
+@property (nonatomic, retain) NSMutableArray *drumControls;
 
 @property (nonatomic, retain) HUDHandler *HUD;
 
@@ -110,6 +132,7 @@
 - (void)futureLengthChanged:(UISlider *)slider;
 - (void)trackAddedInterface;
 - (void)updateBpmSlider:(float)val;
+- (void)hideDrumpad:(bool)toHide;
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
@@ -119,5 +142,6 @@
 - (IBAction)futureButtonPressed:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender;
+- (IBAction)drumpadPressed:(id)sender;
 
 @end
