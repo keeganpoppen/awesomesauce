@@ -286,11 +286,11 @@ NSDictionary *MatrixHandler::encode() {
 	return dict;
 }
 
-void MatrixHandler::startFuture(int future_length, bool sendNotification) {
-	getCurrentMatrix()->startFuture(future_length);
+void MatrixHandler::startFuture(int future_length, int f_mode, bool sendNotification) {
+	getCurrentMatrix()->startFuture(future_length, f_mode);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];
+		[[temp futureStartSync] sendFutureStartWithLength:future_length withMode:f_mode withTrackId:getCurrentMatrix()->track_id];
 	}
 }
 

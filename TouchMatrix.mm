@@ -81,9 +81,19 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	return dict;
 }
 
-void TouchMatrix::startFuture(int future_length) {
+void TouchMatrix::startFuture(int future_length, int mode) {
 	future_steps_remaining = future_length;
+	total_future_steps = future_length;
 	is_futuring = true;
+	future_mode = mode;
+	if(mode == 1) {
+		future_steps_remaining = (int) (((float) future_steps_remaining)/2.0);
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				beginSquares[i][j] = squares[i][j];
+			}
+		}
+	}
 }
 
 void TouchMatrix::clearFuture() {
@@ -106,7 +116,19 @@ void TouchMatrix::updateIntermediateSquares() {
 				futureSquares[i][j] = false;
 			}
 		}
-		is_futuring = false;
+		if(future_mode == 1) {
+			future_mode = 0;
+			for (int i = 0; i < 16; ++i) {
+				for (int j = 0; j < 16; ++j) {
+					futureSquares[i][j] = beginSquares[i][j];
+					beginSquares[i][j] = false;
+				}
+			}
+			future_steps_remaining = (int) (((float) total_future_steps)/2.0);
+		}
+		else {
+			is_futuring = false;
+		}
 	}
 	else {
 		int futureCount = 0;

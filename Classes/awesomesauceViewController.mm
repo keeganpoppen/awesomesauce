@@ -46,7 +46,8 @@ enum {
 @synthesize bpmSlider;
 @synthesize bpmLabel1, bpmLabel2, bpmLabel3;
 @synthesize instPicker;
-@synthesize saveFutureButton;
+@synthesize saveFutureButton0;
+@synthesize saveFutureButton1;
 @synthesize cancelFutureButton;
 @synthesize futureLengthSlider;
 @synthesize futureLengthLabel;
@@ -176,24 +177,30 @@ enum {
 	
 	//[mixerTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 	//add in new stuff
-	saveFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[saveFutureButton addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
-	[saveFutureButton setTitle:@"Save" forState:UIControlStateNormal];
-	saveFutureButton.frame = CGRectMake(20.0, 90.0, 210.0, 40.0);
-	[self.view addSubview:saveFutureButton];
+	saveFutureButton0 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[saveFutureButton0 addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[saveFutureButton0 setTitle:@"There" forState:UIControlStateNormal];
+	saveFutureButton0.frame = CGRectMake(20.0, 90.0, 210.0, 40.0);
+	[self.view addSubview:saveFutureButton0];
+	
+	saveFutureButton1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[saveFutureButton1 addTarget:self action:@selector(saveFuture:) forControlEvents:UIControlEventTouchUpInside];
+	[saveFutureButton1 setTitle:@"There and Back" forState:UIControlStateNormal];
+	saveFutureButton1.frame = CGRectMake(20.0, 150.0, 210.0, 40.0);
+	[self.view addSubview:saveFutureButton1];
 	
 	cancelFutureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[cancelFutureButton addTarget:self action:@selector(cancelFuture:) forControlEvents:UIControlEventTouchUpInside];
 	[cancelFutureButton setTitle:@"Cancel" forState:UIControlStateNormal];
-	cancelFutureButton.frame = CGRectMake(20.0, 150.0, 210.0, 40.0);
+	cancelFutureButton.frame = CGRectMake(20.0, 210.0, 210.0, 40.0);
 	[self.view addSubview:cancelFutureButton];
 	
-	CGRect sliderTitleFrame = CGRectMake(20.0, 210.0, 210.0, 30.0);
+	CGRect sliderTitleFrame = CGRectMake(20.0, 270.0, 210.0, 30.0);
 	futureLengthTitle = [[UILabel alloc] initWithFrame:sliderTitleFrame];
 	futureLengthTitle.text = @"Automation Length";
 	[self.view addSubview:futureLengthTitle];
 	
-	CGRect sliderFrame = CGRectMake(20.0, 250.0, 160.0, 20.0);
+	CGRect sliderFrame = CGRectMake(20.0, 310.0, 160.0, 20.0);
 	futureLengthSlider = [[UISlider alloc] initWithFrame:sliderFrame];
     [futureLengthSlider addTarget:self action:@selector(futureLengthChanged:) forControlEvents:UIControlEventValueChanged];
     [futureLengthSlider setBackgroundColor:[UIColor clearColor]];
@@ -203,21 +210,22 @@ enum {
     futureLengthSlider.value = 8;
 	[self.view addSubview:futureLengthSlider];
 	
-	CGRect sliderLabelFrame = CGRectMake(190.0, 250.0, 50.0, 30.0);
+	CGRect sliderLabelFrame = CGRectMake(190.0, 310.0, 50.0, 30.0);
 	futureLengthLabel = [[UILabel alloc] initWithFrame:sliderLabelFrame];
 	futureLengthLabel.text = @"8";
 	[self.view addSubview:futureLengthLabel];
 	
-	CGRect descFrame = CGRectMake(20.0, 290.0, 210.0, 380.0);
+	CGRect descFrame = CGRectMake(20.0, 350.0, 210.0, 380.0);
 	futureDescription = [[UILabel alloc] initWithFrame:descFrame];
-	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 bars, or 8 iterations of the whole grid, to change). Then, hit save. Our sophisticated algorithms will morph the initial grid into your ending grid in the awesomest way possible.";
+	futureDescription.text = @"Want your track to change over time? Draw in what you want this track to look like in the future. Then select using the slider how long you want it to take to get there (8 means it'll take 8 iterations of the whole grid, to change). Then, hit either 'There,' which morphs the grid into your future grid, or 'There And Back' which morphs into your specified grid and then back.";
 	futureDescription.lineBreakMode = UILineBreakModeWordWrap;
 	futureDescription.numberOfLines = 0;
 	[self.view addSubview:futureDescription];
 	
 	//add items to arrays
 	futureControls = [[NSMutableArray alloc] init];
-	[futureControls addObject:saveFutureButton];
+	[futureControls addObject:saveFutureButton0];
+	[futureControls addObject:saveFutureButton1];
 	[futureControls addObject:cancelFutureButton];
 	[futureControls addObject:futureLengthSlider];
 	[futureControls addObject:futureLengthLabel];
@@ -527,10 +535,14 @@ enum {
 }
 
 - (void)saveFuture:(id)sender {
+	int type = 0;
+	if(sender == saveFutureButton1) {
+		type = 1;
+	}
 	NSLog(@"save future pressed");
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	int len = (int)[futureLengthSlider value];
-	mh->startFuture(len);
+	mh->startFuture(len, type);
 	[self toggleMainScreen:YES];
 }
 

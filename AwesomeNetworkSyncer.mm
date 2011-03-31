@@ -126,13 +126,15 @@
 
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime {
 	int futureLength = [[data objectForKey:@"length"] intValue];
+	int mode = [[data objectForKey:@"mode"] intValue];
 	int trackId = [[data objectForKey:@"track_id"] intValue];
-	matrixHandler->getMatrix(trackId)->startFuture(futureLength);
+	matrixHandler->getMatrix(trackId)->startFuture(futureLength, mode);
 	NSLog(@"received future");
 }
 
--(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId {
+-(void)sendFutureStartWithLength:(int)length withMode:(int)mode withTrackId:(int)trackId {
 	[networker sendData:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:length],@"length",
+						 [NSNumber numberWithInt:mode],@"mode",
 						 [NSNumber numberWithInt:trackId], @"track_id",nil] withEventName:@"future_start"];
 	NSLog(@"sending future");
 }

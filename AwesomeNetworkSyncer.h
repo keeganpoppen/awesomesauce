@@ -43,7 +43,7 @@
 	MatrixHandler *matrixHandler;
 }
 
--(void)sendFutureStartWithLength:(int)length withTrackId:(int)trackId;
+-(void)sendFutureStartWithLength:(int)length withMode:(int)mode withTrackId:(int)trackId;
 -(void)receiveData:(NSDictionary*)data fromTime:(NSTimeInterval)updateTime;
 
 @property(nonatomic, retain) AwesomeNetworker *networker;

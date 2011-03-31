@@ -62,7 +62,8 @@
 	IBOutlet UIButton *drumpad8;
 	
 	//future ui
-	UIButton *saveFutureButton;
+	UIButton *saveFutureButton0;
+	UIButton *saveFutureButton1;
 	UIButton *cancelFutureButton;
 	UISlider *futureLengthSlider;
 	UILabel *futureLengthLabel;
@@ -107,7 +108,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *drumpad6;
 @property (nonatomic, retain) IBOutlet UIButton *drumpad7;
 @property (nonatomic, retain) IBOutlet UIButton *drumpad8;
-@property (nonatomic, retain) UIButton *saveFutureButton;
+@property (nonatomic, retain) UIButton *saveFutureButton0;
+@property (nonatomic, retain) UIButton *saveFutureButton1;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
 @property (nonatomic, retain) UILabel *futureLengthLabel;

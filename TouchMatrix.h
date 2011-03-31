@@ -113,12 +113,15 @@ public:
 	float col_progress;
 	
 	//future stuff
+	bool beginSquares[16][16];
 	bool futureSquares[16][16];
 	bool is_futuring;
 	int future_steps_remaining;
+	int total_future_steps;
+	int future_mode; //0 = here to there, 1 = there and back
 	void updateIntermediateSquares();
 	void updateIntermediateSquares_naive();
-	void startFuture(int future_length);
+	void startFuture(int future_length, int mode);
 	void clearFuture();
 	
 private:
