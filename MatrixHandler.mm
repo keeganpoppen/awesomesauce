@@ -124,7 +124,7 @@ bool MatrixHandler::toggleSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleSquare(row, col);
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:currentMatrix];
 	}
 	return toggled;
 }
@@ -135,7 +135,7 @@ void MatrixHandler::setSquare(int row, int col, bool value) {
 	}
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] presentMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:currentMatrix];
 	}
 	getCurrentMatrix()->setSquare(row, col, value);
 }
@@ -144,7 +144,7 @@ bool MatrixHandler::toggleFutureSquare(int row, int col) {
 	bool toggled = getCurrentMatrix()->toggleFutureSquare(row, col);
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:toggled withTrackId:currentMatrix];
 	}
 	return toggled;
 }
@@ -152,7 +152,7 @@ bool MatrixHandler::toggleFutureSquare(int row, int col) {
 void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 	AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 	if(temp != nil) {
-		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:getCurrentMatrix()->track_id];
+		[[temp squareSync] futureMatrixSquareChangedAtRow:row andColumn:col toValue:value withTrackId:currentMatrix];
 	}
 	getCurrentMatrix()->setFutureSquare(row, col, value);
 }
@@ -227,11 +227,14 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 	int numMatrices = matrices.size();
 	for(int i = 0; i < numMatrices; i++) {
 		if(matrices[i]->isOn) {
-			sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices+1);
+			sonifyMatrix(buffer, numFrames, userData, matrices[i], 0.4/((Float32)numMatrices));
 		}
 	}
-	sonifyMatrix(buffer, numFrames, userData, drumMatrix, numMatrices+1);
-	sonifyDrumPad(buffer, numFrames, userData, drumPad, numMatrices);
+	if(drumMatrix->isOn) {
+		sonifyMatrix(buffer, numFrames, userData, drumMatrix, 0.6);
+	}
+	//TODO: should drumpad shut off when drums are off? probably not
+	sonifyDrumPad(buffer, numFrames, userData, drumPad, 0.6);
 }
 
 void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
@@ -279,17 +282,18 @@ NSDictionary *MatrixHandler::encode() {
 		NSMutableDictionary *temp = matrices[i]->toDictionary();
 		[array addObject:temp];
 	}
-	
+	NSMutableDictionary *drumDict = drumMatrix->toDictionary();
 	[dict setObject:array forKey:@"matrices"];
+	[dict setObject:drumDict forKey:@"drumMatrix"];
 	[dict setObject:[NSNumber numberWithFloat:bpm] forKey:@"bpm"];
 	return dict;
 }
 
-void MatrixHandler::startFuture(int future_length, bool sendNotification) {
-	getCurrentMatrix()->startFuture(future_length);
+void MatrixHandler::startFuture(int future_length, int f_mode, bool sendNotification) {
+	getCurrentMatrix()->startFuture(future_length, f_mode);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp futureStartSync] sendFutureStartWithLength:future_length withTrackId:getCurrentMatrix()->track_id];
+		[[temp futureStartSync] sendFutureStartWithLength:future_length withMode:f_mode withTrackId:getCurrentMatrix()->track_id];
 	}
 }
 
@@ -309,6 +313,8 @@ void MatrixHandler::decode(NSDictionary *dict) {
 		TouchMatrix *newMatrix = new TouchMatrix(element);
 		matrices.push_back(newMatrix);
     }
+	
+	drumMatrix = new TouchMatrix([dict objectForKey:@"drumMatrix"]);
 	
 	currentMatrix = 0;
 	bpm = [((NSNumber *)[dict objectForKey:@"bpm"]) floatValue];

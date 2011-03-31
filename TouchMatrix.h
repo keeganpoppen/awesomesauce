@@ -113,19 +113,27 @@ public:
 	float col_progress;
 	
 	//future stuff
+	bool beginSquares[16][16];
 	bool futureSquares[16][16];
 	bool is_futuring;
 	int future_steps_remaining;
+	int total_future_steps;
+	int future_mode; //0 = here to there, 1 = there and back
 	void updateIntermediateSquares();
 	void updateIntermediateSquares_naive();
-	void startFuture(int future_length);
+	void startFuture(int future_length, int mode);
 	void clearFuture();
 	
 private:
 	void initialize_junk() {
+		/*
 		note_length = 0.1;
 		note_attack = 0.0;
 		note_release = 1.0;
+		*/
+		note_length = 0.3;
+		note_attack = 0.03;
+		note_release = 0.55;
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;

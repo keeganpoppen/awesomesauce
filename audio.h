@@ -15,8 +15,8 @@ static float base_freq = 110.;
 static int pentatonic_indices[5] = {0, 2, 4, 7, 9};
 
 void audioInit();
-void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, int numMatrices);
-void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, int numMatrices);
+void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix *matrix, Float32 volRatio);
+void sonifyDrumPad(Float32 *buffer, UInt32 numFrames, void *userData, DrumPad *pad, Float32 volRatio);
 void setPlayback(bool inval);
 void setMute(bool inval);
 void toggleMute();

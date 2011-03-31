@@ -46,7 +46,7 @@ public:
 	NSDictionary *encode();
 	void decode(NSDictionary *dict);
 	void resetTime();
-	void startFuture(int future_length, bool sendNotification=true);
+	void startFuture(int future_length, int f_mode, bool sendNotification=true);
 	void cancelFuture();
 	void pressPad(int i);
 	AwesomeNetworkSyncer *getSyncer();
