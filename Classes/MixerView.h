@@ -29,5 +29,6 @@
 - (void)enableTrack:(NSString *)labelText;
 - (IBAction)editButtonPressed:(UIButton *)sender;
 - (IBAction)onSwitchToggled;
+- (int)getTrackNum;
 
 @end

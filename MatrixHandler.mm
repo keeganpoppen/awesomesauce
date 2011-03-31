@@ -35,6 +35,10 @@ MatrixHandler::MatrixHandler() {
 	firstMatrix->track_id = 0;
 	matrices.push_back(firstMatrix);
 	
+	drumMatrix = new TouchMatrix();
+	drumMatrix->track_id = -1;
+	drumMatrix->initialize_drums();
+	
 	currentMatrix = 0;
 	col_progress = 0.;
 	time_elapsed = 0.;
@@ -153,7 +157,12 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 		cusp = true;
 	}
 	
+	int old_column = current_column;
 	current_column = (int)col_exact % 16;
+	if(old_column != current_column) {
+		drumMatrix->reset_synths();
+	}
+	
 	col_progress = col_exact - (float)((int)col_exact);
 	
 	for(int i = 0; i < matrices.size(); i++) {
@@ -161,6 +170,9 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 		matrices[i]->current_column = current_column;
 		matrices[i]->col_progress = col_progress;
 	}
+	drumMatrix->time_elapsed = time_elapsed;
+	drumMatrix->current_column = current_column;
+	drumMatrix->col_progress = col_progress;
 	
 	if(cusp && current_column == 0) {
 		//we have switched to a new frame
@@ -193,9 +205,10 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 	int numMatrices = matrices.size();
 	for(int i = 0; i < numMatrices; i++) {
 		if(matrices[i]->isOn) {
-			sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices);
+			sonifyMatrix(buffer, numFrames, userData, matrices[i], numMatrices+1);
 		}
 	}
+	sonifyMatrix(buffer, numFrames, userData, drumMatrix, numMatrices+1);
 }
 
 void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
@@ -229,6 +242,7 @@ void MatrixHandler::saveCurrentComposition(NSString *name) {
 	NSLog(@"ideally, done being saved on the server");
 }
 
+//TODO: fix encode to account for drums
 NSDictionary *MatrixHandler::encode() {
 	//vars:
 	//vector<TouchMatrix *> matrices;
@@ -260,6 +274,7 @@ void MatrixHandler::cancelFuture() {
 	getCurrentMatrix()->clearFuture();
 }
 
+//TODO: fix decode to account for drums
 void MatrixHandler::decode(NSDictionary *dict) {
 	matrices.clear();
 		
@@ -280,9 +295,15 @@ void MatrixHandler::decode(NSDictionary *dict) {
 }
 
 TouchMatrix *MatrixHandler::getCurrentMatrix() {
+	if(currentMatrix == -1) {
+		return drumMatrix;
+	}
 	return matrices[currentMatrix];
 }
 
 TouchMatrix *MatrixHandler::getMatrix(int matrix_id) {
+	if(matrix_id == -1) {
+		return drumMatrix;
+	}
 	return matrices[matrix_id];
 }

@@ -54,6 +54,7 @@ public:
 	TouchMatrix *getMatrix(int matrix_id);
 	
 	vector<TouchMatrix *> matrices;
+	TouchMatrix *drumMatrix;
 	int currentMatrix;
 	
 	float time_elapsed;

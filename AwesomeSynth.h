@@ -7,6 +7,7 @@
 //
 
 #import "Generator.h"
+#import "mo_io.h"
 
 using namespace stk;
 using namespace std;
@@ -15,6 +16,8 @@ class AwesomeSynth {
 public:
 	AwesomeSynth();
 	StkFloat tick();
+	void reset();
+	void setWave(const char *fileName);
 	void setFrequency(Float32 inFreq);
 	void setOscillator(int newVal, int index);
 	int getInst(int index);
@@ -23,4 +26,7 @@ public:
 	
 	Generator *gen[3];
 	Float32 frequency;
+	MoAudioFileIn *wavFile;
+	bool wavSet;
+	const char* fileName;
 };

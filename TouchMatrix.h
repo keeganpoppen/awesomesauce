@@ -71,6 +71,30 @@ public:
 		return waves[0]->oscillator[index];
 	}
 	
+	void reset_synths() {
+		for (int i = 0; i < 16; ++i) {
+			waves[i]->reset();
+		}
+	}
+	
+	void initialize_drums() {
+		note_length = 1.0;
+		note_attack = 0.0;
+		note_release = 0.0;
+		
+		for (int i = 0; i < 8; ++i) {
+			waves[i]->setOscillator(-1, 0);
+		}
+		waves[0]->setWave("1kick");
+		waves[1]->setWave("2snare");
+		waves[2]->setWave("3snare2");
+		waves[3]->setWave("4clap");
+		waves[4]->setWave("5clap2");
+		waves[5]->setWave("6hatopen");
+		waves[6]->setWave("7hatclosed");
+		waves[7]->setWave("8shaker");
+	}
+	
 	bool isOn;
 	
 	int getColumn() { return current_column; }

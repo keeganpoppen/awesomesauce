@@ -432,23 +432,6 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUILabel" id="522599329">
-								<reference key="NSNextResponder" ref="764740580"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{94, 12}, {62, 21}}</string>
-								<reference key="NSSuperview" ref="764740580"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">[empty]</string>
-								<reference key="IBUIFont" ref="836562927"/>
-								<reference key="IBUITextColor" ref="1061714018"/>
-								<reference key="IBUIHighlightedColor" ref="503988474"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-							</object>
 							<object class="IBUILabel" id="292354074">
 								<reference key="NSNextResponder" ref="764740580"/>
 								<int key="NSvFlags">292</int>
@@ -459,7 +442,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Track 5:</string>
+								<string key="IBUIText">Drums</string>
 								<reference key="IBUIFont" ref="836562927"/>
 								<reference key="IBUITextColor" ref="1061714018"/>
 								<reference key="IBUIHighlightedColor" ref="503988474"/>
@@ -973,14 +956,6 @@
 					<int key="connectionID">72</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">trackName</string>
-						<reference key="source" ref="764740580"/>
-						<reference key="destination" ref="522599329"/>
-					</object>
-					<int key="connectionID">73</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onSwitchToggled</string>
 						<reference key="source" ref="359587346"/>
@@ -996,14 +971,6 @@
 						<reference key="destination" ref="165781218"/>
 					</object>
 					<int key="connectionID">95</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">track5</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="764740580"/>
-					</object>
-					<int key="connectionID">96</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1136,6 +1103,22 @@
 						<int key="IBEventType">8</int>
 					</object>
 					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">drumTrack</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="764740580"/>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">trackName</string>
+						<reference key="source" ref="764740580"/>
+						<reference key="destination" ref="292354074"/>
+					</object>
+					<int key="connectionID">141</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1332,17 +1315,11 @@
 						<reference key="object" ref="764740580"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="522599329"/>
 							<reference ref="359587346"/>
 							<reference ref="292354074"/>
 							<reference ref="480888636"/>
 						</object>
 						<reference key="parent" ref="184854543"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">66</int>
-						<reference key="object" ref="522599329"/>
-						<reference key="parent" ref="764740580"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
@@ -1513,8 +1490,6 @@
 					<string>65.CustomClassName</string>
 					<string>65.IBPluginDependency</string>
 					<string>65.IBViewBoundsToFrameTransform</string>
-					<string>66.IBPluginDependency</string>
-					<string>66.IBViewBoundsToFrameTransform</string>
 					<string>67.IBPluginDependency</string>
 					<string>67.IBViewBoundsToFrameTransform</string>
 					<string>68.IBPluginDependency</string>
@@ -1569,7 +1544,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABBqAAAw1QAAA</bytes>
 					</object>
 					<string>EAGLView</string>
-					<string>{{-11, 60}, {1039, 696}}</string>
+					<string>{{0, 60}, {1039, 696}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -1674,10 +1649,6 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCtgAAwgQAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABByAAAwpIAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1706,7 +1677,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">139</int>
+			<int key="maxID">141</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1923,6 +1894,7 @@
 							<string>clearTrackButton</string>
 							<string>clearTrackLabel</string>
 							<string>currentlyEditingLabel</string>
+							<string>drumTrack</string>
 							<string>futureButton</string>
 							<string>futureLabel</string>
 							<string>instPicker</string>
@@ -1930,7 +1902,6 @@
 							<string>track2</string>
 							<string>track3</string>
 							<string>track4</string>
-							<string>track5</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1943,10 +1914,10 @@
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>MixerView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UISegmentedControl</string>
-							<string>MixerView</string>
 							<string>MixerView</string>
 							<string>MixerView</string>
 							<string>MixerView</string>
@@ -1966,6 +1937,7 @@
 							<string>clearTrackButton</string>
 							<string>clearTrackLabel</string>
 							<string>currentlyEditingLabel</string>
+							<string>drumTrack</string>
 							<string>futureButton</string>
 							<string>futureLabel</string>
 							<string>instPicker</string>
@@ -1973,7 +1945,6 @@
 							<string>track2</string>
 							<string>track3</string>
 							<string>track4</string>
-							<string>track5</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2014,6 +1985,10 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">drumTrack</string>
+								<string key="candidateClassName">MixerView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">futureButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
@@ -2039,10 +2014,6 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">track4</string>
-								<string key="candidateClassName">MixerView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">track5</string>
 								<string key="candidateClassName">MixerView</string>
 							</object>
 						</object>

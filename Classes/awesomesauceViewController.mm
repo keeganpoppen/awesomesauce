@@ -52,7 +52,7 @@ enum {
 @synthesize futureLengthLabel;
 @synthesize futureLengthTitle;
 @synthesize futureDescription;
-@synthesize track1, track2, track3, track4, track5;
+@synthesize track1, track2, track3, track4, drumTrack;
 @synthesize tracks;
 @synthesize futureControls;
 @synthesize mainControls;
@@ -253,14 +253,19 @@ enum {
 	[tracks addObject:track2];
 	[tracks addObject:track3];
 	[tracks addObject:track4];
-	[tracks addObject:track5];
+	[tracks addObject:drumTrack];
 	
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
 	int i = 0;
 	while(element = (MixerView *)[enumerator nextObject])
     {
-		[element setTrackNum:i];
+		if(i == 4) {
+			[element setTrackNum:-1];
+		}
+		else {
+			[element setTrackNum:i];
+		}
 		[element setMatrixHandler:mh];
 		[element setParent:self];
 		[element disableTrack];
@@ -279,6 +284,7 @@ enum {
     }
 	
 	[track1 enableTrack:@"Sine"];
+	[drumTrack enableTrack:@"Drums"];
 	numTracks = 1;
 }
 
@@ -346,9 +352,17 @@ enum {
 
 - (void)matrixChanged {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
+	NSString *newText;
+	if(mh->currentMatrix == -1) {
+		newText = @"Currently Editing Drums";
+		instPicker.hidden = YES;
+	}
+	else {
+		newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
+		instPicker.hidden = NO;
+		instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
+	}
 	[currentlyEditingLabel setText:newText];
-	instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
 	//highlight current track, unhighlight old track
 	NSEnumerator *enumerator = [tracks objectEnumerator];
 	MixerView *element;
@@ -357,7 +371,7 @@ enum {
     {
 		CAGradientLayer *gradient = [CAGradientLayer layer];
 		gradient.frame = element.bounds;
-		if(i == mh->currentMatrix) {
+		if([element getTrackNum] == mh->currentMatrix) {
 			gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor orangeColor] CGColor], (id)[[UIColor redColor] CGColor], nil];
 			NSLog(@"pokemon %d", mh->currentMatrix);
 		}
@@ -403,9 +417,9 @@ enum {
 	
 	[self matrixChanged];
 	
-	//TODO: 5 is a magic number so we should replace that at some point
+	//TODO: 4 is a magic number so we should replace that at some point
 	//also the tableview not working is kinda lame
-	if(numTracks >= 5) {
+	if(numTracks >= 4) {
 		addTrackButton.hidden = YES;
 	}
 }

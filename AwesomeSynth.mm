@@ -16,8 +16,8 @@ AwesomeSynth::AwesomeSynth() {
 	gen[1] = NULL;
 	gen[2] = NULL;
 	oscillator[0] = 0;
-	oscillator[1] = -1;
-	oscillator[2] = -1;
+	oscillator[1] = -10;
+	oscillator[2] = -10;
 }
 
 int AwesomeSynth::getInst(int index) {
@@ -37,6 +37,16 @@ StkFloat AwesomeSynth::tick() {
 		else if(oscillator[i] == 2) {
 			tick_val += ((BlitSaw *) gen[i])->tick();
 		}
+		else if(oscillator[i] == -1) {
+			if(wavFile->m_filename == NULL || strcmp(wavFile->m_filename,"") == 0) {
+				//nothing happens
+			}
+			else {
+				//NSLog(@"cur filename: %s", wavFile->m_filename);
+				SAMPLE tempS = wavFile->tick();
+				tick_val += tempS;
+			}
+		}
 		else {
 			num--;
 		}
@@ -44,9 +54,38 @@ StkFloat AwesomeSynth::tick() {
 	return tick_val / num;
 }
 
+void AwesomeSynth::reset() {
+	if(!wavSet) {
+		return;
+	}
+	if(getInst(0) != -1) {
+		return;
+	}
+	if(wavFile == NULL) {
+		return;
+	}
+	if(wavFile->m_filename == NULL) {
+		return;
+	}
+	if(strcmp(wavFile->m_filename,"") == 0) {
+		return;
+	}
+	//TODO how do i set the sound back to the beginning?
+	//wavFile->closeFile();
+	wavFile->reset();
+}
+
+void AwesomeSynth::setWave(const char *inFileName) {
+	fileName = inFileName;
+	wavFile = new MoAudioFileIn();
+	wavFile->openFile(fileName, "wav");
+	//NSLog(@"set filename: %s", wavFile->m_filename);
+	wavSet = true;
+}
+
 void AwesomeSynth::setOscillator(int newVal, int index) {
-	if(newVal < 0 || newVal > 2) {
-		oscillator[index] = -1;
+	if(newVal < -1 || newVal > 2) {
+		oscillator[index] = -10;
 	}
 	else {
 		oscillator[index] = newVal;

@@ -53,6 +53,10 @@
 	parent = avc;
 }
 
+- (int)getTrackNum {
+	return trackNum;
+}
+
 - (IBAction)editButtonPressed:(UIButton *)sender {
 	matrixHandler->currentMatrix = trackNum;
 	[parent matrixChanged];

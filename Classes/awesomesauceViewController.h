@@ -48,7 +48,7 @@
 	IBOutlet MixerView *track2;
 	IBOutlet MixerView *track3;
 	IBOutlet MixerView *track4;
-	IBOutlet MixerView *track5;
+	IBOutlet MixerView *drumTrack;
 	
 	//future ui
 	UIButton *saveFutureButton;
@@ -85,7 +85,7 @@
 @property (nonatomic, retain) IBOutlet MixerView *track2;
 @property (nonatomic, retain) IBOutlet MixerView *track3;
 @property (nonatomic, retain) IBOutlet MixerView *track4;
-@property (nonatomic, retain) IBOutlet MixerView *track5;
+@property (nonatomic, retain) IBOutlet MixerView *drumTrack;
 @property (nonatomic, retain) UIButton *saveFutureButton;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
 @property (nonatomic, retain) UISlider *futureLengthSlider;
