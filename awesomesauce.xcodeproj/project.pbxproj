@@ -57,6 +57,8 @@
 		2DACE60F131B5401004EE909 /* SynthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DACE60D131B5401004EE909 /* SynthViewController.xib */; };
 		2DBA431B13001EAD00FC8599 /* square_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA431A13001EAD00FC8599 /* square_texture.png */; };
 		2DBB53651309735600DCA380 /* square_texture3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB53641309735600DCA380 /* square_texture3.png */; };
+		2DC6541313452ACF008FF412 /* pad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6541113452ACF008FF412 /* pad_pressed.png */; };
+		2DC6541413452ACF008FF412 /* pad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6541213452ACF008FF412 /* pad.png */; };
 		3D18413813448BA300680AA8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D18413713448BA300680AA8 /* CoreData.framework */; };
 		3D18415F134492CE00680AA8 /* awesomedatamodel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */; };
 		3D1841621344932900680AA8 /* AwesomeDataPersistenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */; };
@@ -281,6 +283,8 @@
 		2DACE6A5131B72D1004EE909 /* FlipViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipViewProtocol.h; sourceTree = "<group>"; };
 		2DBA431A13001EAD00FC8599 /* square_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture.png; sourceTree = "<group>"; };
 		2DBB53641309735600DCA380 /* square_texture3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_texture3.png; sourceTree = "<group>"; };
+		2DC6541113452ACF008FF412 /* pad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_pressed.png; sourceTree = "<group>"; };
+		2DC6541213452ACF008FF412 /* pad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
 		3D18413713448BA300680AA8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = awesomedatamodel.xcdatamodel; sourceTree = "<group>"; };
@@ -656,6 +660,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2DC6541113452ACF008FF412 /* pad_pressed.png */,
+				2DC6541213452ACF008FF412 /* pad.png */,
 				2D7A5BE413429FB700215C8D /* electrokit */,
 				2D84D8C21331E81100335668 /* delete_clicked.png */,
 				2D84D8C31331E81100335668 /* future_clicked.png */,
@@ -1178,6 +1184,8 @@
 				2D7A5CD01343FE0E00215C8D /* 6hatopen.wav in Resources */,
 				2D7A5CD11343FE0E00215C8D /* 7hatclosed.wav in Resources */,
 				2D7A5CD21343FE0E00215C8D /* 8shaker.wav in Resources */,
+				2DC6541313452ACF008FF412 /* pad_pressed.png in Resources */,
+				2DC6541413452ACF008FF412 /* pad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

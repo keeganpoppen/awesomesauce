@@ -607,7 +607,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">clear</string>
-						<object class="NSFont" key="IBUIFont" id="415963112">
+						<object class="NSFont" key="IBUIFont" id="755512683">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
@@ -629,7 +629,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">add</string>
-						<reference key="IBUIFont" ref="415963112"/>
+						<reference key="IBUIFont" ref="755512683"/>
 						<reference key="IBUITextColor" ref="1061714018"/>
 						<reference key="IBUIHighlightedColor" ref="503988474"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -647,7 +647,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">automate</string>
-						<reference key="IBUIFont" ref="415963112"/>
+						<reference key="IBUIFont" ref="755512683"/>
 						<reference key="IBUITextColor" ref="1061714018"/>
 						<reference key="IBUIHighlightedColor" ref="503988474"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -727,11 +727,10 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Kick</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MSAwLjk3NzI3MjcyNzMgMC45NzcyNzI3MjczAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="29912308"/>
 					</object>
@@ -746,7 +745,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Snare 1</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -765,7 +763,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Snare 2</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -784,7 +781,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Closed Hat</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -803,7 +799,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Clap 1</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -822,7 +817,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Clap 2</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -841,7 +835,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Open Hat</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -860,7 +853,6 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="1025776730"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Shaker</string>
 						<reference key="IBUIHighlightedTitleColor" ref="503988474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -1977,7 +1969,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABEYEAAw4WAAA</bytes>
 					</object>
 					<string>EAGLView</string>
-					<string>{{3, 60}, {1039, 696}}</string>
+					<string>{{-344, 60}, {1039, 696}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">

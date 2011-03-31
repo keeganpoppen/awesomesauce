@@ -262,6 +262,44 @@ enum {
 	[drumControls addObject:drumpad6];
 	[drumControls addObject:drumpad7];
 	[drumControls addObject:drumpad8];
+	
+	NSEnumerator *drumEnum = [drumControls objectEnumerator];
+	int i = 0;
+	while(element = (UIView *)[drumEnum nextObject])
+    {
+		if(i > 0) {
+			UIImage *drumpadImage = [UIImage imageNamed:@"pad.png"];
+			UIImage *drumpadImage_pressed = [UIImage imageNamed:@"pad_pressed.png"];
+			UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 32, 130, 60)];
+			if(i == 1) { tempLabel.text = @"Kick"; }
+			else if (i == 2) { tempLabel.text = @"Snare 1"; }
+			else if (i == 3) { tempLabel.text = @"Snare 2"; }
+			else if (i == 4) { tempLabel.text = @"Clap 1"; }
+			else if (i == 5) { tempLabel.text = @"Clap 2"; }
+			else if (i == 6) { tempLabel.text = @"Open Hat"; }
+			else if (i == 7) { tempLabel.text = @"Closed Hat"; }
+			else if (i == 8) { tempLabel.text = @"Shaker"; }
+			
+			tempLabel.backgroundColor = [UIColor clearColor];
+			tempLabel.textColor = [UIColor whiteColor];
+			tempLabel.textAlignment =  UITextAlignmentCenter;
+			tempLabel.font = [UIFont boldSystemFontOfSize:16];
+			
+			[element setBackgroundImage:drumpadImage forState:UIControlStateNormal];
+			[element setBackgroundImage:drumpadImage_pressed forState:UIControlStateHighlighted];
+			[element addSubview:tempLabel];
+			[element setHidden:YES];
+		}
+		i++;
+		
+	}
+	
+	/*
+	[drumpad1 setTitle:@"Kick" forState:UIControlStateNormal];
+	[drumpad1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[drumpad1 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+	 */
+	
 	[self hideDrumpad:YES];
 }
 
