@@ -88,7 +88,12 @@ void MatrixHandler::addNewMatrix(TouchMatrix *matrix, bool sendNotification) {
 }
 
 void MatrixHandler::setMatrixOn(int trackId, bool newOnState) {
-	matrices[trackId]->isOn = newOnState;
+	if(trackId == -1) {
+		drumMatrix->isOn = newOnState;
+	}
+	else {
+		matrices[trackId]->isOn = newOnState;
+	}
 	//trackEditedEvent(trackId, newOnState, matrices[trackId]->instrument);
 }
 
