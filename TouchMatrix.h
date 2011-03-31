@@ -123,9 +123,14 @@ public:
 	
 private:
 	void initialize_junk() {
+		/*
 		note_length = 0.1;
 		note_attack = 0.0;
 		note_release = 1.0;
+		*/
+		note_length = 0.3;
+		note_attack = 0.03;
+		note_release = 0.55;
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;

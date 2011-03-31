@@ -227,7 +227,10 @@ void MatrixHandler::sonifyAllMatrices(Float32 * buffer, UInt32 numFrames, void *
 			sonifyMatrix(buffer, numFrames, userData, matrices[i], 0.4/((Float32)numMatrices));
 		}
 	}
-	sonifyMatrix(buffer, numFrames, userData, drumMatrix, 0.6);
+	if(drumMatrix->isOn) {
+		sonifyMatrix(buffer, numFrames, userData, drumMatrix, 0.6);
+	}
+	//TODO: should drumpad shut off when drums are off? probably not
 	sonifyDrumPad(buffer, numFrames, userData, drumPad, 0.6);
 }
 
