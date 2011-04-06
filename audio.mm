@@ -43,18 +43,7 @@ void sonifyMatrix(Float32 *buffer, UInt32 numFrames, void *userData, TouchMatrix
 		
 		for (int row = 0; row < 16; ++row) {
 			if(!matrix->squares[row][col]) continue;
-			if(matrix->col_progress > (matrix->note_length + matrix->note_release)) continue;
-			
 			Float32 tick_val = matrix->waves[row]->tick();
-			if(matrix->col_progress > matrix->note_length) {
-				Float32 rel_ratio = 1.0 - ((matrix->col_progress - matrix->note_length) / matrix->note_release);
-				tick_val *= rel_ratio;
-			}
-			else if(matrix->col_progress < matrix->note_attack) {
-				Float32 att_ratio = matrix->col_progress / matrix->note_attack;
-				tick_val *= att_ratio;
-			}
-			
 			val += tick_val;
 			++num_notes;
 		}

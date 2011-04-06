@@ -14,19 +14,15 @@ using namespace std;
 
 class AwesomeSynth {
 public:
-	AwesomeSynth();
+	AwesomeSynth(int inInstType, int inFreq, int inInstClass);
+	void setInstrument(int inInstType, int inFreq, int inInstClass);
+	int getInst();
+	int getFrequency();
 	StkFloat tick();
 	void reset();
-	void setWave(const char *fileName);
-	void setFrequency(Float32 inFreq);
-	void setOscillator(int newVal, int index);
-	int getInst(int index);
 	
-	int oscillator[3];
-	
-	Generator *gen[3];
-	Float32 frequency;
+	int instrument;
+	int frequency;
+	int instClass;
 	MoAudioFileIn *wavFile;
-	bool wavSet;
-	const char* fileName;
 };

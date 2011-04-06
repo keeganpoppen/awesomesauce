@@ -53,8 +53,10 @@ public:
 	bool getSquare(int row, int col) { return squares[row][col]; }
 	bool getFutureSquare(int row, int col) { return futureSquares[row][col]; }
 	
-	void setOscillator(int newVal, int index);
+	void setInstrument(int newVal);
 	
+	int instClass;
+	int instrument;
 	
 	//something like this?
 	void squareChangedEvent(int row, int col, bool value) {
@@ -68,7 +70,7 @@ public:
 	}
 	
 	int getInstrument(int index) {
-		return waves[0]->oscillator[index];
+		return waves[0]->getInst();
 	}
 	
 	void reset_synths() {
@@ -78,21 +80,9 @@ public:
 	}
 	
 	void initialize_drums() {
-		note_length = 1.0;
-		note_attack = 0.0;
-		note_release = 0.0;
-		
-		for (int i = 0; i < 8; ++i) {
-			waves[i]->setOscillator(-1, 0);
+		for (int i = 1; i <= 8; ++i) {
+			waves[i-1] = new AwesomeSynth(1, i, 1);
 		}
-		waves[0]->setWave("1kick");
-		waves[1]->setWave("2snare");
-		waves[2]->setWave("3snare2");
-		waves[3]->setWave("4clap");
-		waves[4]->setWave("5clap2");
-		waves[5]->setWave("6hatopen");
-		waves[6]->setWave("7hatclosed");
-		waves[7]->setWave("8shaker");
 	}
 	
 	bool isOn;
@@ -109,7 +99,6 @@ public:
 	int track_id;
 	
 	//envelope stuff
-	float note_length, note_attack, note_release;
 	float col_progress;
 	
 	//future stuff
@@ -126,14 +115,6 @@ public:
 	
 private:
 	void initialize_junk() {
-		/*
-		note_length = 0.1;
-		note_attack = 0.0;
-		note_release = 1.0;
-		*/
-		note_length = 0.3;
-		note_attack = 0.03;
-		note_release = 0.55;
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				squares[i][j] = false;
@@ -147,14 +128,10 @@ private:
 		future_steps_remaining = 0;
 		
 		//init waves var
-		for (int i = 0; i < 16; ++i) {
-			int index = i % 5;
-			int octave = i / 5 + 1;
-			
-			float freq = base_freq * pow(2, octave + (pentatonic_indices[index]/12.));
-			
-			waves[i] = new AwesomeSynth();
-			waves[i]->setFrequency(freq);
+		instrument = 1;
+		instClass = 0;
+		for (int i = 1; i <= 16; ++i) {
+			waves[i-1] = new AwesomeSynth(1, i, 0);
 		}
 		isOn = true;
 	}

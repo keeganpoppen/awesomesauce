@@ -157,11 +157,11 @@ void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 	getCurrentMatrix()->setFutureSquare(row, col, value);
 }
 
-void MatrixHandler::changeInstrument(int newVal, int index, bool sendNotification) {
-	getCurrentMatrix()->setOscillator(newVal, index);
+void MatrixHandler::changeInstrument(int newVal, bool sendNotification) {
+	getCurrentMatrix()->setInstrument(newVal);
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
-		[[temp instrumentChangeSync] sendInstrumentChanged:newVal withIndex:index onTrack:getCurrentMatrix()->track_id];
+		[[temp instrumentChangeSync] sendInstrumentChanged:newVal onTrack:getCurrentMatrix()->track_id];
 	}
 }
 
@@ -180,6 +180,9 @@ void MatrixHandler::advanceTime(float timeElapsed) {
 	current_column = (int)col_exact % 16;
 	if(old_column != current_column) {
 		drumMatrix->reset_synths();
+		for(int i = 0; i < matrices.size(); i++) {
+			matrices[i]->reset_synths();
+		}
 	}
 	
 	col_progress = col_exact - (float)((int)col_exact);
@@ -248,18 +251,6 @@ void MatrixHandler::setBpm(float newBpm, bool sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp bpmChangeSync] sendBPMChanged:newBpm];
 	}
-}
-
-void MatrixHandler::setCurrentTrackEnvLength(float newVal) {
-	getCurrentMatrix()->note_length = newVal;
-}
-
-void MatrixHandler::setCurrentTrackEnvAttack(float newVal) {
-	getCurrentMatrix()->note_attack = newVal;
-}
-
-void MatrixHandler::setCurrentTrackEnvRelease(float newVal) {
-	getCurrentMatrix()->note_release = newVal;
 }
 
 void MatrixHandler::saveCurrentComposition(NSString *name) {

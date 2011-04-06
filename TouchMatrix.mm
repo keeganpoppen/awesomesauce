@@ -16,9 +16,14 @@ void TouchMatrix::clear() {
 	}
 }
 
-void TouchMatrix::setOscillator(int newVal, int index) {
-	for (int i = 0; i < 16; ++i) {
-		waves[i]->setOscillator(newVal, index);
+void TouchMatrix::setInstrument(int newVal) {
+	instrument = newVal;
+	int num = 16;
+	if(instClass == 1) {
+		num = 8;
+	}
+	for (int i = 1; i <= num; ++i) {
+		waves[i]->setInstrument(newVal, i, instClass);
 	}
 }
 
@@ -42,9 +47,8 @@ TouchMatrix::TouchMatrix(NSMutableDictionary *fromDictionary) {
 	track_id = [[fromDictionary objectForKey:@"track_id"] intValue];
 	future_steps_remaining = [[fromDictionary objectForKey:@"future_steps_remaining"] intValue];
 	is_futuring = [[fromDictionary objectForKey:@"is_futuring"] boolValue];
-	setOscillator([[fromDictionary objectForKey:@"inst0"] intValue], 0);
-	setOscillator([[fromDictionary objectForKey:@"inst1"] intValue], 1);
-	setOscillator([[fromDictionary objectForKey:@"inst2"] intValue], 2);
+	instClass = [[fromDictionary objectForKey:@"instClass"] intValue];
+	setInstrument([[fromDictionary objectForKey:@"instrument"] intValue]);
 }
 
 /*
@@ -73,9 +77,8 @@ NSMutableDictionary *TouchMatrix::toDictionary() {
 	[dict setObject:[NSNumber numberWithInt:track_id] forKey:@"track_id"];
 	[dict setObject:[NSNumber numberWithInt:future_steps_remaining] forKey:@"future_steps_remaining"];
 	[dict setObject:[NSNumber numberWithBool:is_futuring] forKey:@"is_futuring"];
-	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(0)] forKey:@"inst0"];
-	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(1)] forKey:@"inst1"];
-	[dict setObject:[NSNumber numberWithInt:waves[0]->getInst(2)] forKey:@"inst2"];
+	[dict setObject:[NSNumber numberWithInt:instrument] forKey:@"instrument"];
+	[dict setObject:[NSNumber numberWithInt:instClass] forKey:@"instClass"];
 	
 	//return [dict autorelease];
 	return dict;

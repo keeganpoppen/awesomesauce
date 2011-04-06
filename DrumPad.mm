@@ -10,29 +10,19 @@
 #include "DrumPad.h"
 
 DrumPad::DrumPad() {
-	/*
-	pads[0] = new MoAudioFileIn();
-	pads[1] = new MoAudioFileIn();
-	pads[2] = new MoAudioFileIn();
-	pads[3] = new MoAudioFileIn();
-	pads[4] = new MoAudioFileIn();
-	pads[5] = new MoAudioFileIn();
-	pads[6] = new MoAudioFileIn();
-	pads[7] = new MoAudioFileIn();
-	*/
 	for(int i = 0; i < 8; i++) {
 		pads[i] = new MoAudioFileIn();
 		isOn[i] = false;
 	}
 	
-	pads[0]->openFile("1kick", "wav");
-	pads[1]->openFile("2snare", "wav");
-	pads[2]->openFile("3snare2", "wav");
-	pads[3]->openFile("4clap", "wav");
-	pads[4]->openFile("5clap2", "wav");
-	pads[5]->openFile("6hatopen", "wav");
-	pads[6]->openFile("7hatclosed", "wav");
-	pads[7]->openFile("8shaker", "wav");
+	pads[0]->openFile("d1-1", "wav");
+	pads[1]->openFile("d1-2", "wav");
+	pads[2]->openFile("d1-3", "wav");
+	pads[3]->openFile("d1-4", "wav");
+	pads[4]->openFile("d1-5", "wav");
+	pads[5]->openFile("d1-6", "wav");
+	pads[6]->openFile("d1-7", "wav");
+	pads[7]->openFile("d1-8", "wav");
 }
 
 SAMPLE DrumPad::tick() {

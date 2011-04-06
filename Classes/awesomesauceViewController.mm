@@ -534,28 +534,6 @@ enum {
 	}
 }
 
-// button action
-- (IBAction) flipToSynthView:(id)sender {
-	setMainScreen(false);
-	SynthViewController *controller = [[SynthViewController alloc] initWithNibName:@"SynthViewController" bundle:nil];
-	controller.delegate = self;
-	
-	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:controller animated:YES];
-	
-	//initialize controller with params, e.g. current track num, the track's current synth, etc
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	
-	//set text label of currently edited track
-	NSString *newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
-	[[controller titleLabel] setText:newText];
-	[[controller envLength] setValue:mh->getCurrentMatrix()->note_length];
-	[[controller envAttack] setValue:mh->getCurrentMatrix()->note_attack];
-	[[controller envRelease] setValue:mh->getCurrentMatrix()->note_release];
-	
-	[controller release];
-}
-
 - (IBAction)flipToSocialView:(id)sender {
 	setMute(true);
 	setMainScreen(false);
@@ -684,9 +662,9 @@ enum {
 }
 
 // delegate methods for SynthViewProtocol
--(void) changeInstrument:(int)newInst withIndex:(int)index {
+-(void) changeInstrument:(int)newInst {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->changeInstrument(newInst, index);
+	mh->changeInstrument(newInst);
 	int trackNum = mh->currentMatrix;
 	MixerView *temp = (MixerView *) [tracks objectAtIndex:trackNum];
 	if(newInst == 0) {
@@ -698,21 +676,6 @@ enum {
 	else if(newInst == 2) {
 		[temp setLabelText:@"Saw"];
 	}
-}
-
--(void) changeEnvLength:(float)newVal {
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->setCurrentTrackEnvLength(newVal);
-}
-
--(void) changeEnvAttack:(float)newVal {
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->setCurrentTrackEnvAttack(newVal);
-}
-
--(void) changeEnvRelease:(float)newVal {
-	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
-	mh->setCurrentTrackEnvRelease(newVal);
 }
 
 @end

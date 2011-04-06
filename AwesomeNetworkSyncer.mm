@@ -151,7 +151,7 @@
 	int intrument_id = [[data objectForKey:@"instrument_id"] intValue];
 	int index = [[data objectForKey:@"index"] intValue];
 	int track_id = [[data objectForKey:@"track_id"] intValue];
-	matrixHandler->getMatrix(track_id)->setOscillator(intrument_id, index);
+	//matrixHandler->getMatrix(track_id)->setOscillator(intrument_id, index); //TODO!!!
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] matrixChanged];
 }
 

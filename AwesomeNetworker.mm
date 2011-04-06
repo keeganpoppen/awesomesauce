@@ -232,6 +232,8 @@
 	
 	NSData *toSend = [[[NSKeyedArchiver archivedDataWithRootObject:dict] retain] autorelease];
 	
+	NSLog(@"data sent: %@", [toSend description]);
+	
 	NSError *err;
 	if (![session sendDataToAllPeers:toSend withDataMode:GKSendDataReliable error:&err]) {
 		NSLog(@"DATA SEND ERROR: %@", err);

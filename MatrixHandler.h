@@ -25,13 +25,10 @@ public:
 	MatrixHandler();
 	
 	void setBpm(float newBpm, bool sendNotification = true);
-	void setCurrentTrackEnvLength(float newVal);
-	void setCurrentTrackEnvAttack(float newVal);
-	void setCurrentTrackEnvRelease(float newVal);
 	void addNewMatrix(bool sendNotification = true);
 	void addNewMatrix(TouchMatrix *matrix, bool sendNotification = false);//NOTE: THIS IS AN UNSTABLE FORK OF THE NO-ARGUMENT VERSION
 	void advanceTime(float timeElapsed);
-	void changeInstrument(int newInst, int index, bool sendNotification = true);
+	void changeInstrument(int newInst, bool sendNotification = true);
 	void clearCurrentMatrix(bool sendNotification = true);
 	void displayCurrentMatrix();
 	void setMatrixOn(int trackId, bool newOnState);
