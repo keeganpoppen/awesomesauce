@@ -91,6 +91,8 @@
 		2DE1B3A7134C3EAB007DBEAF /* s2-14.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B397134C3EAB007DBEAF /* s2-14.wav */; };
 		2DE1B3A8134C3EAB007DBEAF /* s2-15.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B398134C3EAB007DBEAF /* s2-15.wav */; };
 		2DE1B3A9134C3EAB007DBEAF /* s2-16.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B399134C3EAB007DBEAF /* s2-16.wav */; };
+		2DE1B3E8134C54B4007DBEAF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B3E7134C54B4007DBEAF /* Icon.png */; };
+		2DE1B3F6134C59C7007DBEAF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B3F5134C59C7007DBEAF /* Default.png */; };
 		3D18413813448BA300680AA8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D18413713448BA300680AA8 /* CoreData.framework */; };
 		3D18415F134492CE00680AA8 /* awesomedatamodel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */; };
 		3D1841621344932900680AA8 /* AwesomeDataPersistenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */; };
@@ -349,6 +351,8 @@
 		2DE1B397134C3EAB007DBEAF /* s2-14.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-14.wav"; sourceTree = "<group>"; };
 		2DE1B398134C3EAB007DBEAF /* s2-15.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-15.wav"; sourceTree = "<group>"; };
 		2DE1B399134C3EAB007DBEAF /* s2-16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-16.wav"; sourceTree = "<group>"; };
+		2DE1B3E7134C54B4007DBEAF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		2DE1B3F5134C59C7007DBEAF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
 		3D18413713448BA300680AA8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = awesomedatamodel.xcdatamodel; sourceTree = "<group>"; };
@@ -724,6 +728,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2DE1B3F5134C59C7007DBEAF /* Default.png */,
+				2DE1B3E7134C54B4007DBEAF /* Icon.png */,
 				2DE1B2F8134C1C4D007DBEAF /* synths */,
 				2DC6541113452ACF008FF412 /* pad_pressed.png */,
 				2DC6541213452ACF008FF412 /* pad.png */,
@@ -1322,6 +1328,8 @@
 				2DE1B3A7134C3EAB007DBEAF /* s2-14.wav in Resources */,
 				2DE1B3A8134C3EAB007DBEAF /* s2-15.wav in Resources */,
 				2DE1B3A9134C3EAB007DBEAF /* s2-16.wav in Resources */,
+				2DE1B3E8134C54B4007DBEAF /* Icon.png in Resources */,
+				2DE1B3F6134C59C7007DBEAF /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
