@@ -69,7 +69,7 @@ public:
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"squareChangedEvent" object:nil userInfo:dict];
 	}
 	
-	int getInstrument(int index) {
+	int getInstrument() {
 		return waves[0]->getInst();
 	}
 	

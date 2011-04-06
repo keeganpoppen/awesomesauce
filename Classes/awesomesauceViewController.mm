@@ -45,7 +45,6 @@ enum {
 @synthesize futureLabel;
 @synthesize bpmSlider;
 @synthesize bpmLabel1, bpmLabel2, bpmLabel3;
-@synthesize instPicker;
 @synthesize saveFutureButton0;
 @synthesize saveFutureButton1;
 @synthesize cancelFutureButton;
@@ -53,6 +52,9 @@ enum {
 @synthesize futureLengthLabel;
 @synthesize futureLengthTitle;
 @synthesize futureDescription;
+@synthesize prevInst;
+@synthesize nextInst;
+@synthesize instLabel;
 @synthesize track1, track2, track3, track4, drumTrack;
 @synthesize drumpadLabel, drumpad1, drumpad2, drumpad3, drumpad4, drumpad5, drumpad6, drumpad7, drumpad8;
 @synthesize tracks;
@@ -244,7 +246,9 @@ enum {
 	[mainControls addObject:clearTrackButton];
 	[mainControls addObject:addTrackButton];
 	[mainControls addObject:bpmSlider];
-	[mainControls addObject:instPicker];
+	[mainControls addObject:prevInst];
+	[mainControls addObject:nextInst];
+	[mainControls addObject:instLabel];
 	[mainControls addObject:bpmLabel1];
 	[mainControls addObject:bpmLabel2];
 	[mainControls addObject:bpmLabel3];
@@ -428,18 +432,22 @@ enum {
 	NSString *newText;
 	if(mh->currentMatrix == -1) {
 		newText = @"Currently Editing Drums";
-		instPicker.hidden = YES;
+		prevInst.hidden = YES;
+		nextInst.hidden = YES;
+		instLabel.hidden = YES;
 		futureButton.hidden = YES;
 		futureLabel.hidden = YES;
 		[self hideDrumpad:NO];
 	}
 	else {
 		newText = [NSString stringWithFormat: @"Currently Editing Track %d", mh->currentMatrix+1];
-		instPicker.hidden = NO;
+		prevInst.hidden = NO;
+		nextInst.hidden = NO;
+		instLabel.hidden = NO;
 		futureButton.hidden = NO;
 		futureLabel.hidden = NO;
 		[self hideDrumpad:YES];
-		instPicker.selectedSegmentIndex = mh->getCurrentMatrix()->getInstrument(0);
+		//TODO: SET LABEL to reflect current instrument
 	}
 	[currentlyEditingLabel setText:newText];
 	//highlight current track, unhighlight old track
@@ -612,11 +620,6 @@ enum {
 	mh->setBpm([sender value]);
 }
 
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender {
-	int newInst = [sender selectedSegmentIndex];
-	[self changeInstrument:newInst];
-}
-
 // delegate methods for FlipViewProtocol
 - (void) closeMe {
 	setMute(false);
@@ -666,15 +669,28 @@ enum {
 	mh->changeInstrument(newInst);
 	int trackNum = mh->currentMatrix;
 	MixerView *temp = (MixerView *) [tracks objectAtIndex:trackNum];
-	if(newInst == 0) {
-		[temp setLabelText:@"Sine"];
+	NSString *synthName = [NSString stringWithFormat:@"Synth %d", newInst];
+	[temp setLabelText:synthName];
+	instLabel.text = synthName;
+}
+
+-(IBAction)changeInstPressed:(id)sender {
+	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
+	int num = mh->getCurrentMatrix()->getInstrument();
+	int total_insts = 2; //TODO: magic number
+	if(sender == nextInst) {
+		num++;
 	}
-	else if(newInst == 1) {
-		[temp setLabelText:@"Square"];
+	else {
+		num--;
 	}
-	else if(newInst == 2) {
-		[temp setLabelText:@"Saw"];
+	if(num <= 0) {
+		num = total_insts;
 	}
+	if(num > total_insts) {
+		num = 1;
+	}
+	[self changeInstrument:num];
 }
 
 @end

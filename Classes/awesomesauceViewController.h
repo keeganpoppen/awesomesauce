@@ -41,7 +41,11 @@
 	IBOutlet UILabel *bpmLabel1;
 	IBOutlet UILabel *bpmLabel2;
 	IBOutlet UILabel *bpmLabel3;
-	IBOutlet UISegmentedControl *instPicker;
+	
+	//inst picker
+	IBOutlet UIButton *prevInst;
+	IBOutlet UIButton *nextInst;
+	IBOutlet UILabel *instLabel;
 	
 	//table replacements
 	IBOutlet MixerView *track1;
@@ -93,7 +97,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *bpmLabel1;
 @property (nonatomic, retain) IBOutlet UILabel *bpmLabel2;
 @property (nonatomic, retain) IBOutlet UILabel *bpmLabel3;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *instPicker;
 @property (nonatomic, retain) IBOutlet MixerView *track1;
 @property (nonatomic, retain) IBOutlet MixerView *track2;
 @property (nonatomic, retain) IBOutlet MixerView *track3;
@@ -108,6 +111,9 @@
 @property (nonatomic, retain) IBOutlet UIButton *drumpad6;
 @property (nonatomic, retain) IBOutlet UIButton *drumpad7;
 @property (nonatomic, retain) IBOutlet UIButton *drumpad8;
+@property (nonatomic, retain) IBOutlet UIButton *prevInst;
+@property (nonatomic, retain) IBOutlet UIButton *nextInst;
+@property (nonatomic, retain) IBOutlet UILabel *instLabel;
 @property (nonatomic, retain) UIButton *saveFutureButton0;
 @property (nonatomic, retain) UIButton *saveFutureButton1;
 @property (nonatomic, retain) UIButton *cancelFutureButton;
@@ -136,6 +142,7 @@
 - (void)updateBpmSlider:(float)val;
 - (void)hideDrumpad:(bool)toHide;
 - (void)changeInstrument:(int)newInst;
+- (IBAction)changeInstPressed:(id)sender;
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;
@@ -143,7 +150,6 @@
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;
 - (IBAction)bpmChanged:(UISlider *)sender;
-- (IBAction)instPickerChanged:(UISegmentedControl *)sender;
 - (IBAction)drumpadPressed:(id)sender;
 
 @end
