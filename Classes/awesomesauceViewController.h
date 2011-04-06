@@ -22,7 +22,7 @@
 
 #import "HUDHandler.h"
 
-@interface awesomesauceViewController : UIViewController <SynthViewProtocol, FlipViewProtocol, SocialViewProtocol>
+@interface awesomesauceViewController : UIViewController <FlipViewProtocol, SocialViewProtocol>
 {
     EAGLContext *context;
     GLuint program;
@@ -135,6 +135,7 @@
 - (void)trackAddedInterface;
 - (void)updateBpmSlider:(float)val;
 - (void)hideDrumpad:(bool)toHide;
+- (void)changeInstrument:(int)newInst;
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
 - (IBAction)addMatrix;

@@ -159,6 +159,7 @@ void MatrixHandler::setFutureSquare(int row, int col, bool value) {
 
 void MatrixHandler::changeInstrument(int newVal, bool sendNotification) {
 	getCurrentMatrix()->setInstrument(newVal);
+	sendNotification = false; //TODO
 	if(sendNotification) {
 		AwesomeNetworkSyncer *temp = awesomeNetworker.networkSyncer;
 		[[temp instrumentChangeSync] sendInstrumentChanged:newVal onTrack:getCurrentMatrix()->track_id];

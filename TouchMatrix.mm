@@ -23,7 +23,7 @@ void TouchMatrix::setInstrument(int newVal) {
 		num = 8;
 	}
 	for (int i = 1; i <= num; ++i) {
-		waves[i]->setInstrument(newVal, i, instClass);
+		waves[i-1]->setInstrument(newVal, i, instClass);
 	}
 }
 

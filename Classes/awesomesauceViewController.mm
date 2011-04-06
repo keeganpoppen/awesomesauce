@@ -614,7 +614,7 @@ enum {
 
 - (IBAction)instPickerChanged:(UISegmentedControl *)sender {
 	int newInst = [sender selectedSegmentIndex];
-	[self changeInstrument:newInst withIndex:0];
+	[self changeInstrument:newInst];
 }
 
 // delegate methods for FlipViewProtocol
@@ -661,7 +661,6 @@ enum {
 	setPlayback(true);
 }
 
-// delegate methods for SynthViewProtocol
 -(void) changeInstrument:(int)newInst {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->changeInstrument(newInst);

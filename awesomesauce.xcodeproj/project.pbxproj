@@ -75,6 +75,22 @@
 		2DE1B316134C1C4D007DBEAF /* s1-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B306134C1C4D007DBEAF /* s1-7.wav */; };
 		2DE1B317134C1C4D007DBEAF /* s1-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B307134C1C4D007DBEAF /* s1-8.wav */; };
 		2DE1B318134C1C4D007DBEAF /* s1-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B308134C1C4D007DBEAF /* s1-9.wav */; };
+		2DE1B39A134C3EAB007DBEAF /* s2-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38A134C3EAB007DBEAF /* s2-1.wav */; };
+		2DE1B39B134C3EAB007DBEAF /* s2-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38B134C3EAB007DBEAF /* s2-2.wav */; };
+		2DE1B39C134C3EAB007DBEAF /* s2-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38C134C3EAB007DBEAF /* s2-3.wav */; };
+		2DE1B39D134C3EAB007DBEAF /* s2-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38D134C3EAB007DBEAF /* s2-4.wav */; };
+		2DE1B39E134C3EAB007DBEAF /* s2-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38E134C3EAB007DBEAF /* s2-5.wav */; };
+		2DE1B39F134C3EAB007DBEAF /* s2-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B38F134C3EAB007DBEAF /* s2-6.wav */; };
+		2DE1B3A0134C3EAB007DBEAF /* s2-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B390134C3EAB007DBEAF /* s2-7.wav */; };
+		2DE1B3A1134C3EAB007DBEAF /* s2-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B391134C3EAB007DBEAF /* s2-8.wav */; };
+		2DE1B3A2134C3EAB007DBEAF /* s2-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B392134C3EAB007DBEAF /* s2-9.wav */; };
+		2DE1B3A3134C3EAB007DBEAF /* s2-10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B393134C3EAB007DBEAF /* s2-10.wav */; };
+		2DE1B3A4134C3EAB007DBEAF /* s2-11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B394134C3EAB007DBEAF /* s2-11.wav */; };
+		2DE1B3A5134C3EAB007DBEAF /* s2-12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B395134C3EAB007DBEAF /* s2-12.wav */; };
+		2DE1B3A6134C3EAB007DBEAF /* s2-13.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B396134C3EAB007DBEAF /* s2-13.wav */; };
+		2DE1B3A7134C3EAB007DBEAF /* s2-14.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B397134C3EAB007DBEAF /* s2-14.wav */; };
+		2DE1B3A8134C3EAB007DBEAF /* s2-15.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B398134C3EAB007DBEAF /* s2-15.wav */; };
+		2DE1B3A9134C3EAB007DBEAF /* s2-16.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1B399134C3EAB007DBEAF /* s2-16.wav */; };
 		3D18413813448BA300680AA8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D18413713448BA300680AA8 /* CoreData.framework */; };
 		3D18415F134492CE00680AA8 /* awesomedatamodel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */; };
 		3D1841621344932900680AA8 /* AwesomeDataPersistenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1841611344932900680AA8 /* AwesomeDataPersistenceHandler.m */; };
@@ -317,6 +333,22 @@
 		2DE1B306134C1C4D007DBEAF /* s1-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s1-7.wav"; sourceTree = "<group>"; };
 		2DE1B307134C1C4D007DBEAF /* s1-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s1-8.wav"; sourceTree = "<group>"; };
 		2DE1B308134C1C4D007DBEAF /* s1-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s1-9.wav"; sourceTree = "<group>"; };
+		2DE1B38A134C3EAB007DBEAF /* s2-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-1.wav"; sourceTree = "<group>"; };
+		2DE1B38B134C3EAB007DBEAF /* s2-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-2.wav"; sourceTree = "<group>"; };
+		2DE1B38C134C3EAB007DBEAF /* s2-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-3.wav"; sourceTree = "<group>"; };
+		2DE1B38D134C3EAB007DBEAF /* s2-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-4.wav"; sourceTree = "<group>"; };
+		2DE1B38E134C3EAB007DBEAF /* s2-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-5.wav"; sourceTree = "<group>"; };
+		2DE1B38F134C3EAB007DBEAF /* s2-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-6.wav"; sourceTree = "<group>"; };
+		2DE1B390134C3EAB007DBEAF /* s2-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-7.wav"; sourceTree = "<group>"; };
+		2DE1B391134C3EAB007DBEAF /* s2-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-8.wav"; sourceTree = "<group>"; };
+		2DE1B392134C3EAB007DBEAF /* s2-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-9.wav"; sourceTree = "<group>"; };
+		2DE1B393134C3EAB007DBEAF /* s2-10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-10.wav"; sourceTree = "<group>"; };
+		2DE1B394134C3EAB007DBEAF /* s2-11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-11.wav"; sourceTree = "<group>"; };
+		2DE1B395134C3EAB007DBEAF /* s2-12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-12.wav"; sourceTree = "<group>"; };
+		2DE1B396134C3EAB007DBEAF /* s2-13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-13.wav"; sourceTree = "<group>"; };
+		2DE1B397134C3EAB007DBEAF /* s2-14.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-14.wav"; sourceTree = "<group>"; };
+		2DE1B398134C3EAB007DBEAF /* s2-15.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-15.wav"; sourceTree = "<group>"; };
+		2DE1B399134C3EAB007DBEAF /* s2-16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "s2-16.wav"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* awesomesauce_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = awesomesauce_Prefix.pch; sourceTree = "<group>"; };
 		3D18413713448BA300680AA8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3D18415E134492CE00680AA8 /* awesomedatamodel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = awesomedatamodel.xcdatamodel; sourceTree = "<group>"; };
@@ -771,6 +803,22 @@
 				2DE1B306134C1C4D007DBEAF /* s1-7.wav */,
 				2DE1B307134C1C4D007DBEAF /* s1-8.wav */,
 				2DE1B308134C1C4D007DBEAF /* s1-9.wav */,
+				2DE1B38A134C3EAB007DBEAF /* s2-1.wav */,
+				2DE1B38B134C3EAB007DBEAF /* s2-2.wav */,
+				2DE1B38C134C3EAB007DBEAF /* s2-3.wav */,
+				2DE1B38D134C3EAB007DBEAF /* s2-4.wav */,
+				2DE1B38E134C3EAB007DBEAF /* s2-5.wav */,
+				2DE1B38F134C3EAB007DBEAF /* s2-6.wav */,
+				2DE1B390134C3EAB007DBEAF /* s2-7.wav */,
+				2DE1B391134C3EAB007DBEAF /* s2-8.wav */,
+				2DE1B392134C3EAB007DBEAF /* s2-9.wav */,
+				2DE1B393134C3EAB007DBEAF /* s2-10.wav */,
+				2DE1B394134C3EAB007DBEAF /* s2-11.wav */,
+				2DE1B395134C3EAB007DBEAF /* s2-12.wav */,
+				2DE1B396134C3EAB007DBEAF /* s2-13.wav */,
+				2DE1B397134C3EAB007DBEAF /* s2-14.wav */,
+				2DE1B398134C3EAB007DBEAF /* s2-15.wav */,
+				2DE1B399134C3EAB007DBEAF /* s2-16.wav */,
 			);
 			path = synths;
 			sourceTree = "<group>";
@@ -1258,6 +1306,22 @@
 				2DE1B316134C1C4D007DBEAF /* s1-7.wav in Resources */,
 				2DE1B317134C1C4D007DBEAF /* s1-8.wav in Resources */,
 				2DE1B318134C1C4D007DBEAF /* s1-9.wav in Resources */,
+				2DE1B39A134C3EAB007DBEAF /* s2-1.wav in Resources */,
+				2DE1B39B134C3EAB007DBEAF /* s2-2.wav in Resources */,
+				2DE1B39C134C3EAB007DBEAF /* s2-3.wav in Resources */,
+				2DE1B39D134C3EAB007DBEAF /* s2-4.wav in Resources */,
+				2DE1B39E134C3EAB007DBEAF /* s2-5.wav in Resources */,
+				2DE1B39F134C3EAB007DBEAF /* s2-6.wav in Resources */,
+				2DE1B3A0134C3EAB007DBEAF /* s2-7.wav in Resources */,
+				2DE1B3A1134C3EAB007DBEAF /* s2-8.wav in Resources */,
+				2DE1B3A2134C3EAB007DBEAF /* s2-9.wav in Resources */,
+				2DE1B3A3134C3EAB007DBEAF /* s2-10.wav in Resources */,
+				2DE1B3A4134C3EAB007DBEAF /* s2-11.wav in Resources */,
+				2DE1B3A5134C3EAB007DBEAF /* s2-12.wav in Resources */,
+				2DE1B3A6134C3EAB007DBEAF /* s2-13.wav in Resources */,
+				2DE1B3A7134C3EAB007DBEAF /* s2-14.wav in Resources */,
+				2DE1B3A8134C3EAB007DBEAF /* s2-15.wav in Resources */,
+				2DE1B3A9134C3EAB007DBEAF /* s2-16.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
