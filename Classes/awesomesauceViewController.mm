@@ -37,10 +37,8 @@ enum {
 
 @synthesize animating, context, displayLink;
 @synthesize currentlyEditingLabel;
-@synthesize addTrackButton;
 @synthesize clearTrackButton;
 @synthesize futureButton;
-@synthesize addTrackLabel;
 @synthesize clearTrackLabel;
 @synthesize futureLabel;
 @synthesize bpmSlider;
@@ -84,39 +82,6 @@ enum {
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackAddedHandler:) name:@"track_added" object:nil];
 	
-}
-
-- (void) trackAddedHandler:(NSNotification *)notification {
-	numTracks++;
-	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix:false];
-	
-	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
-	[temp enableTrack:@"Sine"];
-	
-	[self matrixChanged];
-	
-	//TODO: 5 is a magic number so we should replace that at some point
-	//also the tableview not working is kinda lame
-	if(numTracks >= 5) {
-		addTrackButton.hidden = YES;
-		addTrackLabel.hidden = YES;
-	}
-}
-
-- (void) trackAddedInterface {
-	numTracks++;
-	
-	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
-	[temp enableTrack:@"Sine"];
-	
-	[self matrixChanged];
-	
-	//TODO: 5 is a magic number so we should replace that at some point
-	//also the tableview not working is kinda lame
-	if(numTracks >= 5) {
-		addTrackButton.hidden = YES;
-		addTrackLabel.hidden = YES;
-	}
 }
 
 - (void)updateBpmSlider:(float)val {
@@ -177,7 +142,6 @@ enum {
 
 - (void)initializeControls {
 	//set depressed button states
-	[addTrackButton setImage: [UIImage imageNamed: @"plus_clicked.png"] forState: UIControlStateHighlighted];
 	[clearTrackButton setImage: [UIImage imageNamed: @"delete_clicked.png"] forState: UIControlStateHighlighted];
 	[futureButton setImage: [UIImage imageNamed: @"future_clicked.png"] forState: UIControlStateHighlighted];
 	
@@ -248,7 +212,6 @@ enum {
 	mainControls = [[NSMutableArray alloc] init];
 	[mainControls addObject:futureButton];
 	[mainControls addObject:clearTrackButton];
-	[mainControls addObject:addTrackButton];
 	[mainControls addObject:bpmSlider];
 	[mainControls addObject:prevInst];
 	[mainControls addObject:nextInst];
@@ -256,7 +219,6 @@ enum {
 	[mainControls addObject:bpmLabel1];
 	[mainControls addObject:bpmLabel2];
 	[mainControls addObject:bpmLabel3];
-	[mainControls addObject:addTrackLabel];
 	[mainControls addObject:clearTrackLabel];
 	[mainControls addObject:futureLabel];
 	
@@ -356,8 +318,11 @@ enum {
 	[[self view] setBackgroundColor:[UIColor blackColor]];
 	
 	[track1 enableTrack:@"Sine"];
+	[track2 enableTrack:@"Track2"];
+	[track3 enableTrack:@"Track3"];
+	[track4 enableTrack:@"Track4"];
 	[drumTrack enableTrack:@"Drums"];
-	numTracks = 1;
+	numTracks = 4;
 }
 
 - (void)viewDidUnload
@@ -527,23 +492,6 @@ enum {
 
 - (IBAction)clearCurrentMatrix {
 	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] clearCurrentMatrix];
-}
-
-- (IBAction)addMatrix {
-	numTracks++;
-	[(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] addNewMatrix:true];
-	
-	MixerView *temp = (MixerView *)[tracks objectAtIndex:(numTracks - 1)];
-	[temp enableTrack:@"Sine"];
-	
-	[self matrixChanged];
-	
-	//TODO: 4 is a magic number so we should replace that at some point
-	//also the tableview not working is kinda lame
-	if(numTracks >= 4) {
-		addTrackButton.hidden = YES;
-		addTrackLabel.hidden = YES;
-	}
 }
 
 - (IBAction)flipToSocialView:(id)sender {

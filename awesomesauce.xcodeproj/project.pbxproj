@@ -28,6 +28,11 @@
 		2D2A7DC113253A3E006EFED0 /* InstrumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2A7DBF13253A3E006EFED0 /* InstrumentsViewController.xib */; };
 		2D5C672613248F12009676BA /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5C672413248F12009676BA /* SocialViewController.m */; };
 		2D5C672713248F12009676BA /* SocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D5C672513248F12009676BA /* SocialViewController.xib */; };
+		2D6234FB135433E7008D2741 /* clap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6234F6135433E7008D2741 /* clap.png */; };
+		2D6234FC135433E7008D2741 /* hihat.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6234F7135433E7008D2741 /* hihat.png */; };
+		2D6234FD135433E7008D2741 /* hihatopen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6234F8135433E7008D2741 /* hihatopen.png */; };
+		2D6234FE135433E7008D2741 /* kick.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6234F9135433E7008D2741 /* kick.png */; };
+		2D6234FF135433E7008D2741 /* snare.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6234FA135433E7008D2741 /* snare.png */; };
 		2D665F3E1308916800E962A4 /* awesomesauceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */; };
 		2D665F7B1308A5BC00E962A4 /* MatrixHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */; };
 		2D66610F1309169900E962A4 /* AwesomeSynth.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D66610E1309169900E962A4 /* AwesomeSynth.mm */; };
@@ -281,6 +286,11 @@
 		2D5C672313248F12009676BA /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		2D5C672413248F12009676BA /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
 		2D5C672513248F12009676BA /* SocialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SocialViewController.xib; path = Classes/SocialViewController.xib; sourceTree = "<group>"; };
+		2D6234F6135433E7008D2741 /* clap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clap.png; sourceTree = "<group>"; };
+		2D6234F7135433E7008D2741 /* hihat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hihat.png; sourceTree = "<group>"; };
+		2D6234F8135433E7008D2741 /* hihatopen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hihatopen.png; sourceTree = "<group>"; };
+		2D6234F9135433E7008D2741 /* kick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kick.png; sourceTree = "<group>"; };
+		2D6234FA135433E7008D2741 /* snare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snare.png; sourceTree = "<group>"; };
 		2D665F3D1308916800E962A4 /* awesomesauceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = awesomesauceViewController.xib; sourceTree = "<group>"; };
 		2D665F7A1308A5BC00E962A4 /* MatrixHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixHandler.mm; sourceTree = "<group>"; };
 		2D665F7E1308A5D300E962A4 /* MatrixHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixHandler.h; sourceTree = "<group>"; };
@@ -728,6 +738,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2D6234EB135433DF008D2741 /* icons */,
 				2DE1B3F5134C59C7007DBEAF /* Default.png */,
 				2DE1B3E7134C54B4007DBEAF /* Icon.png */,
 				2DE1B2F8134C1C4D007DBEAF /* synths */,
@@ -773,6 +784,18 @@
 				3D18413713448BA300680AA8 /* CoreData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D6234EB135433DF008D2741 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				2D6234F6135433E7008D2741 /* clap.png */,
+				2D6234F7135433E7008D2741 /* hihat.png */,
+				2D6234F8135433E7008D2741 /* hihatopen.png */,
+				2D6234F9135433E7008D2741 /* kick.png */,
+				2D6234FA135433E7008D2741 /* snare.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		2D7A5BE413429FB700215C8D /* electrokit */ = {
@@ -1330,6 +1353,11 @@
 				2DE1B3A9134C3EAB007DBEAF /* s2-16.wav in Resources */,
 				2DE1B3E8134C54B4007DBEAF /* Icon.png in Resources */,
 				2DE1B3F6134C59C7007DBEAF /* Default.png in Resources */,
+				2D6234FB135433E7008D2741 /* clap.png in Resources */,
+				2D6234FC135433E7008D2741 /* hihat.png in Resources */,
+				2D6234FD135433E7008D2741 /* hihatopen.png in Resources */,
+				2D6234FE135433E7008D2741 /* kick.png in Resources */,
+				2D6234FF135433E7008D2741 /* snare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

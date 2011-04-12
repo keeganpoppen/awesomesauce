@@ -31,10 +31,8 @@
     NSInteger animationFrameInterval;
     CADisplayLink *displayLink;
 	IBOutlet UILabel *currentlyEditingLabel;
-	IBOutlet UIButton *addTrackButton;
 	IBOutlet UIButton *clearTrackButton;
 	IBOutlet UIButton *futureButton;
-	IBOutlet UILabel *addTrackLabel;
 	IBOutlet UILabel *clearTrackLabel;
 	IBOutlet UILabel *futureLabel;
 	IBOutlet UISlider *bpmSlider;
@@ -87,10 +85,8 @@
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
 @property (nonatomic, retain) IBOutlet UILabel *currentlyEditingLabel;
-@property (nonatomic, retain) IBOutlet UIButton *addTrackButton;
 @property (nonatomic, retain) IBOutlet UIButton *clearTrackButton;
 @property (nonatomic, retain) IBOutlet UIButton *futureButton;
-@property (nonatomic, retain) IBOutlet UILabel *addTrackLabel;
 @property (nonatomic, retain) IBOutlet UILabel *clearTrackLabel;
 @property (nonatomic, retain) IBOutlet UILabel *futureLabel;
 @property (nonatomic, retain) IBOutlet UISlider *bpmSlider;
@@ -145,7 +141,6 @@
 - (IBAction)changeInstPressed:(id)sender;
 - (IBAction)printAge;
 - (IBAction)clearCurrentMatrix;
-- (IBAction)addMatrix;
 - (IBAction)resetClock;
 - (IBAction)flipToSocialView:(id)sender;
 - (IBAction)futureButtonPressed:(id)sender;

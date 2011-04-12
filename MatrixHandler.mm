@@ -31,10 +31,12 @@ void trackEditedEvent(int index, bool isOn) {
 MatrixHandler::MatrixHandler() {
 	drumPad = new DrumPad();
 	
-	//initialize with one tone matrix
-	TouchMatrix *firstMatrix = new TouchMatrix();
-	firstMatrix->track_id = 0;
-	matrices.push_back(firstMatrix);
+	//initialize with all tone matrices
+	for(int i = 0; i < 4; i++) {
+		TouchMatrix *firstMatrix = new TouchMatrix();
+		firstMatrix->track_id = i;
+		matrices.push_back(firstMatrix);
+	}
 	
 	drumMatrix = new TouchMatrix();
 	drumMatrix->track_id = -1;
