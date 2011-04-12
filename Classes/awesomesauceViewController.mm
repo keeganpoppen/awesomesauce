@@ -121,10 +121,14 @@ enum {
 
 - (void)updateBpmSlider:(float)val {
 	bpmSlider.value = val;
+	int temp = (int) val;
+	bpmLabel1.text = [NSString stringWithFormat:@"BPM: %d", temp];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+	//TODO: uncomment the below line, once the graphics cooperate
+	//return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
@@ -618,6 +622,8 @@ enum {
 - (IBAction)bpmChanged:(UISlider *)sender {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm([sender value]);
+	int temp = (int) [sender value];
+	bpmLabel1.text = [NSString stringWithFormat:@"BPM: %d", temp];
 }
 
 // delegate methods for FlipViewProtocol
@@ -636,6 +642,8 @@ enum {
 -(void) changeBpm:(float)newBpm {
 	MatrixHandler *mh = [(awesomesauceAppDelegate *)[[UIApplication sharedApplication] delegate] getMatrixHandler];
 	mh->setBpm(newBpm);
+	int temp = (int) newBpm;
+	bpmLabel1.text = [NSString stringWithFormat:@"BPM: %d", newBpm];
 }
 
 - (void) closeAndSwitchTrack:(int)trackNum {

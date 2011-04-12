@@ -98,13 +98,15 @@ void displayMatrix(TouchMatrix *matrix) {
     // blend function
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	
+	glBindTexture( GL_TEXTURE_2D, g_texture[1] );
+	
 	for (int col = 0; col < 16; ++col) {
 		for (int row = 0; row < 16; ++row) {
 			bool isOff = true;
 			glColor4f( off_r, off_g, off_b, 1.0 );
 			if(matrix->squares[row][col]) {
 				// bind the texture
-				glBindTexture( GL_TEXTURE_2D, g_texture[1] );
+				//glBindTexture( GL_TEXTURE_2D, g_texture[1] );
 				
 				
 				glColor4f( on_r, on_g, on_b, 1.0 );
@@ -114,7 +116,9 @@ void displayMatrix(TouchMatrix *matrix) {
 			}
 			else {
 				// bind the texture
-				glBindTexture( GL_TEXTURE_2D, g_texture[0] );
+				//glBindTexture( GL_TEXTURE_2D, g_texture[0] );
+				glColor4f(1., 1., 1., 1.);
+				//glBindTexture( GL_TEXTURE_2D, g_texture[1] );
 			}
 			GLfloat x = 768 - half_width - row * half_width * 2;
 			GLfloat y = half_width + col * half_width * 2 + 256;

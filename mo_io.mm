@@ -987,6 +987,27 @@ SAMPLE * MoAudioFileIn::tick( SAMPLE * vec, unsigned int vectorSize )
     return vec;
 }
 
+/*
+const SAMPLE * MoAudioFileIn::tickFrame()
+{
+    register SAMPLE tyme, alpha;
+    register unsigned long i, index;
+    
+	tyme = time;
+    
+    // integer part of time address
+    index = ( long ) tyme;
+    
+    index *= channels;
+	for( i=0; i<channels; i++ )
+		lastOutput[i] = 0;//data[index++];
+    
+    // increment time, which can be negative
+    time += rate;
+    
+    return lastOutput;
+}
+ */
 const SAMPLE * MoAudioFileIn::tickFrame()
 {
     register SAMPLE tyme, alpha;

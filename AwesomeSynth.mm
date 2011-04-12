@@ -27,7 +27,9 @@ void AwesomeSynth::setInstrument(int inInst, int inFreq, int inInstClass) {
 		sprintf(fileName, "d%d-%d", instrument, frequency); //drum class
 	}
 	wavFile = new MoAudioFileIn();
-	wavFile->openFile(fileName, "wav");
+	wavFile->bufferSize = 1024 * 1024;
+	wavFile->openFile(fileName, "wav", false, true);
+	NSLog(@"buffer size: %d\n", wavFile->bufferSize);
 }
 
 int AwesomeSynth::getInst() {
